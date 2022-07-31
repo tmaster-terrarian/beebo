@@ -74,3 +74,9 @@ else
     }
 }
 if(hsp != 0) image_xscale = sign(hsp);
+
+if(x > room_width + 64) || (x < -64) || (y > room_width + 64) || (y < -64)
+{
+    x = xstart;
+    y = ystart;
+}

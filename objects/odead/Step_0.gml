@@ -29,4 +29,7 @@ if (done == 0)
         vsp = 0;
     }
     y += vsp;
+
+    x = round(x);
+    y = round(y);
 }
