@@ -25,18 +25,14 @@ if (place_meeting(x + hsp, y, oWall))
     {
         x += sign(hsp);
     }
-    if (!place_meeting(x + sign(hsp), y - 4, oWall)) //edge detection (for top of platform)
+    if (!place_meeting(x + sign(hsp), y - 4, oWall)) //nudge
     {
-        //for (i=0; i < 4; i++)
-        //{
-            y -= 2;
+        y -= 2;
+        x += sign(hsp);
+        if(!place_meeting(x + sign(hsp), y, oWall))
+        {
             x += sign(hsp);
-            if(!place_meeting(x + sign(hsp), y, oWall))
-            {
-                x += sign(hsp);
-                //break;
-            }
-        //}
+        }
     }
     hsp = 0;
 }
@@ -49,7 +45,7 @@ if (place_meeting(x, y + vsp, oWall))
     {
         y += sign(vsp);
     }
-    coyotetime = 5;
+    coyotetime = 8;
     vsp = 0;
 }
 y += vsp;
