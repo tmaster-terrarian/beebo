@@ -4,3 +4,5 @@ grv = 0.1;
 walksp = 2;
 
 coyotetime = 0;
+
+hascontrol = true;

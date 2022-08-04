@@ -10,7 +10,7 @@
     "name": "sPlayer",
     "path": "sprites/sPlayer/sPlayer.yy",
   },
-  "persistent": true,
+  "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,

@@ -14,8 +14,9 @@ firingdelay -= 1;
 recoil = max(0, recoil - 1);
 if (mouse_check_button(mb_left)) && (firingdelay < 0)
 {
+    ScreenShake(1, 10);
     recoil = 2;
-    firingdelay = 8;
+    firingdelay = 5;
     //for (var i = 0; i < 6; i += 1)
     //{
         with (instance_create_layer(x, y, "Bullet_Instances", oBullet))
@@ -25,6 +26,7 @@ if (mouse_check_button(mb_left)) && (firingdelay < 0)
             image_angle = direction;
         }
     //}
+    image_angle += random_range(-4, 4);
 }
 if (mouse_check_button_released(mb_left))
 {
