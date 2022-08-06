@@ -33,3 +33,4 @@ if (done == 0)
     x = round(x);
     y = round(y);
 }
+else scr_particle_explode();

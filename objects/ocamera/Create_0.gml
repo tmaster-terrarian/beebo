@@ -1,13 +1,17 @@
 cam = view_camera[0];
-follow = oPlayer;
+follow = noone;
+with(oPlayer)
+{
+    other.follow = oPlayer;
+}
 view_w_half = camera_get_view_width(cam) * 0.5;
 view_h_half = camera_get_view_height(cam) * 0.5;
 xTo = xstart;
 yTo = ystart;
 smooth_factor = 6;
 
-x = follow.x;
-y = follow.y;
+//x = follow.x;
+//y = follow.y;
 
 shake_length = 0; //60 is cool
 shake_magnitude = 0; //3 is cool, 6 is super cool

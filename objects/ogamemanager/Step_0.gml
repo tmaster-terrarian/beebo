@@ -7,7 +7,7 @@ if(mode != TRANS_MODE.OFF)
     }
     else
     {
-        percent = min(1.2, percent + max(((1.2 - percent) / 5), 0.005))
+        percent = min(1.2, percent + max(((1.2 - percent) / trans_speed), 0.005))
     }
 
     if(percent == 1.2) || (percent == 0)
@@ -40,4 +40,15 @@ if(keyboard_check(vk_lcontrol))
         x = mouse_x;
         y = mouse_y;
     }
+}
+
+//hascontrol timer or something idk
+controltimer = max(0, controltimer - 1);
+with(oPlayer)
+{
+    if(other.controltimer > 0)
+    {
+        hascontrol = false;
+    }
+    else hascontrol = true;
 }

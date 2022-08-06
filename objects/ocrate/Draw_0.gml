@@ -8,3 +8,7 @@ if(flash > 0)
     shader_reset();
 }
 else draw_self();
+if(hp <= 0)
+{
+    scr_particle_explode();
+}

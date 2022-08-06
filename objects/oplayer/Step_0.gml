@@ -15,8 +15,7 @@ else
 
 //move input logic
 
-move = key_right - key_left;
-move = clamp(move, -1, 1);
+var move = key_right - key_left;
 
 hsp = move * walksp;
 
@@ -26,6 +25,7 @@ vsp = clamp(vsp, -10, 5);
 coyotetime -= 1;
 if ((place_meeting(x, y + 1, oWall) || place_meeting(x, y + 1, oCrate) || place_meeting(x, y + 1, oPlatform)) || ((coyotetime <= 5) && (coyotetime >= 0))) && (key_jump)
 {
+    audio_play_sound(sn_jump, 1, false);
     vsp = -2.5;
 }
 
@@ -47,19 +47,21 @@ collisionH = function(obj)
 {
     if (place_meeting(x + hsp, y, obj))
     {
+        var _hsp = 0;
+        _hsp += hsp;
         while (!place_meeting(x + sign(hsp), y, obj))
         {
             x += sign(hsp);
         }
-        if (!place_meeting(x + sign(hsp), y - 4, obj)) //nudge
-        {
-            y -= 2;
-            x += sign(hsp);
-            if(!place_meeting(x + sign(hsp), y, obj))
-            {
-                x += sign(hsp);
-            }
-        }
+        //if (!place_meeting(x + sign(hsp), y - 4, obj)) //nudge
+        //{
+        //    y -= 2;
+        //    x += sign(hsp);
+        //    if(!place_meeting(x + sign(hsp), y, obj))
+        //    {
+        //        x += sign(hsp);
+        //    }
+        //}
         hsp = 0;
     }
 }
@@ -94,7 +96,7 @@ if(!keyboard_check(vk_lcontrol))
 {
     collisionV(oWall);
     collisionV(oCrate);
-    if (sign(vsp) > 0) { collisionV(oPlatform); }
+    if (sign(vsp) > 0) && (!keyboard_check(ord("S"))) { collisionV(oPlatform); }
     if (place_meeting(x, y, oPlatform))
     {
         y -= 1;
@@ -105,8 +107,8 @@ y += vsp;
 //animation
 notTouching = function(obj)
 {
-    if(!place_meeting(x, y + 1, obj)) return 1;
-    else return 0;
+    if(!place_meeting(x, y + 1, obj)) return true;
+    else return false;
 }
 
 if(notTouching(oWall) && notTouching(oCrate) && notTouching(oPlatform))
@@ -129,7 +131,7 @@ else
 }
 if(hsp != 0) image_xscale = sign(hsp);
 
-if(x > room_width + 32) || (x < -32) || (y > room_width + 32) || (y < -32)
+if(x > room_width + 32) || (x < -32) || (y > room_height + 32) || (y < -32)
 {
     x = xstart;
     y = ystart;
