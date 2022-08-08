@@ -1,6 +1,6 @@
 if(hp <= 0)
 {
-    with (instance_create_layer(x, y, layer, oRoboDead))
+    with (instance_create_depth(x, y, depth, oRoboDead))
     {
         direction = other.hitfrom;
         hsp = lengthdir_x(2, direction);
