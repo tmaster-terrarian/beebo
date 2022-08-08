@@ -15,5 +15,15 @@ with (oGun)
 
 draw_self();
 
+if(flash > 0)
+{
+    flash--;
+    shader_set(shWhite);
+    shader_set_uniform_f(upixelW, texelW);
+    shader_set_uniform_f(upixelH, texelH);
+    draw_self();
+    shader_reset();
+}
+
 x = origx;
 y = origy;

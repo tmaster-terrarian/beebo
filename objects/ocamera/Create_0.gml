@@ -1,9 +1,5 @@
 cam = view_camera[0];
-follow = noone;
-with(oPlayer)
-{
-    other.follow = oPlayer;
-}
+follow = oPlayer;
 view_w_half = camera_get_view_width(cam) * 0.5;
 view_h_half = camera_get_view_height(cam) * 0.5;
 xTo = xstart;
@@ -16,7 +12,7 @@ smooth_factor = 6;
 shake_length = 0; //60 is cool
 shake_magnitude = 0; //3 is cool, 6 is super cool
 shake_remain = 0; //3 is cool, 6 is super cool
-buff = 8;
+buff = 4;
 
 if(layer_exists("bg1"))
 {

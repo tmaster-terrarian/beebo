@@ -1,1 +1,0 @@
-_has_triggered = false;

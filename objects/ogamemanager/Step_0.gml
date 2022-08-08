@@ -16,18 +16,35 @@ if(mode != TRANS_MODE.OFF)
         {
             case TRANS_MODE.INTRO:
                 mode = TRANS_MODE.OFF;
-                break;
+            break;
             case TRANS_MODE.NEXT:
                 mode = TRANS_MODE.INTRO;
-                room_goto_next();
-                break;
+                current_rm++;
+                room_goto(rm_list[current_rm]);
+            break;
             case TRANS_MODE.GOTO:
                 mode = TRANS_MODE.INTRO;
-                room_goto(target);
-                break;
+                rm_index = 0;
+                for(var i = 0; i < array_length_1d(stages); i++)
+                {
+                    for(var j = 0; j < array_length_1d(stages[i]); j++)
+                    {
+                        if(rm_list[rm_index] == target)
+                        {
+                            current_rm = rm_index;
+                            ini_open("save.ini");
+                            ini_write_real("savedata", "stage", i);
+                            ini_close();
+                            room_goto(target);
+                            break;
+                        }
+                        else rm_index++;
+                    }
+                }
+            break;
             case TRANS_MODE.RESTART:
                 game_restart();
-                break;
+            break;
         }
     }
 }

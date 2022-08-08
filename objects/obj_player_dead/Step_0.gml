@@ -1,0 +1,105 @@
+if (done == false)
+{
+	hsp = move;
+	vsp += grv;
+
+    //move and collisions
+    //horizontal
+	if (oob == false)
+    if (place_meeting(x + hsp, y, oWall))
+    {
+        while (!place_meeting(x + sign(hsp), y, oWall))
+        {
+            x += sign(hsp);
+        }
+        hsp = 0;
+    }
+    x += hsp;
+
+    //vertical
+	if (oob == false)
+    if (place_meeting(x, y + vsp, oWall))
+    {
+        if (vsp > 0)
+        {
+            done = true;
+			audio_play_sound(sn_antic_gyui, 1, false);
+			room_speed = 30;
+        }
+        while (!place_meeting(x, y + sign(vsp), oWall))
+        {
+            y += sign(vsp);
+        }
+        vsp = 0;
+    }
+    y += vsp;
+}
+else
+{
+	if(oob == true)
+	{
+		vsp -= grv;
+
+		xTo = oCamera.x;
+		yTo = oCamera.y;
+
+		x += (xTo - x) / 6;
+		y += (yTo - y) / 6;
+	}
+
+	bg.x = camera_get_view_x(cam) - 8;
+	bg.y = camera_get_view_y(cam) - 8;
+
+	with(obj_gun_dead)
+	{
+		done = true;
+		image_angle -= 10;
+		xTo = other.x;
+		yTo = other.y - 4;
+
+		x += (xTo - x) / 6;
+		y += (yTo - y) / 6;
+	}
+	explosiontimer--;
+    if(explosiontimer < 0)
+    {
+		if(timer_finished == false)
+		{
+			timer_finished = true;
+			with(oCrate) hp = 0;
+			with(oRobo) hp = 0;
+			with(o_nectar) hp = 0;
+			with(obj_gun_dead) scr_particle_explode();
+			//scr_particle_explode2();
+			audio_play_sound(snBigExplode, 10, false);
+			x = round(x);
+			y = round(y);
+			room_speed = 60;
+		}
+
+		//var posx = random_range(cam_x + 16, cam_x + 320 - 16);
+		//var posy = random_range(cam_y + 16, cam_y + 180 - 16);
+		var posx = random_range(x - 16, x + 16);
+		var posy = random_range(y - 16, y + 16);
+		var chance = random_range(1, 4);
+
+		if(chance > 3)
+		{
+			shake_length = 20;
+			shake_magnitude = 2;
+			shake_remain = 2;
+			ScreenShake(4, 20);
+			MakeExplosion(posx, posy, 4, 4, 2, sn_explosion, 750);
+		}
+    }
+}
+bg.image_alpha = (-1 * (explosiontimer / 40) + 1);
+
+if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter))
+{
+	audio_stop_all();
+	with(oGameManager) current_bgm = noone;
+	room_speed = 60;
+	scr_particle_explode2();
+	SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.BOX, oGameManager.stages[GetStage(rm)][0]);
+}

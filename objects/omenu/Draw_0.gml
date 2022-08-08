@@ -11,20 +11,21 @@ for (var i = 0; i < menu_items; i++)
         txt = string_insert("> ", txt, 0);
         //txt = string_insert(" <", txt, string_length(txt));
         var col = c_white;
-        var selectoffset = 8;
+        var selectoffset = 6;
     }
     else
     {
         var col = c_gray;
         var selectoffset = 0;
     }
-    if(file_exists("save.ini")) && (i == 2)
+    ini_open("save.ini");
+    if(ini_section_exists("savedata")) && (i == 2)
     {
-        ini_open("save.ini");
-        var roomid = ini_read_real("savedata", "room", r1);
-        ini_close();
-        txt = string_insert(" <" + room_get_name(roomid) + ">", txt, string_length(txt) + 1);
+        //var stage = ini_read_real("savedata", "stage", 0);
+        //txt = string_insert(" <" + gamemanager.stage_names[stage] + ">", txt, string_length(txt) + 1);
     }
+    else if(i == 2) {menu_items = array_length_1d(menu) - 1; menu_cursor = 1;}
+    ini_close();
     var xx = round(menu_x);
     var yy = round(menu_y) - (menu_itemheight * i);
     draw_set_color(c_black);

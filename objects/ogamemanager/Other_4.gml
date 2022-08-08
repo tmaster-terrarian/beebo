@@ -1,3 +1,8 @@
 //music
-if(current_bgm == noone)
-    current_bgm = audio_play_sound(bgm_placeholder, 10, true);
+switch(current_rm)
+{
+    case -1: SetMusic(bgm_placeholder); break; //title screen
+
+    case 0: StopMusic(); break;
+    case 1: SetMusic(bgm_placeholder); break;
+}

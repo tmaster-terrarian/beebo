@@ -2,6 +2,7 @@ if(instance_exists(oPlayer))
 {
     target = oPlayer;
 }
+else target = obj_player_dead;
 
 circlepos += 2;
 if(circlepos >= 360) circlepos = 0;
@@ -27,7 +28,7 @@ if(wing_direction == 1)
 {
     wing_left.image_angle += wing_speed;
     wing_right.image_angle -= wing_speed;
-    if(wing_left.image_angle >= wing_left_rotation_end)
+    if(wing_left.image_angle >= wing_rotation_end)
     {
         wing_direction = -1;
     }
@@ -36,7 +37,7 @@ else
 {
     wing_left.image_angle -= wing_speed;
     wing_right.image_angle += wing_speed;
-    if(wing_left.image_angle <= wing_left_rotation_start)
+    if(wing_left.image_angle <= wing_rotation_start)
     {
         wing_direction = 1;
     }

@@ -39,9 +39,9 @@ if (menu_x > gui_width + 100) && (menu_committed != -1)
     {
         case 2:
             ini_open("save.ini");
-            var target = ini_read_real("savedata", "room", r1);
+            var stage = ini_read_real("savedata", "stage", 0);
             ini_close();
-            SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.SLOW_HORIZONTAL, target);
+            SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.SLOW_HORIZONTAL, gamemanager.stages[stage][0]);
         break;
         case 1: default:
             SlideTransition(TRANS_MODE.NEXT, TRANS_TYPE.SLOW_HORIZONTAL);

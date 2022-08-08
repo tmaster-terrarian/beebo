@@ -23,7 +23,7 @@ if (mouse_check_button(mb_left)) && (firingdelay < 0)
     //fire bullet
     //for (var i = 0; i < 6; i += 1) //uncomment for spread
     //{
-        with (instance_create_layer(x, y, "Bullet_Instances", oBullet))
+        with (instance_create_depth(x, y, depth - 3, oBullet))
         {
             //play fire sound
             audio_play_sound(snShot, 1, false);
@@ -31,6 +31,26 @@ if (mouse_check_button(mb_left)) && (firingdelay < 0)
             speed = 12;
             direction = other.image_angle + random_range(-4, 4);
             image_angle = direction;
+        }
+    //}
+}
+
+firingdelaybomb -= 1;
+if (mouse_check_button_pressed(mb_right)) && (firingdelaybomb < 0)
+{
+    ScreenShake(2, 10);
+    recoil = 4;
+    firingdelaybomb = 120;
+    audio_play_sound(sn_throw, 1, false);
+
+    //fire bullet
+    //for (var i = 0; i < 6; i += 1) //uncomment for spread
+    //{
+        with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
+        {
+			direction = other.image_angle;
+			hsp = lengthdir_x(2, direction);
+			vsp = lengthdir_y(2, direction) - 1;
         }
     //}
 }

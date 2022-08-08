@@ -1,16 +1,22 @@
 if(has_triggered == false)
 {
 	has_triggered = true;
-	var cam = camera_get_active();
+	var cam = view_camera[0];
 	with(oPlayer)
 	{
 		if(other.side > 0)
 		{
-			instance_create_layer(camera_get_view_x(cam) + 328, camera_get_view_y(cam) + other.vertical_pos, "Enemy", other.enemy);
+			for(i = 0; i < other.count; i++)
+			{
+				instance_create_depth(camera_get_view_x(cam) + 328, camera_get_view_y(cam) + other.vertical_pos, depth + 20, other.enemy);
+			}
 		}
 		else
 		{
-			instance_create_layer(camera_get_view_x(cam) - 8, camera_get_view_y(cam) + other.vertical_pos, "Enemy", other.enemy);
+			for(i = 0; i < other.count; i++)
+			{
+				instance_create_depth(camera_get_view_x(cam) - 8, camera_get_view_y(cam) + other.vertical_pos, depth + 20, other.enemy);
+			}
 		}
 	}
 }

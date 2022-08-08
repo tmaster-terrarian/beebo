@@ -3,6 +3,10 @@ if(instance_exists(follow))
     xTo = follow.x;
     yTo = follow.y;
 }
+if(instance_exists(obj_player_dead))
+{
+    follow = obj_player_dead;
+}
 
 x += (xTo - x) / smooth_factor; // LERP MY BELOVED
 y += (yTo - y) / smooth_factor;
