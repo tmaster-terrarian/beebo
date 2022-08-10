@@ -18,6 +18,8 @@ menu[0] = "rage quit";
 menu_items = array_length_1d(menu);
 menu_cursor = 2;
 
+menu_top = menu_y - ((menu_itemheight * 1) * menu_items);
+
 gamemanager = oGameManager;
 
 ini_open("save.ini");

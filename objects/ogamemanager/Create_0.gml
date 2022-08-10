@@ -1,3 +1,6 @@
+global.playerhealth = 0;
+global.playermaxhealth = 0;
+
 // screen transition stuff
 w = display_get_gui_width();
 h = display_get_gui_height();
@@ -8,6 +11,7 @@ enum TRANS_MODE
     OFF,
     NEXT,
     GOTO,
+    RESPAWN,
     RESTART,
     INTRO
 };

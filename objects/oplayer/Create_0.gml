@@ -1,15 +1,24 @@
+event_inherited();
+
+if(global.playerhealth == 0) global.playerhealth = hp_max;
+hp = global.playerhealth;
+global.playermaxhealth = hp_max;
+
 depth = 300;
 
-hsp = 0;
-vsp = 0;
 grv = 0.1;
 walksp = 2;
+facing = 1;
+attack = 0;
+
+ground_accel = 0.1;
+ground_fric = 0.1;
+air_accel = 0.025;
+air_fric = 0.02;
 
 coyotetime = 0;
 
 hascontrol = true;
-
-stored_hsp = 0;
 
 iframes = 0;
 hitfrom = 0;

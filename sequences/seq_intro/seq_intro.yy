@@ -74,7 +74,7 @@
                             {"th0":1.0,"th1":-1.0,"tv0":0.0,"tv1":0.0,"x":0.6982855,"y":32.407463,},
                             {"th0":-0.08071213,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":32.058876,},
                           ],"resourceVersion":"1.0","name":"y","tags":[],"resourceType":"GMAnimCurveChannel",},
-                      ],"parent":{"name":"position","path":"sequences/seq_intro/seq_intro.yy",},"resourceVersion":"1.2","name":"Position","tags":[],"resourceType":"GMAnimCurve",},"RealValue":0.0,"AnimCurveId":null,"resourceVersion":"1.0","resourceType":"RealKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"RealKeyframe",},
+                      ],"parent":{"name":"position","path":"sequences/seq_intro/seq_intro.yy",},"resourceVersion":"1.2","name":"","tags":[],"resourceType":"GMAnimCurve",},"RealValue":0.0,"AnimCurveId":null,"resourceVersion":"1.0","resourceType":"RealKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"RealKeyframe",},
             ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"RealKeyframe",},"trackColour":4282934514,"inheritsTrackColour":true,"builtinName":14,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","name":"position","tags":[],"resourceType":"GMRealTrack","modifiers":[
             {"resourceVersion":"1.0","resourceType":"LockedModifier",},
           ],},
@@ -121,8 +121,8 @@
     "path": "scripts/seq_intro_Events13/seq_intro_Events13.yy",
   },
   "parent": {
-    "name": "Sequences",
-    "path": "folders/Sequences.yy",
+    "name": "seq_intro",
+    "path": "folders/Sequences/seq_intro.yy",
   },
   "resourceVersion": "1.4",
   "name": "seq_intro",

@@ -38,9 +38,13 @@ if(mode != TRANS_MODE.OFF)
                             room_goto(target);
                             break;
                         }
-                        else rm_index++;
+                        rm_index++;
                     }
                 }
+            break;
+            case TRANS_MODE.RESPAWN:
+                mode = TRANS_MODE.INTRO;
+                room_goto(target);
             break;
             case TRANS_MODE.RESTART:
                 game_restart();

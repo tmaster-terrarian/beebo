@@ -1,3 +1,6 @@
+event_inherited();
+
+global.playerhealth = hp;
 if(hp <= 0)
 {
 	with(oGun)

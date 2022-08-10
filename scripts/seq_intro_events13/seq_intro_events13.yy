@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "lol",
-    "path": "lol.yyp",
+    "name": "seq_intro",
+    "path": "folders/Sequences/seq_intro.yy",
   },
   "resourceVersion": "1.0",
   "name": "seq_intro_Events13",

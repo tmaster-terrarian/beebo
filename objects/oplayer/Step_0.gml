@@ -1,98 +1,3 @@
-//get inputs
-
-if(hascontrol)
-{
-    key_left = keyboard_check(ord("A"));
-    key_right = keyboard_check(ord("D"));
-    key_jump = keyboard_check_pressed(vk_space);
-    key_kick = keyboard_check(ord("F"));
-}
-else
-{
-    key_left = 0;
-    key_right = 0;
-    key_jump = 0;
-    key_kick = 0;
-}
-
-//move input logic
-
-var move = key_right - key_left;
-
-if(iframes > 40) && !((place_meeting(x, y + 1, oWall) || place_meeting(x, y + 1, oCrate) || place_meeting(x, y + 1, oPlatform))) hsp = lengthdir_x(2, hitfrom);
-else hsp = move * walksp;
-
-vsp += grv;
-vsp = clamp(vsp, -10, 5);
-
-//iframes
-iframes = max(0, iframes - 1);
-
-coyotetime -= 1;
-if ((place_meeting(x, y + 1, oWall) || place_meeting(x, y + 1, oCrate) || place_meeting(x, y + 1, oPlatform)) || ((coyotetime <= 5) && (coyotetime >= 0))) && (key_jump) && (vsp > 0)
-{
-    audio_play_sound(sn_jump, 1, false);
-    vsp = -2.5;
-}
-
-//move and collisions
-//functions
-collisionV = function(obj)
-{
-    if (place_meeting(x, y + vsp, obj))
-    {
-        while (!place_meeting(x, y + sign(vsp), obj))
-        {
-            y += sign(vsp);
-        }
-        coyotetime = 8;
-        vsp = 0;
-    }
-}
-collisionH = function(obj)
-{
-    if (place_meeting(x + hsp, y, obj))
-    {
-        var _hsp = 0;
-        _hsp += hsp;
-        while (!place_meeting(x + sign(hsp), y, obj))
-        {
-            x += sign(hsp);
-        }
-        if (!place_meeting(x + sign(hsp), y - 4, obj)) //nudge
-        {
-            y -= 2;
-            x += sign(hsp);
-            if(!place_meeting(x + sign(hsp), y, obj))
-            {
-                x += sign(hsp);
-            }
-        }
-        hsp = 0;
-    }
-}
-
-//horizontal
-if(!keyboard_check(vk_lcontrol))
-{
-    collisionH(oWall);
-    collisionH(oCrate);
-}
-x += hsp;
-
-//vertical
-if(!keyboard_check(vk_lcontrol))
-{
-    collisionV(oWall);
-    collisionV(oCrate);
-    if (sign(vsp) > 0) && (!keyboard_check(ord("S"))) { collisionV(oPlatform); }
-    if (place_meeting(x, y, oPlatform))
-    {
-        y -= 1;
-    }
-}
-y += vsp;
-
 //animation
 if(!instance_exists(oGun))
 {
@@ -128,33 +33,170 @@ use_anim_state = function(anim_id, state)
     }
 }
 
-notTouching = function(obj)
-{
-    if(!place_meeting(x, y + 1, obj)) return true;
-    else return false;
-}
+if(place_meeting(x, y, oWall)) y--;
 
-if(notTouching(oWall) && notTouching(oCrate) && notTouching(oPlatform))
+image_xscale = facing;
+if(hascontrol)
 {
-    use_anim_state(0, anim_state);
-    image_speed = 0;
-    if (sign(vsp) > 0) image_index = 1; else image_index = 0;
-}
-else
-{
-    image_speed = 1;
-    if (hsp == 0)
+    if on_ground
     {
-        use_anim_state(2, anim_state);
+        var accel = ground_accel;
+        var fric = ground_fric;
     }
     else
     {
-        use_anim_state(1, anim_state);
+        var accel = air_accel;
+        var fric = air_fric;
+    }
+    if(keyboard_check(ord("D")))
+    {
+        if (hsp < 0)
+        {
+            hsp = approach(hsp, 0, fric);
+        }
+        if(hsp < walksp) hsp = approach(hsp, walksp, 0.1);
+        if(on_ground && !attack) use_anim_state(1, anim_state);
+        facing = 1;
+    }
+    else if(keyboard_check(ord("A")))
+    {
+        if (hsp > 0)
+        {
+            hsp = approach(hsp, 0, fric);
+        }
+        if(hsp > -walksp) hsp = approach(hsp, -walksp, 0.1);
+        if(on_ground) && (!attack) use_anim_state(1, anim_state);
+        facing = -1;
+    }
+    else
+    {
+        hsp = approach(hsp, 0, fric);
+        if(hsp == 0 && !attack) use_anim_state(2, anim_state);
+    }
+    if(on_ground)
+    {
+        if(keyboard_check_pressed(vk_space))
+        {
+            if (place_meeting(x, y + 1, oPlatform)) && (keyboard_check(ord("S")))
+            {
+                y += 1;
+            }
+            else
+            {
+                audio_play_sound(sn_jump, 1, false);
+                vsp = -2.51;
+            }
+        }
+    }
+    else
+    {
+        if(keyboard_check_pressed(vk_space))
+        {
+            if(place_meeting(x + 3, y, oWall))
+            {
+                facing = -1;
+                hsp = 1.5 * facing;
+                vsp = -2.51;
+                audio_play_sound(sn_jump, 1, false);
+            }
+            if(place_meeting(x - 3, y, oWall))
+            {
+                facing = 1;
+                hsp = 1.5 * facing;
+                vsp = -2.51;
+                audio_play_sound(sn_jump, 1, false);
+            }
+        }
+        //if(keyboard_check_released(vk_space))
+        //    vsp /= 2;
+        if(vsp > 0)
+        {
+            if(!attack) sprite_index = spr_player_fall;
+        }
+        if(vsp < 0)
+        {
+            if(!attack) sprite_index = spr_player_jump;
+        }
     }
 }
-if(hsp != 0) image_xscale = sign(hsp);
+if (!on_ground)
+    vsp = approach(vsp, 20, grv);
+else vsp = clamp(vsp, -20, 0);
 
-if(x > room_width + 32) || (x < -32) || (y > room_height + 32) || (y < -32)
+x = floor(x)
+y = floor(y)
+
+//iframes
+iframes = max(0, iframes - 1);
+
+//coyotetime -= 1;
+//if ((place_meeting(x, y + 1, oWall) || place_meeting(x, y + 1, oPlatform)) || ((coyotetime <= 5) && (coyotetime >= 0))) && (key_jump) && (vsp > 0)
+//{
+//    audio_play_sound(sn_jump, 1, false);
+//    vsp = -2.5;
+//}
+
+//move and collisions
+//functions
+collisionV = function(obj)
+{
+    if (place_meeting(x, y + vsp, obj))
+    {
+        while (!place_meeting(x, y + sign(vsp), obj))
+        {
+            y += sign(vsp);
+        }
+        coyotetime = 8;
+        vsp = 0;
+    }
+}
+collisionH = function(obj)
+{
+    if (place_meeting(x + hsp, y, obj))
+    {
+        while (!place_meeting(x + sign(hsp), y, obj))
+        {
+            x += sign(hsp);
+        }
+        if (!place_meeting(x + sign(hsp), y - 4, obj)) //nudge
+        {
+            y -= 2;
+            x += sign(hsp);
+            if(!place_meeting(x + sign(hsp), y, obj))
+            {
+                x += sign(hsp);
+            }
+        }
+        hsp = 0;
+    }
+}
+
+//horizontal
+if(!keyboard_check(vk_lcontrol))
+{
+//    collisionH(oWall);
+}
+//x += hsp;
+
+//vertical
+if(!keyboard_check(vk_lcontrol))
+{
+//    collisionV(oWall);
+//    if (sign(vsp) > 0) && (!keyboard_check(ord("S"))) { collisionV(oPlatform); }
+//    if (place_meeting(x, y, oPlatform))
+//    {
+//        y -= 1;
+//    }
+}
+//y += vsp;
+
+if(y > room_height + 200)
 {
     hp = 0;
 }
+
+var _vx = camera_get_view_x(view_camera[0]);
+var _vy = camera_get_view_y(view_camera[0]);
+var _vw = camera_get_view_width(view_camera[0]);
+var _vh = camera_get_view_height(view_camera[0]);
+instance_activate_region(_vx - 16, _vy - 16, _vw + 16, _vh + 16, true);

@@ -48,7 +48,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "oRobo",
+  "name": "obj_enemy",
   "tags": [],
   "resourceType": "GMObject",
 }

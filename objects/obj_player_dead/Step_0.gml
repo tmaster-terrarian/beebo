@@ -67,8 +67,7 @@ else
 		{
 			timer_finished = true;
 			with(oCrate) hp = 0;
-			with(oRobo) hp = 0;
-			with(o_nectar) hp = 0;
+			with(obj_enemy) hp = 0;
 			with(obj_gun_dead) scr_particle_explode();
 			//scr_particle_explode2();
 			audio_play_sound(snBigExplode, 10, false);
@@ -97,9 +96,9 @@ bg.image_alpha = (-1 * (explosiontimer / 40) + 1);
 
 if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter))
 {
-	audio_stop_all();
-	with(oGameManager) current_bgm = noone;
+	global.playerhealth = hp_max;
+	with(oGameManager) { audio_sound_gain(current_bgm, 1, 500); audio_sound_set_track_position(current_bgm, 0); }
 	room_speed = 60;
 	scr_particle_explode2();
-	SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.BOX, oGameManager.stages[GetStage(rm)][0]);
+	SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rm);
 }

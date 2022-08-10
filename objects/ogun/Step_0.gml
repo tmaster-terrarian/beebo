@@ -4,12 +4,12 @@ image_angle = round(image_angle / 10) * 10;
 if (image_angle > 90 && image_angle < 270)
 {
     image_yscale = -1;
-    oPlayer.image_xscale = -1;
+    oPlayer.facing = -1;
 }
 else
 {
     image_yscale = 1;
-    oPlayer.image_xscale = 1;
+    oPlayer.facing = 1;
 }
 
 firingdelay -= 1;
