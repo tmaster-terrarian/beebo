@@ -1,9 +1,3 @@
-var origx = x;
-var origy = y;
-
-x = round(x);
-y = round(y);
-
 with (oGun)
 {
     x = other.x;
@@ -24,6 +18,3 @@ if(flash > 0)
     draw_self();
     shader_reset();
 }
-
-x = origx;
-y = origy;
