@@ -1,5 +1,4 @@
 event_inherited();
-S_SLOPE_SLOW = 1;
 
 if(global.playerhealth == 0) global.playerhealth = hp_max;
 hp = global.playerhealth;

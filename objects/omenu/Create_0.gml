@@ -21,26 +21,3 @@ menu_cursor = 2;
 menu_top = menu_y - ((menu_itemheight * 1) * menu_items);
 
 gamemanager = oGameManager;
-
-ini_open("save.ini");
-if(ini_key_exists("screeb", "res"))
-{
-    global.screenSize = round(ini_read_real("screeb", "res", 1));
-    if(global.screenSize < 9)
-    {
-        window_set_fullscreen(false);
-        window_set_size((256 * global.screenSize), (144 * global.screenSize));
-    }
-    else
-    {
-        window_set_fullscreen(true);
-    }
-}
-else
-{
-    window_set_fullscreen(false);
-    global.screenSize = 2;
-    ini_write_real("screeb", "res", global.screenSize);
-    window_set_size((256 * global.screenSize), (144 * global.screenSize));
-}
-ini_close();

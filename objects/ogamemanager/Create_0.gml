@@ -1,6 +1,3 @@
-global.playerhealth = 0;
-global.playermaxhealth = 0;
-
 // screen transition stuff
 w = display_get_gui_width();
 h = display_get_gui_height();
@@ -32,6 +29,11 @@ controltimer = 0;
 //global
 global.screenSize = 1;
 
+global.playerhealth = 0;
+global.playermaxhealth = 0;
+
+global.cutscene = false;
+
 //music
 current_bgm = noone;
 
@@ -54,3 +56,27 @@ for(var i = 0; i < array_length_1d(stages); i++)
         rm_index++;
     }
 }
+
+//screen size
+ini_open("save.ini");
+if(ini_key_exists("screeb", "res"))
+{
+    global.screenSize = round(ini_read_real("screeb", "res", 1));
+    if(global.screenSize < 9)
+    {
+        window_set_fullscreen(false);
+        window_set_size((256 * global.screenSize), (144 * global.screenSize));
+    }
+    else
+    {
+        window_set_fullscreen(true);
+    }
+}
+else
+{
+    window_set_fullscreen(false);
+    global.screenSize = 2;
+    ini_write_real("screeb", "res", global.screenSize);
+    window_set_size((256 * global.screenSize), (144 * global.screenSize));
+}
+ini_close();

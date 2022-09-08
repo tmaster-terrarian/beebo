@@ -1,4 +1,4 @@
-S_SLOPE_SLOW = 0.5
+S_SLOPE_SLOW = 0
 hsp = 0
 vsp = 0
 h_counter = 0

@@ -49,6 +49,13 @@ if(menu_control)
             audio_play_sound(sn_menu_select, 2, false);
         }
     }
+
+    if(keyboard_check_pressed(ord("Z")))
+    {
+        // "TRANS_MODE.RESPAWN" is just a basic version of "TRANS_MODE.GOTO"
+            // why did I do this
+        SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rm_settings);
+    }
 }
 
 if (menu_x > gui_width + 100) && (menu_committed != -1)
@@ -62,7 +69,7 @@ if (menu_x > gui_width + 100) && (menu_committed != -1)
             SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.SLOW_HORIZONTAL, gamemanager.stages[stage][0]);
         break;
         case 1: default:
-            SlideTransition(TRANS_MODE.NEXT, TRANS_TYPE.SLOW_HORIZONTAL);
+            SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.SLOW_HORIZONTAL, gamemanager.stages[0][0]);
         break;
         case 0:
             game_end();

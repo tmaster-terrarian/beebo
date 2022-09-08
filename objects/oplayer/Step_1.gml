@@ -31,7 +31,6 @@ if(hp <= 0)
 		direction = point_direction(x, y, oCamera.x, oCamera.y);
 		move = lengthdir_x(3.5, direction);
 		vsp = lengthdir_y(3.5, direction);
-		if(hsp != 0) image_angle = 180 * sign(hsp);
 	}
 	else
 	{
@@ -39,6 +38,5 @@ if(hp <= 0)
 		if(hitfrom == 0) direction = point_direction(x, y, x + sign(hsp), y);
 		move = lengthdir_x(1, direction);
 		vsp = lengthdir_y(1, direction);
-		if(hsp != 0) image_angle = 180 * sign(hsp);
 	}
 }

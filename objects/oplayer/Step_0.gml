@@ -123,11 +123,22 @@ if (!on_ground)
     vsp = approach(vsp, 20, grv);
 else vsp = clamp(vsp, -20, 0);
 
-x = floor(x)
-y = floor(y)
+x = floor(x);
+y = floor(y);
 
-//iframes
-iframes = max(0, iframes - 1);
+image_speed = 0.35;
+
+if(hp > hp_max) hp = hp_max;
+
+if(!global.introsequence)
+{
+    if(iframes > 0 && !global.cutscene) image_alpha = 0.6;
+    else image_alpha = 1;
+
+    iframes = max(0, iframes - 1);
+
+    if(!hascontrol) image_alpha = 1;
+}
 
 //coyotetime -= 1;
 //if ((place_meeting(x, y + 1, oWall) || place_meeting(x, y + 1, oPlatform)) || ((coyotetime <= 5) && (coyotetime >= 0))) && (key_jump) && (vsp > 0)
@@ -135,60 +146,20 @@ iframes = max(0, iframes - 1);
 //    audio_play_sound(sn_jump, 1, false);
 //    vsp = -2.5;
 //}
-
 //move and collisions
 //functions
-collisionV = function(obj)
-{
-    if (place_meeting(x, y + vsp, obj))
-    {
-        while (!place_meeting(x, y + sign(vsp), obj))
-        {
-            y += sign(vsp);
-        }
-        coyotetime = 8;
-        vsp = 0;
-    }
-}
-collisionH = function(obj)
-{
-    if (place_meeting(x + hsp, y, obj))
-    {
-        while (!place_meeting(x + sign(hsp), y, obj))
-        {
-            x += sign(hsp);
-        }
-        if (!place_meeting(x + sign(hsp), y - 4, obj)) //nudge
-        {
-            y -= 2;
-            x += sign(hsp);
-            if(!place_meeting(x + sign(hsp), y, obj))
-            {
-                x += sign(hsp);
-            }
-        }
-        hsp = 0;
-    }
-}
-
-//horizontal
-if(!keyboard_check(vk_lcontrol))
-{
-//    collisionH(oWall);
-}
-//x += hsp;
-
-//vertical
-if(!keyboard_check(vk_lcontrol))
-{
-//    collisionV(oWall);
-//    if (sign(vsp) > 0) && (!keyboard_check(ord("S"))) { collisionV(oPlatform); }
-//    if (place_meeting(x, y, oPlatform))
+//collisionV = function(obj)
+//{
+//    if (place_meeting(x, y + vsp, obj))
 //    {
-//        y -= 1;
+//        while (!place_meeting(x, y + sign(vsp), obj))
+//        {
+//            y += sign(vsp);
+//        }
+//        coyotetime = 8;
+//        vsp = 0;
 //    }
-}
-//y += vsp;
+//}
 
 if(y > room_height + 200)
 {
