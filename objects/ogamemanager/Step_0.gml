@@ -25,9 +25,9 @@ if(mode != TRANS_MODE.OFF)
             case TRANS_MODE.GOTO:
                 mode = TRANS_MODE.INTRO;
                 rm_index = 0;
-                for(var i = 0; i < array_length_1d(stages); i++)
+                for(var i = 0; i < array_length(stages); i++)
                 {
-                    for(var j = 0; j < array_length_1d(stages[i]); j++)
+                    for(var j = 0; j < array_length(stages[i]); j++)
                     {
                         if(rm_list[rm_index] == target)
                         {

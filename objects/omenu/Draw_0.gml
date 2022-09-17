@@ -24,7 +24,7 @@ for (var i = 0; i < menu_items; i++)
         //var stage = ini_read_real("savedata", "stage", 0);
         //txt = string_insert(" <" + gamemanager.stage_names[stage] + ">", txt, string_length(txt) + 1);
     }
-    else if(i == 2) {menu_items = array_length_1d(menu) - 1; menu_cursor = 1;}
+    else if(i == 2) {menu_items = array_length(menu) - 1; menu_cursor = 1;}
     ini_close();
     var xx = round(menu_x);
     var yy = round(menu_y) - (menu_itemheight * i);

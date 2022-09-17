@@ -48,9 +48,9 @@ stage_names = ["THE BEGIN"];
 
 rm_list = [];
 rm_index = 0;
-for(var i = 0; i < array_length_1d(stages); i++)
+for(var i = 0; i < array_length(stages); i++)
 {
-    for(var j = 0; j < array_length_1d(stages[i]); j++)
+    for(var j = 0; j < array_length(stages[i]); j++)
     {
         rm_list[rm_index] = stages[i][j];
         rm_index++;
@@ -61,7 +61,7 @@ for(var i = 0; i < array_length_1d(stages); i++)
 ini_open("save.ini");
 if(ini_key_exists("screeb", "res"))
 {
-    global.screenSize = round(ini_read_real("screeb", "res", 1));
+    global.screenSize = floor(ini_read_real("screeb", "res", 1));
     if(global.screenSize < 9)
     {
         window_set_fullscreen(false);
