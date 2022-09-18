@@ -88,7 +88,7 @@ else
 			shake_magnitude = 2;
 			shake_remain = 2;
 			ScreenShake(4, 20);
-			MakeExplosion(posx, posy, 4, 4, 2, sn_explosion, 750);
+			MakeExplosion(posx, posy, 4, 4, 2, sn_explosion, depth + 150);
 		}
     }
 }
@@ -97,7 +97,7 @@ bg.image_alpha = (-1 * (explosiontimer / 40) + 1);
 if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter))
 {
 	global.playerhealth = hp_max;
-	with(oGameManager) { audio_sound_gain(current_bgm, 1, 500); audio_sound_set_track_position(current_bgm, 0); }
+	with(oGameManager) { audio_sound_gain(current_bgm, global.bgm_volume, 500); audio_sound_set_track_position(current_bgm, 0); }
 	room_speed = 60;
 	scr_particle_explode2();
 	SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rm);

@@ -1,10 +1,10 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "sn_robo_death",
+  "name": "sn_aaugh2",
   "conversionMode": 0,
   "compression": 0,
-  "volume": 0.37,
+  "volume": 1.0,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
@@ -14,8 +14,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sn_robo_death.ogg",
-  "duration": 0.462857,
+  "soundFile": "sn_aaugh2.ogg",
+  "duration": 0.522449,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",

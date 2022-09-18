@@ -1,4 +1,4 @@
-//music
+// music
 switch(current_rm)
 {
     case -1: SetMusic(bgm_placeholder); break; //title screen
@@ -8,5 +8,5 @@ switch(current_rm)
     case 2: SetMusic(bgm_placeholder); break;
 }
 
-//activation/deactivation
+// activation/deactivation
 instance_deactivate_object(obj_enemy);

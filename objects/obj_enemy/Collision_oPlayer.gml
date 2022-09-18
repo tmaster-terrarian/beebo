@@ -4,7 +4,7 @@ with (other)
     {
         iframes = 60;
 
-        hp--;
+        hp -= other.damage;
         flash = 3;
         hitfrom = point_direction(other.x, other.y, x, y);
 

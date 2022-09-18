@@ -23,26 +23,30 @@ percent = 1;
 trans_speed = 5; //INVERSE!! LOWER IS FASTER!!!! DUHH APE BRAIN
 target = room;
 
-//player control
+// player control
 controltimer = 0;
 
-//global
+// global
 global.screenSize = 1;
+global.snd_volume = 1;
+global.bgm_volume = 1;
 
 global.playerhealth = 0;
 global.playermaxhealth = 0;
 
 global.cutscene = false;
+global.introsequence = false;
 
-//music
+// music
 current_bgm = noone;
 
-//custom level order, to avoid the template room showing up in-game
+// custom level order, to avoid the template room showing up in-game
 current_rm = -1;
 
 stages =
 [
-    [lvl1_0, lvl1_1, lvl1_2] //stage 1
+    [lvl1_0], // tutoriel
+    [lvl1_1, lvl1_2] // stage 1
 ];
 stage_names = ["THE BEGIN"];
 
@@ -57,26 +61,25 @@ for(var i = 0; i < array_length(stages); i++)
     }
 }
 
-//screen size
+// save data stuff
 ini_open("save.ini");
-if(ini_key_exists("screeb", "res"))
+
+// screen size
+global.screenSize = floor(ini_read_real("screeb", "res", 2));
+if(global.screenSize < 9)
 {
-    global.screenSize = floor(ini_read_real("screeb", "res", 1));
-    if(global.screenSize < 9)
-    {
-        window_set_fullscreen(false);
-        window_set_size((256 * global.screenSize), (144 * global.screenSize));
-    }
-    else
-    {
-        window_set_fullscreen(true);
-    }
+    window_set_fullscreen(false);
+    window_set_size((256 * global.screenSize), (144 * global.screenSize));
 }
 else
 {
-    window_set_fullscreen(false);
-    global.screenSize = 2;
-    ini_write_real("screeb", "res", global.screenSize);
-    window_set_size((256 * global.screenSize), (144 * global.screenSize));
+    window_set_fullscreen(true);
 }
+
+// settings
+global.snd_volume = ini_read_real("settings", "sound volume", 1);
+global.bgm_volume = ini_read_real("settings", "music volume", 1);
+audio_group_set_gain(audiogroup_default, global.snd_volume, 0);
+audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
+
 ini_close();

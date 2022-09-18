@@ -4,7 +4,7 @@ if(instance_exists(oPlayer))
 }
 else target = obj_player_dead;
 
-circlepos += 2;
+if(appeared) circlepos += 2;
 if(circlepos >= 360) circlepos = 0;
 
 target_x = target.x + lengthdir_x(distancefrom, circlepos);
