@@ -54,7 +54,7 @@ if(hascontrol)
         {
             hsp = approach(hsp, 0, fric);
         }
-        if(hsp < walksp) hsp = approach(hsp, walksp, 0.1);
+        if(hsp < walksp) hsp = approach(hsp, walksp, accel);
         if(on_ground && !attack) use_anim_state(1, anim_state);
         facing = 1;
     }
@@ -64,7 +64,7 @@ if(hascontrol)
         {
             hsp = approach(hsp, 0, fric);
         }
-        if(hsp > -walksp) hsp = approach(hsp, -walksp, 0.1);
+        if(hsp > -walksp) hsp = approach(hsp, -walksp, accel);
         if(on_ground) && (!attack) use_anim_state(1, anim_state);
         facing = -1;
     }
@@ -126,7 +126,7 @@ else vsp = clamp(vsp, -20, 0);
 x = floor(x);
 y = floor(y);
 
-image_speed = 0.35;
+image_speed = 0.3;
 
 if(hp > hp_max) hp = hp_max;
 

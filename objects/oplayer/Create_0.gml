@@ -14,7 +14,7 @@ attack = 0;
 ground_accel = 0.1;
 ground_fric = 0.1;
 air_accel = 0.05;
-air_fric = 0.04;
+air_fric = 0.05;
 
 coyotetime = 0;
 
