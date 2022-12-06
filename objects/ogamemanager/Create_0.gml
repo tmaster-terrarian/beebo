@@ -27,7 +27,6 @@ target = room;
 controltimer = 0;
 
 // global
-global.screenSize = 1;
 global.snd_volume = 1;
 global.bgm_volume = 1;
 
@@ -63,18 +62,6 @@ for(var i = 0; i < array_length(stages); i++)
 
 // save data stuff
 ini_open("save.ini");
-
-// screen size
-global.screenSize = floor(ini_read_real("screeb", "res", 2));
-if(global.screenSize < 9)
-{
-    window_set_fullscreen(false);
-    window_set_size((256 * global.screenSize), (144 * global.screenSize));
-}
-else
-{
-    window_set_fullscreen(true);
-}
 
 // settings
 global.snd_volume = ini_read_real("settings", "sound volume", 1);
