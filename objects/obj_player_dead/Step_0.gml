@@ -69,15 +69,12 @@ else
 			with(oCrate) hp = 0;
 			with(obj_enemy) hp = 0;
 			with(obj_gun_dead) scr_particle_explode();
-			//scr_particle_explode2();
 			audio_play_sound(snBigExplode, 10, false);
 			x = round(x);
 			y = round(y);
 			room_speed = 60;
 		}
 
-		//var posx = random_range(cam_x + 16, cam_x + 320 - 16);
-		//var posy = random_range(cam_y + 16, cam_y + 180 - 16);
 		var posx = random_range(x - 16, x + 16);
 		var posy = random_range(y - 16, y + 16);
 		var chance = random_range(1, 4);
@@ -91,6 +88,18 @@ else
 			MakeExplosion(posx, posy, 4, 4, 2, sn_explosion, depth + 150);
 		}
     }
+	if(explosiontimer == -5)
+	{
+		with(obj_pixel)
+		{
+			active = 1;
+			deact = 10;
+			ticker = 10;
+			image_alpha = 10;
+			hspeed *= lengthdir_x(10, point_direction(x, y, other.x, other.y));
+			vspeed *= lengthdir_y(-10, point_direction(x, y, other.x, other.y));
+		}
+	}
 }
 bg.image_alpha = (-1 * (explosiontimer / 40) + 1);
 

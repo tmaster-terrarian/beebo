@@ -30,3 +30,5 @@ texelW = texture_get_texel_width(sprite_get_texture(sprite_index, 0));
 texelH = texture_get_texel_height(sprite_get_texture(sprite_index, 0));
 
 anim_state = 0; //0: default, 1: no_gun
+gun_offs_x = 0;
+gun_offs_y = 0;

@@ -1,13 +1,9 @@
-with (oGun)
-{
-    x = other.x;
-    y = other.y + 3;
-
-    x -= lengthdir_x(recoil, image_angle);
-    y -= lengthdir_y(recoil, image_angle);
-}
-
 draw_self();
+
+if(instance_exists(oGun))
+{
+    draw_sprite_ext(oGun.sprite_index, oGun.image_index, x + gun_offs_x - lengthdir_x(oGun.recoil, oGun.image_angle), y + gun_offs_y - lengthdir_y(oGun.recoil, oGun.image_angle), oGun.image_xscale, oGun.image_yscale, oGun.image_angle, c_white, 1);
+}
 
 if(flash > 0)
 {

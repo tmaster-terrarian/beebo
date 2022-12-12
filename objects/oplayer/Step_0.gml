@@ -3,7 +3,13 @@ if(!instance_exists(oGun))
 {
     anim_state = 1;
 }
-else anim_state = 0;
+else
+{
+    anim_state = 0;
+
+    oGun.x = x;
+    oGun.y = y + 3;
+}
 
 use_anim_state = function(anim_id, state)
 {
@@ -30,7 +36,42 @@ use_anim_state = function(anim_id, state)
                 case 1: sprite_index = spr_player1; break;
             }
         break;
+        case 3:
+            switch(state)
+            {
+                case 0: default: sprite_index = spr_player_run_rev0; break;
+                case 1: sprite_index = spr_player_run_rev1; break;
+            }
+        break;
     }
+}
+
+if(sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_index == spr_player_run_rev0) || (sprite_index == spr_player_run_rev1)
+{
+    switch(floor(image_index))
+    {
+        case 0: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
+        case 1: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
+        case 2: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
+        case 3: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
+        case 4: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
+        case 5: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
+        case 6: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
+        case 7: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
+    }
+}
+else if(sprite_index == spr_player_jump)
+{
+    gun_offs_y = 4;
+}
+else if(sprite_index == spr_player_fall)
+{
+    gun_offs_y = 3;
+}
+else
+{
+    gun_offs_x = 0;
+    gun_offs_y = 3;
 }
 
 if(place_meeting(x, y, oWall)) y--;
@@ -55,7 +96,11 @@ if(hascontrol)
             hsp = approach(hsp, 0, fric);
         }
         if(hsp < walksp) hsp = approach(hsp, walksp, accel);
-        if(on_ground && !attack) use_anim_state(1, anim_state);
+        if(on_ground && !attack)
+        {
+            if(sign(hsp) == facing) use_anim_state(1, anim_state);
+            else use_anim_state(3, anim_state);
+        }
         facing = 1;
     }
     else if(keyboard_check(ord("A")))
@@ -65,12 +110,16 @@ if(hascontrol)
             hsp = approach(hsp, 0, fric);
         }
         if(hsp > -walksp) hsp = approach(hsp, -walksp, accel);
-        if(on_ground) && (!attack) use_anim_state(1, anim_state);
+        if(on_ground && !attack)
+        {
+            if(sign(hsp) == facing) use_anim_state(1, anim_state);
+            else use_anim_state(3, anim_state);
+        }
         facing = -1;
     }
     else
     {
-        hsp = approach(hsp, 0, fric);
+        hsp = approach(hsp, 0, fric * 2);
         if(hsp == 0 && !attack) use_anim_state(2, anim_state);
     }
     if(on_ground)
