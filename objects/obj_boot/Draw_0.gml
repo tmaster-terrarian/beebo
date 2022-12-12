@@ -14,12 +14,16 @@ if(anim_timer >= 201)
 
 if(anim_timer >= 205)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 3, "#401A0-0207", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 3, _date + ", #401A0-0207", t_scale, t_scale, 0);
 }
 
 if(anim_timer >= 210)
 {
     draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 5, "SUPER MEGA CPU EXTREME at 2KHz", t_scale, t_scale, 0);
+}
+if(anim_timer >= 211)
+{
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 6, "Memory Test :", t_scale, t_scale, 0);
 }
 if(anim_timer >= 340)
 {
@@ -37,44 +41,44 @@ if(anim_timer >= 450)
 
 if(anim_timer >= 460)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 11, "Initialize Contraband Piracy Cartridge...", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 10, "Initialize Contraband Piracy Cartridge...", t_scale, t_scale, 0);
 }
 if(anim_timer >= 680)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 12, "Cartridge Init Completed", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 11, "Cartridge Init Completed", t_scale, t_scale, 0);
 }
 
 if(anim_timer >= 850) && (anim_timer < 950)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 14, "Detecting HDD Primary Master   ... [Press Enter to skip]", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 13, "Detecting HDD Primary Master   ... [Press Enter to skip]", t_scale, t_scale, 0);
 }
 if(anim_timer >= 950)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 14, "Detecting HDD Primary Master   ... BenbOS BuiltIn 256MB", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 13, "Detecting HDD Primary Master   ... BenbOS BuiltIn 256MB", t_scale, t_scale, 0);
 }
 if(anim_timer >= 960) && (anim_timer < 1120)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 15, "Detecting HDD Primary Slave     ... [Press Enter to skip]", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 14, "Detecting HDD Primary Slave     ... [Press Enter to skip]", t_scale, t_scale, 0);
 }
 if(anim_timer >= 1120)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 15, "Detecting HDD Primary Slave     ... None", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 14, "Detecting HDD Primary Slave     ... None", t_scale, t_scale, 0);
 }
 if(anim_timer >= 1121) && (anim_timer < 1130)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 16, "Detecting HDD Secondary Master... [Press Enter to skip]", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 15, "Detecting HDD Secondary Master... [Press Enter to skip]", t_scale, t_scale, 0);
 }
 if(anim_timer >= 1130)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 16, "Detecting HDD Secondary Master... None", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 15, "Detecting HDD Secondary Master... None", t_scale, t_scale, 0);
 }
 if(anim_timer >= 1131) && (anim_timer < 1135)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 17, "Detecting HDD Secondary Slave  ... [Press Enter to skip]", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 16, "Detecting HDD Secondary Slave  ... [Press Enter to skip]", t_scale, t_scale, 0);
 }
 if(anim_timer >= 1135)
 {
-    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 17, "Detecting HDD Secondary Slave  ... None", t_scale, t_scale, 0);
+    draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 16, "Detecting HDD Secondary Slave  ... None", t_scale, t_scale, 0);
 }
 
 if(anim_timer >= 1150)

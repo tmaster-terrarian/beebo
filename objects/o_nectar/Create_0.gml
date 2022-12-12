@@ -14,6 +14,11 @@ target_y = 0;
 distancefrom = 40;
 circlepos = random_range(0, 359);
 
+attack = false;
+attack_timer = 0;
+attack_timer_cooldn = 0;
+attack_counter = 0;
+
 shake_length = 999999999;
 shake_magnitude = 2;
 shake_remain = 2;
