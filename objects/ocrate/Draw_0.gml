@@ -10,5 +10,5 @@ if(flash > 0)
 else draw_self();
 if(hp <= 0)
 {
-    scr_particle_explode();
+    scr_particle_explode4x4();
 }

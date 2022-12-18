@@ -35,24 +35,43 @@ if (mouse_check_button(mb_left)) && (firingdelay < 0)
     //}
 }
 
+if(mouse_check_button_pressed(mb_right)) && (firingdelaybomb > 0)
+{
+    with(obj_bomb)
+    {
+        audio_stop_sound(throwsound);
+        with(MakeExplosion(x, y, size, size, (2 / 3), sn_explosion2))
+        {
+            dmg = other.damage;
+            with(obj_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
+            with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
+
+            if(place_meeting(x, y, oPlayer))
+            {
+                oPlayer.hsp = lengthdir_x(3, point_direction(x, y, oPlayer.x, oPlayer.y));
+                oPlayer.vsp = lengthdir_y(3, point_direction(x, y, oPlayer.x, oPlayer.y));
+            }
+        }
+        ScreenShake(4, 40);
+        done = true;
+        scr_particle_explode();
+    }
+}
+
 firingdelaybomb -= 1;
 if (mouse_check_button_pressed(mb_right)) && (firingdelaybomb < 0)
 {
     ScreenShake(2, 10);
     recoil = 4;
-    firingdelaybomb = 120;
+    firingdelaybomb = bomb_timer_max;
     audio_play_sound(sn_throw, 1, false);
 
-    //fire bullet
-    //for (var i = 0; i < 6; i += 1) //uncomment for spread
-    //{
-        with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
-        {
-			direction = other.image_angle;
-			hsp = lengthdir_x(2, direction);
-			vsp = lengthdir_y(2, direction) - 1;
-        }
-    //}
+    with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
+    {
+        direction = other.image_angle;
+        hsp = lengthdir_x(2, direction);
+        vsp = lengthdir_y(2, direction) - 1;
+    }
 }
 
 //animation

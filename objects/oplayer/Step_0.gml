@@ -75,6 +75,8 @@ else
 }
 
 if(place_meeting(x, y, oWall)) y--;
+if(place_meeting(x, y + vsp, oWall)) && (vsp < 0) vsp = -0.2;
+if(place_meeting(x + sign(hsp), y, oWall)) && (hsp != 0) hsp = 0;
 
 image_xscale = facing;
 if(hascontrol)
