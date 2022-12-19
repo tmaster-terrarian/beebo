@@ -1,7 +1,7 @@
 if (done == 0)
 {
     vsp += grv;
-	image_angle -= 10;
+	image_angle -= 5;
 
     //move and collisions
     //horizontal

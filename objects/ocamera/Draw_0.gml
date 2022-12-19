@@ -14,7 +14,7 @@ if(instance_exists(oPlayer))
         if(i > player_health - 1) draw_sprite(spr_hp_bar, 1, xpos + offsetx + (i * 12) + 16, ypos + offsety);
         else draw_sprite(spr_hp_bar, 0, xpos + offsetx + (i * 12) + 16, ypos + offsety);
     }
-    draw_sprite(spr_hp_bar_end, 0, xpos + offsetx + (6 * 12) + 16, ypos + offsety);
+    draw_sprite(spr_hp_bar_end, 0, xpos + offsetx + (global.playermaxhealth * 12) + 16, ypos + offsety);
 }
 else if(instance_exists(obj_player_dead))
 {
@@ -27,7 +27,7 @@ else if(instance_exists(obj_player_dead))
     {
         draw_sprite(spr_hp_bar, 1, xpos + offsetx + (i * 12) + 16, ypos + offsety);
     }
-    draw_sprite(spr_hp_bar_end, 0, xpos + offsetx + (6 * 12) + 16, ypos + offsety);
+    draw_sprite(spr_hp_bar_end, 0, xpos + offsetx + (global.playermaxhealth * 12) + 16, ypos + offsety);
 }
 
 if(instance_exists(oGun))

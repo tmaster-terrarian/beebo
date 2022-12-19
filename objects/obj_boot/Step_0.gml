@@ -9,7 +9,7 @@ if(started == 1)
 {
     anim_timer = min(1883, anim_timer + 1);
 
-    if(keyboard_check_pressed(vk_enter)) || (keyboard_check_pressed(vk_space))
+    if(keyboard_check_pressed(vk_enter)) || (keyboard_check_pressed(vk_space)) || (mouse_check_button_pressed(mb_left))
     {
         audio_stop_sound(boot_sound);
         room_goto(rMenu);

@@ -59,7 +59,7 @@ if(mouse_check_button_pressed(mb_right)) && (firingdelaybomb > 0)
 }
 
 firingdelaybomb -= 1;
-if (mouse_check_button_pressed(mb_right)) && (firingdelaybomb < 0)
+if (mouse_check_button(mb_right)) && (firingdelaybomb < 0)
 {
     ScreenShake(2, 10);
     recoil = 4;

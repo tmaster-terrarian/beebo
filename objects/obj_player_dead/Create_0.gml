@@ -5,7 +5,7 @@ grv = 0.05;
 done = false;
 oob = false;
 
-explosiontimer = 40;
+explosiontimer = 80;
 timer_finished = false;
 
 alarm[0] = 80;

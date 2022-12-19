@@ -30,3 +30,5 @@ else
 
 if(hsp != 0) image_xscale = sign(hsp) * size;
 image_yscale *= size;
+
+if(y > room_height + 10) instance_destroy();

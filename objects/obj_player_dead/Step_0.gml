@@ -24,7 +24,6 @@ if (done == false)
         {
             done = true;
 			audio_play_sound(sn_antic_gyui, 1, false);
-			room_speed = 30;
         }
         while (!place_meeting(x, y + sign(vsp), oWall))
         {
@@ -43,8 +42,8 @@ else
 		xTo = oCamera.x;
 		yTo = oCamera.y;
 
-		x += (xTo - x) / 6;
-		y += (yTo - y) / 6;
+		x += (xTo - x) / 12;
+		y += (yTo - y) / 12;
 	}
 
 	bg.x = camera_get_view_x(cam) - 8;
@@ -53,12 +52,12 @@ else
 	with(obj_gun_dead)
 	{
 		done = true;
-		image_angle -= 10;
+		image_angle -= 5;
 		xTo = other.x;
 		yTo = other.y - 4;
 
-		x += (xTo - x) / 6;
-		y += (yTo - y) / 6;
+		x += (xTo - x) / 12;
+		y += (yTo - y) / 12;
 	}
 	explosiontimer--;
     if(explosiontimer < 0)
@@ -72,7 +71,6 @@ else
 			audio_play_sound(snBigExplode, 10, false);
 			x = round(x);
 			y = round(y);
-			room_speed = 60;
 		}
 
 		var posx = random_range(x - 16, x + 16);
@@ -101,13 +99,12 @@ else
 		}
 	}
 }
-bg.image_alpha = (-1 * (explosiontimer / 40) + 1);
+bg.image_alpha = (-1 * (explosiontimer / 80) + 1);
 
 if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter))
 {
 	global.playerhealth = hp_max;
 	with(oGameManager) { audio_sound_gain(current_bgm, global.bgm_volume, 500); audio_sound_set_track_position(current_bgm, 0); }
-	room_speed = 60;
 	scr_particle_explode2();
 	SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rm);
 }

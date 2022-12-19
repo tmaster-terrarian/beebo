@@ -39,6 +39,7 @@ if(done == false)
             explode();
         }
         vsp = -(vsp * 0.75);
+        hsp *= 0.99;
         bounce_counter += 1;
     }
     y += vsp;
