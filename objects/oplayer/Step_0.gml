@@ -75,8 +75,6 @@ else
 }
 
 if(place_meeting(x, y, oWall)) y--;
-if(place_meeting(x, y + vsp, oWall)) && (vsp < 0) vsp = -0.2;
-if(place_meeting(x + sign(hsp), y, oWall)) && (hsp != 0) hsp = 0;
 
 image_xscale = facing;
 if(hascontrol)
@@ -148,14 +146,14 @@ if(hascontrol)
                 facing = -1;
                 hsp = 1.5 * facing;
                 vsp = -2.51;
-                audio_play_sound(sn_jump, 1, false);
+                audio_play_sound(sn_throw, 1, false);
             }
             if(place_meeting(x - 3, y, oWall))
             {
                 facing = 1;
                 hsp = 1.5 * facing;
                 vsp = -2.51;
-                audio_play_sound(sn_jump, 1, false);
+                audio_play_sound(sn_throw, 1, false);
             }
         }
         //if(keyboard_check_released(vk_space))

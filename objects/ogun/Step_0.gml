@@ -45,6 +45,7 @@ if(mouse_check_button_pressed(mb_right)) && (firingdelaybomb > 0)
             dmg = other.damage;
             with(obj_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
             with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
+            with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
 
             if(place_meeting(x, y, oPlayer))
             {
