@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "obj_menu2",
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_menu",
+    "path": "sprites/spr_menu/spr_menu.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,

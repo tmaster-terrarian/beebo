@@ -23,12 +23,12 @@ camera_set_view_pos(cam, x - view_w_half, y - view_h_half);
 
 if(layer_exists("bg1"))
 {
-    layer_x("bg1", x / 2);
+    layer_x("bg1", (x / 2) + get_timer() * -0.00002);
     layer_y("bg1", camera_get_view_y(cam));
 }
 if(layer_exists("bg2"))
 {
-    layer_x("bg2", x / 4);
+    layer_x("bg2", (x / 2.5) + get_timer() * -0.000024);
     layer_y("bg2", camera_get_view_y(cam));
 }
 if(layer_exists("bg3"))

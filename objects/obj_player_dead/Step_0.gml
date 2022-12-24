@@ -107,5 +107,5 @@ if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter))
 	global.playerhealth = hp_max;
 	with(oGameManager) { audio_sound_gain(current_bgm, global.bgm_volume, 500); audio_sound_set_track_position(current_bgm, 0); }
 	scr_particle_explode2();
-	SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rm);
+	gm_room_transition_direct(rm, TRANS_TYPE.BOX)
 }

@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "obj_boot",
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_boot",
+    "path": "sprites/spr_boot/spr_boot.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,

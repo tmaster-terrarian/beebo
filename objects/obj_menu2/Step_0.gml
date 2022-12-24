@@ -51,7 +51,7 @@ if(key_en)
                 }
                 case 4:
                 {
-                    SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rMenu);
+                    gm_room_transition_direct(rMenu, TRANS_TYPE.BOX)
                     break;
                 }
             }
@@ -112,7 +112,7 @@ if(keyboard_check_pressed(vk_escape))
     {
         case 0:
         {
-            SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rMenu);
+            gm_room_transition_direct(rMenu, TRANS_TYPE.BOX)
             break;
         }
         case 1: case 2:
@@ -153,7 +153,7 @@ switch(m_submenu)
                     }
 
                     ini_open("save.ini");
-                    ini_write_real("screeb", "res", global.screenSize);
+                    ini_write_real("settings", "res", global.screenSize);
                     ini_close();
                 }
                 if(key_lt)
@@ -175,7 +175,7 @@ switch(m_submenu)
                     }
 
                     ini_open("save.ini");
-                    ini_write_real("screeb", "res", global.screenSize);
+                    ini_write_real("settings", "res", global.screenSize);
                     ini_close();
                 }
                 break;
@@ -187,7 +187,7 @@ switch(m_submenu)
                     global.snd_volume = clamp(global.snd_volume + 0.1, 0, 1);
                     audio_group_set_gain(audiogroup_default, global.snd_volume, 0);
                     ini_open("save.ini");
-                    ini_write_real("settings", "sound volume", global.snd_volume);
+                    ini_write_real("settings", "sound_volume", global.snd_volume);
                     ini_close();
                 }
                 if(key_lt)
@@ -195,7 +195,7 @@ switch(m_submenu)
                     global.snd_volume = clamp(global.snd_volume - 0.1, 0, 1);
                     audio_group_set_gain(audiogroup_default, global.snd_volume, 0);
                     ini_open("save.ini");
-                    ini_write_real("settings", "sound volume", global.snd_volume);
+                    ini_write_real("settings", "sound_volume", global.snd_volume);
                     ini_close();
                 }
                 break;
@@ -207,7 +207,7 @@ switch(m_submenu)
                     global.bgm_volume = clamp(global.bgm_volume + 0.1, 0, 1);
                     audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
                     ini_open("save.ini");
-                    ini_write_real("settings", "music volume", global.bgm_volume);
+                    ini_write_real("settings", "music_volume", global.bgm_volume);
                     ini_close();
                 }
                 if(key_lt)
@@ -215,7 +215,7 @@ switch(m_submenu)
                     global.bgm_volume = clamp(global.bgm_volume - 0.1, 0, 1);
                     audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
                     ini_open("save.ini");
-                    ini_write_real("settings", "music volume", global.bgm_volume);
+                    ini_write_real("settings", "music_volume", global.bgm_volume);
                     ini_close();
                 }
                 break;

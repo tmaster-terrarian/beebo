@@ -13,7 +13,7 @@ menu_control = true;
 
 menu[2] = "continued";
 menu[1] = "new";
-menu[0] = "rage quit";
+menu[0] = "quit";
 
 menu_items = array_length(menu);
 menu_cursor = 2;

@@ -1,3 +1,9 @@
+if(instance_exists(oPlayer))
+{
+    if(!oPlayer.hascontrol) return;
+}
+if(global.console) return;
+
 image_angle = point_direction(x, y, mouse_x, mouse_y);
 image_angle = round(image_angle / 10) * 10;
 

@@ -1,3 +1,5 @@
+if(global.console) return;
+
 //menu ease in
 menu_x += (menu_x_target - menu_x) / menu_speed;
 
@@ -54,7 +56,9 @@ if(menu_control)
     {
         // "TRANS_MODE.RESPAWN" is just a basic version of "TRANS_MODE.GOTO"
             // why did I do this
-        SlideTransition(TRANS_MODE.RESPAWN, TRANS_TYPE.BOX, rm_settings);
+                // btw these comments are now outdated lmao
+
+        gm_room_transition_direct(rm_settings, TRANS_TYPE.BOX);
     }
 }
 
@@ -66,10 +70,10 @@ if (menu_x > gui_width + 100) && (menu_committed != -1)
             ini_open("save.ini");
             var stage = ini_read_real("savedata", "stage", 0);
             ini_close();
-            SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.SLOW_HORIZONTAL, gamemanager.stages[stage][0]);
+            gm_room_transition_goto(stage, 0, TRANS_TYPE.SLOW_HORIZONTAL);
         break;
         case 1: default:
-            SlideTransition(TRANS_MODE.GOTO, TRANS_TYPE.SLOW_HORIZONTAL, gamemanager.stages[0][0]);
+            gm_room_transition_goto(0, 0, TRANS_TYPE.SLOW_HORIZONTAL);
         break;
         case 0:
             game_end();

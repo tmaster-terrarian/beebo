@@ -15,6 +15,7 @@ function GetRoom(_room)
                 else rm_i++;
             }
         }
+        return -1;
     }
 }
 function GetStage(_room)
@@ -34,5 +35,6 @@ function GetStage(_room)
                 else rm_i++;
             }
         }
+        return -1;
     }
 }

@@ -18,7 +18,7 @@ global.screenSize = 1;
 
 ini_open("save.ini");
 
-global.screenSize = floor(ini_read_real("screeb", "res", 2));
+global.screenSize = floor(ini_read_real("settings", "res", 2));
 if(global.screenSize < 9)
 {
     window_set_fullscreen(false);

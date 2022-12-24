@@ -8,15 +8,11 @@ if(flash > 0)
     shader_reset();
 }
 else draw_self();
-if(hp <= 0)
+if(!dead)
 {
-	with(MakeExplosion(x, y, image_xscale, image_yscale))
+    if(hp <= 0)
     {
-        dmg = 4;
-        with(obj_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
-        with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
-        with(obj_bomb) if(place_meeting(x, y, other)) hp -= other.dmg;
+        alarm[0] = 6;
+        dead = 1;
     }
-    ScreenShake(4, 40);
-    scr_particle_explode();
 }

@@ -1,3 +1,5 @@
+if(global.console) return;
+
 //animation
 if(!instance_exists(oGun))
 {
