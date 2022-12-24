@@ -132,6 +132,12 @@ if(global.console)
         controltimer = 0;
     }
 
+    if(keyboard_check_pressed(vk_up))
+    {
+        input_str = last_input_str;
+        keyboard_string = last_input_str;
+    }
+
     if(keyboard_check_pressed(vk_enter))
     {
         //basic one-word commands
@@ -161,6 +167,13 @@ if(global.console)
             case "benbo":
             {
                 console_log("fuck you");
+                break;
+            }
+
+            case "animemode":
+            {
+                console_log("wtf??!??!?!?");
+                global.animemode = !global.animemode;
                 break;
             }
 
@@ -227,6 +240,7 @@ if(global.console)
             else console_log("foo bar");
         }
 
+        last_input_str = input_str;
         keyboard_string = "";
     }
     input_str = keyboard_string;

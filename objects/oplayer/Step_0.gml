@@ -1,7 +1,14 @@
 if(global.console) return;
 
 //animation
-if(!instance_exists(oGun))
+if(global.animemode)
+{
+    anim_state = 2;
+
+    oGun.x = x;
+    oGun.y = y + 3;
+}
+else if(!instance_exists(oGun))
 {
     anim_state = 1;
 }
@@ -29,6 +36,7 @@ use_anim_state = function(anim_id, state)
             {
                 case 0: default: sprite_index = sPlayerR; break;
                 case 1: sprite_index = spr_player_run1; break;
+                case 2: sprite_index = spr_anime_run; break;
             }
         break;
         case 2: default:
@@ -36,6 +44,7 @@ use_anim_state = function(anim_id, state)
             {
                 case 0: default: sprite_index = sPlayer; break;
                 case 1: sprite_index = spr_player1; break;
+                case 2: sprite_index = spr_anime; break;
             }
         break;
         case 3:
@@ -43,12 +52,13 @@ use_anim_state = function(anim_id, state)
             {
                 case 0: default: sprite_index = spr_player_run_rev0; break;
                 case 1: sprite_index = spr_player_run_rev1; break;
+                case 2: sprite_index = spr_anime_run_rev; break;
             }
         break;
     }
 }
 
-if(sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_index == spr_player_run_rev0) || (sprite_index == spr_player_run_rev1)
+if(sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev0) || (sprite_index == spr_player_run_rev1) || (sprite_index == spr_anime_run_rev)
 {
     switch(floor(image_index))
     {
@@ -62,11 +72,11 @@ if(sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_ind
         case 7: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
     }
 }
-else if(sprite_index == spr_player_jump)
+else if(sprite_index == spr_player_jump) || (sprite_index == spr_anime_jump)
 {
     gun_offs_y = 4;
 }
-else if(sprite_index == spr_player_fall)
+else if(sprite_index == spr_player_fall) || (sprite_index == spr_anime_fall)
 {
     gun_offs_y = 3;
 }
@@ -162,11 +172,11 @@ if(hascontrol)
         //    vsp /= 2;
         if(vsp > 0)
         {
-            if(!attack) sprite_index = spr_player_fall;
+            if(!attack) {sprite_index = spr_player_fall; if(global.animemode) {sprite_index = spr_anime_fall;}}
         }
         if(vsp < 0)
         {
-            if(!attack) sprite_index = spr_player_jump;
+            if(!attack) {sprite_index = spr_player_jump; if(global.animemode) {sprite_index = spr_anime_jump;}}
         }
     }
 }

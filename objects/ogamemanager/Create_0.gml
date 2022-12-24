@@ -36,6 +36,7 @@ global.playermaxhealth = 0;
 
 global.cutscene = false;
 global.introsequence = false;
+global.animemode = false;
 
 // music
 current_bgm = noone;
@@ -81,6 +82,7 @@ ini_close();
 // commands..?
 global.console = false;
 input_str = "";
+last_input_str = "";
 log_str = "";
 log_pos = 0;
 cursor_timer = 0;
