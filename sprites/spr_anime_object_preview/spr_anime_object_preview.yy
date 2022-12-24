@@ -68,7 +68,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "anime rival",
+    "path": "folders/Sprites/anime rival.yy",
   },
 }

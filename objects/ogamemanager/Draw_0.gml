@@ -10,13 +10,10 @@ if(global.console == true)
     draw_set_valign(fa_bottom);
     draw_set_font(fMenu);
 
-    with(oCamera)
-    {
-        draw_set_color(c_black);
-        draw_set_alpha(0.5);
-        draw_rectangle(xpos + 1, ypos + 1, xpos + 254, ypos + 142, false);
-        draw_rectangle(xpos + 1, ypos + 1 + 128, xpos + 254, ypos + 142, false);
-    }
+    draw_set_color(c_black);
+    draw_set_alpha(0.5);
+    draw_rectangle(xpos + 1, ypos + 1, xpos + 254, ypos + 142, false);
+    draw_rectangle(xpos + 1, ypos + 1 + 128, xpos + 254, ypos + 142, false);
 
     draw_set_color(c_white);
     draw_set_alpha(1);

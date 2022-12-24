@@ -163,6 +163,19 @@ if(global.console)
                 console_log("fuck you");
                 break;
             }
+
+            case "impulse 101":
+            {
+                with(obj_gun_pickup) instance_destroy();
+                if(!instance_exists(oGun))
+                {
+                    with(oPlayer)
+                    {
+                        instance_create_depth(x, y, 300, oGun);
+                    }
+                }
+                break;
+            }
         }
 
         //more complicated argument-based commands
