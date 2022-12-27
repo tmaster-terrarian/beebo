@@ -36,10 +36,10 @@ if(menu_control)
 
     // if(mouse_y < menu_y) && (mouse_y > menu_top) && (mouse_x > menu_x - 128)
     // {
-    //     menu_cursor = (menu_y - mouse_y) div (menu_itemheight * 1);
+    //     menu_cursor = floor(menu_y - mouse_y) div (menu_itemheight * 1);
     //     if(menu_cursor != last_cursor_pos)
     //     {
-    //         ScreenShake(2, 10);
+    //         ScreenShake(1, 5);
     //         audio_play_sound(sn_explosion, 2, false);
     //     }
     //     if(mouse_check_button_pressed(mb_left))

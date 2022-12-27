@@ -88,6 +88,9 @@ else
 
 if(place_meeting(x, y, oWall)) y--;
 
+hsp = clamp(hsp, -20, 20);
+vsp = clamp(vsp, -20, 20);
+
 image_xscale = facing;
 if(hascontrol)
 {
@@ -145,7 +148,7 @@ if(hascontrol)
             else
             {
                 audio_play_sound(sn_jump, 1, false);
-                vsp = -2.51;
+                vsp = jump_speed;
             }
         }
     }
@@ -157,14 +160,14 @@ if(hascontrol)
             {
                 facing = -1;
                 hsp = 1.5 * facing;
-                vsp = -2.51;
+                vsp = jump_speed;
                 audio_play_sound(sn_throw, 1, false);
             }
             if(place_meeting(x - 3, y, oWall))
             {
                 facing = 1;
                 hsp = 1.5 * facing;
-                vsp = -2.51;
+                vsp = jump_speed;
                 audio_play_sound(sn_throw, 1, false);
             }
         }
@@ -227,8 +230,13 @@ if(y > room_height + 200)
     hp = 0;
 }
 
-var _vx = camera_get_view_x(view_camera[0]);
-var _vy = camera_get_view_y(view_camera[0]);
-var _vw = camera_get_view_width(view_camera[0]);
-var _vh = camera_get_view_height(view_camera[0]);
-instance_activate_region(_vx - 16, _vy - 16, _vw + 16, _vh + 16, true);
+enemy_enabler_counter = max(0, enemy_enabler_counter - 1);
+if(enemy_enabler_counter == 0)
+{
+    enemy_enabler_counter = 2;
+    var _vx = camera_get_view_x(view_camera[0]);
+    var _vy = camera_get_view_y(view_camera[0]);
+    var _vw = camera_get_view_width(view_camera[0]);
+    var _vh = camera_get_view_height(view_camera[0]);
+    instance_activate_region(_vx - 16, _vy - 16, _vw + 16, _vh + 16, true);
+}

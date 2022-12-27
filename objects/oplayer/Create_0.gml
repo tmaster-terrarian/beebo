@@ -13,10 +13,9 @@ attack = 0;
 
 ground_accel = 0.1;
 ground_fric = 0.1;
-air_accel = 0.05;
-air_fric = 0.05;
-
-coyotetime = 0;
+air_accel = 0.06;
+air_fric = 0.02;
+jump_speed = -2.6;
 
 hascontrol = true;
 
@@ -29,6 +28,8 @@ upixelW = shader_get_uniform(shWhite, "pixelW");
 texelW = texture_get_texel_width(sprite_get_texture(sprite_index, 0));
 texelH = texture_get_texel_height(sprite_get_texture(sprite_index, 0));
 
-anim_state = 0; //0: default, 1: no_gun
+anim_state = 0; //0: default, 1: no_gun, 2: animemode
 gun_offs_x = 0;
 gun_offs_y = 0;
+
+enemy_enabler_counter = 0;

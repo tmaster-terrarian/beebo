@@ -7,11 +7,11 @@ enum TRANS_MODE
 {
     OFF,
     NEXT,
-    GOTO_OLD,
     GOTO,
     DIRECT,
     RESTART,
-    ACTIVE
+    ACTIVE,
+    ACTIVE2
 };
 enum TRANS_TYPE
 {
@@ -42,6 +42,7 @@ global.animemode = false;
 current_bgm = noone;
 
 // custom level order
+current_st = -1;
 current_rm = -1;
 target_st = 0;
 target_rm = 0;
@@ -51,7 +52,7 @@ stages =
     [lvl1_0], // tutoriel
     [lvl1_1, lvl1_2] // stage 1
 ];
-stage_names =
+stage_names = //unimportant rn
 [
     "THE BEGIN", // tutoriel
     "THE BEGIN" // stage 1
@@ -72,8 +73,8 @@ for(var i = 0; i < array_length(stages); i++)
 ini_open("save.ini");
 
 // settings
-global.snd_volume = ini_read_real("settings", "sound_volume", 1);
-global.bgm_volume = ini_read_real("settings", "music_volume", 1);
+global.snd_volume = ini_read_real("settings", "sound_volume", 0.5);
+global.bgm_volume = ini_read_real("settings", "music_volume", 0.8);
 audio_group_set_gain(audiogroup_default, global.snd_volume, 0);
 audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
 

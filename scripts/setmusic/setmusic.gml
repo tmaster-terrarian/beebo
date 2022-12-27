@@ -6,7 +6,6 @@ function SetMusic(sound_id)
         {
             audio_stop_sound(current_bgm);
             current_bgm = audio_play_sound(sound_id, 10, true);
-            audio_sound_gain(current_bgm, global.bgm_volume, 0);
             return;
         }
         else return;

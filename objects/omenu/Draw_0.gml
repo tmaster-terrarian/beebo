@@ -2,6 +2,7 @@ draw_set_font(menu_font);
 draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 
+ini_open("save.ini");
 for (var i = 0; i < menu_items; i++)
 {
     var offset = 2;
@@ -18,9 +19,9 @@ for (var i = 0; i < menu_items; i++)
         var col = c_gray;
         var selectoffset = 0;
     }
-    ini_open("save.ini");
-    if(ini_section_exists("savedata")) && (i == 2)
+    if(ini_section_exists("savedata") && ini_key_exists("savedata", "stage")) && (i == 2)
     {
+        menu_items = array_length(menu);
         //var stage = ini_read_real("savedata", "stage", 0);
         //txt = string_insert(" <" + gamemanager.stage_names[stage] + ">", txt, string_length(txt) + 1);
     }
@@ -29,7 +30,6 @@ for (var i = 0; i < menu_items; i++)
         menu_items = array_length(menu) - 1;
         menu_cursor = 1;
     }
-    ini_close();
     var xx = round(menu_x);
     var yy = round(menu_y) - (menu_itemheight * i);
     draw_set_color(c_black);
@@ -45,12 +45,12 @@ for (var i = 0; i < menu_items; i++)
     draw_text(xx - selectoffset, yy, txt);
 }
 ini_open("save.ini");
-if(ini_section_exists("savedata"))
+if(ini_section_exists("savedata") && ini_key_exists("savedata", "stage"))
 {
-    draw_sprite_ext(spr_title_settings_icon, 0, round(menu_x) + 4, (round(menu_y) + 6) - (menu_itemheight * 3.5), 2, 2, 0, c_white, 1);
+    draw_sprite_ext(spr_title_settings_icon, 0, round(menu_x) + 4, round(menu_y) - (menu_itemheight * 5), 2, 2, 0, c_white, 1);
 }
 else
 {
-    draw_sprite_ext(spr_title_settings_icon, 0, round(menu_x) + 4, (round(menu_y) + 6) - (menu_itemheight * 2.5), 2, 2, 0, c_white, 1);
+    draw_sprite_ext(spr_title_settings_icon, 0, round(menu_x) + 4, round(menu_y) - (menu_itemheight * 4), 2, 2, 0, c_white, 1);
 }
 ini_close();

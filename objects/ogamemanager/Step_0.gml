@@ -1,7 +1,7 @@
 // screen transition stuff
 if(mode != TRANS_MODE.OFF)
 {
-    if(mode == TRANS_MODE.ACTIVE)
+    if(mode == TRANS_MODE.ACTIVE) || (mode == TRANS_MODE.ACTIVE2)
     {
         percent = max(0, percent - max((percent / 5), 0.005));
     }
@@ -17,63 +17,48 @@ if(mode != TRANS_MODE.OFF)
             case TRANS_MODE.ACTIVE:
                 mode = TRANS_MODE.OFF;
             break;
+            case TRANS_MODE.ACTIVE2:
+                mode = TRANS_MODE.OFF;
+            break;
             case TRANS_MODE.NEXT:
                 mode = TRANS_MODE.ACTIVE;
                 current_rm += 1;
-                for(var i = 0; i < array_length(stages); i++)
-                {
-                    if(array_any(stages[i], function(_v, _i){return(_v == rm_list[current_rm])}))
-                    {
-                        ini_open("save.ini");
-                        ini_write_real("savedata", "stage", i);
-                        ini_close();
-                    }
-                }
                 room_goto(rm_list[current_rm]);
             break;
             case TRANS_MODE.GOTO: //can only be used in level progression
                 mode = TRANS_MODE.ACTIVE;
-                for(var i = 0; i < array_length(rm_list); i++)
+                current_st = target_st;
+                var _ind = array_find_index(rm_list, function(_v, _i){return(_v == stages[target_st][target_rm])})
+                if(_ind != -1)
                 {
-                    if(rm_list[i] == stages[target_st][target_rm])
-                    {
-                        current_rm = i;
-                        room_goto(rm_list[current_rm]);
-                        ini_open("save.ini");
-                        ini_write_real("savedata", "stage", target_st);
-                        ini_close();
-                        break;
-                    }
+                    current_rm = _ind;
+                    room_goto(rm_list[current_rm]);
+                    break;
                 }
+                else console_log("gm_room_transition_goto(" + string(target_st) + ", " + string(target_rm) + ") failed! room or stage index is out of bounds or room does not exist.");
             break;
             case TRANS_MODE.DIRECT: //best used outside of level progression unless target is the current room
-                mode = TRANS_MODE.ACTIVE;
+                mode = TRANS_MODE.ACTIVE2; // avoid saving with direct
                 room_goto(target);
             break;
             case TRANS_MODE.RESTART:
                 game_restart();
             break;
+        }
 
-            case TRANS_MODE.GOTO_OLD:
-                mode = TRANS_MODE.ACTIVE;
-                rm_index = 0;
-                for(var i = 0; i < array_length(stages); i++)
+        if(mode == TRANS_MODE.ACTIVE)
+        {
+            for(var i = 0; i < array_length(stages); i++)
+            {
+                if(array_any(stages[i], function(_v, _i){return(_v == rm_list[current_rm])}))
                 {
-                    for(var j = 0; j < array_length(stages[i]); j++)
-                    {
-                        if(rm_list[rm_index] == target)
-                        {
-                            current_rm = rm_index;
-                            ini_open("save.ini");
-                            ini_write_real("savedata", "stage", i);
-                            ini_close();
-                            room_goto(target);
-                            break;
-                        }
-                        rm_index++;
-                    }
+                    current_st = i;
+                    ini_open("save.ini");
+                    ini_write_real("savedata", "stage", current_st);
+                    ini_close();
+                    break;
                 }
-            break;
+            }
         }
     }
 }
@@ -172,8 +157,8 @@ if(global.console)
 
             case "animemode":
             {
-                console_log("wtf??!??!?!?");
                 global.animemode = !global.animemode;
+                if(global.animemode == 1) console_log("wtf??!??!?!?");
                 break;
             }
 
@@ -210,7 +195,33 @@ if(global.console)
                 ini_open("save.ini");
                 ini_write_real("settings", _args[1], real(_args[2]))
                 ini_close();
-                console_log("set value '" + string(_args[1]) + "' to " + real(_args[2]) + ". restart for changes to take effect.");
+
+                // screenSize refresh
+                if(global.screenSize < 1)
+                {
+                    global.screenSize = 1;
+                }
+                if(global.screenSize > 7)
+                {
+                    global.screenSize = 7;
+                }
+                if(global.screenSize < 7)
+                {
+                    window_set_fullscreen(false);
+                    window_set_size((256 * global.screenSize), (144 * global.screenSize));
+                }
+                else
+                {
+                    window_set_fullscreen(true);
+                }
+
+                // snd_volume / bgm_volume refresh
+                global.snd_volume = clamp(global.snd_volume, 0, 1);
+                audio_group_set_gain(audiogroup_default, global.snd_volume, 0);
+                global.bgm_volume = clamp(global.bgm_volume, 0, 1);
+                audio_group_set_gain(audiogroup_default, global.bgm_volume, 0);
+
+                console_log("set value '" + string(_args[1]) + "' to " + string(_args[2]));
             }
             else console_log("invalid arguments! correct syntax: config_write <key> <value>");
         }
@@ -227,17 +238,6 @@ if(global.console)
                 else console_log("'" + string(_args[1]) + "' is either unset or does not exist.");
             }
             else console_log("invalid arguments! correct syntax: config_read <key>");
-        }
-
-        if(cmd("foo"))
-        {
-            var _args = string_split(input_str, " ");
-            if(array_length(_args) > 1)
-            {
-                if(_args[1] == "bar") console_log("baz bat");
-                else console_log("bin");
-            }
-            else console_log("foo bar");
         }
 
         last_input_str = input_str;

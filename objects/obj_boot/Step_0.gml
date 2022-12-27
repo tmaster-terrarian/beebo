@@ -1,6 +1,5 @@
 if(audio_group_is_loaded(audiogroup_bgm)) && (started == 0)
 {
-    // room_goto(rMenu);
     boot_sound = audio_play_sound(sn_dos_disc_boot_combined, 10, false);
     started = 1;
 }
