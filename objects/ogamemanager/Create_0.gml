@@ -80,10 +80,13 @@ audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
 
 ini_close();
 
-// commands..?
+// commands
 global.console = false;
 input_str = "";
 last_input_str = "";
 log_str = "";
 log_pos = 0;
 cursor_timer = 0;
+
+// start up discord rich presence
+instance_create_depth(x, y, depth, objNekoPresenceDemo);
