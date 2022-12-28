@@ -23,6 +23,7 @@ if(mode != TRANS_MODE.OFF)
             case TRANS_MODE.NEXT:
                 mode = TRANS_MODE.ACTIVE;
                 current_rm += 1;
+                console_log("loading room (mode: next): " + string(room_get_name(rm_list[current_rm]) + " (" + string(current_st) + ", " + string(current_rm) + ")"));
                 room_goto(rm_list[current_rm]);
             break;
             case TRANS_MODE.GOTO: //can only be used in level progression
@@ -32,13 +33,15 @@ if(mode != TRANS_MODE.OFF)
                 if(_ind != -1)
                 {
                     current_rm = _ind;
+                    console_log("loading room (mode: goto): " + string(room_get_name(rm_list[current_rm]) + " (" + string(target_st) + ", " + string(target_rm) + ")"));
                     room_goto(rm_list[current_rm]);
                     break;
                 }
-                else console_log("gm_room_transition_goto(" + string(target_st) + ", " + string(target_rm) + ") failed! room or stage index is out of bounds or room does not exist.");
+                else console_log("gm_room_transition_goto(" + string(target_st) + ", " + string(target_rm) + ") failed! room and/or stage index is out of bounds or room does not exist.");
             break;
             case TRANS_MODE.DIRECT: //best used outside of level progression unless target is the current room
                 mode = TRANS_MODE.ACTIVE2; // avoid saving with direct
+                console_log("loading room (mode: direct): '" + string(room_get_name(target)) + "' [warning: stage will not be saved!]");
                 room_goto(target);
             break;
             case TRANS_MODE.RESTART:
@@ -56,6 +59,7 @@ if(mode != TRANS_MODE.OFF)
                     ini_open("save.ini");
                     ini_write_real("savedata", "stage", current_st);
                     ini_close();
+                    console_log("saved current stage (" + string(current_st) + ")");
                     break;
                 }
             }
@@ -184,7 +188,15 @@ if(global.console)
             {
                 gm_room_transition_goto(_args[1], real(_args[2]));
             }
-            else console_log("invalid arguments! correct syntax: goto <stage_index> <room_index>");
+            else if(array_length(_args) == 2)
+            {
+                gm_room_transition_goto(_args[1], 0);
+            }
+            else if(array_length(_args) == 1)
+            {
+                gm_room_transition_direct(room);
+            }
+            else console_log("invalid arguments! correct syntax: goto [stage_index] [room_index]");
         }
 
         if(cmd("config_write"))
