@@ -75,6 +75,7 @@ if (menu_x > gui_width + 100) && (menu_committed != -1)
         break;
         case 1: default:
             global.t = 0;
+            global.hasgun = false;
             global.gamestarted = true;
             global.introcutscene = true;
             gm_room_transition_goto(0, 0, TRANS_TYPE.SLOW_HORIZONTAL);

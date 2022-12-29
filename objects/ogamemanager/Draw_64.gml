@@ -38,4 +38,8 @@ if(global.speedrun_mode) && (global.gamestarted)
     if(cs < 10) cs = "0" + string(cs);
 
     draw_text(254, 2, string(minutes) + ":" + string(seconds) + "." + string(cs));
+    if(global.gunlesspercent)
+    {
+        draw_text(254, 12, "gunless%");
+    }
 }

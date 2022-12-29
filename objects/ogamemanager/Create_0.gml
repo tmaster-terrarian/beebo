@@ -38,6 +38,7 @@ global.cutscene = false;
 global.introsequence = false;
 global.gamestarted = false;
 global.pausetimer = false;
+global.gunlesspercent = false;
 
 global.playerhealth = 0;
 global.playermaxhealth = 0;

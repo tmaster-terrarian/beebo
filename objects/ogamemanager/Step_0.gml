@@ -57,7 +57,7 @@ if(mode != TRANS_MODE.OFF)
                 {
                     current_st = i;
                     ini_open("save.ini");
-                    if(current_st != ini_read_real("savedata", "stage", 0)) ini_write_real("savedata", "time_in_frames", global.t);
+                    if(current_st != ini_read_real("savedata", "stage", 0)) ini_write_real("savedata", "time_in_centiseconds", global.t);
                     ini_write_real("savedata", "stage", current_st);
                     ini_close();
                     console_log("saved (" + string(current_st) + "), " + string(global.t));
@@ -177,6 +177,7 @@ if(global.console)
                         instance_create_depth(x, y, 300, oGun);
                     }
                     global.hasgun = true;
+                    global.gunlesspercent = false;
                     ini_open("save.ini");
                     ini_write_real("savedata", "g", global.hasgun);
                     ini_close();
