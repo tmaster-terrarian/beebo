@@ -104,6 +104,7 @@ bg.image_alpha = (-1 * (explosiontimer / 80) + 1);
 
 if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter))
 {
+	global.pausetimer = false;
 	global.playerhealth = hp_max;
 	with(oGameManager) { audio_sound_gain(current_bgm, global.bgm_volume, 500); audio_sound_set_track_position(current_bgm, 0); }
 	scr_particle_explode2();

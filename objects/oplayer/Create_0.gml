@@ -4,6 +4,8 @@ if(global.playerhealth == 0) global.playerhealth = hp_max;
 hp = global.playerhealth;
 global.playermaxhealth = hp_max;
 
+if(global.hasgun) instance_create_depth(x, y, 300, oGun);
+
 depth = 300;
 
 grv = 0.1;

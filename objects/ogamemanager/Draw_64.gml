@@ -20,3 +20,22 @@ if(mode != TRANS_MODE.OFF)
         break;
     }
 }
+
+if(global.speedrun_mode) && (global.gamestarted)
+{
+    draw_set_color(c_white);
+    draw_set_font(fnt_console);
+    draw_set_halign(fa_right);
+    draw_set_valign(fa_top);
+
+    var centiseconds = global.t - 100/60;
+    var cs = floor(centiseconds % 100);
+    var seconds = floor((centiseconds / 100) % 60);
+    var minutes = floor((centiseconds / (100 * 60)) % 60);
+
+    if(minutes < 10) minutes = "0" + string(minutes);
+    if(seconds < 10) seconds = "0" + string(seconds);
+    if(cs < 10) cs = "0" + string(cs);
+
+    draw_text(254, 2, string(minutes) + ":" + string(seconds) + "." + string(cs));
+}

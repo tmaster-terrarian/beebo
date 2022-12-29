@@ -30,12 +30,17 @@ controltimer = 0;
 // global variables
 global.snd_volume = 1;
 global.bgm_volume = 1;
-
-global.playerhealth = 0;
-global.playermaxhealth = 0;
+global.speedrun_mode = false;
+global.t = 0;
+global.hasgun = false;
 
 global.cutscene = false;
 global.introsequence = false;
+global.gamestarted = false;
+global.pausetimer = false;
+
+global.playerhealth = 0;
+global.playermaxhealth = 0;
 global.animemode = false;
 
 // music
@@ -47,10 +52,10 @@ current_rm = -1;
 target_st = 0;
 target_rm = 0;
 
-stages =
+stages = //create 2d array of stages/rooms
 [
     [lvl1_0], // tutoriel
-    [lvl1_1, lvl1_2] // stage 1
+    [lvl1_1, lvl1_2, lvl1_3] // stage 1
 ];
 stage_names = //unimportant rn
 [
@@ -58,7 +63,7 @@ stage_names = //unimportant rn
     "THE BEGIN" // stage 1
 ];
 
-rm_list = [];
+rm_list = []; //create list from 2d array
 rm_index = 0;
 for(var i = 0; i < array_length(stages); i++)
 {
@@ -77,6 +82,11 @@ global.snd_volume = ini_read_real("settings", "sound_volume", 0.5);
 global.bgm_volume = ini_read_real("settings", "music_volume", 0.8);
 audio_group_set_gain(audiogroup_default, global.snd_volume, 0);
 audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
+
+global.speedrun_mode = ini_read_real("settings", "speedrun_mode", 0);
+
+global.t = ini_read_real("savedata", "time_in_centiseconds", 0);
+global.hasgun = ini_read_real("savedata", "g", 0);
 
 ini_close();
 

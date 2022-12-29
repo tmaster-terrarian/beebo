@@ -1,10 +1,16 @@
 depth = 299;
 
 cam = view_camera[0];
+cam_x = camera_get_view_x(cam);
+cam_y = camera_get_view_y(cam);
+cam_w = 256;
+cam_h = 144;
 view_w_half = camera_get_view_width(cam) * 0.5;
 view_h_half = camera_get_view_height(cam) * 0.5;
+
 xTo = xstart;
 yTo = ystart;
+
 smooth_factor = 6;
 
 //x = follow.x;

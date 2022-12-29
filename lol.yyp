@@ -140,6 +140,7 @@
     {"id":{"name":"objNekoPresenceDemo","path":"objects/objNekoPresenceDemo/objNekoPresenceDemo.yy",},"order":37,},
     {"id":{"name":"spr_player_kick1","path":"sprites/spr_player_kick1/spr_player_kick1.yy",},"order":37,},
     {"id":{"name":"sBG2alt","path":"sprites/sBG2alt/sBG2alt.yy",},"order":5,},
+    {"id":{"name":"lvl1_3","path":"rooms/lvl1_3/lvl1_3.yy",},"order":7,},
     {"id":{"name":"ScreenShake","path":"scripts/ScreenShake/ScreenShake.yy",},"order":1,},
     {"id":{"name":"spr_pixel4x4","path":"sprites/spr_pixel4x4/spr_pixel4x4.yy",},"order":51,},
     {"id":{"name":"snBulletHit","path":"sounds/snBulletHit/snBulletHit.yy",},"order":5,},
@@ -214,6 +215,7 @@
     {"roomId":{"name":"lvl1_2","path":"rooms/lvl1_2/lvl1_2.yy",},},
     {"roomId":{"name":"rTemplate","path":"rooms/rTemplate/rTemplate.yy",},},
     {"roomId":{"name":"rm_settings","path":"rooms/rm_settings/rm_settings.yy",},},
+    {"roomId":{"name":"lvl1_3","path":"rooms/lvl1_3/lvl1_3.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":12,},

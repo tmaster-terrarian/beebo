@@ -44,13 +44,5 @@ for (var i = 0; i < menu_items; i++)
     draw_set_color(col);
     draw_text(xx - selectoffset, yy, txt);
 }
-ini_open("save.ini");
-if(ini_section_exists("savedata") && ini_key_exists("savedata", "stage"))
-{
-    draw_sprite_ext(spr_title_settings_icon, 0, round(menu_x) + 4, round(menu_y) - (menu_itemheight * 5), 2, 2, 0, c_white, 1);
-}
-else
-{
-    draw_sprite_ext(spr_title_settings_icon, 0, round(menu_x) + 4, round(menu_y) - (menu_itemheight * 4), 2, 2, 0, c_white, 1);
-}
-ini_close();
+
+draw_sprite_ext(spr_title_settings_icon, 0, round(menu_x) + 4, round(menu_y) - (menu_itemheight * 5), 2, 2, 0, c_white, 1);

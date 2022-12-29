@@ -74,23 +74,13 @@ if (mouse_check_button(mb_right)) && (firingdelaybomb < 0)
     firingdelaybomb = bomb_timer_max;
     audio_play_sound(sn_throw, 1, false);
 
-    if(place_meeting(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, oWall))
+    with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
     {
-        with (instance_create_depth(x, y, depth - 2, obj_bomb))
-        {
-            direction = other.image_angle;
-            hsp = lengthdir_x(2, direction);
-            vsp = lengthdir_y(2, direction) - 1;
-        }
-    }
-    else
-    {
-        with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
-        {
-            direction = other.image_angle;
-            hsp = lengthdir_x(2, direction);
-            vsp = lengthdir_y(2, direction) - 1;
-        }
+        direction = other.image_angle;
+        hsp = lengthdir_x(2, direction) + (oPlayer.hsp * 0.1);
+        vsp = lengthdir_y(2, direction) + (oPlayer.vsp * 0.1) - 1;
+
+        if(mouse_check_button(mb_left)) event_perform(ev_other, ev_user0);
     }
 }
 

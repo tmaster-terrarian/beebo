@@ -5,7 +5,7 @@ var image = "image"
 
 if(oGameManager.current_st != -1)
 {
-    np_setpresence("in-game", "Stage: " + string(oGameManager.current_st + 1), image, "");
+    np_setpresence("in-game", "Stage: " + string(oGameManager.current_st), image, "");
 }
 else
 {

@@ -5,8 +5,11 @@ if(global.animemode)
 {
     anim_state = 2;
 
-    oGun.x = x;
-    oGun.y = y + 3;
+    if(instance_exists(oGun))
+    {
+        oGun.x = x;
+        oGun.y = y + 3;
+    }
 }
 else if(!instance_exists(oGun))
 {

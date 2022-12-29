@@ -6,7 +6,6 @@ if (ev_type == "DiscordReady")
 {
 	global.discord_initialized = true;
 
-	window_set_caption("We're ready!");
 	ready = true;
 	show_debug_message("date: " + string(date_current_datetime()));
 	np_setpresence_timestamps(date_current_datetime(), 0, false);

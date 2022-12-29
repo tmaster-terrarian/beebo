@@ -70,9 +70,13 @@ if (menu_x > gui_width + 100) && (menu_committed != -1)
             ini_open("save.ini");
             var stage = ini_read_real("savedata", "stage", 0);
             ini_close();
+            global.gamestarted = true;
             gm_room_transition_goto(stage, 0, TRANS_TYPE.SLOW_HORIZONTAL);
         break;
         case 1: default:
+            global.t = 0;
+            global.gamestarted = true;
+            global.introcutscene = true;
             gm_room_transition_goto(0, 0, TRANS_TYPE.SLOW_HORIZONTAL);
         break;
         case 0:

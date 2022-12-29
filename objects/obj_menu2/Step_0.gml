@@ -24,7 +24,7 @@ if(key_rt || key_lt)
     audio_play_sound(snShot, 1, false);
 }
 
-if(keyboard_check_pressed(vk_f1))
+if(keyboard_check_pressed(vk_f2))
 {
     m_submenu = 2;
     m_options_length = array_length(m_options[m_submenu]);
@@ -50,6 +50,23 @@ if(key_en)
                     break;
                 }
                 case 4:
+                {
+                    global.speedrun_mode = !global.speedrun_mode;
+                    ini_open("save.ini");
+                    ini_write_real("settings", "speedrun_mode", global.speedrun_mode);
+                    ini_close();
+                    break;
+                }
+                case 5:
+                {
+                    ScreenShakeCursed(6, 60);
+                    ini_open("save.ini");
+                    ini_key_delete("savedata", "stage");
+                    ini_key_delete("savedata", "t");
+                    ini_close();
+                    break;
+                }
+                case 6:
                 {
                     gm_room_transition_direct(rMenu, TRANS_TYPE.BOX)
                     break;
