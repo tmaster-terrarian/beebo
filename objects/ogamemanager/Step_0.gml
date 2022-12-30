@@ -153,6 +153,22 @@ if(global.console)
                 gm_room_transition_next();
                 break;
             }
+            case "vr":
+            {
+                with(oCamera)
+                {
+                    follow = obj_animeRival;
+                }
+                break;
+            }
+            case "vb":
+            {
+                with(oCamera)
+                {
+                    follow = oPlayer;
+                }
+                break;
+            }
 
             case "benbo":
             {
@@ -256,6 +272,26 @@ if(global.console)
                 else console_log("'" + string(_args[1]) + "' is either unset or does not exist.");
             }
             else console_log("invalid arguments! correct syntax: config_read <key>");
+        }
+
+        if(cmd("sp_hp"))
+        {
+            var _args = string_split(input_str, " ");
+            if(array_length(_args) == 2)
+            {
+                if(instance_exists(oPlayer))
+                {
+                    for(var i = 0; i < _args[1]; i++;)
+                    {
+                        instance_create_depth(oPlayer.x + oPlayer.facing * 32, oPlayer.y, 300, obj_hpup);
+                    }
+                }
+            }
+            else if(array_length(_args) == 1)
+            {
+                if(instance_exists(oPlayer)) instance_create_depth(oPlayer.x + oPlayer.facing * 32, oPlayer.y, 300, obj_hpup);
+            }
+            else console_log("invalid arguments! correct syntax: sp_hp [amount]");
         }
 
         last_input_str = input_str;

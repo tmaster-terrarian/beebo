@@ -32,19 +32,19 @@ camera_set_view_pos(cam, floor(x - view_w_half), floor(y - view_h_half));
 
 if(layer_exists("bg1"))
 {
-    layer_x("bg1", (x / 2) + get_timer() * -0.00002);
+    layer_x("bg1", floor((x / 2) + get_timer() * -0.00002));
     layer_y("bg1", camera_get_view_y(cam));
 }
 if(layer_exists("bg2"))
 {
-    layer_x("bg2", (x / 2.5) + get_timer() * -0.000024);
+    layer_x("bg2", floor((x / 2.5) + get_timer() * -0.000024));
     layer_y("bg2", camera_get_view_y(cam));
 }
 if(layer_exists("bg3"))
 {
-    layer_x("bg3", x / 6);
+    layer_x("bg3", floor(x / 6));
 }
 if(layer_exists("bg4"))
 {
-    layer_x("bg4", x / 8);
+    layer_x("bg4", floor(x / 8));
 }

@@ -1,5 +1,4 @@
-// screen transition stuff
-
+//screen transition
 if(mode != TRANS_MODE.OFF)
 {
     switch(transtype)
@@ -21,6 +20,35 @@ if(mode != TRANS_MODE.OFF)
     }
 }
 
+//console draw
+var offs = 2;
+if(global.console == true)
+{
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_bottom);
+    draw_set_font(fnt_console);
+
+    draw_set_color(c_black);
+    draw_set_alpha(0.5);
+    draw_rectangle(1, 1, 254, 142, false);
+
+    draw_set_color(c_white);
+    draw_set_alpha(1);
+    draw_text_ext(offs + 1, 144 - (offs + 15) + log_pos, log_str, 10, 251);
+
+    draw_set_color(c_black);
+    draw_set_alpha(0.5);
+    draw_rectangle(1, 1 + 128, 254, 142, false);
+
+    draw_set_color(c_white);
+    draw_set_alpha(1);
+    if(cursor_timer <= 30)
+        draw_text_ext(offs + 1, 144 - offs + 4, "> " + input_str + "_", 0, 1024);
+    else
+        draw_text_ext(offs + 1, 144 - offs + 4, "> " + input_str, 0, 1024);
+}
+
+//speedrun timer
 if(global.speedrun_mode) && (global.gamestarted)
 {
     draw_set_color(c_white);

@@ -1,5 +1,8 @@
 event_inherited();
 
+hp = 4;
+hp_max = 4;
+
 if(global.playerhealth == 0) global.playerhealth = hp_max;
 hp = global.playerhealth;
 global.playermaxhealth = hp_max;
@@ -8,7 +11,7 @@ if(global.hasgun) instance_create_depth(x, y, 300, oGun);
 
 depth = 300;
 
-grv = 0.1;
+grv = 0.13;
 walksp = 2;
 facing = 1;
 attack = 0;
@@ -17,7 +20,7 @@ ground_accel = 0.1;
 ground_fric = 0.1;
 air_accel = 0.06;
 air_fric = 0.02;
-jump_speed = -2.6;
+jump_speed = -3;
 
 hascontrol = true;
 
