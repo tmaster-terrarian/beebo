@@ -132,6 +132,7 @@
     {"id":{"name":"obj_ui_slider","path":"objects/obj_ui_slider/obj_ui_slider.yy",},"order":0,},
     {"id":{"name":"spr_anime_fall","path":"sprites/spr_anime_fall/spr_anime_fall.yy",},"order":6,},
     {"id":{"name":"tiles_grass","path":"tilesets/tiles_grass/tiles_grass.yy",},"order":2,},
+    {"id":{"name":"cast_check","path":"scripts/cast_check/cast_check.yy",},"order":16,},
     {"id":{"name":"snGroundHit","path":"sounds/snGroundHit/snGroundHit.yy",},"order":4,},
     {"id":{"name":"sn_explosion","path":"sounds/sn_explosion/sn_explosion.yy",},"order":8,},
     {"id":{"name":"sn_slowmo","path":"sounds/sn_slowmo/sn_slowmo.yy",},"order":19,},

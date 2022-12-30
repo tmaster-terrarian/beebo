@@ -1,5 +1,4 @@
 event_inherited();
-
 depth = 320;
 
 x = xstart + 8;
@@ -15,6 +14,9 @@ timer0 = 0;
 landTimer = 0;
 wallslideTimer = 0;
 run = 0;
+
+single_wall = 0;
+single_wall_timer = 0;
 
 can_attack = 1;
 can_jump = 1;
