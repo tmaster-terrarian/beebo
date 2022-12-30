@@ -222,7 +222,7 @@ if(active) && (instance_exists(oPlayer))
 
     if(on_ground)
     {
-        if(place_meeting(x + sign(hsp), y, oWall)) && (!place_meeting(x + sign(hsp), y - 34, oWall)) && (can_jump)
+        if(place_meeting(x + sign(hsp), y, oWall)) && (!place_meeting(x + sign(hsp), y - 34, oWall)) && (can_jump) //jump over ledges
         {
             can_jump = 0;
             state = "normal";
@@ -231,7 +231,7 @@ if(active) && (instance_exists(oPlayer))
             vsp += jumpsp;
             audio_play_sound(sn_jump, 0, false);
         }
-        if(!place_meeting(x + (sign(hsp) * 16), y + 16, oWall)) && (can_jump)
+        if(!place_meeting(x + (sign(hsp) * 16), y + 16, oWall)) && (can_jump) //jump over gaps
         {
             can_jump = 0;
             state = "normal";
@@ -240,7 +240,7 @@ if(active) && (instance_exists(oPlayer))
             vsp += jumpsp;
             audio_play_sound(sn_jump, 0, false);
         }
-        if(place_meeting(x, y - 20, oPlatform)) && (y > oPlayer.y) && (can_jump)
+        if(place_meeting(x, y - 20, oPlatform)) && (y > oPlayer.y) && (can_jump) //jump onto platforms
         {
             can_jump = 0;
             state = "normal";
@@ -251,7 +251,7 @@ if(active) && (instance_exists(oPlayer))
             audio_play_sound(sn_jump, 0, false);
         }
 
-        if(y - oPlayer.y > 80) && (place_meeting(x + sign(facing) * 8, y, oWall)) && (can_jump)
+        if(y - oPlayer.y > 80) && (place_meeting(x + sign(facing) * 8, y, oWall)) && (can_jump) //initiate wall jump chains if too low from player
         {
             can_jump = 0;
             state = "normal";
@@ -261,7 +261,7 @@ if(active) && (instance_exists(oPlayer))
             audio_play_sound(sn_jump, 0, false);
         }
     }
-    else if(!place_meeting(x, y + 32, oWall)) && (y > oPlayer.y)
+    else if(!place_meeting(x, y + 32, oWall)) && (y > oPlayer.y) //wall jumps only if below player and there's adequate space below
     {
         chance = -1;
 
@@ -285,12 +285,12 @@ if(active) && (instance_exists(oPlayer))
         }
     }
 
-    if(oPlayer.y - y > 64) && (!on_ground)
+    if(oPlayer.y - y > 64) && (!on_ground) //adjust speed to aim at player during freefall while above
     {
         hsp *= 0.75;
     }
 
-    if(!on_ground)
+    if(!on_ground) //cool backflip ledge save
     {
         if(!place_meeting(x, y + 32, oWall)) && (!place_meeting(x + -sign(hsp) * 40, y, oWall)) && (place_meeting(x + -sign(hsp) * 40, y + 8, oWall)) && (state == "normal") && (can_dodge) && (abs(x - oPlayer.x) < 64) && ((y - oPlayer.y) > 0)
         {
@@ -300,13 +300,13 @@ if(active) && (instance_exists(oPlayer))
         }
     }
 
-    if(abs(x - oPlayer.x) > 128)
+    if(abs(x - oPlayer.x) > 128) //if offscreen it charges towards player without stopping
     {
         chance = -1;
         input_dir = sign(oPlayer.x - x);
     }
 
-    if(chance <= 6) && (chance > 0)
+    if(chance <= 6) && (chance > 0) //rondomly choose between moving and not moving toward the player
     {
         with(oPlayer) other.input_dir = sign(x - other.x) + round(random_range(-1, 1));
     }
@@ -327,7 +327,7 @@ if(active) && (instance_exists(oPlayer))
     // }
 }
 
-if(instance_exists(obj_player_dead)) && (active)
+if(instance_exists(obj_player_dead)) && (active) //hehe dinder
 {
     state = "dinder";
     active = 0;
