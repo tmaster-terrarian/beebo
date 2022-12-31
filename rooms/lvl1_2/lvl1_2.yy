@@ -29,7 +29,6 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7744ED4","properties":[],"isDnd":false,"objectId":{"name":"o_nectar","path":"objects/o_nectar/o_nectar.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":701.0,"y":114.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_1539C5DA","properties":[],"isDnd":false,"objectId":{"name":"o_nectar","path":"objects/o_nectar/o_nectar.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":706.0,"y":114.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_F57C11","properties":[],"isDnd":false,"objectId":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":448.0,"y":128.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7B0C0E45","properties":[],"isDnd":false,"objectId":{"name":"obj_animeRival","path":"objects/obj_animeRival/obj_animeRival.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":192.0,"y":144.0,},
       ],"visible":true,"depth":400,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"triggers","instances":[],"visible":true,"depth":500,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Ground","instances":[
@@ -134,7 +133,6 @@
     {"name":"inst_4E5B1624","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_2D0C9137","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_2DFB2462","path":"rooms/lvl1_2/lvl1_2.yy",},
-    {"name":"inst_7B0C0E45","path":"rooms/lvl1_2/lvl1_2.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
