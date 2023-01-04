@@ -1,10 +1,10 @@
 m_options_length = array_length(m_options[m_submenu]);
 
-key_up = keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W"));
-key_dn = keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S"));
-key_rt = keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord("D"));
-key_lt = keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord("A"));
-key_en = keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space);
+key_up = keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W")) || gamepad_button_check_pressed(0, gp_padu);
+key_dn = keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S")) || gamepad_button_check_pressed(0, gp_padd);
+key_rt = keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord("D")) || gamepad_button_check_pressed(0, gp_padr);
+key_lt = keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord("A")) || gamepad_button_check_pressed(0, gp_padl);
+key_en = keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_face1);
 
 m_pos += key_dn - key_up;
 
@@ -123,7 +123,7 @@ if(key_en)
     }
 }
 
-if(keyboard_check_pressed(vk_escape))
+if(keyboard_check_pressed(vk_escape)) || (gamepad_button_check_pressed(0, gp_face2))
 {
     switch(m_submenu)
     {

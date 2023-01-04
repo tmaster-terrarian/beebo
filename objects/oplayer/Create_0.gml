@@ -20,7 +20,12 @@ ground_accel = 0.1;
 ground_fric = 0.1;
 air_accel = 0.06;
 air_fric = 0.02;
+hsp_max = 20;
+vsp_max = 20;
+
 jump_speed = -3;
+jump_buffer = 0;
+jump_buffer2 = 0;
 
 hascontrol = true;
 
@@ -38,3 +43,11 @@ gun_offs_x = 0;
 gun_offs_y = 0;
 
 enemy_enabler_counter = 0;
+
+//controller
+ch_frame = 0;
+ch_frame_max = 2;
+ch_animate = 0;
+ch_alpha = 0;
+
+gamepad_set_axis_deadzone(0, 0.2);

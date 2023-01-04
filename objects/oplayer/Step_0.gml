@@ -92,7 +92,6 @@ else
 if(place_meeting(x, y, oWall)) y--;
 
 hsp = clamp(hsp, -20, 20);
-vsp = clamp(vsp, -20, 20);
 
 image_xscale = facing;
 if(hascontrol)
@@ -107,7 +106,7 @@ if(hascontrol)
         var accel = air_accel;
         var fric = air_fric;
     }
-    if(keyboard_check(ord("D")))
+    if(keyboard_check(ord("D"))) || (gamepad_axis_value(0, gp_axislh) > 0) || (gamepad_button_check(0, gp_padr))
     {
         if (hsp < 0)
         {
@@ -121,7 +120,7 @@ if(hascontrol)
         }
         facing = 1;
     }
-    else if(keyboard_check(ord("A")))
+    else if(keyboard_check(ord("A"))) || (gamepad_axis_value(0, gp_axislh) < 0) || (gamepad_button_check(0, gp_padl))
     {
         if (hsp > 0)
         {
@@ -140,11 +139,16 @@ if(hascontrol)
         hsp = approach(hsp, 0, fric * 2);
         if(hsp == 0 && !attack) use_anim_state(2, anim_state);
     }
+    jump_buffer = max(jump_buffer - 1, 0);
+    jump_buffer2 = max(jump_buffer2 - 1, 0);
     if(on_ground)
     {
-        if(keyboard_check_pressed(vk_space))
+        jump_buffer2 = 5;
+
+        if((keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_shoulderlb)) || (gamepad_button_check_pressed(0, gp_face1))) || (jump_buffer > 0)
         {
-            if (place_meeting(x, y + 1, oPlatform)) && (keyboard_check(ord("S")))
+            jump_buffer = 0;
+            if (place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall)) && (keyboard_check(ord("S")))
             {
                 y += 1;
             }
@@ -157,8 +161,17 @@ if(hascontrol)
     }
     else
     {
-        if(keyboard_check_pressed(vk_space))
+        if(keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_shoulderlb)) || (gamepad_button_check_pressed(0, gp_face1))
         {
+            jump_buffer = 5;
+
+            if(jump_buffer2 > 0) && (vsp > 0)
+            {
+                jump_buffer2 = 0;
+                audio_play_sound(sn_jump, 1, false);
+                vsp = jump_speed;
+            }
+
             if(place_meeting(x + 3, y, oWall))
             {
                 facing = -1;
@@ -174,8 +187,6 @@ if(hascontrol)
                 audio_play_sound(sn_throw, 1, false);
             }
         }
-        //if(keyboard_check_released(vk_space))
-        //    vsp /= 2;
         if(vsp > 0)
         {
             if(!attack) {sprite_index = spr_player_fall; if(global.animemode) {sprite_index = spr_anime_fall;}}
@@ -187,8 +198,7 @@ if(hascontrol)
     }
 }
 if (!on_ground)
-    vsp = approach(vsp, 20, grv);
-else vsp = clamp(vsp, -20, 0);
+    vsp = approach(vsp, vsp_max, grv);
 
 x = floor(x);
 y = floor(y);
@@ -206,27 +216,6 @@ if(!global.introsequence)
 
     if(!hascontrol) image_alpha = 1;
 }
-
-//coyotetime -= 1;
-//if ((place_meeting(x, y + 1, oWall) || place_meeting(x, y + 1, oPlatform)) || ((coyotetime <= 5) && (coyotetime >= 0))) && (key_jump) && (vsp > 0)
-//{
-//    audio_play_sound(sn_jump, 1, false);
-//    vsp = -2.5;
-//}
-//move and collisions
-//functions
-//collisionV = function(obj)
-//{
-//    if (place_meeting(x, y + vsp, obj))
-//    {
-//        while (!place_meeting(x, y + sign(vsp), obj))
-//        {
-//            y += sign(vsp);
-//        }
-//        coyotetime = 8;
-//        vsp = 0;
-//    }
-//}
 
 if(y > room_height + 200)
 {

@@ -102,7 +102,7 @@ else
 }
 bg.image_alpha = (-1 * (explosiontimer / 80) + 1);
 
-if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter))
+if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter)) || (gamepad_button_check_pressed(0, gp_face1))
 {
 	global.pausetimer = false;
 	global.playerhealth = hp_max;

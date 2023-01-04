@@ -5,7 +5,7 @@ menu_x += (menu_x_target - menu_x) / menu_speed;
 
 if(menu_control)
 {
-    if(keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W")))
+    if(keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W"))) || (gamepad_button_check_pressed(0, gp_padu))
     {
         menu_cursor++;
         if(menu_cursor >= menu_items)
@@ -15,7 +15,7 @@ if(menu_control)
         ScreenShake(2, 10);
         audio_play_sound(sn_explosion, 2, false);
     }
-    if(keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S")))
+    if(keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S"))) || (gamepad_button_check_pressed(0, gp_padd))
     {
         menu_cursor--;
         if(menu_cursor < 0)
@@ -25,7 +25,7 @@ if(menu_control)
         ScreenShake(2, 10);
         audio_play_sound(sn_explosion, 2, false);
     }
-    if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space))
+    if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_face1)) || (gamepad_button_check_pressed(0, gp_start))
     {
         menu_x_target = gui_width + 200;
         menu_committed = menu_cursor;
@@ -52,7 +52,7 @@ if(menu_control)
     //     }
     // }
 
-    if(keyboard_check_pressed(ord("Z")))
+    if(keyboard_check_pressed(ord("Z"))) || (gamepad_button_check_pressed(0, gp_select))
     {
         // "TRANS_MODE.RESPAWN" is just a basic version of "TRANS_MODE.GOTO"
             // why did I do this
