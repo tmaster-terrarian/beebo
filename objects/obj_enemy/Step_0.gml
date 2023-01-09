@@ -2,6 +2,22 @@ vsp += grv;
 
 //move and collisions
 //horizontal
+if(place_meeting(x + sign(hsp), y, oWall))
+{
+    if(!place_meeting(x + sign(hsp), y - 4, oWall))
+    {
+        for(var i = 0; i < 4; i++)
+        {
+            y -= 1;
+            if(!place_meeting(x + sign(hsp), y, oWall))
+            {
+                x += sign(hsp);
+                break;
+            }
+        }
+    }
+}
+
 if (place_meeting(x + hsp, y, oWall))
 {
     while (!place_meeting(x + sign(hsp), y, oWall))
@@ -23,7 +39,7 @@ if (place_meeting(x, y + vsp, oWall))
 }
 y += vsp;
 
-if (!place_meeting(x + sign(hsp), y + 1, oWall))
+if (!place_meeting(x + sign(hsp), y + 5, oWall))
 {
     hsp = -hsp;
 }

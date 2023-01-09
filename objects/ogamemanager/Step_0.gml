@@ -82,7 +82,7 @@ if(keyboard_check(vk_lcontrol))
 if(!global.console) controltimer = max(0, controltimer - 1);
 with(oPlayer)
 {
-    if(other.controltimer > 0)
+    if(other.controltimer > 0) || (global.cutscene == true)
     {
         hascontrol = false;
     }

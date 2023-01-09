@@ -162,7 +162,13 @@ switch(state)
         {
             timer0 = 0;
             can_dodge = 1;
-            state = "normal";
+            if(encounter1)
+            {
+                global.cutscene = false;
+                oPlayer.hascontrol = true;
+                instance_destroy();
+            }
+            else state = "normal";
             if(single_wall)
             {
                 single_wall = 0;
@@ -229,9 +235,24 @@ switch(state)
         }
         break;
     }
-    case "backflip_x3":
+    case "encounter1":
     {
-        alarm[1] = 1;
+        if(timer0 < 60)
+        {
+            timer0++;
+            global.cutscene = true;
+            oPlayer.hascontrol = false;
+        }
+        if(timer0 == 30)
+        {
+            facing = -facing;
+            audio_play_sound(sn_alert, 0, false);
+        }
+        if(timer0 == 60)
+        {
+            timer0 = 0;
+            state = "backflip_start";
+        }
         break;
     }
 }
@@ -250,7 +271,7 @@ if(active) && (instance_exists(oPlayer))
     if(on_ground)
     {
         //jump over ledges
-        if((place_meeting(x + sign(hsp), y, oWall)) && ((!cast_check(x + sign(hsp), y, 0, 1, oWall, 34)) || (!cast_check(x + sign(hsp), y, 0, 1, oPlatform, 34)))) && (can_jump)
+        if((place_meeting(x + sign(hsp) * 4, y, oWall)) && (cast_check_a(x + sign(hsp), y, 0, 1, oWall, 34))) && (can_jump)
         {
             can_jump = 0;
             state = "normal";

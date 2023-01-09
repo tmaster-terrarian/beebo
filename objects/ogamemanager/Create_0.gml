@@ -56,7 +56,7 @@ target_rm = 0;
 stages = //create 2d array of stages/rooms
 [
     [lvl1_0], // tutoriel
-    [lvl1_1, lvl1_2, lvl1_3] // stage 1
+    [lvl1_1, lvl1_2, lvl1_3, lvl1_4] // stage 1
 ];
 stage_names = //unimportant rn
 [

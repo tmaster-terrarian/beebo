@@ -49,3 +49,5 @@ alarm[0] = 30;
 
 flip_counter = 0;
 flip_max = 3;
+
+encounter1 = false;

@@ -66,7 +66,7 @@ else
 
 firingdelay -= 1;
 recoil = max(0, recoil - 1);
-if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderr)) && (firingdelay < 0)
+if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (firingdelay < 0)
 {
     fire = 1;
 
@@ -89,7 +89,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderr)) && (fir
     //}
 }
 
-if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_shoulderl)) && (firingdelaybomb > 0)
+if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_shoulderlb)) && (firingdelaybomb > 0)
 {
     with(obj_bomb)
     {
@@ -115,7 +115,7 @@ if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_sh
 }
 
 firingdelaybomb -= 1;
-if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderl)) && (firingdelaybomb < 0)
+if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (firingdelaybomb < 0)
 {
     fire = 1;
 
@@ -130,12 +130,12 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderl)) && (f
         hsp = lengthdir_x(2, direction) + (oPlayer.hsp * 0.1);
         vsp = lengthdir_y(2, direction) + (oPlayer.vsp * 0.1) - 1;
 
-        if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderr)) event_perform(ev_other, ev_user0);
+        if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) event_perform(ev_other, ev_user0);
     }
 }
 
 //animation
-if (mouse_check_button_released(mb_left) || gamepad_button_check_released(0, gp_shoulderr))
+if (mouse_check_button_released(mb_left) || gamepad_button_check_released(0, gp_shoulderrb))
 {
     sprite_index = sGunR;
     audio_play_sound(snReload, 1, false);

@@ -51,3 +51,5 @@ ch_animate = 0;
 ch_alpha = 0;
 
 gamepad_set_axis_deadzone(0, 0.2);
+
+y = ystart + 8;

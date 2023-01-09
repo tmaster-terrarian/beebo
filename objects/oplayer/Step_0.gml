@@ -145,10 +145,10 @@ if(hascontrol)
     {
         jump_buffer2 = 5;
 
-        if((keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_shoulderlb)) || (gamepad_button_check_pressed(0, gp_face1))) || (jump_buffer > 0)
+        if((keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_face1))) || (jump_buffer > 0)
         {
             jump_buffer = 0;
-            if (place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall)) && (keyboard_check(ord("S")))
+            if (place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall)) && ((keyboard_check(ord("S"))) || (gamepad_axis_value(0, gp_axislv) > 0))
             {
                 y += 1;
             }
@@ -161,7 +161,7 @@ if(hascontrol)
     }
     else
     {
-        if(keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_shoulderlb)) || (gamepad_button_check_pressed(0, gp_face1))
+        if(keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_face1))
         {
             jump_buffer = 5;
 

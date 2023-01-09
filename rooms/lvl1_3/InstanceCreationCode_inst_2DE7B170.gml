@@ -1,0 +1,1 @@
+item = obj_hpup;
