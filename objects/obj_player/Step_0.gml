@@ -1,5 +1,7 @@
 if(global.console) return;
 
+running = (sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev0) || (sprite_index == spr_player_run_rev1) || (sprite_index == spr_anime_run_rev);
+
 //set animation state
 if(global.animemode)
 {
@@ -23,7 +25,7 @@ else
     oGun.y = y + 3;
 }
 
-if(sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev0) || (sprite_index == spr_player_run_rev1) || (sprite_index == spr_anime_run_rev)
+if(running)
 {
     switch(floor(image_index))
     {
@@ -37,13 +39,10 @@ if(sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_ind
         case 7: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
     }
 }
-else if(sprite_index == spr_player_jump) || (sprite_index == spr_anime_jump)
+else if(state == "wallslide")
 {
+    gun_offs_x = 0;
     gun_offs_y = 4;
-}
-else if(sprite_index == spr_player_fall) || (sprite_index == spr_anime_fall)
-{
-    gun_offs_y = 3;
 }
 else
 {
@@ -55,126 +54,217 @@ if(place_meeting(x, y, oWall)) y--;
 
 hsp = clamp(hsp, -20, 20);
 
-image_xscale = facing;
+var input_dir = 0;
+input_dir = sign
+(
+    gamepad_axis_value(0, gp_axislh)
+    + (gamepad_button_check(0, gp_padr) - gamepad_button_check(0, gp_padl))
+    + (keyboard_check(ord("D")) - keyboard_check(ord("A")))
+);
+
+image_xscale = sign(facing);
 if(hascontrol)
 {
-    if on_ground
-    {
-        var accel = ground_accel;
-        var fric = ground_fric;
-    }
-    else
-    {
-        var accel = air_accel;
-        var fric = air_fric;
-    }
-    if(keyboard_check(ord("D"))) || (gamepad_axis_value(0, gp_axislh) > 0) || (gamepad_button_check(0, gp_padr))
-    {
-        if (hsp < 0)
-        {
-            hsp = approach(hsp, 0, fric);
-        }
-        if(hsp < walksp) hsp = approach(hsp, walksp, accel);
-        if(on_ground && !attack)
-        {
-            if(sign(hsp) == facing) use_anim_state(1, anim_state);
-            else use_anim_state(3, anim_state);
-        }
-        facing = 1;
-    }
-    else if(keyboard_check(ord("A"))) || (gamepad_axis_value(0, gp_axislh) < 0) || (gamepad_button_check(0, gp_padl))
-    {
-        if (hsp > 0)
-        {
-            hsp = approach(hsp, 0, fric);
-        }
-        if(hsp > -walksp) hsp = approach(hsp, -walksp, accel);
-        if(on_ground && !attack)
-        {
-            if(sign(hsp) == facing) use_anim_state(1, anim_state);
-            else use_anim_state(3, anim_state);
-        }
-        facing = -1;
-    }
-    else
-    {
-        hsp = approach(hsp, 0, fric * 2);
-        if(hsp == 0 && !attack) use_anim_state(2, anim_state);
-    }
-    jump_buffer = max(jump_buffer - 1, 0);
-    jump_buffer2 = max(jump_buffer2 - 1, 0);
     if(on_ground)
     {
-        jump_buffer2 = 5;
+        accel = ground_accel;
+        fric = ground_fric;
+    }
+    else
+    {
+        accel = air_accel;
+        fric = air_fric;
+    }
 
-        if((keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_face1))) || (jump_buffer > 0)
+    switch(state)
+    {
+        case "normal": default:
         {
-            jump_buffer = 0;
-            if (place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall)) && ((keyboard_check(ord("S"))) || (gamepad_axis_value(0, gp_axislv) > 0))
+            can_attack = 1;
+            can_jump = 1;
+            if (input_dir == 1)
             {
-                y += 1;
+                if (hsp < 0)
+                {
+                    hsp = approach(hsp, 0, fric)
+                }
+                else if (on_ground && vsp >= 0)
+                {
+                    if (!landTimer)
+                    {
+                        if(sign(hsp) != sign(facing)) use_anim_state(3, anim_state);
+                        else use_anim_state(1, anim_state);
+                    }
+                }
+                if run
+                    run = 7
+                if (hsp < walksp)
+                    hsp = approach(hsp, walksp, accel)
+                if on_ground
+                    facing = 1
+                else
+                    facing = approach(facing, 1, 0.2)
+            }
+            else if (input_dir == -1)
+            {
+                if (hsp > 0)
+                {
+                    hsp = approach(hsp, 0, fric)
+                }
+                else if (on_ground && vsp >= 0)
+                {
+                    if (!landTimer)
+                    {
+                        if(sign(hsp) != sign(facing)) use_anim_state(3, anim_state);
+                        else use_anim_state(1, anim_state);
+                    }
+                }
+                if run
+                    run = 7
+                if (hsp > -walksp)
+                    hsp = approach(hsp, -walksp, accel)
+                if on_ground
+                    facing = -1
+                else
+                    facing = approach(facing, -1, 0.2)
             }
             else
             {
-                audio_play_sound(sn_jump, 1, false);
-                vsp = jump_speed;
+                // facing = pointing;
+                hsp = approach(hsp, 0, fric * 2)
+                if (abs(hsp) < 2)
+                {
+                    if run
+                        run--
+                }
+                if (abs(hsp) < 0.5 && on_ground && !landTimer)
+                {
+                    use_anim_state(2, anim_state);
+                    image_index = 0
+                }
+            }
+            if (!on_ground)
+            {
+                if (vsp >= -0.5)
+                {
+                    if place_meeting((x + (2 * input_dir)), y, oWall)
+                        wallslideTimer++
+                }
+                else
+                    wallslideTimer = 0
+                if (wallslideTimer >= 5)
+                    state = "wallslide"
+
+                jump_buffer = max(jump_buffer - 1, 0);
+                jump_buffer2 = max(jump_buffer2 - 1, 0);
+
+                sprite_index = spr_player_jump
+                if (vsp >= 0.1)
+                    vsp = approach(vsp, vsp_max, grv)
+                if (vsp < 0)
+                    vsp = approach(vsp, vsp_max, grv)
+                else if (vsp < 2)
+                    vsp = approach(vsp, vsp_max, grv * 0.25)
+                if (vsp < 0)
+                    image_index = approach(image_index, 1, 0.2)
+                else if (vsp >= 0.5)
+                    image_index = approach(image_index, 5, 0.5)
+                else
+                    image_index = 3
+            }
+            else
+                wallslideTimer = 0
+            if (running)
+                image_index += hsp / 6
+            landTimer = approach(landTimer, 0, 1)
+            break;
+        }
+        case "wallslide":
+        {
+            if (vsp < 0)
+                vsp = approach(vsp, vsp_max, 0.5);
+            else
+                vsp = approach(vsp, vsp_max / 3, grv / 3);
+            if (!(place_meeting(x + (input_dir * 2), y, oWall)))
+            {
+                state = "normal";
+                wallslideTimer = 0;
+            }
+            sprite_index = spr_player_wallslide;
+            if (input_dir == 0 || on_ground)
+            {
+                state = "normal";
+                wallslideTimer = 0;
+            }
+            if (sign(input_dir) == -sign(facing))
+            {
+                state = "normal";
+                wallslideTimer = 0;
+                facing = sign(input_dir);
+            }
+            vsp = clamp(vsp, -99, 2);
+            break;
+        }
+    }
+
+    if (keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_face1))
+    {
+        if(on_ground)
+        {
+            if(place_meeting(x, (y + 2), oPlatform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
+            {
+                sprite_index = spr_player_jump
+                y += 2
+                image_index = 2
+            }
+            else
+            {
+                // c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
+                // if c
+                // {
+                //     hsp += c.hsp
+                //     if (c.vsp < 0)
+                //         vsp = c.vsp
+                // }
+                vsp += jump_speed
+                audio_play_sound(sn_jump, 0, false)
+            }
+        }
+        else
+        {
+            if place_meeting((x + 2), y, oWall)
+            {
+                state = "normal"
+                hsp = -2
+                vsp = -2.5
+                facing = -1
+                audio_play_sound(sn_throw, 0, false)
+            }
+            if place_meeting((x - 2), y, oWall)
+            {
+                state = "normal"
+                hsp = 2
+                vsp = -2.5
+                facing = 1
+                audio_play_sound(sn_throw, 0, false)
             }
         }
     }
-    else
+    if(keyboard_check(ord("W")) || gamepad_button_check(0, gp_padu))
     {
-        if(keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_face1))
-        {
-            jump_buffer = 5;
-
-            if(jump_buffer2 > 0) && (vsp > 0)
-            {
-                jump_buffer2 = 0;
-                audio_play_sound(sn_jump, 1, false);
-                vsp = jump_speed;
-            }
-
-            if(place_meeting(x + 3, y, oWall))
-            {
-                facing = -1;
-                hsp = 1.5 * facing;
-                vsp = jump_speed;
-                audio_play_sound(sn_throw, 1, false);
-            }
-            if(place_meeting(x - 3, y, oWall))
-            {
-                facing = 1;
-                hsp = 1.5 * facing;
-                vsp = jump_speed;
-                audio_play_sound(sn_throw, 1, false);
-            }
-        }
-        if(vsp < 0)
-        {
-            if(!attack) {sprite_index = spr_player_jump; if(global.animemode) {sprite_index = spr_anime_jump;}}
-        }
-        if(vsp > 0)
-        {
-            if(!attack) {sprite_index = spr_player_fall; if(global.animemode) {sprite_index = spr_anime_fall;}}
-        }
+        use_anim_state(4, anim_state);
     }
 }
-if (!on_ground)
-    vsp = approach(vsp, vsp_max, grv);
-
-x = floor(x);
-y = floor(y);
-
-image_speed = 0.3;
+invuln = max(0, invuln - 1);
 
 if(hp > hp_max) hp = hp_max;
 
 if(!global.introsequence)
 {
-    if(iframes > 0 && !global.cutscene) image_alpha = 0.6;
+    if(invuln > 0 && !global.cutscene) image_alpha = 0.6;
     else image_alpha = 1;
 
-    iframes = max(0, iframes - 1);
+    invuln = max(0, invuln - 1);
 
     if(!hascontrol) image_alpha = 1;
 }
@@ -186,7 +276,9 @@ if(y > room_height + 200)
 
 if(!hascontrol)
 {
+    input_dir = 0;
     hsp = 0;
+    use_anim_state(2, anim_state);
 }
 
 enemy_enabler_counter = max(0, enemy_enabler_counter - 1);

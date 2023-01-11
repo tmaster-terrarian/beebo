@@ -257,6 +257,7 @@ switch(state)
                 xTo = 128;
                 yTo = 80;
             }
+            with(oPlayer) facing = 1;
         }
         if(timer0 < 60)
         {

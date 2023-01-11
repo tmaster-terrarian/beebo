@@ -1,8 +1,8 @@
 // with (other)
 // {
-//     if(iframes <= 0)
+//     if(invuln <= 0)
 //     {
-//         iframes = 60;
+//         invuln = 60;
 
 //         hp -= other.damage;
 //         flash = 3;

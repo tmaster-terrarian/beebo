@@ -1,6 +1,16 @@
-if(instance_exists(obj_player))
+if(!obj_player.hascontrol)
 {
-    if(!obj_player.hascontrol) return;
+    if(sign(obj_player.facing) == 1)
+    {
+        image_yscale = 1;
+        image_angle = 0;
+    }
+    if(sign(obj_player.facing) == -1)
+    {
+        image_yscale = -1;
+        image_angle = 180;
+    }
+    return;
 }
 if(global.console) return;
 
@@ -26,12 +36,14 @@ if(gamepad_is_connected(0))
     {
         if(instance_exists(obj_player))
         {
-            if(obj_player.facing == 1)
+            if(sign(obj_player.facing) == 1)
             {
+                image_yscale = 1;
                 image_angle = 0;
             }
-            if(obj_player.facing == -1)
+            if(sign(obj_player.facing) == -1)
             {
+                image_yscale = -1;
                 image_angle = 180;
             }
         }
@@ -53,15 +65,29 @@ if(gamepad_is_connected(0))
 else image_angle = point_direction(x, y, mouse_x, mouse_y);
 image_angle = round(image_angle / 10) * 10;
 
-if (image_angle > 90 && image_angle < 270)
+if(obj_player.state == "normal")
 {
-    image_yscale = -1;
-    obj_player.facing = -1;
+    if (image_angle > 90 && image_angle < 270)
+    {
+        image_yscale = -1;
+        obj_player.facing = -abs(obj_player.facing);
+    }
+    else
+    {
+        image_yscale = 1;
+        obj_player.facing = abs(obj_player.facing);
+    }
 }
 else
 {
-    image_yscale = 1;
-    obj_player.facing = 1;
+    if (image_angle > 90 && image_angle < 270)
+    {
+        image_yscale = -1;
+    }
+    else
+    {
+        image_yscale = 1;
+    }
 }
 
 firingdelay -= 1;

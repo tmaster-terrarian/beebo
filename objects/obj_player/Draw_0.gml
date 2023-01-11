@@ -1,8 +1,14 @@
+var _x = x;
+var _y = y;
+x = floor(x);
+y = floor(y);
 draw_self();
+x = _x;
+y = _y;
 
 if(instance_exists(oGun))
 {
-    draw_sprite_ext(oGun.sprite_index, oGun.image_index, x + gun_offs_x - lengthdir_x(oGun.recoil, oGun.image_angle), y + gun_offs_y - lengthdir_y(oGun.recoil, oGun.image_angle), oGun.image_xscale, oGun.image_yscale, oGun.image_angle, c_white, 1);
+    draw_sprite_ext(oGun.sprite_index, oGun.image_index, x + gun_offs_x - lengthdir_x(oGun.recoil, oGun.image_angle), y + gun_offs_y - lengthdir_y(oGun.recoil, oGun.image_angle), oGun.image_xscale, oGun.image_yscale, oGun.image_angle, c_white, oGun.image_alpha);
 
     if(oGun.fire || mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_shoulderlb))
     {

@@ -2,6 +2,11 @@ if(instance_exists(follow))
 {
     xTo = follow.x + (sign(sign(follow.facing) + sign(follow.hsp)) * 12);
     yTo = follow.y;
+
+    if(follow == obj_player)
+    {
+        yTo = follow.y - follow.lookup * 32;
+    }
 }
 if(instance_exists(obj_player_dead))
 {

@@ -1,5 +1,24 @@
 event_inherited();
 
+depth = 300;
+
+state = "normal";
+
+sprite_index = sPlayer;
+image_speed = 0;
+image_index = 0;
+timer0 = 0;
+landTimer = 0;
+wallslideTimer = 0;
+running = 0;
+run = 0;
+
+lookup = 0;
+
+can_attack = 1;
+can_jump = 1;
+can_dodge = 1;
+
 hp = 4;
 hp_max = 4;
 
@@ -8,8 +27,6 @@ hp = global.playerhealth;
 global.playermaxhealth = hp_max;
 
 if(global.hasgun) instance_create_depth(x, y, 300, oGun);
-
-depth = 300;
 
 grv = 0.13;
 walksp = 2;
@@ -20,6 +37,9 @@ ground_accel = 0.1;
 ground_fric = 0.1;
 air_accel = 0.06;
 air_fric = 0.02;
+accel = 0;
+fric = 0;
+
 hsp_max = 20;
 vsp_max = 20;
 
@@ -29,7 +49,7 @@ jump_buffer2 = 0;
 
 hascontrol = true;
 
-iframes = 0;
+invuln = 0;
 hitfrom = 0;
 flash = 0;
 
@@ -88,6 +108,14 @@ use_anim_state = function(anim_id, state)
                 case 0: default: sprite_index = spr_player_run_rev0; break;
                 case 1: sprite_index = spr_player_run_rev1; break;
                 case 2: sprite_index = spr_anime_run_rev; break;
+            }
+        break;
+        case 4:
+            switch(state)
+            {
+                case 0: default: sprite_index = spr_player_lookup; break;
+                case 1: sprite_index = spr_player_lookup1; break;
+                case 2: sprite_index = spr_anime; break;
             }
         break;
     }
