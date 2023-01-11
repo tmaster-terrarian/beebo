@@ -71,7 +71,7 @@ if(mode != TRANS_MODE.OFF)
 //:lollmao:
 if(keyboard_check(vk_lcontrol))
 {
-    with(oPlayer)
+    with(obj_player)
     {
         x = mouse_x;
         y = mouse_y;
@@ -80,7 +80,7 @@ if(keyboard_check(vk_lcontrol))
 
 //hascontrol timer or something idk
 if(!global.console) controltimer = max(0, controltimer - 1);
-with(oPlayer)
+with(obj_player)
 {
     if(other.controltimer > 0) || (global.cutscene == true)
     {
@@ -165,13 +165,13 @@ if(global.console)
 
             case "view_player":
             {
-                with(oCamera) follow = oPlayer;
+                with(oCamera) follow = obj_player;
                 break;
             }
 
             case "kill":
             {
-                with(oPlayer) hp = 0;
+                with(obj_player) hp = 0;
                 break;
             }
 
@@ -193,7 +193,7 @@ if(global.console)
                 with(obj_gun_pickup) instance_destroy();
                 if(!instance_exists(oGun))
                 {
-                    with(oPlayer)
+                    with(obj_player)
                     {
                         instance_create_depth(x, y, 300, oGun);
                     }
@@ -302,11 +302,11 @@ if(global.console)
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 2)
             {
-                if(instance_exists(oPlayer))
+                if(instance_exists(obj_player))
                 {
                     for(var i = 0; i < _args[1]; i++;)
                     {
-                        instance_create_depth(oPlayer.x + oPlayer.facing * 32, oPlayer.y, 300, obj_hpup);
+                        instance_create_depth(obj_player.x + obj_player.facing * 32, obj_player.y, 300, obj_hpup);
                     }
                 }
                 else if(instance_exists(oCamera))
@@ -319,7 +319,7 @@ if(global.console)
             }
             else if(array_length(_args) == 1)
             {
-                if(instance_exists(oPlayer)) instance_create_depth(oPlayer.x + oPlayer.facing * 32, oPlayer.y, 300, obj_hpup);
+                if(instance_exists(obj_player)) instance_create_depth(obj_player.x + obj_player.facing * 32, obj_player.y, 300, obj_hpup);
                 else if(instance_exists(oCamera)) instance_create_depth(oCamera.x, oCamera.y, 300, obj_hpup);
             }
             else console_log("invalid syntax! expected: sp_hp [amount = 1]");
@@ -332,7 +332,7 @@ if(global.console)
             {
                 case 1:
                 {
-                    if(instance_exists(oPlayer)) with(oCamera) {follow = oPlayer}
+                    if(instance_exists(obj_player)) with(oCamera) {follow = obj_player}
                     else console_log("set_view failed: could not find player");
                     break;
                 }

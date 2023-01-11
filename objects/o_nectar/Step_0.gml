@@ -1,9 +1,9 @@
 attack_timer += 1;
 facing = 0;
 
-if(instance_exists(oPlayer))
+if(instance_exists(obj_player))
 {
-    target = oPlayer;
+    target = obj_player;
 }
 else
 {

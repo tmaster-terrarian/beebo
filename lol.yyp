@@ -186,7 +186,7 @@
     {"id":{"name":"sn_ryder5","path":"sounds/sn_ryder5/sn_ryder5.yy",},"order":27,},
     {"id":{"name":"sPlayerA","path":"sprites/sPlayerA/sPlayerA.yy",},"order":3,},
     {"id":{"name":"obj_bomb","path":"objects/obj_bomb/obj_bomb.yy",},"order":23,},
-    {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"order":0,},
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
     {"id":{"name":"sBG1","path":"sprites/sBG1/sBG1.yy",},"order":2,},
     {"id":{"name":"obj_ui_slider_handle","path":"objects/obj_ui_slider_handle/obj_ui_slider_handle.yy",},"order":1,},
     {"id":{"name":"sPlatform","path":"sprites/sPlatform/sPlatform.yy",},"order":14,},

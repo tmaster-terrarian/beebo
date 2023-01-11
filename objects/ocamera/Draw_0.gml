@@ -7,9 +7,9 @@ if(draw_ui)
     var xpos = camera_get_view_x(cam);
     var ypos = camera_get_view_y(cam);
 
-    if(instance_exists(oPlayer))
+    if(instance_exists(obj_player))
     {
-        var player_health = oPlayer.hp;
+        var player_health = obj_player.hp;
 
         draw_sprite(spr_hp_icon, 0, xpos + offsetx, ypos + offsety);
         draw_sprite(spr_hp_bar_start, 0, xpos + offsetx + 16, ypos + offsety);

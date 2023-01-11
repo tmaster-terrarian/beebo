@@ -1,5 +1,5 @@
 audio_play_sound(sn_gun_pickup, 1, false);
-var gun = instance_create_depth(oPlayer.x, oPlayer.y, 200, oGun);
+var gun = instance_create_depth(obj_player.x, obj_player.y, 200, oGun);
 gun.sprite_index = sGunR;
 global.hasgun = true;
 ini_open("save.ini");

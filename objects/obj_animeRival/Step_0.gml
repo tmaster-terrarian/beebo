@@ -170,7 +170,7 @@ switch(state)
                 }
                 with(oCamera)
                 {
-                    follow = oPlayer;
+                    follow = obj_player;
                     draw_ui = true;
                     zoom = 1;
                 }
@@ -273,7 +273,7 @@ switch(state)
                 xTo = 144;
                 yTo = 80;
             }
-            with(oPlayer)
+            with(obj_player)
             {
                 x = 136;
             }
@@ -294,7 +294,7 @@ check = function(_x, _y)
     return (place_meeting(_x, _y, oWall) || place_meeting(_x, _y, oPlatform));
 }
 
-if(active) && (instance_exists(oPlayer))
+if(active) && (instance_exists(obj_player))
 {
     var chance = floor(random_range(1, 120));
 
@@ -312,7 +312,7 @@ if(active) && (instance_exists(oPlayer))
         }
 
         //jump over gaps
-        if(!check(x + (sign(hsp) * 16), y + 16)) && (y > (oPlayer.y - 16)) && (can_jump)
+        if(!check(x + (sign(hsp) * 16), y + 16)) && (y > (obj_player.y - 16)) && (can_jump)
         {
             can_jump = 0;
             state = "normal";
@@ -323,7 +323,7 @@ if(active) && (instance_exists(oPlayer))
         }
 
         //jump onto platforms
-        if(place_meeting(x, y - 24, oPlatform)) && (y > oPlayer.y) && (can_jump)
+        if(place_meeting(x, y - 24, oPlatform)) && (y > obj_player.y) && (can_jump)
         {
             can_jump = 0;
             state = "normal";
@@ -335,13 +335,13 @@ if(active) && (instance_exists(oPlayer))
         }
 
         //drop through platforms
-        if(place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall)) && (y < oPlayer.y)
+        if(place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall)) && (y < obj_player.y)
         {
             y += 1;
         }
 
         //initiate walljump chains if too low from player
-        if(y - oPlayer.y > 80) && (place_meeting(x + sign(facing) * 8, y, oWall)) && (can_jump)
+        if(y - obj_player.y > 80) && (place_meeting(x + sign(facing) * 8, y, oWall)) && (can_jump)
         {
             can_jump = 0;
             state = "normal";
@@ -353,7 +353,7 @@ if(active) && (instance_exists(oPlayer))
     }
 
     //walljumps only if below player and there's adequate space above and below
-    else if(!check(x, y + 32)) && (!place_meeting(x, y - 16, oWall)) && ((y >= oPlayer.y) || (y > room_height))
+    else if(!check(x, y + 32)) && (!place_meeting(x, y - 16, oWall)) && ((y >= obj_player.y) || (y > room_height))
     {
         chance = -1;
 
@@ -390,14 +390,14 @@ if(active) && (instance_exists(oPlayer))
     }
 
     //charge towards player without random stopping if offscreen
-    if(abs(x - oPlayer.x) > 128)
+    if(abs(x - obj_player.x) > 128)
     {
-        if(chance) input_dir = sign(oPlayer.x - x);
+        if(chance) input_dir = sign(obj_player.x - x);
         chance = -1;
     }
 
     //adjust speed to aim at player during freefall while above
-    if(oPlayer.y - y > 64) && (abs(x - oPlayer.x) < 16) && (!on_ground)
+    if(obj_player.y - y > 64) && (abs(x - obj_player.x) < 16) && (!on_ground)
     {
         hsp = approach(hsp, 0, 0.5);
     }
@@ -405,7 +405,7 @@ if(active) && (instance_exists(oPlayer))
     if(!on_ground)
     {
         //cool backflip ledge save
-        if(!place_meeting(x, y + 32, oWall)) && (!place_meeting(x - (sign(hsp) * 40), y - 8, oWall)) && (place_meeting(x - (sign(hsp) * 40), y + 8, oWall)) && (state == "normal") && (can_dodge) && (abs(x - oPlayer.x) < 80) && ((y - oPlayer.y) >= -8)
+        if(!place_meeting(x, y + 32, oWall)) && (!place_meeting(x - (sign(hsp) * 40), y - 8, oWall)) && (place_meeting(x - (sign(hsp) * 40), y + 8, oWall)) && (state == "normal") && (can_dodge) && (abs(x - obj_player.x) < 80) && ((y - obj_player.y) >= -8)
         {
             timer0 = 0;
             image_index = 0;
@@ -416,17 +416,17 @@ if(active) && (instance_exists(oPlayer))
     //randomly choose between moving and not moving toward the player
     if(chance <= 6) && (chance >= 1)
     {
-        with(oPlayer) other.input_dir = sign(x - other.x) + round(random_range(-1, 1));
+        with(obj_player) other.input_dir = sign(x - other.x) + round(random_range(-1, 1));
     }
 
-    // if(chance == 1) && (oPlayer.facing == -sign(facing)) && (state == "normal") && (can_dodge)
+    // if(chance == 1) && (obj_player.facing == -sign(facing)) && (state == "normal") && (can_dodge)
     // {
     //     timer0 = 0
     //     image_index = 0
     //     state = "backflip_start"
     // }
 
-    // if(chance == 2) && (oPlayer.facing == -sign(facing)) && (state == "normal") && (can_dodge)
+    // if(chance == 2) && (obj_player.facing == -sign(facing)) && (state == "normal") && (can_dodge)
     // {
     //     flip_counter = 0
     //     timer0 = 0

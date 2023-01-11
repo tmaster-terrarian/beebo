@@ -1,6 +1,6 @@
-if(instance_exists(oPlayer))
+if(instance_exists(obj_player))
 {
-    if(!oPlayer.hascontrol) return;
+    if(!obj_player.hascontrol) return;
 }
 if(global.console) return;
 
@@ -24,13 +24,13 @@ if(gamepad_is_connected(0))
     }
     else
     {
-        if(instance_exists(oPlayer))
+        if(instance_exists(obj_player))
         {
-            if(oPlayer.facing == 1)
+            if(obj_player.facing == 1)
             {
                 image_angle = 0;
             }
-            if(oPlayer.facing == -1)
+            if(obj_player.facing == -1)
             {
                 image_angle = 180;
             }
@@ -56,12 +56,12 @@ image_angle = round(image_angle / 10) * 10;
 if (image_angle > 90 && image_angle < 270)
 {
     image_yscale = -1;
-    oPlayer.facing = -1;
+    obj_player.facing = -1;
 }
 else
 {
     image_yscale = 1;
-    oPlayer.facing = 1;
+    obj_player.facing = 1;
 }
 
 firingdelay -= 1;
@@ -102,10 +102,10 @@ if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_sh
 
             with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
 
-            if(place_meeting(x, y, oPlayer))
+            if(place_meeting(x, y, obj_player))
             {
-                oPlayer.hsp = lengthdir_x(3, point_direction(x, y, oPlayer.x, oPlayer.y));
-                oPlayer.vsp = lengthdir_y(3, point_direction(x, y, oPlayer.x, oPlayer.y));
+                obj_player.hsp = lengthdir_x(3, point_direction(x, y, obj_player.x, obj_player.y));
+                obj_player.vsp = lengthdir_y(3, point_direction(x, y, obj_player.x, obj_player.y));
             }
         }
         ScreenShake(4, 40);
@@ -127,8 +127,8 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
     with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
     {
         direction = other.image_angle;
-        hsp = lengthdir_x(2, direction) + (oPlayer.hsp * 0.1);
-        vsp = lengthdir_y(2, direction) + (oPlayer.vsp * 0.1) - 1;
+        hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.1);
+        vsp = lengthdir_y(2, direction) + (obj_player.vsp * 0.1) - 1;
 
         if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) event_perform(ev_other, ev_user0);
     }

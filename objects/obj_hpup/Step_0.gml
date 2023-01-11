@@ -67,7 +67,7 @@ if(!follow_player)
     }
 }
 
-with(oPlayer)
+with(obj_player)
 {
     if(distance_to_point(other.x, other.y) < 12)
     {
@@ -77,7 +77,7 @@ with(oPlayer)
 
 if(follow_player)
 {
-    with(oPlayer)
+    with(obj_player)
     {
         other.x += sign(x - other.x) * 2;
         other.y += sign(y - other.y) * 2;

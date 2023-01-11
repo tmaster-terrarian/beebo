@@ -7,10 +7,10 @@ with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
 
     with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
 
-    if(place_meeting(x, y, oPlayer))
+    if(place_meeting(x, y, obj_player))
     {
-        oPlayer.hsp = lengthdir_x(5, point_direction(x, y, oPlayer.x, oPlayer.y));
-        oPlayer.vsp = lengthdir_y(5, point_direction(x, y, oPlayer.x, oPlayer.y));
+        obj_player.hsp = lengthdir_x(5, point_direction(x, y, obj_player.x, obj_player.y));
+        obj_player.vsp = lengthdir_y(5, point_direction(x, y, obj_player.x, obj_player.y));
     }
 }
 ScreenShake(6, 60);

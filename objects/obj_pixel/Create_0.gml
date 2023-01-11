@@ -1,8 +1,8 @@
 var _cam_x = camera_get_view_x(view_camera[0])
 var _cam_y = camera_get_view_y(view_camera[0])
 lowPixelMode = 0
-if instance_exists(oPlayer)
-    depth = (oPlayer.depth + 2)
+if instance_exists(obj_player)
+    depth = (obj_player.depth + 2)
 image_speed = 0
 check = 1
 GETCOL = 1

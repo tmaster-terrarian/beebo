@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oPlayer",
+  "name": "obj_player",
   "spriteId": {
     "name": "sPlayerPreviewSprite",
     "path": "sprites/sPlayerPreviewSprite/sPlayerPreviewSprite.yy",

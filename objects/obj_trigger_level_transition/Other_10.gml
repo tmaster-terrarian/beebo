@@ -1,7 +1,7 @@
 event_inherited();
 triggered = 1;
 
-with (oPlayer)
+with (obj_player)
 {
     if(hascontrol)
     {
