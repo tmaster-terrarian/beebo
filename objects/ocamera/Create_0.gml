@@ -5,8 +5,13 @@ cam_x = camera_get_view_x(cam);
 cam_y = camera_get_view_y(cam);
 cam_w = 256;
 cam_h = 144;
-view_w_half = camera_get_view_width(cam) * 0.5;
-view_h_half = camera_get_view_height(cam) * 0.5;
+camera_set_view_size(cam, cam_w, cam_h);
+view_w_half = cam_w * 0.5;
+view_h_half = cam_h * 0.5;
+
+zoom = 1;
+
+draw_ui = true;
 
 xTo = xstart;
 yTo = ystart;

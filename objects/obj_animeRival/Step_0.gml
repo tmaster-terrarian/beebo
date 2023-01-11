@@ -164,8 +164,17 @@ switch(state)
             can_dodge = 1;
             if(encounter1)
             {
+                with(oGameManager)
+                {
+                    audio_sound_gain(current_bgm, 1, 1000);
+                }
+                with(oCamera)
+                {
+                    follow = oPlayer;
+                    draw_ui = true;
+                    zoom = 1;
+                }
                 global.cutscene = false;
-                oPlayer.hascontrol = true;
                 instance_destroy();
             }
             else state = "normal";
@@ -237,16 +246,37 @@ switch(state)
     }
     case "encounter1":
     {
+        if(timer0 == 0)
+        {
+            audio_play_sound(sn_impact, 0, false);
+            with(oGameManager) audio_sound_gain(current_bgm, 0, 500);
+            with(oCamera)
+            {
+                follow = noone;
+                draw_ui = false;
+                xTo = 128;
+                yTo = 80;
+            }
+        }
         if(timer0 < 60)
         {
             timer0++;
             global.cutscene = true;
-            oPlayer.hascontrol = false;
         }
         if(timer0 == 30)
         {
-            facing = -facing;
             audio_play_sound(sn_alert, 0, false);
+            facing = -facing;
+            with(oCamera)
+            {
+                zoom = 2;
+                xTo = 144;
+                yTo = 80;
+            }
+            with(oPlayer)
+            {
+                x = 136;
+            }
         }
         if(timer0 == 60)
         {

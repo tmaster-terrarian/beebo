@@ -53,3 +53,42 @@ ch_alpha = 0;
 gamepad_set_axis_deadzone(0, 0.2);
 
 y = ystart + 8;
+
+//use anim state
+use_anim_state = function(anim_id, state)
+{
+    switch(anim_id)
+    {
+        case 0:
+            switch(state)
+            {
+                case 0: default: sprite_index = sPlayerA; break;
+                case 1: sprite_index = spr_player_air1; break;
+            }
+        break;
+        case 1:
+            switch(state)
+            {
+                case 0: default: sprite_index = sPlayerR; break;
+                case 1: sprite_index = spr_player_run1; break;
+                case 2: sprite_index = spr_anime_run; break;
+            }
+        break;
+        case 2: default:
+            switch(state)
+            {
+                case 0: default: sprite_index = sPlayer; break;
+                case 1: sprite_index = spr_player1; break;
+                case 2: sprite_index = spr_anime; break;
+            }
+        break;
+        case 3:
+            switch(state)
+            {
+                case 0: default: sprite_index = spr_player_run_rev0; break;
+                case 1: sprite_index = spr_player_run_rev1; break;
+                case 2: sprite_index = spr_anime_run_rev; break;
+            }
+        break;
+    }
+}

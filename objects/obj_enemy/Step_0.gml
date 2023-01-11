@@ -64,5 +64,9 @@ else
     }
 }
 
-if(hsp != 0) image_xscale = sign(hsp) * size;
+if(hsp != 0)
+{
+	image_xscale = sign(hsp) * size;
+	facing = sign(hsp);
+}
 image_yscale *= size;

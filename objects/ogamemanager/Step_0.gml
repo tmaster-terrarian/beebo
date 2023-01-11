@@ -51,7 +51,7 @@ if(mode != TRANS_MODE.OFF)
 
         if(mode == TRANS_MODE.ACTIVE)
         {
-            for(var i = 0; i < array_length(stages); i++)
+            for(var i = 1; i < array_length(stages); i++) //this (hopefully) skips the tutorial stage in saving
             {
                 if(array_any(stages[i], function(_v, _i){return(_v == rm_list[current_rm])}))
                 {
@@ -103,13 +103,13 @@ if(global.console)
 
     if(keyboard_check(vk_lshift))
     {
-        log_pos += mouse_wheel_up() * 32;
-        log_pos -= mouse_wheel_down() * 32;
+        log_pos += mouse_wheel_up() * 40;
+        log_pos -= mouse_wheel_down() * 40;
     }
     else
     {
-        log_pos += mouse_wheel_up() * 8;
-        log_pos -= mouse_wheel_down() * 8;
+        log_pos += mouse_wheel_up() * 10;
+        log_pos -= mouse_wheel_down() * 10;
     }
 
     log_pos = max(log_pos, 0);
@@ -138,35 +138,40 @@ if(global.console)
                 if(keyboard_string != "") console_log("| " + keyboard_string);
                 break;
             }
+
             case "clear":
             {
                 log_str = "";
                 break;
             }
+
             case "restart":
             {
                 gm_room_transition_restart();
                 break;
             }
+
             case "goto_next":
             {
                 gm_room_transition_next();
                 break;
             }
-            case "vr":
+
+            case "view_rival":
             {
-                with(oCamera)
-                {
-                    follow = obj_animeRival;
-                }
+                with(oCamera) follow = obj_animeRival;
                 break;
             }
-            case "vb":
+
+            case "view_player":
             {
-                with(oCamera)
-                {
-                    follow = oPlayer;
-                }
+                with(oCamera) follow = oPlayer;
+                break;
+            }
+
+            case "kill":
+            {
+                with(oPlayer) hp = 0;
                 break;
             }
 
@@ -218,7 +223,25 @@ if(global.console)
             {
                 gm_room_transition_direct(room);
             }
-            else console_log("invalid arguments! correct syntax: goto [stage_index] [room_index]");
+            else console_log("invalid syntax! expected: goto [stage_index = 0] [room_index = 0]");
+        }
+
+        if(cmd("goto_direct"))
+        {
+            var _args = string_split(input_str, " ");
+            if(array_length(_args) == 3)
+            {
+                gm_room_transition_direct(_args[1], real(_args[2]));
+            }
+            else if(array_length(_args) == 2)
+            {
+                gm_room_transition_direct(_args[1], 0);
+            }
+            else if(array_length(_args) == 1)
+            {
+                gm_room_transition_direct(room);
+            }
+            else console_log("invalid syntax! expected: goto_direct [stage_index = 0] [room_index = 0]");
         }
 
         if(cmd("config_write"))
@@ -257,7 +280,7 @@ if(global.console)
 
                 console_log("set value '" + string(_args[1]) + "' to " + string(_args[2]));
             }
-            else console_log("invalid arguments! correct syntax: config_write <key> <value>");
+            else console_log("invalid syntax! expected: config_write <key> <value>");
         }
 
         if(cmd("config_read"))
@@ -269,9 +292,9 @@ if(global.console)
                 var _val = ini_read_real("settings", _args[1], -1)
                 ini_close();
                 if(_val != -1) console_log("'" + string(_args[1]) + "' = " + string(_val));
-                else console_log("'" + string(_args[1]) + "' is either unset or does not exist.");
+                else console_log("config_read failed: key '" + string(_args[1]) + "' is either unset or does not exist.");
             }
-            else console_log("invalid arguments! correct syntax: config_read <key>");
+            else console_log("invalid syntax! expected: config_read <key>");
         }
 
         if(cmd("sp_hp"))
@@ -286,15 +309,68 @@ if(global.console)
                         instance_create_depth(oPlayer.x + oPlayer.facing * 32, oPlayer.y, 300, obj_hpup);
                     }
                 }
+                else if(instance_exists(oCamera))
+                {
+                    for(var i = 0; i < _args[1]; i++;)
+                    {
+                        instance_create_depth(oCamera.x, oCamera.y, 300, obj_hpup);
+                    }
+                }
             }
             else if(array_length(_args) == 1)
             {
                 if(instance_exists(oPlayer)) instance_create_depth(oPlayer.x + oPlayer.facing * 32, oPlayer.y, 300, obj_hpup);
+                else if(instance_exists(oCamera)) instance_create_depth(oCamera.x, oCamera.y, 300, obj_hpup);
             }
-            else console_log("invalid arguments! correct syntax: sp_hp [amount]");
+            else console_log("invalid syntax! expected: sp_hp [amount = 1]");
         }
 
-        last_input_str = input_str;
+        if(cmd("set_view"))
+        {
+            var _args = string_split(input_str, " ");
+            switch(array_length(_args))
+            {
+                case 1:
+                {
+                    if(instance_exists(oPlayer)) with(oCamera) {follow = oPlayer}
+                    else console_log("set_view failed: could not find player");
+                    break;
+                }
+                case 2:
+                {
+                    var _obj = asset_get_index(string(_args[1]));
+                    if(instance_exists(_obj)) with(oCamera) {follow = _obj}
+                    else console_log("set_view failed: object does not exist");
+                    break;
+                }
+                default:
+                {
+                    console_log("invalid syntax! expected: set_view <object>");
+                }
+            }
+        }
+
+        if(cmd("spawn"))
+        {
+            var _args = string_split(input_str, " ");
+            switch(array_length(_args))
+            {
+                case 2:
+                {
+                    var _obj = (string_digits(_args[1]) != "") ? real(string_digits(_args[1])) : asset_get_index(string(_args[1]));
+
+                    if(_obj != -1) instance_create_depth(mouse_x, mouse_y, 350, _obj);
+                    else console_log("spawn failed: object asset does not exist");
+                    break;
+                }
+                default:
+                {
+                    console_log("invalid syntax! expected: spawn <object asset>");
+                }
+            }
+        }
+
+        if(keyboard_string != "") last_input_str = input_str;
         keyboard_string = "";
     }
     input_str = keyboard_string;

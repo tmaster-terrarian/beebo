@@ -1,6 +1,6 @@
 if(global.console) return;
 
-//animation
+//set animation state
 if(global.animemode)
 {
     anim_state = 2;
@@ -21,44 +21,6 @@ else
 
     oGun.x = x;
     oGun.y = y + 3;
-}
-
-use_anim_state = function(anim_id, state)
-{
-    switch(anim_id)
-    {
-        case 0:
-            switch(state)
-            {
-                case 0: default: sprite_index = sPlayerA; break;
-                case 1: sprite_index = spr_player_air1; break;
-            }
-        break;
-        case 1:
-            switch(state)
-            {
-                case 0: default: sprite_index = sPlayerR; break;
-                case 1: sprite_index = spr_player_run1; break;
-                case 2: sprite_index = spr_anime_run; break;
-            }
-        break;
-        case 2: default:
-            switch(state)
-            {
-                case 0: default: sprite_index = sPlayer; break;
-                case 1: sprite_index = spr_player1; break;
-                case 2: sprite_index = spr_anime; break;
-            }
-        break;
-        case 3:
-            switch(state)
-            {
-                case 0: default: sprite_index = spr_player_run_rev0; break;
-                case 1: sprite_index = spr_player_run_rev1; break;
-                case 2: sprite_index = spr_anime_run_rev; break;
-            }
-        break;
-    }
 }
 
 if(sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev0) || (sprite_index == spr_player_run_rev1) || (sprite_index == spr_anime_run_rev)
@@ -187,13 +149,13 @@ if(hascontrol)
                 audio_play_sound(sn_throw, 1, false);
             }
         }
-        if(vsp > 0)
-        {
-            if(!attack) {sprite_index = spr_player_fall; if(global.animemode) {sprite_index = spr_anime_fall;}}
-        }
         if(vsp < 0)
         {
             if(!attack) {sprite_index = spr_player_jump; if(global.animemode) {sprite_index = spr_anime_jump;}}
+        }
+        if(vsp > 0)
+        {
+            if(!attack) {sprite_index = spr_player_fall; if(global.animemode) {sprite_index = spr_anime_fall;}}
         }
     }
 }
@@ -220,6 +182,11 @@ if(!global.introsequence)
 if(y > room_height + 200)
 {
     hp = 0;
+}
+
+if(!hascontrol)
+{
+    hsp = 0;
 }
 
 enemy_enabler_counter = max(0, enemy_enabler_counter - 1);

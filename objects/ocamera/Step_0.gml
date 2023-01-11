@@ -1,6 +1,6 @@
 if(instance_exists(follow))
 {
-    xTo = follow.x + (follow.facing * 10);
+    xTo = follow.x + (sign(sign(follow.facing) + sign(follow.hsp)) * 12);
     yTo = follow.y;
 }
 if(instance_exists(obj_player_dead))
@@ -12,14 +12,11 @@ if(instance_exists(obj_player_dead))
 
 cam_x = camera_get_view_x(cam);
 cam_y = camera_get_view_y(cam);
+view_w_half = camera_get_view_width(cam) * 0.5 * (1 / zoom);
+view_h_half = camera_get_view_height(cam) * 0.5 * (1 / zoom);
 
 x += (xTo - x) / smooth_factor;
 y += (yTo - y) / smooth_factor;
-
-// var _ratex = (xTo - x) / smooth_factor;
-// var _ratey = (yTo - y) / smooth_factor;
-// x = approach(x, xTo, _ratex);
-// y = approach(y, yTo, _ratey);
 
 x = clamp(x, view_w_half + buff, room_width - view_w_half - buff);
 y = clamp(y, view_h_half + buff, room_height - view_h_half - buff);
@@ -29,6 +26,7 @@ y += random_range(-shake_remain, shake_remain);
 shake_remain = max(0, shake_remain - ((1 / shake_length) * shake_magnitude));
 
 camera_set_view_pos(cam, floor(x - view_w_half), floor(y - view_h_half));
+camera_set_view_size(cam, cam_w / zoom, cam_h / zoom);
 
 if(layer_exists("bg1"))
 {

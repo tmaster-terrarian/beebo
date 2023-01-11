@@ -27,6 +27,7 @@
     {"id":{"name":"spr_anime_run_rev","path":"sprites/spr_anime_run_rev/spr_anime_run_rev.yy",},"order":4,},
     {"id":{"name":"sRoboR","path":"sprites/sRoboR/sRoboR.yy",},"order":8,},
     {"id":{"name":"sBG4","path":"sprites/sBG4/sBG4.yy",},"order":7,},
+    {"id":{"name":"sn_impact","path":"sounds/sn_impact/sn_impact.yy",},"order":37,},
     {"id":{"name":"obj_player_dead","path":"objects/obj_player_dead/obj_player_dead.yy",},"order":24,},
     {"id":{"name":"spr_player_run_rev0","path":"sprites/spr_player_run_rev0/spr_player_run_rev0.yy",},"order":47,},
     {"id":{"name":"scr_disintigrate_hold","path":"scripts/scr_disintigrate_hold/scr_disintigrate_hold.yy",},"order":5,},

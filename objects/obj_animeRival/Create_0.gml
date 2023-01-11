@@ -1,4 +1,5 @@
 event_inherited();
+
 depth = 320;
 
 x = xstart + 8;
