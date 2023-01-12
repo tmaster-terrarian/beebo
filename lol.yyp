@@ -55,6 +55,7 @@
     {"id":{"name":"obj_gun_pickup","path":"objects/obj_gun_pickup/obj_gun_pickup.yy",},"order":26,},
     {"id":{"name":"spr_player_run_rev1","path":"sprites/spr_player_run_rev1/spr_player_run_rev1.yy",},"order":49,},
     {"id":{"name":"console_log","path":"scripts/console_log/console_log.yy",},"order":15,},
+    {"id":{"name":"wrap","path":"scripts/wrap/wrap.yy",},"order":18,},
     {"id":{"name":"tiles_testTiles","path":"tilesets/tiles_testTiles/tiles_testTiles.yy",},"order":1,},
     {"id":{"name":"sPlayerR","path":"sprites/sPlayerR/sPlayerR.yy",},"order":2,},
     {"id":{"name":"tiles_grass_slope","path":"tilesets/tiles_grass_slope/tiles_grass_slope.yy",},"order":3,},

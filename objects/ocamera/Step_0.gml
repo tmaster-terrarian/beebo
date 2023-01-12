@@ -30,24 +30,24 @@ x += random_range(-shake_remain, shake_remain);
 y += random_range(-shake_remain, shake_remain);
 shake_remain = max(0, shake_remain - ((1 / shake_length) * shake_magnitude));
 
-camera_set_view_pos(cam, floor(x - view_w_half), floor(y - view_h_half));
+var _x = floor(x - view_w_half);
+var _y = floor(y - view_h_half);
+
+camera_set_view_pos(cam, _x, _y);
 camera_set_view_size(cam, cam_w / zoom, cam_h / zoom);
 
-if(layer_exists("bg1"))
-{
-    layer_x("bg1", floor((x / 2) + get_timer() * -0.00002));
-    layer_y("bg1", camera_get_view_y(cam));
-}
-if(layer_exists("bg2"))
-{
-    layer_x("bg2", floor((x / 2.5) + get_timer() * -0.000024));
-    layer_y("bg2", camera_get_view_y(cam));
-}
-if(layer_exists("bg3"))
-{
-    layer_x("bg3", floor(x / 6));
-}
-if(layer_exists("bg4"))
-{
-    layer_x("bg4", floor(x / 8));
-}
+var bg_static = layer_get_id("bg0");
+var bg_near0  = layer_get_id("bg4");
+var bg_far0   = layer_get_id("bg3");
+var bg_sky0   = layer_get_id("bg2");
+var bg_sky1   = layer_get_id("bg1");
+
+layer_x(bg_near0, floor(lerp(0, _x, 0.5)));
+layer_x(bg_far0,  floor(lerp(0, _x, 0.7)));
+layer_x(bg_sky0,  floor(lerp(0, _x, 0.85) + get_timer() * -0.000024)); // scrolls automatically
+layer_x(bg_sky1,  floor(lerp(0, _x, 0.9) + get_timer() * -0.00002));
+
+layer_y(bg_near0, floor(lerp(room_height - 180, _y, 0.5)));
+layer_y(bg_far0,  floor(lerp(room_height - 180, _y, 0.7)));
+layer_y(bg_sky0,  _y);
+layer_y(bg_sky1,  _y);
