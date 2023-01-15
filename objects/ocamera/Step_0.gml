@@ -1,18 +1,13 @@
 if(instance_exists(follow))
 {
-    xTo = follow.x + (sign(sign(follow.facing) + sign(follow.hsp)) * 12);
+    xTo = follow.x;
     yTo = follow.y;
 
     if(follow == obj_player)
     {
+        xTo = follow.x + (sign(sign(follow.facing) + sign(follow.hsp)) * 12);
         yTo = follow.y - follow.lookup * 32;
     }
-}
-if(instance_exists(obj_player_dead))
-{
-    follow = obj_player_dead;
-    xTo = follow.x;
-    yTo = follow.y;
 }
 
 cam_x = camera_get_view_x(cam);
