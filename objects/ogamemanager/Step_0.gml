@@ -43,6 +43,14 @@ if(mode != TRANS_MODE.OFF)
                 mode = TRANS_MODE.ACTIVE2; // avoid saving with direct
                 console_log("loading room (mode: direct): '" + string(room_get_name(target)) + "' [warning: stage will not be saved!]");
                 room_goto(target);
+                if(global.checkpointx > -1) || (global.checkpointy > -1)
+                {
+                    with(obj_player)
+                    {
+                        x = checkpointx;
+                        y = checkpointy;
+                    }
+                }
             break;
             case TRANS_MODE.RESTART:
                 game_restart();
@@ -185,6 +193,13 @@ if(global.console)
             {
                 global.animemode = !global.animemode;
                 if(global.animemode == 1) console_log("wtf??!??!?!?");
+                break;
+            }
+
+            case "sd":
+            {
+                global.show_debug = !global.show_debug;
+                console_log("toggled debug draw");
                 break;
             }
 

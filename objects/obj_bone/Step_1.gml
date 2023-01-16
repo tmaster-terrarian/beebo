@@ -6,7 +6,6 @@ if(hp <= 0) && (hit = 0)
 
 	if(proj_thrower != noone)
 	{
-		MakeExplosion(x, y);
 		audio_play_sound(sn_menu_select, 1, false);
 		proj_thrower.hp = 0;
 		scr_particle_explode();

@@ -42,7 +42,13 @@ global.gunlesspercent = false;
 
 global.playerhealth = 0;
 global.playermaxhealth = 0;
+
 global.animemode = false;
+
+global.show_debug = false;
+
+global.checkpointx = -1;
+global.checkpointy = -1;
 
 // music
 current_bgm = noone;
