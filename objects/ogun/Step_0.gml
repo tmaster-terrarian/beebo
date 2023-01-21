@@ -58,6 +58,7 @@ if(gamepad_is_connected(0))
     {
         if(instance_exists(obj_enemy)) {lock_target = instance_nearest(x + aim_w, y + aim_h, obj_enemy); image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
         else if(instance_exists(obj_animeRival)) {lock_target = obj_animeRival; image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
+        else if(instance_exists(obj_boss)) {lock_target = obj_boss; image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
         else lock = false;
     }
     else lock_target = noone;
@@ -127,6 +128,8 @@ if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_sh
             with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
 
             with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
+
+            with(obj_boss) if(place_meeting(x, y, other)) {hp -= other.dmg; flash = 3}
 
             if(place_meeting(x, y, obj_player))
             {

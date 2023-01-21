@@ -43,14 +43,6 @@ if(mode != TRANS_MODE.OFF)
                 mode = TRANS_MODE.ACTIVE2; // avoid saving with direct
                 console_log("loading room (mode: direct): '" + string(room_get_name(target)) + "' [warning: stage will not be saved!]");
                 room_goto(target);
-                if(global.checkpointx > -1) || (global.checkpointy > -1)
-                {
-                    with(obj_player)
-                    {
-                        x = checkpointx;
-                        y = checkpointy;
-                    }
-                }
             break;
             case TRANS_MODE.RESTART:
                 game_restart();
@@ -223,7 +215,19 @@ if(global.console)
         }
 
         //more complicated argument-based commands
-        if(cmd("goto"))
+        if(cmd("goto_direct"))
+        {
+            var _args = string_split(input_str, " ");
+            if(array_length(_args) == 2)
+            {
+                var _rm = (string_digits(_args[1]) != "") ? real(string_digits(_args[1])) : asset_get_index(string(_args[1]));
+                if(_rm == 0) gm_room_transition_restart();
+                else gm_room_transition_direct(_rm);
+            }
+            else console_log("invalid syntax! expected: goto_direct [room]");
+        }
+
+        if(cmd("goto "))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 3)
@@ -239,24 +243,6 @@ if(global.console)
                 gm_room_transition_direct(room);
             }
             else console_log("invalid syntax! expected: goto [stage_index = 0] [room_index = 0]");
-        }
-
-        if(cmd("goto_direct"))
-        {
-            var _args = string_split(input_str, " ");
-            if(array_length(_args) == 3)
-            {
-                gm_room_transition_direct(_args[1], real(_args[2]));
-            }
-            else if(array_length(_args) == 2)
-            {
-                gm_room_transition_direct(_args[1], 0);
-            }
-            else if(array_length(_args) == 1)
-            {
-                gm_room_transition_direct(room);
-            }
-            else console_log("invalid syntax! expected: goto_direct [stage_index = 0] [room_index = 0]");
         }
 
         if(cmd("config_write"))

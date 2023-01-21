@@ -8,6 +8,8 @@ explode = function()
         with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
 
         with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
+
+        with(obj_boss) if(place_meeting(x, y, other)) {hp -= other.dmg; flash = 3}
     }
     ScreenShake(4, 40);
     done = true;
@@ -34,7 +36,7 @@ if (place_meeting(x + hsp, y, oWall))
 }
 x += hsp;
 
-if (place_meeting(x, y + vsp, oCrate)) || (place_meeting(x, y + vsp, obj_stone)) || (place_meeting(x, y + vsp, obj_enemy))
+if (place_meeting(x, y + vsp, oCrate)) || (place_meeting(x, y + vsp, obj_stone)) || (place_meeting(x, y + vsp, obj_enemy)) || (place_meeting(x, y + vsp, obj_boss))
 {
     explode();
 }

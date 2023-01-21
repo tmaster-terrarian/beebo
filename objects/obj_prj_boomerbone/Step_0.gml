@@ -1,4 +1,14 @@
-dir = point_direction(xstart, ystart, targetx, targety) + 10 * (spd * (1/spd_max));
+// _dir = point_direction(x, y, target.x, target.y) + dir_a;
+// dir = approach(dir, _dir - (dir_a * 2), (spd * (1/spd_max)));
+
+// _dir_a = approach(_dir_a, -dir_a, dir_a * (spd_mod/spd_max));
+
+if(target == proj_thrower)
+    dir = point_direction(target.x, target.y, posx, posy);
+else
+    dir = point_direction(xstart, ystart, target.x, target.y);
+
+image_angle += (35 * abs(spd * (1/spd_max))) + 10;
 
 posx += lengthdir_x(spd, dir);
 posy += lengthdir_y(spd, dir);
@@ -7,11 +17,17 @@ spd = approach(spd, -spd_max, spd_mod);
 x = floor(posx);
 y = floor(posy);
 
+if(sign(spd) <= 0)
+{
+    target = proj_thrower;
+}
+
 if(place_meeting(x, y, proj_thrower) && sign(spd) == -1)
 {
     with(proj_thrower)
     {
-        hp -= 1;
+        hp -= 5;
+        flash = 3;
     }
     if(proj_thrower == obj_boss_bonehive)
     {

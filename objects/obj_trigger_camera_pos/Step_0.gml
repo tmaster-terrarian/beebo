@@ -1,6 +1,12 @@
 event_inherited();
+
+if(!touched)
+{
+    old_follow = oCamera.follow;
+}
 if(place_meeting(x, y, obj_player))
 {
+    touched = 1;
     with(oCamera)
     {
         follow = noone;
@@ -10,8 +16,9 @@ if(place_meeting(x, y, obj_player))
 }
 else
 {
+    touched = 0;
     with(oCamera)
     {
-        follow = obj_player;
+        follow = other.old_follow;
     }
 }

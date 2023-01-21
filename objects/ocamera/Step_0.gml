@@ -25,8 +25,8 @@ x += random_range(-shake_remain, shake_remain);
 y += random_range(-shake_remain, shake_remain);
 shake_remain = max(0, shake_remain - ((1 / shake_length) * shake_magnitude));
 
-var _x = floor(x - view_w_half);
-var _y = floor(y - view_h_half);
+var _x = round(x - view_w_half);
+var _y = round(y - view_h_half);
 
 camera_set_view_pos(cam, _x, _y);
 camera_set_view_size(cam, cam_w / zoom, cam_h / zoom);
