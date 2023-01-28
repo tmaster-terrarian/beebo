@@ -14,3 +14,5 @@ targety = ystart;
 
 proj_thrower = noone;
 parriable = 0;
+
+image_speed = 0;

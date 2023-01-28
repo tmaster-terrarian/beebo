@@ -1,8 +1,3 @@
-// _dir = point_direction(x, y, target.x, target.y) + dir_a;
-// dir = approach(dir, _dir - (dir_a * 2), (spd * (1/spd_max)));
-
-// _dir_a = approach(_dir_a, -dir_a, dir_a * (spd_mod/spd_max));
-
 if(target == proj_thrower)
     dir = point_direction(target.x, target.y, posx, posy);
 else

@@ -11,3 +11,5 @@ posy = ystart;
 
 target = noone;
 proj_thrower = noone;
+
+image_speed = 0;
