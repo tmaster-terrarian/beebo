@@ -49,6 +49,7 @@ global.show_debug = false;
 
 global.checkpointx = -1;
 global.checkpointy = -1;
+global.bonehive_started = 0;
 
 // music
 current_bgm = noone;

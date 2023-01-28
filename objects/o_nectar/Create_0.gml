@@ -1,5 +1,7 @@
 image_alpha = 0;
 
+hasheart = 0;
+
 wing_left = instance_create_depth(x, y, depth + 2, o_nectar_wing);
 wing_left.image_alpha = 0;
 wing_rotation_start = 0;

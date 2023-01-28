@@ -7,7 +7,7 @@
     "path": "sprites/spr_node/spr_node.yy",
   },
   "solid": false,
-  "visible": false,
+  "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,

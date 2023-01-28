@@ -17,5 +17,14 @@ if(room = lvl1_1)
     }
 }
 
+// if(global.checkpointx > -1) || (global.checkpointy > -1)
+// {
+//     with(obj_player)
+//     {
+//         x = global.checkpointx;
+//         y = global.checkpointy;
+//     }
+// }
+
 // activation/deactivation
 instance_deactivate_object(obj_enemy);

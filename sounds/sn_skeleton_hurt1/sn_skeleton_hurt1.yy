@@ -14,8 +14,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sn_skeleton_hurt1.ogg",
-  "duration": 0.75,
+  "soundFile": "sn_skeleton_hurt1.mp3",
+  "duration": 0.783673,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
