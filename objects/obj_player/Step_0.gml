@@ -22,32 +22,44 @@ else
     anim_state = 0;
 
     oGun.x = x;
-    oGun.y = y + 3;
+    oGun.y = y + 2;
 }
 
 if(running)
 {
     switch(floor(image_index))
     {
-        case 0: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
-        case 1: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
-        case 2: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
-        case 3: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
-        case 4: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
-        case 5: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
-        case 6: gun_offs_x = 1 * sign(hsp); gun_offs_y = 4; break;
-        case 7: gun_offs_x = 1 * sign(hsp); gun_offs_y = 3; break;
+        case 0: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
+        case 1: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
+        case 2: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
+        case 3: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
+        case 4: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
+        case 5: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
+        case 6: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
+        case 7: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
+    }
+}
+else if(sprite_index == sPlayer || sprite_index == spr_player1)
+{
+    switch(floor(image_index))
+    {
+        case 0: gun_offs_x = -3 * sign(facing); gun_offs_y = 2; break;
+        case 1: gun_offs_x = -3 * sign(facing); gun_offs_y = 2; break;
+        case 2: gun_offs_x = -3 * sign(facing); gun_offs_y = 2; break;
+        case 3: gun_offs_x = -3 * sign(facing); gun_offs_y = 1; break;
+        case 4: gun_offs_x = -3 * sign(facing); gun_offs_y = 1; break;
+        case 5: gun_offs_x = -3 * sign(facing); gun_offs_y = 1; break;
     }
 }
 else if(state == "wallslide")
 {
-    gun_offs_x = 0;
+    gun_offs_x = -3 * sign(facing);
     gun_offs_y = 4;
 }
 else
 {
-    gun_offs_x = 0;
-    gun_offs_y = 3;
+    gun_offs_x = -3 * sign(facing);
+    gun_offs_y = 2;
 }
 
 if(place_meeting(x, y, oWall)) y--;
@@ -140,7 +152,7 @@ if(hascontrol)
                 if (abs(hsp) < 0.5 && on_ground && !landTimer)
                 {
                     use_anim_state(2, anim_state);
-                    image_index = 0
+                    image_index += 0.2;
                 }
             }
             if (!on_ground)

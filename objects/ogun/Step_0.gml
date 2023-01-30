@@ -167,12 +167,27 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
 if (mouse_check_button_released(mb_left) || gamepad_button_check_released(0, gp_shoulderrb))
 {
     sprite_index = sGunR;
-    audio_play_sound(snReload, 1, false);
+    image_index = 0;
+    image_speed = 0.25;
 }
 if (sprite_index == sGunR)
 {
-    if (image_index >= image_number - 1)
+    if(image_index == 1)
+    {
+        audio_play_sound(sn_gun_open, 1, false);
+    }
+    if(image_index == 2)
+    {
+        audio_play_sound(sn_steam, 1, false);
+    }
+    if(image_index == 6)
+    {
+        audio_play_sound(snReload, 0, false);
+    }
+    if(image_index >= image_number - 1)
     {
         sprite_index = sGun;
+        image_index = 0;
+        image_speed = 0;
     }
 }
