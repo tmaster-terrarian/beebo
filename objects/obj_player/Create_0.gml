@@ -53,6 +53,9 @@ invuln = 0;
 hitfrom = 0;
 flash = 0;
 
+fxtrail = 0;
+trailTimer = 0;
+
 upixelH = shader_get_uniform(shWhite, "pixelH");
 upixelW = shader_get_uniform(shWhite, "pixelW");
 texelW = texture_get_texel_width(sprite_get_texture(sprite_index, 0));

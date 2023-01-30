@@ -114,7 +114,32 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
             image_angle = direction;
         }
     //}
+    heat = approach(heat, heat_max, heatspd);
+    var n = irandom_range(0, heat_max/heat);
+    if(n == 0)
+    {
+        var dist = random_range(0.1, 1) * 12;
+        with(instance_create_depth(x + lengthdir_x(dist, image_angle), (y - 2) + lengthdir_y(dist, image_angle), depth - 1, fx_dust))
+        {
+            vy = random_range(-1.5, -1);
+        }
+    }
 }
+else if(firingdelay < 0)
+{
+    heat = approach(heat, 0, coolspd);
+    if(floor(heat) mod 8 == 7)
+    {
+        var dist = random_range(0.1, 1) * 12;
+        with(instance_create_depth(x + lengthdir_x(dist, image_angle), (y - 2) + lengthdir_y(dist, image_angle), depth - 1, fx_dust))
+        {
+            vy = random_range(-1.5, -1);
+        }
+        audio_play_sound(sn_steam, 1, false, heat/heat_max);
+    }
+}
+
+image_blend = merge_color(c_white, c_red, (heat/heat_max)*0.5);
 
 if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_shoulderlb)) && (firingdelaybomb > 0)
 {
@@ -153,6 +178,11 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
     firingdelaybomb = bomb_timer_max;
     audio_play_sound(sn_throw, 1, false);
 
+    // firebomb = 1;
+    sprite_index = sGunR;
+    image_index = 0;
+    image_speed = 0.25;
+
     with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
     {
         direction = other.image_angle;
@@ -168,7 +198,7 @@ if (mouse_check_button_released(mb_left) || gamepad_button_check_released(0, gp_
 {
     sprite_index = sGunR;
     image_index = 0;
-    image_speed = 0.25;
+    image_speed = 0.2;
 }
 if (sprite_index == sGunR)
 {
@@ -179,10 +209,25 @@ if (sprite_index == sGunR)
     if(image_index == 2)
     {
         audio_play_sound(sn_steam, 1, false);
+        for (i = 0; i < 3; i++)
+        { 
+            with(instance_create_depth(x + random_range(-1, 1), y + random_range(-1, 1), depth - 1, fx_dust))
+            {
+                vy = random_range(-1.5, -0.75);
+                vx = random_range(1.5, 2) * other.image_yscale;
+            }
+        }
     }
-    if(image_index == 6)
+    if(image_index == 5)
     {
-        audio_play_sound(snReload, 0, false);
+        if(firebomb)
+        {
+            firebomb = 0;
+            sprite_index = sGun;
+            image_index = 0;
+            image_speed = 0;
+        }
+        else audio_play_sound(snReload, 0, false);
     }
     if(image_index >= image_number - 1)
     {

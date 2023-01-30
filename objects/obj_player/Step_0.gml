@@ -29,14 +29,14 @@ if(running)
 {
     switch(floor(image_index))
     {
-        case 0: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
-        case 1: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
-        case 2: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
-        case 3: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
-        case 4: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
-        case 5: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
-        case 6: gun_offs_x = -2 * sign(facing); gun_offs_y = 3; break;
-        case 7: gun_offs_x = -2 * sign(facing); gun_offs_y = 2; break;
+        case 0: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
+        case 1: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
+        case 2: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
+        case 3: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
+        case 4: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
+        case 5: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
+        case 6: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
+        case 7: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
     }
 }
 else if(sprite_index == sPlayer || sprite_index == spr_player1)
@@ -53,8 +53,8 @@ else if(sprite_index == sPlayer || sprite_index == spr_player1)
 }
 else if(state == "wallslide")
 {
-    gun_offs_x = -3 * sign(facing);
-    gun_offs_y = 4;
+    gun_offs_x = 3 * sign(facing);
+    gun_offs_y = 2;
 }
 else
 {
@@ -108,8 +108,7 @@ if(hascontrol)
                         else use_anim_state(1, anim_state);
                     }
                 }
-                if run
-                    run = 7
+                run = 7
                 if (hsp < walksp)
                     hsp = approach(hsp, walksp, accel)
                 if on_ground
@@ -131,8 +130,7 @@ if(hascontrol)
                         else use_anim_state(1, anim_state);
                     }
                 }
-                if run
-                    run = 7
+                run = 7
                 if (hsp > -walksp)
                     hsp = approach(hsp, -walksp, accel)
                 if on_ground
@@ -189,6 +187,12 @@ if(hascontrol)
             if (running)
                 image_index += hsp / 6
             landTimer = approach(landTimer, 0, 1)
+
+            if(abs(hsp) > 4)
+            {
+                fxtrail = 1;
+            }
+            else fxtrail = 0;
             break;
         }
         case "wallslide":
@@ -203,6 +207,9 @@ if(hascontrol)
                 wallslideTimer = 0;
             }
             sprite_index = spr_player_wallslide;
+            var n = choose(0, 1, 0);
+            if n
+                instance_create_depth((x + (4 * sign(facing))), random_range((bbox_bottom - 12), (bbox_bottom)), (depth - 1), fx_dust);
             if (input_dir == 0 || on_ground)
             {
                 state = "normal";
@@ -267,6 +274,40 @@ if(hascontrol)
         use_anim_state(4, anim_state);
     }
 }
+
+if fxtrail
+    trailTimer++
+else
+    trailTimer = 0
+if ((trailTimer % 3) == 1)
+{
+    with (instance_create_depth(x, y, (depth + 1), fx_aura))
+    {
+        visible = true
+        color = c_yellow;
+        image_speed = 0
+        image_index = other.image_index
+        sprite_index = other.sprite_index
+        image_xscale = other.image_xscale
+    }
+}
+
+if place_meeting(x, y + 2, oWall)
+{
+    if (running && (ceil(image_index) == 5 || ceil(image_index) == 1))
+    {
+        if (run && abs(hsp) >= 2)
+        {
+            with (instance_create_depth(x, bbox_bottom, (depth - 10), fx_dust))
+            {
+                image_alpha = 0.5;
+                vx = random_range(-0.1, 0.1);
+                vy = random_range(-0.5, -0.1);
+            }
+        }
+    }
+}
+
 invuln = max(0, invuln - 1);
 
 if(hp > hp_max) hp = hp_max;

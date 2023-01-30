@@ -6,6 +6,11 @@ recoil = 0;
 
 bomb_timer_max = 70;
 
+heat = 0;
+heat_max = 100;
+heatspd = 1; //4 times slower due to fire rate
+coolspd = 1;
+
 //controller
 gp_aim_dist = 64;
 aim_x = 0;
@@ -14,6 +19,8 @@ aim_w = 0;
 aim_h = 0;
 
 fire = 0;
+
+firebomb = 0;
 
 lock = 0;
 lock_target = -1;
