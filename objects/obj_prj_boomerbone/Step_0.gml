@@ -1,7 +1,7 @@
 if(target == proj_thrower)
     dir = point_direction(target.x, target.y, posx, posy);
 else
-    dir = point_direction(xstart, ystart, target.x, target.y);
+    dir = point_direction(xstart, ystart, target.x, target.y - 8);
 
 image_angle += (35 * abs(spd * (1/spd_max))) + 10;
 

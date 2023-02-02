@@ -5,6 +5,9 @@ grv = 0.05;
 done = false;
 oob = false;
 
+image_speed = 0
+image_index = 0
+
 explosiontimer = 80;
 timer_finished = false;
 

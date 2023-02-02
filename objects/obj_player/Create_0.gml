@@ -4,7 +4,7 @@ depth = 300;
 
 state = "normal";
 
-sprite_index = sPlayer;
+sprite_index = spr_player;
 image_speed = 0;
 image_index = 0;
 timer0 = 0;
@@ -12,6 +12,8 @@ landTimer = 0;
 wallslideTimer = 0;
 running = 0;
 run = 0;
+
+duck = 0;
 
 lookup = 0;
 
@@ -82,34 +84,24 @@ use_anim_state = function(anim_id, state)
 {
     switch(anim_id)
     {
-        case 0:
-            switch(state)
-            {
-                case 0: default: sprite_index = sPlayerA; break;
-                case 1: sprite_index = spr_player_air1; break;
-            }
-        break;
         case 1:
             switch(state)
             {
-                case 0: default: sprite_index = sPlayerR; break;
-                case 1: sprite_index = spr_player_run1; break;
+                case 0: default: sprite_index = spr_player_run; break;
                 case 2: sprite_index = spr_anime_run; break;
             }
         break;
         case 2: default:
             switch(state)
             {
-                case 0: default: sprite_index = sPlayer; break;
-                case 1: sprite_index = spr_player1; break;
+                case 0: default: sprite_index = spr_player; break;
                 case 2: sprite_index = spr_anime; break;
             }
         break;
         case 3:
             switch(state)
             {
-                case 0: default: sprite_index = spr_player_run_rev0; break;
-                case 1: sprite_index = spr_player_run_rev1; break;
+                case 0: default: sprite_index = spr_player_run_rev; break;
                 case 2: sprite_index = spr_anime_run_rev; break;
             }
         break;
@@ -117,7 +109,6 @@ use_anim_state = function(anim_id, state)
             switch(state)
             {
                 case 0: default: sprite_index = spr_player_lookup; break;
-                case 1: sprite_index = spr_player_lookup1; break;
                 case 2: sprite_index = spr_anime; break;
             }
         break;

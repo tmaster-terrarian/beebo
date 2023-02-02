@@ -13,7 +13,7 @@ wing_direction = 1;
 target = noone;
 target_x = 0;
 target_y = 0;
-distancefrom = 40;
+distancefrom = 48;
 circlepos = random_range(0, 359);
 
 attack = false;

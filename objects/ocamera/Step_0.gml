@@ -6,7 +6,7 @@ if(instance_exists(follow))
     if(follow == obj_player)
     {
         xTo = follow.x + (sign(sign(follow.facing) + sign(follow.hsp)) * 12);
-        yTo = follow.y - follow.lookup * 32;
+        yTo = follow.y - 12 - follow.lookup * 24;
     }
 }
 

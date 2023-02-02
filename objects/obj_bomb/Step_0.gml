@@ -40,7 +40,7 @@ if (place_meeting(x, y + vsp, oCrate)) || (place_meeting(x, y + vsp, obj_stone))
 {
     explode();
 }
-if (place_meeting(x, y + vsp, oWall)) || ((place_meeting(x, y + vsp, oPlatform)) && vsp > 0)
+if (place_meeting(x, y + vsp, oWall)) || ((place_meeting(x, y + vsp, oPlatform) && !place_meeting(x, y - 1, oPlatform)) && vsp > 0)
 {
     if(bounce_counter >= max_bounces)
     {

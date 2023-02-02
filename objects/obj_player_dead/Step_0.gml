@@ -24,8 +24,13 @@ if (done == false)
         {
             done = true;
 			audio_play_sound(sn_antic_gyui, 1, false);
+
+			if irandom_range(1, 1000) == 1000
+				image_index = 2;
+			else
+				image_index = 1;
         }
-        while (!place_meeting(x, y + sign(vsp), oWall))
+        else while (!place_meeting(x, y + sign(vsp), oWall))
         {
             y += sign(vsp);
         }

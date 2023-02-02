@@ -39,7 +39,7 @@
     "name": "spr_bone",
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 0.4,
+    "playbackSpeed": 1.0,
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,

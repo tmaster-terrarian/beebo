@@ -15,6 +15,8 @@ if(circlepos >= 360) circlepos = 0;
 
 target_x = target.x + lengthdir_x(distancefrom, circlepos);
 target_y = target.y + lengthdir_y(distancefrom, circlepos);
+if(target == obj_player)
+    target_y = target.y - 8 + lengthdir_y(distancefrom, circlepos);
 
 x += (target_x - x) / walksp;
 y += (target_y - y) / walksp;
@@ -65,11 +67,30 @@ if(attack)
             attack_counter += 1;
             attack_timer_cooldn = 60;
 
-            with(instance_create_depth(x, y, depth - 1, obj_bone))
+            with(instance_create_depth(x, y, depth - 20, obj_bone))
             {
-                proj_thrower = other;
-                hsp = lengthdir_x(2, point_direction(x, y, other.target.x, other.target.y));
-                vsp = lengthdir_y(3, point_direction(x, y, other.target.x, other.target.y));
+                proj_thrower = other
+                var p = instance_exists(obj_player) ? obj_player : obj_player_dead
+
+                var _y = (p.y - y - 8)
+                var _x = (p.x - x)
+                var _g = 0.1
+                var _a = (_g / 2)
+                if (abs(_x) > abs(_y))
+                {
+                    var _t = (abs(_x) / 2)
+                    hsp = (sign(_x) * 2)
+                    vsp = (((-_a) - (_a * _t)) + (_y / _t))
+                    grv = _g
+                }
+                else
+                {
+                    _t = (sqrt(((4 * _a) * abs(_y))) / (2 * _a))
+                    if (_y < 0)
+                        vsp = (((-_t) * _g) - _a)
+                    hsp = (_x / _t)
+                    grv = _g
+                }
             }
         }
     }

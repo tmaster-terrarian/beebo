@@ -3,15 +3,15 @@
   "resourceVersion": "1.0",
   "name": "obj_player",
   "spriteId": {
-    "name": "sPlayerPreviewSprite",
-    "path": "sprites/sPlayerPreviewSprite/sPlayerPreviewSprite.yy",
+    "name": "spr_player",
+    "path": "sprites/spr_player/spr_player.yy",
   },
   "solid": false,
   "visible": true,
   "managed": true,
   "spriteMaskId": {
-    "name": "sPlayer",
-    "path": "sprites/sPlayer/sPlayer.yy",
+    "name": "mask_player",
+    "path": "sprites/mask_player/mask_player.yy",
   },
   "persistent": false,
   "parentObjectId": {

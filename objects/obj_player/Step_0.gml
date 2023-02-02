@@ -1,6 +1,62 @@
 if(global.console) return;
 
-running = (sprite_index == sPlayerR) || (sprite_index == spr_player_run1) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev0) || (sprite_index == spr_player_run_rev1) || (sprite_index == spr_anime_run_rev);
+running = (sprite_index == spr_player_run) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev) || (sprite_index == spr_anime_run_rev);
+
+if(running)
+{
+    switch(floor(image_index))
+    {
+        case 0: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+        case 1: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
+        case 2: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
+        case 3: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+        case 4: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+        case 5: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
+        case 6: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
+        case 7: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+    }
+}
+else if(sprite_index == spr_player_crawl)
+{
+    switch(floor(image_index))
+    {
+        case 0: gun_offs_x = -2 * sign(facing); gun_offs_y = -2; break;
+        case 1: gun_offs_x = -2 * sign(facing); gun_offs_y = -1; break;
+        case 2: gun_offs_x = -2 * sign(facing); gun_offs_y = -0; break;
+        case 3: gun_offs_x = -2 * sign(facing); gun_offs_y = -0; break;
+        case 4: gun_offs_x = -2 * sign(facing); gun_offs_y = -0; break;
+        case 5: gun_offs_x = -2 * sign(facing); gun_offs_y = -1; break;
+        case 6: gun_offs_x = -2 * sign(facing); gun_offs_y = -2; break;
+        case 7: gun_offs_x = -2 * sign(facing); gun_offs_y = -2; break;
+    }
+}
+else if(sprite_index == spr_player || sprite_index == spr_player_lookup)
+{
+    switch(floor(image_index))
+    {
+        case 0: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+        case 1: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+        case 2: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+        case 3: gun_offs_x = -3 * sign(facing); gun_offs_y = -7; break;
+        case 4: gun_offs_x = -3 * sign(facing); gun_offs_y = -7; break;
+        case 5: gun_offs_x = -3 * sign(facing); gun_offs_y = -7; break;
+    }
+}
+else if(state == "wallslide")
+{
+    gun_offs_x = 3 * sign(facing);
+    gun_offs_y = -7;
+}
+else if(duck)
+{
+    gun_offs_x = (-3 + (1/3 * duck)) * sign(facing);
+    gun_offs_y = -5 + duck;
+}
+else
+{
+    gun_offs_x = -3 * sign(facing);
+    gun_offs_y = -7;
+}
 
 //set animation state
 if(global.animemode)
@@ -10,56 +66,18 @@ if(global.animemode)
     if(instance_exists(oGun))
     {
         oGun.x = x;
-        oGun.y = y + 3;
+        oGun.y = y - 5;
     }
-}
-else if(!instance_exists(oGun))
-{
-    anim_state = 1;
 }
 else
 {
     anim_state = 0;
 
-    oGun.x = x;
-    oGun.y = y + 2;
-}
-
-if(running)
-{
-    switch(floor(image_index))
+    if(instance_exists(oGun))
     {
-        case 0: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
-        case 1: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
-        case 2: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
-        case 3: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
-        case 4: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
-        case 5: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
-        case 6: gun_offs_x = -4 * sign(facing); gun_offs_y = 3; break;
-        case 7: gun_offs_x = -4 * sign(facing); gun_offs_y = 2; break;
+        oGun.x = x + gun_offs_x;
+        oGun.y = y + gun_offs_y;
     }
-}
-else if(sprite_index == sPlayer || sprite_index == spr_player1)
-{
-    switch(floor(image_index))
-    {
-        case 0: gun_offs_x = -3 * sign(facing); gun_offs_y = 2; break;
-        case 1: gun_offs_x = -3 * sign(facing); gun_offs_y = 2; break;
-        case 2: gun_offs_x = -3 * sign(facing); gun_offs_y = 2; break;
-        case 3: gun_offs_x = -3 * sign(facing); gun_offs_y = 1; break;
-        case 4: gun_offs_x = -3 * sign(facing); gun_offs_y = 1; break;
-        case 5: gun_offs_x = -3 * sign(facing); gun_offs_y = 1; break;
-    }
-}
-else if(state == "wallslide")
-{
-    gun_offs_x = 3 * sign(facing);
-    gun_offs_y = 2;
-}
-else
-{
-    gun_offs_x = -3 * sign(facing);
-    gun_offs_y = 2;
 }
 
 if(place_meeting(x, y, oWall)) y--;
@@ -73,6 +91,16 @@ input_dir = sign
     + (gamepad_button_check(0, gp_padr) - gamepad_button_check(0, gp_padl))
     + (keyboard_check(ord("D")) - keyboard_check(ord("A")))
 );
+
+if(!on_ground)
+    duck = 0
+walksp = 2;
+if(duck)
+{
+    walksp = 1
+    if(abs(hsp) > 1)
+        hsp = approach(hsp, 1 * input_dir, 0.25)
+}
 
 image_xscale = sign(facing);
 if(hascontrol)
@@ -94,6 +122,10 @@ if(hascontrol)
         {
             can_attack = 1;
             can_jump = 1;
+            if (duck > 1)
+                mask_index = mask_player_duck
+            else
+                mask_index = mask_player
             if (input_dir == 1)
             {
                 if (hsp < 0)
@@ -102,10 +134,14 @@ if(hascontrol)
                 }
                 else if (on_ground && vsp >= 0)
                 {
-                    if (!landTimer)
+                    if (duck == 0 && !landTimer)
                     {
                         if(sign(hsp) != sign(facing)) use_anim_state(3, anim_state);
                         else use_anim_state(1, anim_state);
+                    }
+                    else if(duck)
+                    {
+                        sprite_index = spr_player_crawl;
                     }
                 }
                 run = 7
@@ -124,10 +160,14 @@ if(hascontrol)
                 }
                 else if (on_ground && vsp >= 0)
                 {
-                    if (!landTimer)
+                    if (duck == 0 && !landTimer)
                     {
                         if(sign(hsp) != sign(facing)) use_anim_state(3, anim_state);
                         else use_anim_state(1, anim_state);
+                    }
+                    else if(duck)
+                    {
+                        sprite_index = spr_player_crawl;
                     }
                 }
                 run = 7
@@ -151,10 +191,31 @@ if(hascontrol)
                 {
                     use_anim_state(2, anim_state);
                     image_index += 0.2;
+                    if duck
+                    {
+                        sprite_index = spr_player_duck
+                        image_index = duck
+                        lookup = -0.5;
+                    }
+                    else if (keyboard_check(ord("W")) || gamepad_button_check(0, gp_padu))
+                    {
+                        sprite_index = spr_player_lookup
+                        lookup = 1;
+                    }
+                    else
+                    {
+                        lookup = 0;
+                    }
                 }
             }
+            if ((keyboard_check(ord("S")) || gamepad_axis_value(0, gp_axislv) > 0 || gamepad_button_check(0, gp_padd)) && on_ground)
+                duck = approach(duck, 3, 1)
+            else if (!(place_meeting(x, (y - 8), oWall)))
+                duck = approach(duck, 0, 1)
             if (!on_ground)
             {
+                lookup = 0;
+
                 if (vsp >= -0.5)
                 {
                     if place_meeting((x + (2 * input_dir)), y, oWall)
@@ -183,12 +244,16 @@ if(hascontrol)
                     image_index = 3
             }
             else
+            {
                 wallslideTimer = 0
+            }
             if (running)
-                image_index += hsp / 6
+                image_index += abs(hsp / 6)
+            else if (duck)
+                image_index += abs(hsp / 4)
             landTimer = approach(landTimer, 0, 1)
 
-            if(abs(hsp) > 4)
+            if(abs(hsp) > 3)
             {
                 fxtrail = 1;
             }
@@ -209,7 +274,11 @@ if(hascontrol)
             sprite_index = spr_player_wallslide;
             var n = choose(0, 1, 0);
             if n
-                instance_create_depth((x + (4 * sign(facing))), random_range((bbox_bottom - 12), (bbox_bottom)), (depth - 1), fx_dust);
+                with (instance_create_depth(x + 4 * sign(facing), random_range(bbox_bottom - 12, bbox_bottom), depth - 1, fx_dust))
+                {
+                    vz = 0;
+                    sprite_index = spr_fx_dust2
+                }
             if (input_dir == 0 || on_ground)
             {
                 state = "normal";
@@ -269,10 +338,6 @@ if(hascontrol)
             }
         }
     }
-    if(keyboard_check(ord("W")) || gamepad_button_check(0, gp_padu))
-    {
-        use_anim_state(4, anim_state);
-    }
 }
 
 if fxtrail
@@ -294,15 +359,19 @@ if ((trailTimer % 3) == 1)
 
 if place_meeting(x, y + 2, oWall)
 {
+    var footsound = choose(sn_stepgrass1, sn_stepgrass2, sn_stepgrass3)
     if (running && (ceil(image_index) == 5 || ceil(image_index) == 1))
     {
+        if (!audio_is_playing(footsound))
+            audio_play_sound(footsound, 8, false)
         if (run && abs(hsp) >= 2)
         {
             with (instance_create_depth(x, bbox_bottom, (depth - 10), fx_dust))
             {
-                image_alpha = 0.5;
+                sprite_index = spr_fx_dust2;
                 vx = random_range(-0.1, 0.1);
                 vy = random_range(-0.5, -0.1);
+                vz = 0;
             }
         }
     }

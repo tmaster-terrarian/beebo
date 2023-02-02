@@ -104,16 +104,16 @@ switch(state)
             {
                 with(instance_create_depth(x, y, 300, obj_prj_bigbone))
                 {
-                    dir = point_direction(xstart, ystart, obj_player.x, obj_player.y);
+                    dir = point_direction(xstart, ystart, obj_player.x, obj_player.y - 8);
                     parriable = 1;
                 }
                 with(instance_create_depth(x, y, 300, obj_prj_bigbone))
                 {
-                    dir = point_direction(xstart, ystart, obj_player.x, obj_player.y) + 25;
+                    dir = point_direction(xstart, ystart, obj_player.x, obj_player.y - 8) + 30;
                 }
                 with(instance_create_depth(x, y, 300, obj_prj_bigbone))
                 {
-                    dir = point_direction(xstart, ystart, obj_player.x, obj_player.y) - 25;
+                    dir = point_direction(xstart, ystart, obj_player.x, obj_player.y - 8) - 30;
                 }
             }
 

@@ -11,8 +11,8 @@ with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
 
     if(place_meeting(x, y, obj_player))
     {
-        obj_player.hsp = lengthdir_x(5, point_direction(x, y, obj_player.x, obj_player.y));
-        obj_player.vsp = lengthdir_y(5, point_direction(x, y, obj_player.x, obj_player.y));
+        obj_player.hsp = lengthdir_x(5, point_direction(x, y, obj_player.x, obj_player.y-8));
+        obj_player.vsp = lengthdir_y(5, point_direction(x, y, obj_player.x, obj_player.y-8));
     }
 }
 ScreenShake(6, 60);
