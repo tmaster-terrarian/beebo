@@ -1,5 +1,12 @@
 event_inherited();
 
+cLeft = place_meeting((x - 1), y, oWall)
+cRight = place_meeting((x + 1), y, oWall)
+if cLeft
+    wallTarget = instance_place((x - 1), y, oWall)
+if cRight
+    wallTarget = instance_place((x + 1), y, oWall)
+
 global.playerhealth = hp;
 if(hp <= 0)
 {

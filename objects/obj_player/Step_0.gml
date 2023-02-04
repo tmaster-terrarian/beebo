@@ -144,11 +144,17 @@ if(hascontrol)
                         sprite_index = spr_player_crawl;
                     }
                 }
-                run = 7
+                if(abs(hsp) > 3)
+                    run = 7
+                else
+                    run = 0
                 if (hsp < walksp)
                     hsp = approach(hsp, walksp, accel)
                 if on_ground
+                {
+                    running = 1
                     facing = 1
+                }
                 else
                     facing = approach(facing, 1, 0.2)
             }
@@ -170,18 +176,24 @@ if(hascontrol)
                         sprite_index = spr_player_crawl;
                     }
                 }
-                run = 7
+                if(abs(hsp) > 3)
+                    run = 7
+                else
+                    run = 0
                 if (hsp > -walksp)
                     hsp = approach(hsp, -walksp, accel)
                 if on_ground
+                {
+                    running = 1
                     facing = -1
+                }
                 else
                     facing = approach(facing, -1, 0.2)
             }
             else
             {
-                // facing = pointing;
-                hsp = approach(hsp, 0, fric * 2)
+                running = 0
+                hsp = approach(hsp, lasthsp, fric * 2)
                 if (abs(hsp) < 2)
                 {
                     if run
@@ -246,6 +258,8 @@ if(hascontrol)
             else
             {
                 wallslideTimer = 0
+                lasthsp = 0
+                lastvsp = 0
             }
             if (running)
                 image_index += abs(hsp / 6)
@@ -253,7 +267,7 @@ if(hascontrol)
                 image_index += abs(hsp / 4)
             landTimer = approach(landTimer, 0, 1)
 
-            if(abs(hsp) > 3)
+            if(abs(hsp) > 3 || vsp < -3)
             {
                 fxtrail = 1;
             }
@@ -299,22 +313,42 @@ if(hascontrol)
     {
         if(on_ground)
         {
-            if(place_meeting(x, (y + 2), oPlatform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
+            if(!duck)
+            {
+                state = "normal"
+                image_index = 0
+                sprite_index = spr_player_jump
+                var c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
+                if c
+                {
+                    lasthsp = c.hsp
+                    lastvsp = c.vsp
+                    hsp += c.hsp
+                    if(c.vsp < 0)
+                        vsp = c.vsp
+                }
+                vsp += jump_speed
+                audio_play_sound(sn_jump, 0, false)
+            }
+            else if(place_meeting(x, (y + 2), oPlatform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
             {
                 sprite_index = spr_player_jump
                 y += 2
                 image_index = 2
+                platformTarget = noone
             }
             else
             {
-                // c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
-                // if c
-                // {
-                //     hsp += c.hsp
-                //     if (c.vsp < 0)
-                //         vsp = c.vsp
-                // }
-                vsp += jump_speed
+                c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
+                if c
+                {
+                    lasthsp = c.hsp
+                    lastvsp = c.vsp
+                    hsp += c.hsp
+                    if(c.vsp < 0)
+                        vsp = c.vsp
+                }
+                vsp += jump_speed / 2
                 audio_play_sound(sn_jump, 0, false)
             }
         }
@@ -326,7 +360,7 @@ if(hascontrol)
                 hsp = -2
                 vsp = -2.5
                 facing = -1
-                audio_play_sound(sn_throw, 0, false)
+                audio_play_sound(sn_walljump, 0, false)
             }
             if place_meeting((x - 2), y, oWall)
             {
@@ -334,7 +368,7 @@ if(hascontrol)
                 hsp = 2
                 vsp = -2.5
                 facing = 1
-                audio_play_sound(sn_throw, 0, false)
+                audio_play_sound(sn_walljump, 0, false)
             }
         }
     }
@@ -346,7 +380,7 @@ else
     trailTimer = 0
 if ((trailTimer % 3) == 1)
 {
-    with (instance_create_depth(x, y, (depth + 1), fx_aura))
+    with (instance_create_depth(x, y, (depth + 2), fx_aura))
     {
         visible = true
         color = c_yellow;
@@ -354,25 +388,27 @@ if ((trailTimer % 3) == 1)
         image_index = other.image_index
         sprite_index = other.sprite_index
         image_xscale = other.image_xscale
+        image_yscale = other.image_yscale
+        // image_alpha = 90
     }
 }
 
 if place_meeting(x, y + 2, oWall)
 {
     var footsound = choose(sn_stepgrass1, sn_stepgrass2, sn_stepgrass3)
-    if (running && (ceil(image_index) == 5 || ceil(image_index) == 1))
+    if(running && (ceil(image_index) == 5 || ceil(image_index) == 1))
     {
         if (!audio_is_playing(footsound))
             audio_play_sound(footsound, 8, false)
-        if (run && abs(hsp) >= 2)
+    }
+    if(running && run && abs(hsp) >= 2 && ceil(image_index) % 2 == 0)
+    {
+        with(instance_create_depth(x, bbox_bottom, (depth - 10), fx_dust))
         {
-            with (instance_create_depth(x, bbox_bottom, (depth - 10), fx_dust))
-            {
-                sprite_index = spr_fx_dust2;
-                vx = random_range(-0.1, 0.1);
-                vy = random_range(-0.5, -0.1);
-                vz = 0;
-            }
+            sprite_index = spr_fx_dust2;
+            vx = random_range(-0.1, 0.1);
+            vy = random_range(-0.5, -0.1);
+            vz = 0;
         }
     }
 }

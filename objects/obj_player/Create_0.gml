@@ -42,6 +42,9 @@ air_fric = 0.02;
 accel = 0;
 fric = 0;
 
+lasthsp = 0
+lastvsp = 0
+
 hsp_max = 20;
 vsp_max = 20;
 

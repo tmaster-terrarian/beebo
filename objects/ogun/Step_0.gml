@@ -121,7 +121,8 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
         var dist = random_range(0.1, 1) * 12;
         with(instance_create_depth(x + lengthdir_x(dist, image_angle), (y - 2) + lengthdir_y(dist, image_angle), depth - 1, fx_dust))
         {
-            vy = random_range(-1.5, -1);
+            vy = random_range(-1.5, -1)
+            vx += obj_player.hsp
         }
     }
 }
@@ -133,7 +134,8 @@ else if(firingdelay < 0)
         var dist = random_range(0.1, 1) * 12;
         with(instance_create_depth(x + lengthdir_x(dist, image_angle), (y - 2) + lengthdir_y(dist, image_angle), depth - 1, fx_dust))
         {
-            vy = random_range(-1.5, -1);
+            vy = random_range(-1.5, -1) + obj_player.vsp
+            vx += obj_player.hsp
         }
         audio_play_sound(sn_steam, 1, false, heat/heat_max);
     }
@@ -155,12 +157,6 @@ if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_sh
             with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
 
             with(obj_boss) if(place_meeting(x, y, other)) {hp -= other.dmg; flash = 3}
-
-            if(place_meeting(x, y, obj_player))
-            {
-                obj_player.hsp = lengthdir_x(3, point_direction(x, y, obj_player.x, obj_player.y));
-                obj_player.vsp = lengthdir_y(3, point_direction(x, y, obj_player.x, obj_player.y));
-            }
         }
         ScreenShake(4, 40);
         done = true;
@@ -186,10 +182,10 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
     with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
     {
         direction = other.image_angle;
-        hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.1);
-        vsp = lengthdir_y(2, direction) + (obj_player.vsp * 0.1) - 1;
+        hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.5);
+        vsp = lengthdir_y(2, direction) + (obj_player.vsp * 0.25) - 1;
 
-        if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) event_perform(ev_other, ev_user0);
+        if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) event_perform(ev_other, ev_user2);
     }
 }
 
@@ -214,7 +210,7 @@ if (sprite_index == sGunR)
             with(instance_create_depth(x + random_range(-1, 1), y + random_range(-1, 1), depth - 1, fx_dust))
             {
                 vy = random_range(-1.5, -0.75);
-                vx = random_range(1.5, 2) * other.image_yscale;
+                vx = random_range(1.5, 2) * other.image_yscale + obj_player.hsp;
             }
         }
     }
@@ -234,5 +230,24 @@ if (sprite_index == sGunR)
         sprite_index = sGun;
         image_index = 0;
         image_speed = 0;
+    }
+}
+
+if(obj_player.fxtrail)
+{
+    if ((obj_player.trailTimer % 3) == 1)
+    {
+        with (instance_create_depth(x, y, (depth + 101), fx_aura))
+        {
+            visible = true
+            color = c_yellow;
+            image_speed = 0
+            image_index = other.image_index
+            sprite_index = other.sprite_index
+            image_xscale = other.image_xscale
+            image_yscale = other.image_yscale
+            image_angle = other.image_angle
+            // image_alpha = 90
+        }
     }
 }

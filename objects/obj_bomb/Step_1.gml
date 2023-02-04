@@ -1,7 +1,4 @@
-if(done) return;
-
-vsp += grv;
-
+event_inherited();
 //h
 var c = noone
 if (place_meeting(x + hsp, y, oCrate)) || (place_meeting(x + hsp, y, obj_stone))
@@ -16,14 +13,10 @@ if c
         hsp = 0;
         explode();
     }
-    if(sign(c.hsp) != sign(hsp))
-        hsp = -(hsp * 0.75) + c.hsp
-    else
-        hsp = -(hsp * 0.75)
+    hsp = -(hsp * 0.75) + c.hsp * 0.5
     bounce_counter += 1
     audio_play_sound(sn_walljump, 0, false)
 }
-x += hsp;
 
 //v
 var c = noone
@@ -32,7 +25,7 @@ if (place_meeting(x, y + vsp, oCrate)) || (place_meeting(x, y + vsp, obj_stone))
     explode();
 }
 else var c = collision_point(x, y + vsp, oWall, 1, 1)
-if (c && vsp > 0)
+if c && vsp > 0
 {
     if(bounce_counter >= max_bounces)
     {
@@ -57,4 +50,3 @@ if ((place_meeting(x, y + vsp, oPlatform) && !place_meeting(x, y - 1, oPlatform)
     bounce_counter += 1;
     audio_play_sound(sn_walljump, 0, false)
 }
-y += vsp;
