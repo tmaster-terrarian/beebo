@@ -170,7 +170,7 @@ switch(state)
                 }
                 with(oCamera)
                 {
-                    follow = obj_player;
+                    usefollow = 1;
                     draw_ui = true;
                     zoom = 1;
                 }
@@ -252,7 +252,7 @@ switch(state)
             with(oGameManager) audio_sound_gain(current_bgm, 0, 500);
             with(oCamera)
             {
-                follow = noone;
+                usefollow = 0;
                 draw_ui = false;
                 xTo = 128;
                 yTo = 80;

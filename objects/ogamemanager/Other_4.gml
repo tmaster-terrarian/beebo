@@ -1,30 +1,34 @@
-// music
-switch(current_rm)
+switch(room)
 {
-    case -1: SetMusic(bgm_placeholder); break; //title screen
+    default:
+        current_st = -1
+    break
 
-    case 0: SetMusic(amb_birds); break;
-    case 1: SetMusic(bgm_placeholder); break;
-    case 2: SetMusic(bgm_placeholder); break;
+    case rMenu: case rm_settings:
+        SetMusic(bgm_placeholder)
+        current_st = -1
+    break
+
+    case loading:
+        with(obj_loading)
+        {
+            loading_rm = global.loading_rm
+            txt_string = global.loading_txt
+        }
+        current_st = -1
+    break
+
+    case lvl1_0:
+        SetMusic(amb_birds)
+        current_st = 0
+    break
+
+    case lvl1_1: case lvl1_2: case lvl1_3: case lvl1_4:
+        SetMusic(bgm_placeholder)
+        current_st = 1
+        save_st()
+    break
 }
-
-// if(room = lvl1_1)
-// {
-//     if(!global.hasgun)
-//     {
-//         global.gunlesspercent = true;
-//         instance_create_depth(160, 192, 300, obj_gun_pickup);
-//     }
-// }
-
-// if(global.checkpointx > -1) || (global.checkpointy > -1)
-// {
-//     with(obj_player)
-//     {
-//         x = global.checkpointx;
-//         y = global.checkpointy;
-//     }
-// }
 
 // activation/deactivation
 instance_deactivate_object(obj_enemy);

@@ -31,26 +31,18 @@ var by = sign(vyNew) * sp
 
 with (obj_moveable)
 {
-    if place_meeting(x, y + 1, other.id)
+    if place_meeting(x, y + 1, other.id) && !place_meeting(x, y - 1, oWall)
         y += by
 }
 y += by
 
 with (obj_moveable)
 {
-    if place_meeting(x, y + 1, other.id)
+    if place_meeting(x, y + 1, other.id) && !place_meeting(x + bx, y, oWall)
         x += bx
-    if place_meeting(x + bx, y, other.id)
-        x += bx
-    if (platformTarget == other.id)
-    {
-        if (!platformTarget)
-        {
-            if place_meeting(x, (y + 1), other.id)
-                platformTarget = other.id
-        }
-        if (!place_meeting(x + bx, y, oWall) && platformTarget == other.id)
-            x += bx
-    }
+    if place_meeting(x - bx, y, other.id)
+        x += sign(bx)
+
+    platformTarget = instance_place(x, y + 1, other.id)
 }
 x += bx

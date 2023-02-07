@@ -1,7 +1,7 @@
 // screen transition stuff
 if(mode != TRANS_MODE.OFF)
 {
-    if(mode == TRANS_MODE.ACTIVE) || (mode == TRANS_MODE.ACTIVE2)
+    if(mode == TRANS_MODE.ACTIVE || mode == TRANS_MODE.ACTIVE2)
     {
         percent = max(0, percent - max((percent / 5), 0.005));
     }
@@ -12,58 +12,36 @@ if(mode != TRANS_MODE.OFF)
 
     if(percent == 1.2) || (percent == 0)
     {
-        switch (mode)
+        switch mode
         {
             case TRANS_MODE.ACTIVE:
-                mode = TRANS_MODE.OFF;
-            break;
+                mode = TRANS_MODE.OFF
+            break
             case TRANS_MODE.ACTIVE2:
-                mode = TRANS_MODE.OFF;
-            break;
-            case TRANS_MODE.NEXT:
-                mode = TRANS_MODE.ACTIVE;
-                current_rm += 1;
-                console_log("loading room (mode: next): " + string(room_get_name(rm_list[current_rm]) + " (" + string(current_st) + ", " + string(current_rm) + ")"));
-                room_goto(rm_list[current_rm]);
-            break;
-            case TRANS_MODE.GOTO: //can only be used in level progression
-                mode = TRANS_MODE.ACTIVE;
-                current_st = target_st;
-                var _ind = array_find_index(rm_list, function(_v, _i){return(_v == stages[target_st][target_rm])})
-                if(_ind != -1)
+                mode = TRANS_MODE.OFF
+            break
+            case TRANS_MODE.DIRECT:
+                mode = TRANS_MODE.ACTIVE
+                console_log("loading room (mode: direct): '" + string(room_get_name(target)) + "' [warning: stage will not be saved!]")
+                room_goto(target)
+            break
+            case TRANS_MODE.GOTO:
+                mode = TRANS_MODE.ACTIVE
+                target = stages[target_st, target_rm]
+                if(current_st != target_st) && (current_st != -1)
                 {
-                    current_rm = _ind;
-                    console_log("loading room (mode: goto): " + string(room_get_name(rm_list[current_rm]) + " (" + string(target_st) + ", " + string(target_rm) + ")"));
-                    room_goto(rm_list[current_rm]);
-                    break;
+                    console_log("loading room (mode: goto): " + string(room_get_name(target) + " (" + string(target_st) + ", " + string(target_rm) + ")"))
+                    scr_loadingscreen(target, stage_tips[target_st])
                 }
-                else console_log("gm_room_transition_goto(" + string(target_st) + ", " + string(target_rm) + ") failed! room and/or stage index is out of bounds or room does not exist.");
-            break;
-            case TRANS_MODE.DIRECT: //best used outside of level progression unless target is the current room
-                mode = TRANS_MODE.ACTIVE2; // avoid saving with direct
-                console_log("loading room (mode: direct): '" + string(room_get_name(target)) + "' [warning: stage will not be saved!]");
-                room_goto(target);
-            break;
+                else
+                {
+                    console_log("loading room (mode: goto): " + string(room_get_name(target) + " (" + string(target_st) + ", " + string(target_rm) + ")"))
+                    room_goto(target)
+                }
+            break
             case TRANS_MODE.RESTART:
-                game_restart();
-            break;
-        }
-
-        if(mode == TRANS_MODE.ACTIVE)
-        {
-            for(var i = 1; i < array_length(stages); i++) //this (hopefully) skips the tutorial stage in saving
-            {
-                if(array_any(stages[i], function(_v, _i){return(_v == rm_list[current_rm])}))
-                {
-                    current_st = i;
-                    ini_open("save.ini");
-                    if(current_st != ini_read_real("savedata", "stage", 0)) ini_write_real("savedata", "time_in_centiseconds", global.t);
-                    ini_write_real("savedata", "stage", current_st);
-                    ini_close();
-                    console_log("saved (" + string(current_st) + "), " + string(global.t));
-                    break;
-                }
-            }
+                game_restart()
+            break
         }
     }
 }

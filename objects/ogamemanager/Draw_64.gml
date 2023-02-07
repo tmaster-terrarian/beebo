@@ -3,6 +3,9 @@ if(mode != TRANS_MODE.OFF)
 {
     switch(transtype)
     {
+        case TRANS_TYPE.NONE:
+            trans_speed = 1;
+        break;
         case TRANS_TYPE.BOX: default:
             trans_speed = 5;
             draw_set_color(c_black);

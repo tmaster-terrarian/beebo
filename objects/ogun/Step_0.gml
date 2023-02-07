@@ -167,6 +167,24 @@ if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_sh
 firingdelaybomb -= 1;
 if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (firingdelaybomb < 0)
 {
+    with(obj_bomb)
+    {
+        audio_stop_sound(throwsound);
+        with(MakeExplosion(x, y, size, size, (2 / 3), sn_explosion2))
+        {
+            dmg = other.damage;
+            with(obj_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
+            with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
+
+            with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
+
+            with(obj_boss) if(place_meeting(x, y, other)) {hp -= other.dmg; flash = 3}
+        }
+        ScreenShake(4, 40);
+        done = true;
+        scr_particle_explode();
+    }
+
     fire = 1;
 
     ScreenShake(2, 10);

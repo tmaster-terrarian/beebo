@@ -13,6 +13,8 @@ zoom = 1;
 
 draw_ui = true;
 
+follow = obj_player;
+usefollow = true;
 xTo = xstart;
 yTo = ystart;
 

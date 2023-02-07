@@ -1,15 +1,3 @@
-if(instance_exists(follow))
-{
-    xTo = follow.x;
-    yTo = follow.y;
-
-    if(follow == obj_player)
-    {
-        xTo = follow.x + (sign(sign(follow.facing) + sign(follow.hsp)) * 12);
-        yTo = follow.y - 12 - follow.lookup * 24;
-    }
-}
-
 cam_x = camera_get_view_x(cam);
 cam_y = camera_get_view_y(cam);
 view_w_half = camera_get_view_width(cam) * 0.5 * (1 / zoom);

@@ -31,7 +31,10 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_F57C11","properties":[],"isDnd":false,"objectId":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":448.0,"y":128.0,},
       ],"visible":true,"depth":400,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"triggers","instances":[
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_1E7EA382","properties":[],"isDnd":false,"objectId":{"name":"obj_trigger_level_transition_next","path":"objects/obj_trigger_level_transition_next/obj_trigger_level_transition_next.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":4.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1020.0,"y":128.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_74907745","properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"target_st","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"objectId":{"name":"obj_trigger_level_transition","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"value":"1",},
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"target_rm","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"objectId":{"name":"obj_trigger_level_transition","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"value":"2",},
+          ],"isDnd":false,"objectId":{"name":"obj_trigger_level_transition","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":4.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1020.0,"y":128.0,},
       ],"visible":true,"depth":500,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Ground","instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_34AD11D2","properties":[],"isDnd":false,"objectId":{"name":"oWall","path":"objects/oWall/oWall.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":9.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":112.0,"y":176.0,},
@@ -145,7 +148,6 @@
     {"name":"inst_4E5B1624","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_2D0C9137","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_2DFB2462","path":"rooms/lvl1_2/lvl1_2.yy",},
-    {"name":"inst_1E7EA382","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_D15AEC9","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_4F9961EB","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_456D0EE0","path":"rooms/lvl1_2/lvl1_2.yy",},
@@ -156,6 +158,7 @@
     {"name":"inst_7EB6DAC7","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_525ECAB7","path":"rooms/lvl1_2/lvl1_2.yy",},
     {"name":"inst_353B6CE7","path":"rooms/lvl1_2/lvl1_2.yy",},
+    {"name":"inst_74907745","path":"rooms/lvl1_2/lvl1_2.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
