@@ -52,3 +52,7 @@ flip_counter = 0;
 flip_max = 3;
 
 encounter1 = false;
+
+INPUT_MOVE = 0
+INPUT_JUMP = 0
+INPUT_DODGE = 0

@@ -16,7 +16,7 @@ switch(state)
     {
         can_attack = 1;
         can_jump = 1;
-        if (input_dir == 1)
+        if (INPUT_MOVE == 1)
         {
             if (hsp < 0)
             {
@@ -36,7 +36,7 @@ switch(state)
             else
                 facing = approach(facing, 1, 0.2)
         }
-        else if (input_dir == -1)
+        else if (INPUT_MOVE == -1)
         {
             if (hsp > 0)
             {
@@ -72,15 +72,15 @@ switch(state)
         }
         if (!on_ground)
         {
-            // if (vsp >= -0.5)
-            // {
-            //     if place_meeting((x + (2 * input_dir)), y, oWall)
-            //         wallslideTimer++
-            // }
-            // else
-            //     wallslideTimer = 0
-            // if (wallslideTimer >= 5)
-            //     state = "wallslide"
+            if (vsp >= -0.5)
+            {
+                if place_meeting((x + (2 * INPUT_MOVE)), y, oWall)
+                    wallslideTimer++
+            }
+            else
+                wallslideTimer = 0
+            if (wallslideTimer >= 5)
+                state = "wallslide"
             sprite_index = spr_anime_jump2
             if (vsp >= 0.1)
                 vsp = approach(vsp, vsp_max, grv)
@@ -95,11 +95,44 @@ switch(state)
             else
                 image_index = 3
         }
-        // else
-        //     wallslideTimer = 0
+        else
+            wallslideTimer = 0
         if (sprite_index == spr_anime_run)
             image_index += (hsp / 6)
         landTimer = approach(landTimer, 0, 1)
+        break;
+    }
+    case "wallslide":
+    {
+        if (vsp < 0)
+            vsp = approach(vsp, vsp_max, 0.5);
+        else
+            vsp = approach(vsp, vsp_max / 3, grv / 3);
+        if (!(place_meeting(x + (INPUT_MOVE * 2), y, oWall)))
+        {
+            state = "normal";
+            wallslideTimer = 0;
+        }
+        sprite_index = spr_player_wallslide;
+        var n = choose(0, 1, 0);
+        if n
+            with (instance_create_depth(x + 4 * sign(facing), random_range(bbox_bottom - 12, bbox_bottom), depth - 1, fx_dust))
+            {
+                vz = 0;
+                sprite_index = spr_fx_dust2
+            }
+        if (INPUT_MOVE == 0 || on_ground)
+        {
+            state = "normal";
+            wallslideTimer = 0;
+        }
+        if (sign(INPUT_MOVE) == -sign(facing))
+        {
+            state = "normal";
+            wallslideTimer = 0;
+            facing = sign(INPUT_MOVE);
+        }
+        vsp = clamp(vsp, -99, 2);
         break;
     }
     case "backflip_start":
@@ -115,7 +148,7 @@ switch(state)
         }
         if(timer0 == 1)
         {
-            if(image_index < 1.75) image_index += 0.25;
+            if(image_index < 2) image_index += 0.25;
             else
             {
                 timer0 = 0;
@@ -126,7 +159,9 @@ switch(state)
     }
     case "backflip":
     {
-        can_jump = 0;
+        INPUT_DODGE = 0
+        INPUT_JUMP = 0
+        can_jump = 0
         if(timer0 == 0)
         {
             can_dodge = 0;
@@ -181,13 +216,13 @@ switch(state)
             if(single_wall)
             {
                 single_wall = 0;
-                input_dir = -input_dir;
+                INPUT_MOVE = -INPUT_MOVE;
                 if place_meeting(x + 2, y, oWall)
                 {
                     hsp = -2
                     vsp = -2.5
                     facing = -1
-                    input_dir = -1;
+                    INPUT_MOVE = -1;
                     audio_play_sound(sn_throw, 0, false)
                 }
                 if place_meeting(x - 2, y, oWall)
@@ -195,7 +230,7 @@ switch(state)
                     hsp = 2
                     vsp = -2.5
                     facing = 1
-                    input_dir = 1;
+                    INPUT_MOVE = 1;
                     audio_play_sound(sn_throw, 0, false)
                 }
             }
@@ -209,6 +244,9 @@ switch(state)
     }
     case "dinder":
     {
+        INPUT_MOVE = 0
+        INPUT_JUMP = 0
+        INPUT_DODGE = 0
         can_attack = 0;
         can_jump = 0;
         can_dodge = 0;
@@ -246,6 +284,9 @@ switch(state)
     }
     case "encounter1":
     {
+        INPUT_MOVE = 0
+        INPUT_JUMP = 0
+        INPUT_DODGE = 0
         if(timer0 == 0)
         {
             audio_play_sound(sn_impact, 0, false);
@@ -308,7 +349,7 @@ if(active) && (instance_exists(obj_player))
             state = "normal";
             sprite_index = spr_anime_jump2;
             image_index = 0;
-            vsp = jumpsp;
+            vsp += jumpsp;
             audio_play_sound(sn_jump, 0, false);
         }
 
@@ -319,7 +360,7 @@ if(active) && (instance_exists(obj_player))
             state = "normal";
             sprite_index = spr_anime_jump2;
             image_index = 0;
-            vsp = jumpsp;
+            vsp += jumpsp;
             audio_play_sound(sn_jump, 0, false);
         }
 
@@ -330,7 +371,7 @@ if(active) && (instance_exists(obj_player))
             state = "normal";
             sprite_index = spr_anime_jump2;
             image_index = 0;
-            vsp = jumpsp;
+            vsp += jumpsp;
             hsp *= 0.8;
             audio_play_sound(sn_jump, 0, false);
         }
@@ -364,7 +405,7 @@ if(active) && (instance_exists(obj_player))
             hsp = -2
             vsp = -2.5
             facing = -1
-            input_dir = -1;
+            INPUT_MOVE = -1;
             audio_play_sound(sn_throw, 0, false)
             can_dodge = 1;
         }
@@ -374,7 +415,7 @@ if(active) && (instance_exists(obj_player))
             hsp = 2
             vsp = -2.5
             facing = 1
-            input_dir = 1;
+            INPUT_MOVE = 1;
             audio_play_sound(sn_throw, 0, false)
             can_dodge = 1;
         }
@@ -393,7 +434,7 @@ if(active) && (instance_exists(obj_player))
     //charge towards player without random stopping if offscreen
     if(abs(x - obj_player.x) > 128)
     {
-        if(chance) input_dir = sign(obj_player.x - x);
+        if(chance) INPUT_MOVE = sign(obj_player.x - x);
         chance = -1;
     }
 
@@ -417,7 +458,7 @@ if(active) && (instance_exists(obj_player))
     //randomly choose between moving and not moving toward the player
     if(chance <= 6) && (chance >= 1)
     {
-        with(obj_player) other.input_dir = sign(x - other.x) + round(random_range(-1, 1));
+        with(obj_player) other.INPUT_MOVE = sign(x - other.x) + round(random_range(-1, 1));
     }
 
     // if(chance == 1) && (obj_player.facing == -sign(facing)) && (state == "normal") && (can_dodge)
@@ -441,11 +482,11 @@ if(instance_exists(obj_player_dead)) && (active)
 {
     state = "dinder";
     active = 0;
-    input_dir = 0;
+    INPUT_MOVE = 0;
     image_index = 0;
     facing = sign(obj_player_dead.x - x);
 }
 
-input_dir = clamp(input_dir, -1, 1);
+INPUT_MOVE = clamp(INPUT_MOVE, -1, 1);
 
 image_xscale = sign(facing);

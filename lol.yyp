@@ -219,6 +219,7 @@
     {"id":{"name":"sn_player_heal","path":"sounds/sn_player_heal/sn_player_heal.yy",},"order":32,},
     {"id":{"name":"spr_anime_run","path":"sprites/spr_anime_run/spr_anime_run.yy",},"order":3,},
     {"id":{"name":"spr_menu_old","path":"sprites/spr_menu_old/spr_menu_old.yy",},"order":2,},
+    {"id":{"name":"mask_anime","path":"sprites/mask_anime/mask_anime.yy",},"order":13,},
     {"id":{"name":"spr_loading_icon_b","path":"sprites/spr_loading_icon_b/spr_loading_icon_b.yy",},"order":82,},
     {"id":{"name":"obj_moveable","path":"objects/obj_moveable/obj_moveable.yy",},"order":28,},
     {"id":{"name":"normalize","path":"scripts/normalize/normalize.yy",},"order":17,},
