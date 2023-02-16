@@ -1,5 +1,17 @@
 //h
 
+if(!on_ground)
+{
+    duck = 0
+}
+walksp = 2;
+if(duck)
+{
+    walksp = 1
+    if(abs(hsp) > 1)
+        hsp = approach(hsp, 1 * input_dir, 0.25)
+}
+
 if(on_ground)
 {
     accel = ground_accel;
@@ -16,6 +28,10 @@ switch(state)
     {
         can_attack = 1;
         can_jump = 1;
+        if (duck > 1)
+            mask_index = mask_anime_duck
+        else
+            mask_index = mask_anime
         if (INPUT_MOVE == 1)
         {
             if (hsp < 0)
@@ -24,8 +40,10 @@ switch(state)
             }
             else if (on_ground && vsp >= 0)
             {
-                if (!landTimer)
+                if (duck == 0 && !landTimer)
                     sprite_index = spr_anime_run
+                else if(duck)
+                    sprite_index = spr_anime_crawl
             }
             if run
                 run = 7
@@ -44,8 +62,10 @@ switch(state)
             }
             else if (on_ground && vsp >= 0)
             {
-                if (!landTimer)
+                if (duck == 0 && !landTimer)
                     sprite_index = spr_anime_run
+                else if(duck)
+                    sprite_index = spr_anime_crawl
             }
             if run
                 run = 7
@@ -67,21 +87,42 @@ switch(state)
             if (abs(hsp) < 0.5 && on_ground && (!landTimer))
             {
                 sprite_index = spr_anime
-                image_index = 0
+                image_index += 0.2;
+                if duck
+                {
+                    sprite_index = spr_anime_duck
+                    image_index = duck
+                    lookup = -0.5;
+                }
+                else if (INPUT_LOOKUP)
+                {
+                    sprite_index = spr_player_lookup
+                    lookup = 1;
+                }
+                else
+                {
+                    lookup = 0;
+                }
             }
         }
+        if (INPUT_DUCK && on_ground)
+            duck = approach(duck, 3, 1)
+        else if (!place_meeting(x, y - 8, oWall))
+            duck = approach(duck, 0, 1)
         if (!on_ground)
         {
+            lookup = 0
+
             if (vsp >= -0.5)
             {
-                if place_meeting((x + (2 * INPUT_MOVE)), y, oWall)
+                if place_meeting(x + (2 * INPUT_MOVE), y, oWall)
                     wallslideTimer++
             }
             else
                 wallslideTimer = 0
             if (wallslideTimer >= 5)
                 state = "wallslide"
-            sprite_index = spr_anime_jump2
+            sprite_index = spr_anime_jump
             if (vsp >= 0.1)
                 vsp = approach(vsp, vsp_max, grv)
             if (vsp < 0)
@@ -99,6 +140,8 @@ switch(state)
             wallslideTimer = 0
         if (sprite_index == spr_anime_run)
             image_index += (hsp / 6)
+        else if (duck)
+            image_index += abs(hsp / 4)
         landTimer = approach(landTimer, 0, 1)
         break;
     }
@@ -113,7 +156,7 @@ switch(state)
             state = "normal";
             wallslideTimer = 0;
         }
-        sprite_index = spr_player_wallslide;
+        sprite_index = spr_anime_wallslide;
         var n = choose(0, 1, 0);
         if n
             with (instance_create_depth(x + 4 * sign(facing), random_range(bbox_bottom - 12, bbox_bottom), depth - 1, fx_dust))
@@ -342,93 +385,108 @@ if(active) && (instance_exists(obj_player))
 
     if(on_ground)
     {
-        //jump over ledges
-        if((place_meeting(x + sign(hsp) * 4, y, oWall)) && (cast_check_a(x + sign(hsp), y, 0, 1, oWall, 34))) && (can_jump)
-        {
-            can_jump = 0;
-            state = "normal";
-            sprite_index = spr_anime_jump2;
-            image_index = 0;
-            vsp += jumpsp;
-            audio_play_sound(sn_jump, 0, false);
-        }
-
         //jump over gaps
-        if(!check(x + (sign(hsp) * 16), y + 16)) && (y > (obj_player.y - 16)) && (can_jump)
+        if(!check(x + (sign(facing) * 16), y + 8)) && (y > obj_player.y - 16) && (can_jump)
         {
-            can_jump = 0;
-            state = "normal";
-            sprite_index = spr_anime_jump2;
-            image_index = 0;
-            vsp += jumpsp;
-            audio_play_sound(sn_jump, 0, false);
+            can_jump = 0
+            INPUT_JUMP = 1
+            chance = -1
         }
 
         //jump onto platforms
-        if(place_meeting(x, y - 24, oPlatform)) && (y > obj_player.y) && (can_jump)
+        if(place_meeting(x, y - 24, oPlatform)) && (y > obj_player.y - 4) && (can_jump)
         {
-            can_jump = 0;
-            state = "normal";
-            sprite_index = spr_anime_jump2;
-            image_index = 0;
-            vsp += jumpsp;
-            hsp *= 0.8;
-            audio_play_sound(sn_jump, 0, false);
+            can_jump = 0
+            INPUT_JUMP = 1
+            hsp *= 0.7
         }
 
         //drop through platforms
-        if(place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall)) && (y < obj_player.y)
+        if(place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall))
         {
-            y += 1;
+            if(y < (obj_player.y - 8))
+            {
+                INPUT_DUCK = 1
+                if(INPUT_DUCK && duck == 3)
+                {
+                    INPUT_JUMP = 1
+                }
+            }
+            else INPUT_DUCK = 0
         }
 
         //initiate walljump chains if too low from player
-        if(y - obj_player.y > 80) && (place_meeting(x + sign(facing) * 8, y, oWall)) && (can_jump)
+        // if(y - obj_player.y > 80) && (place_meeting(x + sign(facing) * 8, y, oWall)) && (can_jump)
+        // {
+        //     can_jump = 0
+        //     INPUT_JUMP = 1
+        // }
+
+        //jump over ledges
+        if collision_rectangle(x + sign(facing) * 8, y - 40, x + sign(facing), y + 5, oWall, false, true) && !place_meeting(x, y - 40, oWall) && can_jump && (y > obj_player.y)
         {
-            can_jump = 0;
-            state = "normal";
-            sprite_index = spr_anime_jump2;
-            image_index = 0;
-            vsp += jumpsp;
-            audio_play_sound(sn_jump, 0, false);
+            can_jump = 0
+            INPUT_JUMP = 1
         }
     }
 
     //walljumps only if below player and there's adequate space above and below
     else if(!check(x, y + 32)) && (!place_meeting(x, y - 16, oWall)) && ((y >= obj_player.y) || (y > room_height))
     {
-        chance = -1;
+        chance = -1
 
+        // // single wall walljump via dodging into wall
+        // if(!place_meeting(x + 2 * sign(facing), y, oWall)) && (cast_check(x, y, -2 * sign(facing), 0, oWall, 24)) && (state == "normal") && (can_dodge) && (vsp >= 0.1)
+        // {
+        //     single_wall = 1;
+        //     can_dodge = 0;
+        //     timer0 = 0;
+        //     state = "backflip_start";
+        //     chance = -1;
+        // }
+    }
+
+    if !on_ground
+    {
         if place_meeting(x + 2, y, oWall)
         {
-            state = "normal"
-            hsp = -2
-            vsp = -2.5
-            facing = -1
-            INPUT_MOVE = -1;
-            audio_play_sound(sn_throw, 0, false)
-            can_dodge = 1;
+            chance = -1
+            facing = 1
+            INPUT_MOVE = 1
         }
         if place_meeting(x - 2, y, oWall)
         {
-            state = "normal"
-            hsp = 2
-            vsp = -2.5
-            facing = 1
-            INPUT_MOVE = 1;
-            audio_play_sound(sn_throw, 0, false)
-            can_dodge = 1;
+            chance = -1
+            facing = -1
+            INPUT_MOVE = -1
         }
 
-        // single wall walljump via dodging into wall
-        if(!place_meeting(x + 2 * sign(facing), y, oWall)) && (cast_check(x, y, -2 * sign(facing), 0, oWall, 24)) && (state == "normal") && (can_dodge) && (vsp >= 0.1)
+        if state == "wallslide"
         {
-            single_wall = 1;
-            can_dodge = 0;
-            timer0 = 0;
-            state = "backflip_start";
-            chance = -1;
+            if chance == -1
+            {
+                if TIMER_WALLJUMP >= 5
+                {
+                    TIMER_WALLJUMP = 0
+                    INPUT_JUMP = 1
+                }
+                TIMER_WALLJUMP++
+            }
+            else
+            {
+                if TIMER_WALLJUMP >= 20
+                {
+                    TIMER_WALLJUMP = 0
+                    var h = irandom_range(0, 1)
+                    if h
+                    {
+                        INPUT_JUMP = 1
+                    }
+                }
+                TIMER_WALLJUMP++
+            }
         }
+        else TIMER_WALLJUMP = 0
     }
 
     //charge towards player without random stopping if offscreen
@@ -441,11 +499,77 @@ if(active) && (instance_exists(obj_player))
     //adjust speed to aim at player during freefall while above
     if(obj_player.y - y > 64) && (abs(x - obj_player.x) < 16) && (!on_ground)
     {
-        hsp = approach(hsp, 0, 0.5);
+        hsp = approach(hsp, 0, air_accel);
+    }
+
+    if(INPUT_JUMP)
+    {
+        INPUT_JUMP = 0
+        if(on_ground)
+        {
+            if(!duck)
+            {
+                state = "normal"
+                image_index = 0
+                sprite_index = spr_anime_jump
+                var c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
+                if c
+                {
+                    hsp += c.hsp
+                    if(c.vsp < 0)
+                        vsp = c.vsp
+                }
+                vsp += jumpsp
+                audio_play_sound(sn_jump, 0, false)
+            }
+            else if(place_meeting(x, (y + 2), oPlatform)) && (INPUT_DUCK)
+            {
+                sprite_index = spr_anime_jump
+                y += 2
+                image_index = 2
+                platformTarget = noone
+            }
+            else
+            {
+                c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
+                if c
+                {
+                    hsp += c.hsp
+                    if(c.vsp < 0)
+                        vsp = c.vsp
+                }
+                vsp += jumpsp / 2
+                audio_play_sound(sn_jump, 0, false)
+            }
+        }
+        else
+        {
+            if place_meeting(x + 2, y, oWall)
+            {
+                hsp = -2
+                vsp = -2.5
+                facing = -1
+                INPUT_MOVE = -1
+                audio_play_sound(sn_walljump, 0, false)
+                can_dodge = 1
+            }
+            if place_meeting(x - 2, y, oWall)
+            {
+                hsp = 2
+                vsp = -2.5
+                facing = 1
+                INPUT_MOVE = 1
+                audio_play_sound(sn_walljump, 0, false)
+                can_dodge = 1
+            }
+        }
+        can_jump = 0
     }
 
     if(!on_ground)
     {
+        INPUT_DUCK = 0
+
         //cool backflip ledge save
         if(!place_meeting(x, y + 32, oWall)) && (!place_meeting(x - (sign(hsp) * 40), y - 8, oWall)) && (place_meeting(x - (sign(hsp) * 40), y + 8, oWall)) && (state == "normal") && (can_dodge) && (abs(x - obj_player.x) < 80) && ((y - obj_player.y) >= -8)
         {

@@ -34,4 +34,4 @@ duration = 60 * 10
 loading_rm = lvl1_1
 
 ScreenShake(6, 60)
-audio_play_sound(sn_glass, 1, false)
+snd = audio_play_sound(sn_glass, 1, false)

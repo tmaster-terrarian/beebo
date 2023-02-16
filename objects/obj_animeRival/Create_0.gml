@@ -15,6 +15,8 @@ timer0 = 0;
 landTimer = 0;
 wallslideTimer = 0;
 run = 0;
+duck = 0
+lookup = 0
 
 single_wall = 0;
 single_wall_timer = 0;
@@ -36,7 +38,6 @@ ground_accel = 0.1;
 ground_fric = 0.1;
 air_accel = 0.06;
 air_fric = 0.04;
-
 accel = 0;
 fric = 0;
 
@@ -56,3 +57,7 @@ encounter1 = false;
 INPUT_MOVE = 0
 INPUT_JUMP = 0
 INPUT_DODGE = 0
+INPUT_DUCK = 0
+INPUT_LOOKUP = 0
+
+TIMER_WALLJUMP = 0

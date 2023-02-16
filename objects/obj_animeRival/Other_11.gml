@@ -3,7 +3,7 @@
 if (state == "normal")
 {
     landTimer = 8
-    sprite_index = spr_anime_jump2
+    sprite_index = spr_anime_jump
     image_index = 0
     can_jump = 1;
 }
