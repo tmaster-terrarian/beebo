@@ -30,14 +30,14 @@ global.playermaxhealth = hp_max;
 
 if(global.hasgun) instance_create_depth(x, y, 300, oGun);
 
-grv = 0.13;
-walksp = 2;
+grv = 0.2;
+walksp = 2.5;
 facing = 1;
 attack = 0;
 
-ground_accel = 0.1;
-ground_fric = 0.1;
-air_accel = 0.06;
+ground_accel = 0.12;
+ground_fric = 0.08;
+air_accel = 0.07;
 air_fric = 0.02;
 accel = 0;
 fric = 0;
@@ -48,7 +48,7 @@ lastvsp = 0
 hsp_max = 20;
 vsp_max = 20;
 
-jump_speed = -3;
+jump_speed = -3.7;
 jump_buffer = 0;
 jump_buffer2 = 0;
 

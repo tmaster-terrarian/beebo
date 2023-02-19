@@ -253,12 +253,12 @@ if (sprite_index == sGunR)
 
 if(obj_player.fxtrail)
 {
-    if ((obj_player.trailTimer % 3) == 1)
+    if ((obj_player.trailTimer % 4) == 1)
     {
         with (instance_create_depth(x, y, (depth + 101), fx_aura))
         {
             visible = true
-            color = c_yellow;
+            image_blend = c_yellow;
             image_speed = 0
             image_index = other.image_index
             sprite_index = other.sprite_index

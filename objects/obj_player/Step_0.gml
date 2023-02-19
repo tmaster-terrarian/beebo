@@ -267,7 +267,7 @@ if(hascontrol)
                 image_index += abs(hsp / 4)
             landTimer = approach(landTimer, 0, 1)
 
-            if(abs(hsp) > 3 || vsp < -3)
+            if(abs(hsp) > 3)
             {
                 fxtrail = 1;
             }
@@ -358,7 +358,7 @@ if(hascontrol)
             {
                 state = "normal"
                 hsp = -2
-                vsp = -2.5
+                vsp = -3.2
                 facing = -1
                 audio_play_sound(sn_walljump, 0, false)
             }
@@ -366,7 +366,7 @@ if(hascontrol)
             {
                 state = "normal"
                 hsp = 2
-                vsp = -2.5
+                vsp = -3.2
                 facing = 1
                 audio_play_sound(sn_walljump, 0, false)
             }
@@ -378,12 +378,12 @@ if fxtrail
     trailTimer++
 else
     trailTimer = 0
-if ((trailTimer % 3) == 1)
+if ((trailTimer % 4) == 1)
 {
     with (instance_create_depth(x, y, (depth + 2), fx_aura))
     {
         visible = true
-        color = c_yellow;
+        image_blend = c_yellow;
         image_speed = 0
         image_index = other.image_index
         sprite_index = other.sprite_index

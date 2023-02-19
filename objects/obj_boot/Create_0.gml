@@ -33,3 +33,5 @@ if(ini_read_real("savedata", "stage", 0) == 0)
 }
 
 ini_close();
+
+window_center()
