@@ -258,7 +258,6 @@ if(obj_player.fxtrail)
         with (instance_create_depth(x, y, (depth + 101), fx_aura))
         {
             visible = true
-            image_blend = c_yellow;
             image_speed = 0
             image_index = other.image_index
             sprite_index = other.sprite_index

@@ -33,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_boss_bonehive",
-    "path": "sprites/spr_boss_bonehive/spr_boss_bonehive.yy",
+    "name": "spr_boss_bonehive_body",
+    "path": "sprites/spr_boss_bonehive_body/spr_boss_bonehive_body.yy",
   },
   "spriteMaskId": null,
   "visible": true,

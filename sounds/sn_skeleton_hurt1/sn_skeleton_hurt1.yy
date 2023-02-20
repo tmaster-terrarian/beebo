@@ -10,14 +10,14 @@
   "bitRate": 128,
   "compression": 0,
   "conversionMode": 1,
-  "duration": 0.783673,
+  "duration": 0.471521,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "preload": false,
   "sampleRate": 44100,
-  "soundFile": "sn_skeleton_hurt1.mp3",
+  "soundFile": "sn_skeleton_hurt1.wav",
   "type": 0,
   "volume": 1.0,
 }

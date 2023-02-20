@@ -1,5 +1,8 @@
 if(global.console) return;
 
+if(sprite_index == spr_player || sprite_index == spr_player_lookup)
+    image_index += 0.2
+
 running = (sprite_index == spr_player_run) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev) || (sprite_index == spr_anime_run_rev);
 
 if(running)
@@ -120,6 +123,7 @@ if(hascontrol)
     {
         case "normal": default:
         {
+            lookup = 0
             can_attack = 1;
             can_jump = 1;
             if (duck > 1)
@@ -201,15 +205,15 @@ if(hascontrol)
                 }
                 if (abs(hsp) < 0.5 && on_ground && !landTimer)
                 {
-                    use_anim_state(2, anim_state);
-                    image_index += 0.2;
+                    up = (keyboard_check(ord("W")) || gamepad_button_check(0, gp_padu))
+                    use_anim_state(2, anim_state)
                     if duck
                     {
                         sprite_index = spr_player_duck
                         image_index = duck
                         lookup = -0.5;
                     }
-                    else if (keyboard_check(ord("W")) || gamepad_button_check(0, gp_padu))
+                    else if up
                     {
                         sprite_index = spr_player_lookup
                         lookup = 1;
@@ -383,7 +387,6 @@ if ((trailTimer % 4) == 1)
     with (instance_create_depth(x, y, (depth + 2), fx_aura))
     {
         visible = true
-        image_blend = c_yellow;
         image_speed = 0
         image_index = other.image_index
         sprite_index = other.sprite_index
@@ -434,9 +437,9 @@ if(y > room_height + 200)
 
 if(!hascontrol)
 {
-    input_dir = 0;
-    hsp = 0;
-    use_anim_state(2, anim_state);
+    input_dir = 0
+    if(!on_ground)
+        vsp = approach(vsp, vsp_max, grv)
 }
 
 enemy_enabler_counter = max(0, enemy_enabler_counter - 1);

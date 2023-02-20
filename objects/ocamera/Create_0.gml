@@ -18,7 +18,7 @@ usefollow = true;
 xTo = xstart;
 yTo = ystart;
 
-smooth_factor = 6;
+smooth_factor = 5;
 
 //x = follow.x;
 //y = follow.y;

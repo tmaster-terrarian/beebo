@@ -53,8 +53,6 @@
     {"name":"inst_4B5874D9","path":"rooms/lvl1_3/lvl1_3.yy",},
     {"name":"inst_29E99035","path":"rooms/lvl1_3/lvl1_3.yy",},
     {"name":"inst_44C8C417","path":"rooms/lvl1_3/lvl1_3.yy",},
-    {"name":"inst_7AA21A8D","path":"rooms/lvl1_3/lvl1_3.yy",},
-    {"name":"inst_4F850698","path":"rooms/lvl1_3/lvl1_3.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -110,8 +108,6 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4B5874D9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oWall","path":"objects/oWall/oWall.yy",},"properties":[],"rotation":0.0,"scaleX":3.0,"scaleY":3.0,"x":384.0,"y":0.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_29E99035","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"o_nectar","path":"objects/o_nectar/o_nectar.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":336.0,"y":64.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_44C8C417","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"o_nectar","path":"objects/o_nectar/o_nectar.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":339.0,"y":64.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7AA21A8D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_stone","path":"objects/obj_stone/obj_stone.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":456.0,"y":144.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4F850698","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_stone","path":"objects/obj_stone/obj_stone.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":456.0,"y":128.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":true,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles_2","depth":400,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":36,"TileCompressedData":[
 -132,-2147483648,1,6,-36,-2147483648,1,6,-36,-2147483648,1,6,-36,-2147483648,1,6,-296,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"tiles_grass_slope","path":"tilesets/tiles_grass_slope/tiles_grass_slope.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},

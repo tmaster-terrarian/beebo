@@ -6,15 +6,12 @@ posy += lengthdir_y(spd, dir);
 x = floor(posx);
 y = floor(posy);
 
-if(place_meeting(x, y, proj_thrower) && sign(spd) == -1)
+if(place_meeting(x, y, proj_thrower) && spd < 0)
 {
     with(proj_thrower)
     {
-        hp -= 5;
+        hp -= 24;
         flash = 3;
-    }
-    if(proj_thrower == obj_boss_bonehive)
-    {
         var _snd = choose(sn_skeleton_hurt1, sn_skeleton_hurt2, sn_skeleton_hurt3, sn_skeleton_hurt4);
         audio_play_sound(_snd, 0, false);
     }

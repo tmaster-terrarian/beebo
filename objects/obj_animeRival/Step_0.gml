@@ -327,6 +327,7 @@ switch(state)
     }
     case "encounter1":
     {
+        obj_player.sprite_index = spr_player
         INPUT_MOVE = 0
         INPUT_JUMP = 0
         INPUT_DODGE = 0
@@ -341,7 +342,10 @@ switch(state)
                 xTo = 128;
                 yTo = 80;
             }
-            with(obj_player) facing = 1;
+            with(obj_player)
+            {
+                facing = 1
+            }
         }
         if(timer0 < 60)
         {

@@ -49,6 +49,10 @@ global.bonehive_started = 0;
 global.loading_rm = noone;
 global.loading_txt = "";
 
+// boss
+currentboss = noone
+drawbossbar = 0
+
 // music
 current_bgm = noone;
 

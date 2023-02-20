@@ -13,8 +13,9 @@ wallslideTimer = 0;
 running = 0;
 run = 0;
 
-duck = 0;
+up = 0
 
+duck = 0;
 lookup = 0;
 
 can_attack = 1;

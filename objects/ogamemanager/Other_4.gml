@@ -1,3 +1,5 @@
+room_speed = 60
+
 switch(room)
 {
     default:
