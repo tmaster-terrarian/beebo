@@ -176,6 +176,7 @@
     {"name":"approach","order":12,"path":"scripts/approach/approach.yy",},
     {"name":"spr_hp_icon","order":3,"path":"sprites/spr_hp_icon/spr_hp_icon.yy",},
     {"name":"seq_intro_Events13","order":1,"path":"scripts/seq_intro_Events13/seq_intro_Events13.yy",},
+    {"name":"lvl2_0","order":10,"path":"rooms/lvl2_0/lvl2_0.yy",},
     {"name":"spr_testTiles","order":40,"path":"sprites/spr_testTiles/spr_testTiles.yy",},
     {"name":"spr_loading_tip","order":79,"path":"sprites/spr_loading_tip/spr_loading_tip.yy",},
     {"name":"spr_hp_bar_start","order":2,"path":"sprites/spr_hp_bar_start/spr_hp_bar_start.yy",},

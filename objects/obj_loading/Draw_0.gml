@@ -11,4 +11,6 @@ else
 
 draw_sprite(spr_loading_tip, 0, tip_x, tip_y)
 
-draw_text_ext(txt_x, txt_y, txt_string, txt_spacing, 222)
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
+draw_text_ext(txt_x - 16, txt_y, txt_string, txt_spacing, 222)

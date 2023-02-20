@@ -204,6 +204,7 @@
     {"id":{"name":"approach","path":"scripts/approach/approach.yy",},"order":12,},
     {"id":{"name":"spr_hp_icon","path":"sprites/spr_hp_icon/spr_hp_icon.yy",},"order":3,},
     {"id":{"name":"seq_intro_Events13","path":"scripts/seq_intro_Events13/seq_intro_Events13.yy",},"order":1,},
+    {"id":{"name":"lvl2_0","path":"rooms/lvl2_0/lvl2_0.yy",},"order":10,},
     {"id":{"name":"spr_testTiles","path":"sprites/spr_testTiles/spr_testTiles.yy",},"order":40,},
     {"id":{"name":"spr_loading_tip","path":"sprites/spr_loading_tip/spr_loading_tip.yy",},"order":79,},
     {"id":{"name":"spr_hp_bar_start","path":"sprites/spr_hp_bar_start/spr_hp_bar_start.yy",},"order":2,},
@@ -334,6 +335,7 @@
     {"roomId":{"name":"lvl1_2","path":"rooms/lvl1_2/lvl1_2.yy",},},
     {"roomId":{"name":"lvl1_3","path":"rooms/lvl1_3/lvl1_3.yy",},},
     {"roomId":{"name":"lvl1_4","path":"rooms/lvl1_4/lvl1_4.yy",},},
+    {"roomId":{"name":"lvl2_0","path":"rooms/lvl2_0/lvl2_0.yy",},},
   ],
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":false,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},

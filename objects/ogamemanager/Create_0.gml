@@ -64,13 +64,15 @@ target_rm = 0;
 stages =
 [
     [lvl1_0],
-    [lvl1_1, lvl1_2, lvl1_3, lvl1_4]
+    [lvl1_1, lvl1_2, lvl1_3, lvl1_4],
+    [lvl2_0]
 ]
 
 stage_tips =
 [
     "",
-    "idk"
+    "idk",
+    "once I establish my theocracy.. I will throw you into my DUNGEON, where you will ROT for ETERNIT-"
 ]
 
 // THE RM_LIST IS FUCKING DEAD FUCK YOU RM_LIST GOODBYE

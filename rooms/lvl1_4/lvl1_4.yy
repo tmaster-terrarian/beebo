@@ -48,6 +48,7 @@
     {"name":"inst_7BEDEDB7","path":"rooms/lvl1_4/lvl1_4.yy",},
     {"name":"inst_1B8C85B8","path":"rooms/lvl1_4/lvl1_4.yy",},
     {"name":"inst_15739C33","path":"rooms/lvl1_4/lvl1_4.yy",},
+    {"name":"inst_7FE7C27B","path":"rooms/lvl1_4/lvl1_4.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -114,6 +115,10 @@
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_trigger_spawner","path":"objects/obj_trigger_spawner/obj_trigger_spawner.yy",},"propertyId":{"name":"offsx","path":"objects/obj_trigger_spawner/obj_trigger_spawner.yy",},"value":"-64",},
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_trigger_spawner","path":"objects/obj_trigger_spawner/obj_trigger_spawner.yy",},"propertyId":{"name":"offsy","path":"objects/obj_trigger_spawner/obj_trigger_spawner.yy",},"value":"0",},
           ],"rotation":0.0,"scaleX":4.0,"scaleY":10.0,"x":656.0,"y":0.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7FE7C27B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_trigger_level_transition","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_trigger_level_transition","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"propertyId":{"name":"target_st","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"value":"2",},
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_trigger_level_transition","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"propertyId":{"name":"target_rm","path":"objects/obj_trigger_level_transition/obj_trigger_level_transition.yy",},"value":"0",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":12.0,"x":1024.0,"y":-32.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles_1","depth":700,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":10,"SerialiseWidth":64,"TileCompressedData":[
 2,1,12,-17,0,-45,-2147483648,2,11,12,-17,0,-45,-2147483648,2,1,12,-17,0,-45,-2147483648,2,11,12,-19,0,-43,-2147483648,2,11,12,-21,0,-41,-2147483648,2,1,12,-21,0,-41,-2147483648,2,11,12,-11,0,4,5,6,6,7,-6,0,-41,-2147483648,2,11,12,-11,0,6,10,1,

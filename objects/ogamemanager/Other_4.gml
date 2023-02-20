@@ -12,6 +12,7 @@ switch(room)
     break
 
     case loading:
+        StopMusic()
         with(obj_loading)
         {
             loading_rm = global.loading_rm
@@ -28,6 +29,12 @@ switch(room)
     case lvl1_1: case lvl1_2: case lvl1_3: case lvl1_4:
         SetMusic(bgm_placeholder)
         current_st = 1
+        save_st()
+    break
+
+    case lvl2_0:
+        StopMusic()
+        current_st = 2
         save_st()
     break
 }
