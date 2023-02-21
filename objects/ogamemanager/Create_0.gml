@@ -26,28 +26,29 @@ trans_speed = 5; //INVERSE!! LOWER IS FASTER!!!! DUHH APE BRAIN
 target = room;
 
 // player control
-controltimer = 0;
+controltimer = 0
 
 // global variables
-global.snd_volume = 1;
-global.bgm_volume = 1;
-global.speedrun_mode = false;
-global.t = 0;
-global.hasgun = true;
-global.cutscene = false;
-global.introsequence = false;
-global.gamestarted = false;
-global.pausetimer = false;
-global.gunlesspercent = false;
-global.playerhealth = 0;
-global.playermaxhealth = 0;
-global.animemode = false;
-global.show_debug = false;
-global.checkpointx = -1;
-global.checkpointy = -1;
-global.bonehive_started = 0;
-global.loading_rm = noone;
-global.loading_txt = "";
+global.snd_volume = 1
+global.bgm_volume = 1
+global.speedrun_mode = false
+global.t = 0
+global.controller = false
+global.hasgun = true
+global.cutscene = false
+global.introsequence = false
+global.gamestarted = false
+global.pausetimer = false
+global.gunlesspercent = false
+global.playerhealth = 0
+global.playermaxhealth = 0
+global.animemode = false
+global.show_debug = false
+global.checkpointx = -1
+global.checkpointy = -1
+global.bonehive_started = 0
+global.loading_rm = noone
+global.loading_txt = ""
 
 // boss
 currentboss = noone

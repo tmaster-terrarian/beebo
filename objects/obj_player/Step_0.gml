@@ -117,15 +117,31 @@ if(hascontrol)
     {
         accel = air_accel;
         fric = air_fric;
+        if(abs(hsp) > 3)
+            fric = 0.005
     }
 
     switch(state)
     {
-        case "normal": default:
+        case "stunned":
         {
             lookup = 0
-            can_attack = 1;
-            can_jump = 1;
+            can_attack = 0
+            can_jump = 0
+            can_dodge = 0
+            input_dir = 0
+            hsp = approach(hsp, 0, fric)
+            if(!on_ground)
+                vsp = approach(vsp, vsp_max, grv)
+            if(invuln <= 0) || on_ground
+                state = "normal"
+            break
+        }
+        case "normal":
+        {
+            lookup = 0
+            can_attack = 1
+            can_jump = 1
             if (duck > 1)
                 mask_index = mask_player_duck
             else
@@ -313,7 +329,7 @@ if(hascontrol)
         }
     }
 
-    if (keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_face1))
+    if (keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_face1)) && can_jump
     {
         if(on_ground)
         {
@@ -378,7 +394,7 @@ if(hascontrol)
     }
 }
 
-if fxtrail
+if fxtrail && !global.cutscene
     trailTimer++
 else
     trailTimer = 0
@@ -392,7 +408,6 @@ if ((trailTimer % 4) == 1)
         sprite_index = other.sprite_index
         image_xscale = other.image_xscale
         image_yscale = other.image_yscale
-        // image_alpha = 90
     }
 }
 
@@ -415,8 +430,6 @@ if place_meeting(x, y + 2, oWall)
         }
     }
 }
-
-invuln = max(0, invuln - 1);
 
 if(hp > hp_max) hp = hp_max;
 

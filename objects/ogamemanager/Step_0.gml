@@ -166,10 +166,10 @@ if(global.console)
                 break;
             }
 
-            case "sd":
+            case "debug":
             {
                 global.show_debug = !global.show_debug;
-                console_log("toggled debug draw");
+                console_log("debug drawing set to " + string(global.show_debug));
                 break;
             }
 
@@ -359,6 +359,15 @@ else keyboard_string = "";
 cmd = function(command)
 {
     return string_starts_with(input_str, string(command));
+}
+
+if(gamepad_button_check_any_pressed())
+{
+    global.controller = true
+}
+if(keyboard_check_pressed(vk_anykey) || mouse_check_button_pressed(mb_any))
+{
+    global.controller = false
 }
 
 if(global.speedrun_mode) && (global.gamestarted) && (!global.pausetimer) && (!global.introsequence)

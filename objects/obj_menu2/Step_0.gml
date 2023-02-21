@@ -170,6 +170,8 @@ switch(m_submenu)
                         window_set_fullscreen(true);
                     }
 
+                    window_center()
+
                     ini_open("save.ini");
                     ini_write_real("settings", "res", global.screenSize);
                     ini_close();
@@ -191,6 +193,8 @@ switch(m_submenu)
                     {
                         window_set_fullscreen(true);
                     }
+
+                    window_center()
 
                     ini_open("save.ini");
                     ini_write_real("settings", "res", global.screenSize);

@@ -11,12 +11,12 @@ with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
 
     if(place_meeting(x, y, obj_player))
     {
-        if(abs(obj_player.hsp) < 5)
+        if(abs(obj_player.hsp) < 3.5)
             obj_player.hsp = lengthdir_x(5, point_direction(x, y, obj_player.x, obj_player.y-8))
         else
             obj_player.hsp += lengthdir_x(2, point_direction(x, y, obj_player.x, obj_player.y-8))
 
-        if(abs(obj_player.vsp) < 5)
+        if(abs(obj_player.vsp) < 3.5)
             obj_player.vsp = lengthdir_y(5, point_direction(x, y, obj_player.x, obj_player.y-8))
         else
             obj_player.vsp += lengthdir_y(2, point_direction(x, y, obj_player.x, obj_player.y-8))

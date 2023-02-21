@@ -1,5 +1,9 @@
-if(!obj_player.hascontrol)
+if(!obj_player.hascontrol || obj_player.state == "stunned")
 {
+    sprite_index = sGun;
+    image_index = 0;
+    image_speed = 0;
+
     if(sign(obj_player.facing) == 1)
     {
         image_yscale = 1;
@@ -14,9 +18,9 @@ if(!obj_player.hascontrol)
 }
 if(global.console) return;
 
-if(gamepad_is_connected(0))
+if(global.controller)
 {
-    gamepad_set_axis_deadzone(0, 0.1);
+    gamepad_set_axis_deadzone(0, 0.15);
 
     aim_x = (abs(gamepad_axis_value(0, gp_axisrh)) || abs(gamepad_axis_value(0, gp_axisrv))) ? gamepad_axis_value(0, gp_axisrh) : gamepad_axis_value(0, gp_axislh);
     aim_y = (abs(gamepad_axis_value(0, gp_axisrh)) || abs(gamepad_axis_value(0, gp_axisrv))) ? gamepad_axis_value(0, gp_axisrv) : gamepad_axis_value(0, gp_axislv);

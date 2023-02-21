@@ -7,7 +7,7 @@ if(!checkBelow())
     vsp = approach(vsp, 20, grv)
 }
 if(rotate_with_speed)
-    image_angle += abs(vsp) * sign(hsp)
+    image_angle -= abs(vsp) * sign(hsp)
 if(destroy_on_timer && timer == 0)
     scr_disintrigrate()
 if(timer)
