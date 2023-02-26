@@ -2,15 +2,15 @@ if(!place_meeting(x + sign(hsp), y - 4, oWall))
 {
     for(var i = 0; i < 4; i++)
     {
-        y -= 1;
+        y -= 1
         if(!place_meeting(x + sign(hsp), y, oWall))
         {
             x += sign(hsp);
-            break;
+            break
         }
     }
 }
-for (var i = 0; i < 3; i++)
+else for (var i = 0; i < 3; i++)
 {
     if (abs(hsp) >= 1)
     {
@@ -22,4 +22,4 @@ for (var i = 0; i < 3; i++)
         audio_play_sound(sn_player_land, 0, false)
     }
 }
-hsp = 0;
+hsp = 0

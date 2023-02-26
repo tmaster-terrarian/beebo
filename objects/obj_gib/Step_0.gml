@@ -9,6 +9,11 @@ if(!checkBelow())
 if(rotate_with_speed)
     image_angle -= abs(vsp) * sign(hsp)
 if(destroy_on_timer && timer == 0)
-    scr_disintrigrate()
+{
+    if(explode)
+        scr_particle_explode()
+    else
+        scr_disintigrate()
+}
 if(timer)
     timer--

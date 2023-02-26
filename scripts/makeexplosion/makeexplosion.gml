@@ -4,6 +4,7 @@ function MakeExplosion(_x, _y, _scale_x = 1, _scale_y = 1, _anim_speed = 1, _sou
 	obj.image_xscale = _scale_x;
 	obj.image_yscale = _scale_y;
 	obj.image_speed = _anim_speed;
-	audio_play_sound(_sound, 1, false);
+	if(_sound)
+		audio_play_sound(_sound, 1, false);
 	return obj;
 }

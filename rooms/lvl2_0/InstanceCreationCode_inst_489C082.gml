@@ -1,2 +1,3 @@
-_nodes[0] = [0, 0]
-_nodes[1] = [0, 128]
+path = platform1
+path_sp = 1
+alarm[0] = 2

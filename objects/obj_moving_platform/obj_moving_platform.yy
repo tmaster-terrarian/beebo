@@ -8,6 +8,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":1,"eventType":3,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -35,8 +36,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_moving_platform0",
-    "path": "sprites/spr_moving_platform0/spr_moving_platform0.yy",
+    "name": "spr_girder_platform",
+    "path": "sprites/spr_girder_platform/spr_girder_platform.yy",
   },
   "spriteMaskId": null,
   "visible": true,

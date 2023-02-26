@@ -40,7 +40,23 @@ if(mode != TRANS_MODE.OFF)
                 }
             break
             case TRANS_MODE.RESTART:
-                game_restart()
+                if(global.rich_presence)
+                {
+                    audio_stop_all()
+                    room_goto(boot)
+                    with(all)
+                    {
+                        if persistent && object_index != objNekoPresenceDemo
+                            instance_destroy(id)
+                    }
+                    instance_destroy(id)
+                    return
+                }
+                else
+                {
+                    game_restart()
+                    return
+                }
             break
         }
     }
@@ -166,10 +182,14 @@ if(global.console)
                 break;
             }
 
-            case "debug":
+            case "draw_debug":
             {
-                global.show_debug = !global.show_debug;
-                console_log("debug drawing set to " + string(global.show_debug));
+                global.draw_debug = !global.draw_debug;
+                console_log("draw_debug set to " + string(global.draw_debug));
+
+                ini_open("save.ini")
+                ini_write_real("debug", "draw_debug", global.draw_debug)
+                ini_close()
                 break;
             }
 

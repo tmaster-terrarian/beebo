@@ -1,4 +1,4 @@
-if(global.show_debug)
+if(global.draw_debug)
 {
     var _c = c_white;
     switch(_type)

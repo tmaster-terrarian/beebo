@@ -33,7 +33,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_bone",
+    "path": "sprites/spr_bone/spr_bone.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
 }

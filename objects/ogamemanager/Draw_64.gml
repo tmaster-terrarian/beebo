@@ -75,7 +75,7 @@ if(global.speedrun_mode) && (global.gamestarted)
     // }
 }
 
-if(global.show_debug)
+if(global.draw_debug)
 {
     draw_set_color(c_white)
     draw_set_font(fnt_basic)

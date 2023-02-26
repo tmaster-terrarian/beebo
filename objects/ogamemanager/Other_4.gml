@@ -3,6 +3,7 @@ room_speed = 60
 switch(room)
 {
     default:
+        SetMusic(amb_spookland)
         current_st = -1
     break
 
@@ -33,7 +34,7 @@ switch(room)
     break
 
     case lvl2_0:
-        StopMusic()
+        SetMusic(bgm_project2)
         current_st = 2
         save_st()
     break

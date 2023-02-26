@@ -1,7 +1,5 @@
 with (other)
 {
-    image_index++;
-    hp--;
-    flash = 3;
+    event_perform(ev_other, ev_user0)
 }
-instance_destroy();
+instance_destroy()

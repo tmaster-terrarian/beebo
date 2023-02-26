@@ -1,18 +1,16 @@
-if(flash > 0)
+var shakex = 0
+var shakey = 0
+
+if(flash)
 {
-    flash--;
-    shader_set(shWhite);
-    shader_set_uniform_f(upixelW, texelW);
-    shader_set_uniform_f(upixelH, texelH);
-    draw_self();
-    shader_reset();
+    shakex = random_range(-shake, shake)
+    shakey = random_range(-shake, shake)
 }
-else draw_self();
-if(!dead)
+
+draw_sprite_ext(sprite_index, image_index, x + shakex, y + shakey, image_xscale, image_yscale, image_angle, image_blend, image_alpha)
+
+if !dead && flash
 {
-    if(hp <= 0)
-    {
-        alarm[0] = 6;
-        dead = 1;
-    }
+    alarm[0] = flash
+    dead = 1
 }

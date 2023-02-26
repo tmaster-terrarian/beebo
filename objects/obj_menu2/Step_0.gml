@@ -59,6 +59,26 @@ if(key_en)
                 }
                 case 5:
                 {
+                    if(global.rich_presence == 1)
+                    {
+                        global.rich_presence = 0
+                        with(oGameManager.neko)
+                        {
+                            alarm[1] = 1
+                        }
+                    }
+                    else
+                    {
+                        global.rich_presence = 1
+                        oGameManager.neko = instance_create_depth(x, y, 0, objNekoPresenceDemo)
+                    }
+                    ini_open("save.ini");
+                    ini_write_real("settings", "rich_presence", global.rich_presence);
+                    ini_close();
+                    break;
+                }
+                case 6:
+                {
                     ScreenShakeCursed(6, 60);
                     ini_open("save.ini");
                     ini_key_delete("savedata", "stage");
@@ -66,7 +86,7 @@ if(key_en)
                     ini_close();
                     break;
                 }
-                case 6:
+                case 7:
                 {
                     gm_room_transition_direct(rMenu, TRANS_TYPE.BOX)
                     break;
@@ -164,13 +184,12 @@ switch(m_submenu)
                     {
                         window_set_fullscreen(false);
                         window_set_size((256 * global.screenSize), (144 * global.screenSize));
+                        window_center()
                     }
                     else
                     {
                         window_set_fullscreen(true);
                     }
-
-                    window_center()
 
                     ini_open("save.ini");
                     ini_write_real("settings", "res", global.screenSize);
@@ -188,13 +207,12 @@ switch(m_submenu)
                     {
                         window_set_fullscreen(false);
                         window_set_size((256 * global.screenSize), (144 * global.screenSize));
+                        window_center()
                     }
                     else
                     {
                         window_set_fullscreen(true);
                     }
-
-                    window_center()
 
                     ini_open("save.ini");
                     ini_write_real("settings", "res", global.screenSize);

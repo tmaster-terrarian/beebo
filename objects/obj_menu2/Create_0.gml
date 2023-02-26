@@ -10,7 +10,7 @@ m_pos = 0;
 
 m_options =
 [
-    ["Screen Size:", "Sound Volume:", "Music Volume:", "dont.", "Speedrun Mode", "\nDelete Savedata", "Back >"],
+    ["Screen Size:", "Sound Volume:", "Music Volume:", "dont.", "Speedrun Mode", "Rich Presence", "\nDelete Savedata", "Back >"],
     ["do not", "Back >"],
     ["Option:", "Slider:", "Checkbox:", "Back >"]
 ];

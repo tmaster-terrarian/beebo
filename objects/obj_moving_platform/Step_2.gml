@@ -1,23 +1,32 @@
-var n = nodes[_n]
-
-if cld
-    cld--
-
-if(abs(x - n.x) < sp) && (abs(y - n.y) < sp) && (cld <= 0)
+visible = true
+if move
 {
-    cld = sp * 2
-    _n++
-
-    if(_n == array_length(nodes))
-        _n = 0
-
-    n = nodes[_n]
-
-    
+    var xp = path_get_x(path, path_pos)
+    var yp = path_get_y(path, path_pos)
+    path_pos += (1 / (path_get_length(path) / (path_sp * path_dir)))
+    if reverse
+    {
+        if (path_pos >= 1)
+        {
+            path_pos = 1
+            path_dir = -1
+        }
+        else if (path_pos <= 0)
+        {
+            path_pos = 0
+            path_dir = 1
+        }
+    }
+    else if (path_pos >= 1)
+        path_pos = 0
+    hsp = lengthdir_x(point_distance(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)), point_direction(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)))
+    vsp = lengthdir_y(point_distance(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)), point_direction(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)))
 }
-
-hsp = lengthdir_x(sp, point_direction(x, y, n.x, n.y))
-vsp = lengthdir_y(sp, point_direction(x, y, n.x, n.y))
+else
+{
+    hsp = 0
+    vsp = 0
+}
 
 cx += hsp
 cy += vsp
@@ -25,24 +34,44 @@ var vxNew = round(cx)
 var vyNew = round(cy)
 cx -= vxNew
 cy -= vyNew
-
-var bx = sign(vxNew) * sp
-var by = sign(vyNew) * sp
-
-with (obj_moveable)
+repeat abs(vyNew)
 {
-    if place_meeting(x, y + 1, other.id) && !place_meeting(x, y - 1, oWall)
-        y += by
+    if(abs(vsp) < 0.01)
+        break
+    with (obj_moveable)
+    {
+        if place_meeting(x, y + 1, other.id)
+            y += sign(vyNew)
+    }
+    with (oCrate)
+    {
+        if place_meeting(x, y + 1, other.id)
+        {
+            //y += sign(vyNew)
+        }
+    }
+    y += sign(vyNew)
 }
-y += by
-
-with (obj_moveable)
+repeat abs(vxNew)
 {
-    if place_meeting(x, y + 1, other.id) && !place_meeting(x + bx, y, oWall)
-        x += bx
-    if place_meeting(x - bx, y, other.id)
-        x += sign(bx)
+    if(abs(hsp) < 0.01)
+        break
+    with (obj_moveable)
+    {
+        if place_meeting(x, y + 1, other.id) && !place_meeting(x + sign(vxNew), y, oWall)
+            x += sign(vxNew)
+        if place_meeting(x - sign(vxNew), y, other.id)
+            x += sign(vxNew)
 
-    platformTarget = instance_place(x, y + 1, other.id)
+        if(platformTarget != other.id)
+            platformTarget = instance_place(x, y + 1, other.id)
+    }
+    with (oCrate)
+    {
+        if place_meeting(x, y + 1, other.id)
+        {
+            //x += sign(vxNew)
+        }
+    }
+    x += sign(vxNew)
 }
-x += bx
