@@ -37,35 +37,39 @@ for(var i = 0; i < m_options_length; i++)
             {
                 case 0:
                 {
-                    if(global.screenSize == 4)
-                        var _txt = string(global.screenSize) + " (Recommended)";
-                    else if(global.screenSize < 7)
+                    if(global.screenSize < 7)
                         var _txt = string(global.screenSize);
                     else
                         var _txt = "FULLSCREEN";
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 144, m_y + m_padding + (m_size * i), _txt, 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
-                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 108, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
-                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 78 + round(10 * (global.screenSize - 1)), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 151, m_y + m_padding + (m_size * i), _txt, 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 115, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 85 + round(10 * (global.screenSize - 1)), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 1:
                 {
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 144, m_y + m_padding + (m_size * i), string(round(global.snd_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
-                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 108, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
-                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 78 + round(60 * global.snd_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 151, m_y + m_padding + (m_size * i), string(round(global.snd_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 115, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 85 + round(60 * global.snd_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 2:
                 {
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 144, m_y + m_padding + (m_size * i), string(round(global.bgm_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
-                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 108, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
-                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 78 + round(60 * global.bgm_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 151, m_y + m_padding + (m_size * i), string(round(global.bgm_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 115, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 85 + round(60 * global.bgm_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 4:
                 {
                     draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 96, m_y + m_padding + (m_size * i), "Enables speedrun timer", 12, 10000, 0.5, 0.5, 0, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
                     draw_sprite_ext(spr_ui_checkbox, global.speedrun_mode, m_x + m_padding + selectoffset + 88, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    break;
+                }
+                case 5:
+                {
+                    draw_sprite_ext(spr_ui_checkbox, global.rich_presence, m_x + m_padding + selectoffset + 88, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    break;
                 }
             }
             break;
@@ -76,14 +80,14 @@ for(var i = 0; i < m_options_length; i++)
             {
                 case 1:
                 {
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 144, m_y + m_padding + (m_size * i), string(round(test_slider * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
-                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 108, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
-                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 78 + round(60 * test_slider), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 151, m_y + m_padding + (m_size * i), string(round(test_slider * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 115, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 85 + round(60 * test_slider), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 2:
                 {
-                    draw_sprite_ext(spr_ui_checkbox, test_checkbox, m_x + m_padding + selectoffset + 81, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_checkbox, test_checkbox, m_x + m_padding + selectoffset + 88, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
             }
