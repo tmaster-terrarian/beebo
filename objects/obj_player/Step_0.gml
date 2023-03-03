@@ -463,5 +463,5 @@ if(enemy_enabler_counter == 0)
     var _vy = camera_get_view_y(view_camera[0]);
     var _vw = camera_get_view_width(view_camera[0]);
     var _vh = camera_get_view_height(view_camera[0]);
-    instance_activate_region(_vx - 16, _vy - 16, _vw + 16, _vh + 16, true);
+    instance_activate_region(_vx - 20, _vy - 20, _vw + 20, _vh + 20, true);
 }

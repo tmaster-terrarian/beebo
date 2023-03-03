@@ -8,7 +8,7 @@ bomb_timer_max = 70;
 
 heat = 0;
 heat_max = 100;
-heatspd = 1; //4 times slower due to fire rate
+heatspd = 1;
 coolspd = 1;
 
 //controller

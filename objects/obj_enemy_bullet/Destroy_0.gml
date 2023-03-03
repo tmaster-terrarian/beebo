@@ -1,1 +1,1 @@
-instance_create_depth(x + random_range(-u, u), y + random_range(-v, v), other.depth - 4, fx_spark)
+instance_create_depth(x + random_range(-2, 2), y + random_range(-2, 2), depth, fx_spark)

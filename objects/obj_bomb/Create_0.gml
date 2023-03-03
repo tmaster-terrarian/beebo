@@ -11,11 +11,13 @@ explode = function()
     with(MakeExplosion(x, y, size, size, (2 / 3), sn_explosion2))
     {
         dmg = other.damage;
-        with(obj_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
+
         with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
 
         with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
 
+        with(obj_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
+        with(par_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
         with(obj_boss) if(place_meeting(x, y, other)) {hp -= other.dmg; flash = 3}
     }
     ScreenShake(4, 40);

@@ -17,10 +17,25 @@ if move
             path_dir = 1
         }
     }
+    else if go_once
+    {
+        if (path_pos >= 1)
+        {
+            path_pos = 1
+            move = 0
+            xp = path_get_x(path, 1)
+            yp = path_get_y(path, 1)
+        }
+    }
     else if (path_pos >= 1)
         path_pos = 0
     hsp = lengthdir_x(point_distance(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)), point_direction(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)))
     vsp = lengthdir_y(point_distance(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)), point_direction(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)))
+    if(move == 0)
+    {
+        hsp = 0
+        vsp = 0
+    }
 }
 else
 {

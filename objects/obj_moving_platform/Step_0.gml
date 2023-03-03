@@ -1,5 +1,6 @@
-if place_meeting(x, y - 1, obj_player) && !move
+if place_meeting(x, y - 1, obj_player) && !moved
 {
+    moved = 1
     move = 1
 }
 
@@ -43,8 +44,6 @@ if move
     }
 
     timer += path_sp
-
-    player_step_yoffs = place_meeting(x, y - 1, obj_moveable)
 }
 else
 {
@@ -52,6 +51,6 @@ else
     smallcog_index = 0
     cog_rotl = 0
     cog_rotr = 0
-    x = xstart
-    y = ystart
 }
+
+player_step_yoffs = place_meeting(x, y - 1, obj_moveable)

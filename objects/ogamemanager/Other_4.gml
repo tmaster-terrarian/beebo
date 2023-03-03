@@ -42,3 +42,4 @@ switch(room)
 
 // activation/deactivation
 instance_deactivate_object(obj_enemy);
+instance_deactivate_object(par_enemy)

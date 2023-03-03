@@ -1,6 +1,6 @@
 if(!invuln)
 {
-    invuln = 20
+    invuln = 10
     image_index++
     hp--
     flash = 3
