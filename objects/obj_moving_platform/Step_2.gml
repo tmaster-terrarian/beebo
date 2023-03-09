@@ -73,7 +73,7 @@ repeat abs(vxNew)
         break
     with (obj_moveable)
     {
-        if place_meeting(x, y + 1, other.id) && !place_meeting(x + sign(vxNew), y, oWall)
+        if place_meeting(x, y + 1, other.id) && !place_meeting(x + sign(vxNew), y, obj_wall)
             x += sign(vxNew)
         if place_meeting(x - sign(vxNew), y, other.id)
             x += sign(vxNew)

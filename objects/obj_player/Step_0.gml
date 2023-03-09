@@ -83,7 +83,7 @@ else
     }
 }
 
-if(place_meeting(x, y, oWall)) y--;
+if(place_meeting(x, y, obj_wall)) y--;
 
 hsp = clamp(hsp, -20, 20);
 
@@ -242,7 +242,7 @@ if(hascontrol)
             }
             if ((keyboard_check(ord("S")) || gamepad_axis_value(0, gp_axislv) > 0 || gamepad_button_check(0, gp_padd)) && on_ground)
                 duck = approach(duck, 3, 1)
-            else if (!(place_meeting(x, (y - 8), oWall)))
+            else if (!(place_meeting(x, (y - 8), obj_wall)))
                 duck = approach(duck, 0, 1)
             if (!on_ground)
             {
@@ -250,7 +250,7 @@ if(hascontrol)
 
                 if (vsp >= -0.5)
                 {
-                    if place_meeting((x + (2 * input_dir)), y, oWall)
+                    if place_meeting((x + (2 * input_dir)), y, obj_wall)
                         wallslideTimer++
                 }
                 else
@@ -300,7 +300,7 @@ if(hascontrol)
                 vsp = approach(vsp, vsp_max, 0.5);
             else
                 vsp = approach(vsp, vsp_max / 3, grv / 3);
-            if (!(place_meeting(x + (input_dir * 2), y, oWall)))
+            if (!(place_meeting(x + (input_dir * 2), y, obj_wall)))
             {
                 state = "normal";
                 wallslideTimer = 0;
@@ -350,7 +350,7 @@ if(hascontrol)
                 vsp += jump_speed
                 audio_play_sound(sn_jump, 0, false)
             }
-            else if(place_meeting(x, (y + 2), oPlatform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
+            else if(place_meeting(x, (y + 2), obj_platform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
             {
                 sprite_index = spr_player_jump
                 y += 2
@@ -374,7 +374,7 @@ if(hascontrol)
         }
         else
         {
-            if place_meeting((x + 2), y, oWall)
+            if place_meeting((x + 2), y, obj_wall)
             {
                 state = "normal"
                 hsp = -2
@@ -382,7 +382,7 @@ if(hascontrol)
                 facing = -1
                 audio_play_sound(sn_walljump, 0, false)
             }
-            if place_meeting((x - 2), y, oWall)
+            if place_meeting((x - 2), y, obj_wall)
             {
                 state = "normal"
                 hsp = 2
@@ -411,7 +411,7 @@ if ((trailTimer % 4) == 1)
     }
 }
 
-if place_meeting(x, y + 2, oWall)
+if place_meeting(x, y + 2, obj_wall)
 {
     var footsound = choose(sn_stepgrass1, sn_stepgrass2, sn_stepgrass3)
     if(running && (ceil(image_index) == 5 || ceil(image_index) == 1))

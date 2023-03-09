@@ -133,13 +133,13 @@ switch state
         }
         if (gml_Script_input_check("down") && on_ground)
             duck = approach(duck, 4, 1)
-        else if (!(place_meeting(x, (y - 8), oWall)))
+        else if (!(place_meeting(x, (y - 8), obj_wall)))
             duck = approach(duck, 0, 1)
         if (!on_ground)
         {
             if (vsp >= -0.5)
             {
-                if place_meeting((x + (2 * input_dir)), y, oWall)
+                if place_meeting((x + (2 * input_dir)), y, obj_wall)
                     wallslideTimer++
             }
             else
@@ -309,7 +309,7 @@ switch state
             vsp = approach(vsp, vsp_max, 0.5)
         else
             vsp = approach(vsp, (vsp_max / 3), (grv / 3))
-        if (!(place_meeting((x + (input_dir * 2)), y, oWall)))
+        if (!(place_meeting((x + (input_dir * 2)), y, obj_wall)))
         {
             state = "normal"
             wallslideTimer = 0
@@ -675,7 +675,7 @@ if (inputJump < 5 && canJmp)
     }
     else
     {
-        if place_meeting((x + 2), y, oWall)
+        if place_meeting((x + 2), y, obj_wall)
         {
             state = "normal"
             hsp = -2
@@ -683,7 +683,7 @@ if (inputJump < 5 && canJmp)
             facing = -1
             audio_play_sound(sn_walljump, 0, false)
         }
-        if place_meeting((x - 2), y, oWall)
+        if place_meeting((x - 2), y, obj_wall)
         {
             state = "normal"
             hsp = 2

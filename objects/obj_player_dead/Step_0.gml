@@ -6,9 +6,9 @@ if (done == false)
     //move and collisions
     //horizontal
 	if (oob == false)
-    if (place_meeting(x + hsp, y, oWall))
+    if (place_meeting(x + hsp, y, obj_wall))
     {
-        while (!place_meeting(x + sign(hsp), y, oWall))
+        while (!place_meeting(x + sign(hsp), y, obj_wall))
         {
             x += sign(hsp);
         }
@@ -18,7 +18,7 @@ if (done == false)
 
     //vertical
 	if (oob == false)
-    if (place_meeting(x, y + vsp, oWall))
+    if (place_meeting(x, y + vsp, obj_wall))
     {
         if (vsp > 0)
         {
@@ -30,7 +30,7 @@ if (done == false)
 			else
 				image_index = 1;
         }
-        else while (!place_meeting(x, y + sign(vsp), oWall))
+        else while (!place_meeting(x, y + sign(vsp), obj_wall))
         {
             y += sign(vsp);
         }

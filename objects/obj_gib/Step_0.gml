@@ -1,4 +1,4 @@
-if(place_meeting(x, y + 1, oWall))
+if(place_meeting(x, y + 1, obj_wall))
 {
     hsp = approach(hsp, 0, fric)
 }

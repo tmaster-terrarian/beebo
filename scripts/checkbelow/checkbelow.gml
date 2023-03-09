@@ -1,4 +1,4 @@
-function checkBelow() //gml_Script_checkBelow
+function checkBelow()
 {
-    return (place_meeting(x, (y + 1), oWall) || (place_meeting(x, (y + 1), oPlatform) && (!(place_meeting(x, y, oPlatform)))));
+    return (place_meeting(x, (y + 1), obj_wall) || (place_meeting(x, (y + 1), obj_platform) && (!(place_meeting(x, y, obj_platform)))));
 }

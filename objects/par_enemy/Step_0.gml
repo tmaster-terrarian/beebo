@@ -9,5 +9,5 @@ if(hp <= 0) && !ded
     event_perform(ev_other, ev_user2)
 }
 
-if(!place_meeting(x, y + 1, oWall))
+if(!place_meeting(x, y + 1, obj_wall))
     vsp = approach(vsp, 99, grv)

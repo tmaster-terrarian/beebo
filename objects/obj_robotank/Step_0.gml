@@ -1,6 +1,6 @@
 event_inherited()
 
-if(place_meeting(x, y, oWall))
+if(place_meeting(x, y, obj_wall))
 {
     y--
 }
@@ -42,7 +42,7 @@ switch state
         {
             for (var i = 0; i < 4; i++)
             {
-                with (instance_create_depth(random_range(bbox_left, bbox_right), y + random_range(-9, -12), (depth - 1), fx_dust))
+                with (instance_create_depth(random_range(bbox_left, bbox_right + 4), y + random_range(-9, -12), (depth - 1), fx_dust))
                 {
                     vx = random_range(-1.8, 1.8)
                     vy = random_range(-1, 0)
@@ -57,7 +57,7 @@ switch state
                 {
                     image_xscale = 2
                     image_yscale = 0.8
-                    image_speed = 0.75
+                    image_speed = 1
                     speed = 12
                     speed = 12
                     direction = point_direction(0, 0, other.facing, 0) + random_range(-2, 2)
@@ -70,7 +70,7 @@ switch state
                 {
                     image_xscale = 2
                     image_yscale = 0.8
-                    image_speed = 0.75
+                    image_speed = 1
                     speed = 12
                     direction = point_direction(0, 0, other.facing, 0) + random_range(-2, 2)
                     image_angle = 0

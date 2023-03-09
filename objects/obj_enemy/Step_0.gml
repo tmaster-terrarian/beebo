@@ -2,14 +2,14 @@ vsp += grv;
 
 //move and collisions
 //horizontal
-if(place_meeting(x + sign(hsp), y, oWall))
+if(place_meeting(x + sign(hsp), y, obj_wall))
 {
-    if(!place_meeting(x + sign(hsp), y - 4, oWall))
+    if(!place_meeting(x + sign(hsp), y - 4, obj_wall))
     {
         for(var i = 0; i < 4; i++)
         {
             y -= 1;
-            if(!place_meeting(x + sign(hsp), y, oWall))
+            if(!place_meeting(x + sign(hsp), y, obj_wall))
             {
                 x += sign(hsp);
                 break;
@@ -18,9 +18,9 @@ if(place_meeting(x + sign(hsp), y, oWall))
     }
 }
 
-if (place_meeting(x + hsp, y, oWall))
+if (place_meeting(x + hsp, y, obj_wall))
 {
-    while (!place_meeting(x + sign(hsp), y, oWall))
+    while (!place_meeting(x + sign(hsp), y, obj_wall))
     {
         x += sign(hsp);
     }
@@ -29,9 +29,9 @@ if (place_meeting(x + hsp, y, oWall))
 x += hsp;
 
 //vertical
-if (place_meeting(x, y + vsp, oWall))
+if (place_meeting(x, y + vsp, obj_wall))
 {
-    while (!place_meeting(x, y + sign(vsp), oWall))
+    while (!place_meeting(x, y + sign(vsp), obj_wall))
     {
         y += sign(vsp);
     }
@@ -39,13 +39,13 @@ if (place_meeting(x, y + vsp, oWall))
 }
 y += vsp;
 
-if (!place_meeting(x + sign(hsp), y + 5, oWall))
+if (!place_meeting(x + sign(hsp), y + 5, obj_wall))
 {
     hsp = -hsp;
 }
 
 //animation
-if (!place_meeting(x, y + 1, oWall))
+if (!place_meeting(x, y + 1, obj_wall))
 {
     sprite_index = sRoboA;
     image_speed = 0;

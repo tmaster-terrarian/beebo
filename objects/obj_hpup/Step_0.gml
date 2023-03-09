@@ -4,7 +4,7 @@ if(!done) && (!follow_player)
 {
     vsp += grv;
 
-    if (place_meeting(x + hsp, y, oWall))
+    if (place_meeting(x + hsp, y, obj_wall))
     {
         if(bounce_counter < max_bounces)
         {
@@ -19,7 +19,7 @@ if(!done) && (!follow_player)
     }
     x += hsp;
 
-    if (place_meeting(x, y + vsp, oWall)) || ((place_meeting(x, y + vsp, oPlatform)) && vsp > 0)
+    if (place_meeting(x, y + vsp, obj_wall)) || ((place_meeting(x, y + vsp, obj_platform)) && vsp > 0)
     {
         if(bounce_counter < max_bounces)
         {
@@ -32,7 +32,7 @@ if(!done) && (!follow_player)
         {
             for(var i = 0; i < 20; i++)
             {
-                if(!place_meeting(x, y + sign(vsp), oWall))
+                if(!place_meeting(x, y + sign(vsp), obj_wall))
                 {
                     y += sign(vsp);
                 }
@@ -47,7 +47,7 @@ if(!done) && (!follow_player)
     }
     y += vsp;
 }
-else if(!place_meeting(x, y + 1, oWall))
+else if(!place_meeting(x, y + 1, obj_wall))
 {
     done = false;
     bounce_counter = 0;
@@ -55,7 +55,7 @@ else if(!place_meeting(x, y + 1, oWall))
 
 if(!follow_player)
 {
-    var c = instance_place(x, y, oWall)
+    var c = instance_place(x, y, obj_wall)
     if c
     {
         if(c.x > x)
@@ -68,7 +68,7 @@ if(!follow_player)
             y++
     }
 
-    if(!place_meeting(x + 1, y, oWall)) && (!place_meeting(x - 1, y, oWall))
+    if(!place_meeting(x + 1, y, obj_wall)) && (!place_meeting(x - 1, y, obj_wall))
     {
         var rand = choose(-1, 1)
         var c = instance_place(x, y, obj_hpup)
@@ -78,7 +78,7 @@ if(!follow_player)
                 x--
             if(c.x < x)
                 x++
-            if(c.x == x && !place_meeting(x + rand, y, oWall))
+            if(c.x == x && !place_meeting(x + rand, y, obj_wall))
                 c.x += rand
         }
     }

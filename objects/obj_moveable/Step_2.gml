@@ -1,4 +1,3 @@
-if(global.console) return;
 var _temp_local_var_2, _temp_local_var_4;
 h_counter += hsp
 v_counter += vsp
@@ -10,9 +9,9 @@ var collide = 0
 var slope = 0
 repeat abs(h)
 {
-    if place_meeting((x + sign(h)), y, oWall)
+    if place_meeting((x + sign(h)), y, obj_wall)
     {
-        if (!(place_meeting((x + sign(h)), (y - 1), oWall)))
+        if (!(place_meeting((x + sign(h)), (y - 1), obj_wall)))
         {
             y -= 1
             x += sign(h)
@@ -29,7 +28,7 @@ repeat abs(h)
     {
         if on_ground
         {
-            if ((!(place_meeting((x + sign(h)), (y + 1), oWall))) && place_meeting((x + sign(h)), (y + 2), oWall))
+            if ((!(place_meeting((x + sign(h)), (y + 1), obj_wall))) && place_meeting((x + sign(h)), (y + 2), obj_wall))
                 y += 1
         }
         x += sign(h)
@@ -44,7 +43,7 @@ repeat abs(v)
 {
     if (vsp <= 0)
     {
-        if place_meeting(x, (y + sign(v)), oWall)
+        if place_meeting(x, (y + sign(v)), obj_wall)
             collide = 1
         else
         {

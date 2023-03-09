@@ -6,13 +6,13 @@ if (!ticker)
 }
 if (check && ticker)
 {
-    if collision_point((x + hspeed), y, oWall, 1, 1)
+    if collision_point((x + hspeed), y, obj_wall, 1, 1)
     {
         hspeed *= (-random(0.8))
         gravity = 0.2
         ticker -= 1
     }
-    if collision_point(x, (y + vspeed), oWall, 1, 1)
+    if collision_point(x, (y + vspeed), obj_wall, 1, 1)
     {
         vspeed *= (-random(0.8))
         gravity = 0.2

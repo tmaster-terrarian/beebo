@@ -8,7 +8,7 @@ if (place_meeting(x + hsp, y, oCrate)) || (place_meeting(x + hsp, y, obj_stone))
 {
     explode();
 }
-else var c = collision_point(x + hsp, y, oWall, 1, 1)
+else var c = collision_point(x + hsp, y, obj_wall, 1, 1)
 if c
 {
     if(bounce_counter >= max_bounces)
@@ -31,7 +31,7 @@ if (place_meeting(x, y + vsp, oCrate)) || (place_meeting(x, y + vsp, obj_stone))
 {
     explode();
 }
-else var c = collision_point(x, y + vsp, oWall, 1, 1)
+else var c = collision_point(x, y + vsp, obj_wall, 1, 1)
 if (c && vsp > 0)
 {
     if(bounce_counter >= max_bounces)
@@ -45,7 +45,7 @@ if (c && vsp > 0)
     audio_play_sound(sn_walljump, 0, false)
 }
 
-if ((place_meeting(x, y + vsp, oPlatform) && !place_meeting(x, y - 1, oPlatform)) && vsp > 0)
+if ((place_meeting(x, y + vsp, obj_platform) && !place_meeting(x, y - 1, obj_platform)) && vsp > 0)
 {
     if(bounce_counter >= max_bounces)
     {

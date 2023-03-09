@@ -2,7 +2,7 @@
 
 cn = function(_posx, _posy) //check neighbor 'macro'(?)
 {
-    return (place_meeting(x + _posx * 16, y + _posy * 16, oWall) && !place_meeting(x + _posx * 16, y + _posy * 16, oCrate));
+    return (place_meeting(x + _posx * 16, y + _posy * 16, obj_wall) && !place_meeting(x + _posx * 16, y + _posy * 16, oCrate));
 }
 
 if(cn(0, 1) && cn(-1, 0) && cn(1, 0) && cn(0, -1) && cn(1, 1) && cn(1, -1) && cn(-1, 1) && cn(-1, -1)) image_index = 0; //center

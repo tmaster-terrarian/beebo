@@ -107,7 +107,7 @@ switch(state)
         }
         if (INPUT_DUCK && on_ground)
             duck = approach(duck, 3, 1)
-        else if (!place_meeting(x, y - 8, oWall))
+        else if (!place_meeting(x, y - 8, obj_wall))
             duck = approach(duck, 0, 1)
         if (!on_ground)
         {
@@ -115,7 +115,7 @@ switch(state)
 
             if (vsp >= -0.5)
             {
-                if place_meeting(x + (2 * INPUT_MOVE), y, oWall)
+                if place_meeting(x + (2 * INPUT_MOVE), y, obj_wall)
                     wallslideTimer++
             }
             else
@@ -151,7 +151,7 @@ switch(state)
             vsp = approach(vsp, vsp_max, 0.5);
         else
             vsp = approach(vsp, vsp_max / 3, grv / 3);
-        if (!(place_meeting(x + (INPUT_MOVE * 2), y, oWall)))
+        if (!(place_meeting(x + (INPUT_MOVE * 2), y, obj_wall)))
         {
             state = "normal";
             wallslideTimer = 0;
@@ -260,7 +260,7 @@ switch(state)
             {
                 single_wall = 0;
                 INPUT_MOVE = -INPUT_MOVE;
-                if place_meeting(x + 2, y, oWall)
+                if place_meeting(x + 2, y, obj_wall)
                 {
                     hsp = -2
                     vsp = -2.5
@@ -268,7 +268,7 @@ switch(state)
                     INPUT_MOVE = -1;
                     audio_play_sound(sn_throw, 0, false)
                 }
-                if place_meeting(x - 2, y, oWall)
+                if place_meeting(x - 2, y, obj_wall)
                 {
                     hsp = 2
                     vsp = -2.5
@@ -380,7 +380,7 @@ invuln = max(0, invuln - 1);
 
 check = function(_x, _y)
 {
-    return (place_meeting(_x, _y, oWall) || place_meeting(_x, _y, oPlatform));
+    return (place_meeting(_x, _y, obj_wall) || place_meeting(_x, _y, obj_platform));
 }
 
 if(active) && (instance_exists(obj_player))
@@ -398,7 +398,7 @@ if(active) && (instance_exists(obj_player))
         }
 
         //jump onto platforms
-        if(place_meeting(x, y - 24, oPlatform)) && (y > obj_player.y - 4) && (can_jump)
+        if(place_meeting(x, y - 24, obj_platform)) && (y > obj_player.y - 4) && (can_jump)
         {
             can_jump = 0
             INPUT_JUMP = 1
@@ -406,7 +406,7 @@ if(active) && (instance_exists(obj_player))
         }
 
         //drop through platforms
-        if(place_meeting(x, y + 1, oPlatform)) && (!place_meeting(x, y + 1, oWall))
+        if(place_meeting(x, y + 1, obj_platform)) && (!place_meeting(x, y + 1, obj_wall))
         {
             if(y < (obj_player.y - 8))
             {
@@ -420,14 +420,14 @@ if(active) && (instance_exists(obj_player))
         }
 
         //initiate walljump chains if too low from player
-        // if(y - obj_player.y > 80) && (place_meeting(x + sign(facing) * 8, y, oWall)) && (can_jump)
+        // if(y - obj_player.y > 80) && (place_meeting(x + sign(facing) * 8, y, obj_wall)) && (can_jump)
         // {
         //     can_jump = 0
         //     INPUT_JUMP = 1
         // }
 
         //jump over ledges
-        if collision_rectangle(x + sign(facing) * 8, y - 40, x + sign(facing), y + 5, oWall, false, true) && !place_meeting(x, y - 40, oWall) && can_jump && (y > obj_player.y)
+        if collision_rectangle(x + sign(facing) * 8, y - 40, x + sign(facing), y + 5, obj_wall, false, true) && !place_meeting(x, y - 40, obj_wall) && can_jump && (y > obj_player.y)
         {
             can_jump = 0
             INPUT_JUMP = 1
@@ -435,12 +435,12 @@ if(active) && (instance_exists(obj_player))
     }
 
     //walljumps only if below player and there's adequate space above and below
-    else if(!check(x, y + 32)) && (!place_meeting(x, y - 16, oWall)) && ((y >= obj_player.y) || (y > room_height))
+    else if(!check(x, y + 32)) && (!place_meeting(x, y - 16, obj_wall)) && ((y >= obj_player.y) || (y > room_height))
     {
         chance = -1
 
         // // single wall walljump via dodging into wall
-        // if(!place_meeting(x + 2 * sign(facing), y, oWall)) && (cast_check(x, y, -2 * sign(facing), 0, oWall, 24)) && (state == "normal") && (can_dodge) && (vsp >= 0.1)
+        // if(!place_meeting(x + 2 * sign(facing), y, obj_wall)) && (cast_check(x, y, -2 * sign(facing), 0, obj_wall, 24)) && (state == "normal") && (can_dodge) && (vsp >= 0.1)
         // {
         //     single_wall = 1;
         //     can_dodge = 0;
@@ -452,13 +452,13 @@ if(active) && (instance_exists(obj_player))
 
     if !on_ground
     {
-        if place_meeting(x + 2, y, oWall)
+        if place_meeting(x + 2, y, obj_wall)
         {
             chance = -1
             facing = 1
             INPUT_MOVE = 1
         }
-        if place_meeting(x - 2, y, oWall)
+        if place_meeting(x - 2, y, obj_wall)
         {
             chance = -1
             facing = -1
@@ -526,7 +526,7 @@ if(active) && (instance_exists(obj_player))
                 vsp += jumpsp
                 audio_play_sound(sn_jump, 0, false)
             }
-            else if(place_meeting(x, (y + 2), oPlatform)) && (INPUT_DUCK)
+            else if(place_meeting(x, (y + 2), obj_platform)) && (INPUT_DUCK)
             {
                 sprite_index = spr_anime_jump
                 y += 2
@@ -548,7 +548,7 @@ if(active) && (instance_exists(obj_player))
         }
         else
         {
-            if place_meeting(x + 2, y, oWall)
+            if place_meeting(x + 2, y, obj_wall)
             {
                 hsp = -2
                 vsp = -2.5
@@ -557,7 +557,7 @@ if(active) && (instance_exists(obj_player))
                 audio_play_sound(sn_walljump, 0, false)
                 can_dodge = 1
             }
-            if place_meeting(x - 2, y, oWall)
+            if place_meeting(x - 2, y, obj_wall)
             {
                 hsp = 2
                 vsp = -2.5
@@ -575,7 +575,7 @@ if(active) && (instance_exists(obj_player))
         INPUT_DUCK = 0
 
         //cool backflip ledge save
-        if(!place_meeting(x, y + 32, oWall)) && (!place_meeting(x - (sign(hsp) * 40), y - 8, oWall)) && (place_meeting(x - (sign(hsp) * 40), y + 8, oWall)) && (state == "normal") && (can_dodge) && (abs(x - obj_player.x) < 80) && ((y - obj_player.y) >= -8)
+        if(!place_meeting(x, y + 32, obj_wall)) && (!place_meeting(x - (sign(hsp) * 40), y - 8, obj_wall)) && (place_meeting(x - (sign(hsp) * 40), y + 8, obj_wall)) && (state == "normal") && (can_dodge) && (abs(x - obj_player.x) < 80) && ((y - obj_player.y) >= -8)
         {
             timer0 = 0;
             image_index = 0;
