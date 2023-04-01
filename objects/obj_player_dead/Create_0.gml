@@ -5,6 +5,10 @@ grv = 0.05;
 done = false;
 oob = false;
 
+textchar = 0
+lastchar = 0
+txt = ""
+
 image_speed = 0
 image_index = 0
 

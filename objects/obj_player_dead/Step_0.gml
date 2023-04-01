@@ -88,7 +88,7 @@ else
 			shake_length = 20;
 			shake_magnitude = 2;
 			shake_remain = 2;
-			ScreenShake(4, 20);
+			ScreenShake(4, 40);
 			MakeExplosion(posx, posy, 4, 4, 2, sn_explosion, depth + 150);
 		}
     }

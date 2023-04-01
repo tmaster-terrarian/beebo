@@ -53,26 +53,26 @@ switch state
         {
             if timer0 % 8 == 0
             {
-                with(instance_create_depth(x - 0, y - 14, depth - 2, obj_enemy_bullet))
+                with(instance_create_depth(x - 0, y - 14 + random_range(-1, 1), depth - 2, obj_enemy_bullet))
                 {
                     image_xscale = 2
                     image_yscale = 0.8
                     image_speed = 1
                     speed = 12
                     speed = 12
-                    direction = point_direction(0, 0, other.facing, 0) + random_range(-2, 2)
+                    direction = point_direction(0, 0, other.facing, 0)
                     image_angle = 0
                 }
             }
             if timer0 % 8 == 4
             {
-                with(instance_create_depth(x + 20, y - 14, depth - 1, obj_enemy_bullet))
+                with(instance_create_depth(x + 20, y - 14 + random_range(-1, 1), depth - 1, obj_enemy_bullet))
                 {
                     image_xscale = 2
                     image_yscale = 0.8
                     image_speed = 1
                     speed = 12
-                    direction = point_direction(0, 0, other.facing, 0) + random_range(-2, 2)
+                    direction = point_direction(0, 0, other.facing, 0)
                     image_angle = 0
                 }
             }
@@ -81,6 +81,13 @@ switch state
                 hsp += -facing * 0.25
                 ScreenShake(1, 5)
                 audio_play_sound(snShot, 1, false)
+            }
+
+            with(instance_create_depth(x + random_range(-16, 16), bbox_bottom, depth - 3, fx_spark2))
+            {
+                hsp = other.hsp
+                vsp = random_range(-1, -2.5)
+                life_max = 5
             }
         }
         if(timer0 == 180)
