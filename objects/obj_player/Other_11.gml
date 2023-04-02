@@ -20,7 +20,7 @@ if (vsp >= 0)
         with (instance_create_depth((bbox_left + random(8)), random_range(bbox_bottom, bbox_bottom), (depth - 1), fx_dust))
         {
             sprite_index = spr_fx_dust2
-            vx = other.hsp
+            vx = other.hsp + (other.state == "grind") * -7
             vz = 0
         }
     }

@@ -1,10 +1,12 @@
-var _x = x;
-var _y = y;
-x = floor(x);
-y = floor(y);
+if state == "grind"
+{
+    // draw_sprite(spr_railboard, !on_ground, x, y)
+    // if(!on_ground)
+    //     draw_sprite(spr_railboard, 2, x, ystart)
+    draw_sprite(spr_railboard, 0, x, ystart)
+}
+
 draw_self();
-x = _x;
-y = _y;
 
 if(instance_exists(oGun))
 {

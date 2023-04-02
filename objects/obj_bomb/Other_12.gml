@@ -22,7 +22,14 @@ with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
         else
             obj_player.vsp += lengthdir_y(2, point_direction(x, y, obj_player.x, obj_player.y-8))
     }
+
+    with(obj_player)
+    {
+        other.hspeed = ((state == "grind") * -7)
+    }
 }
 ScreenShake(6, 60);
 done = true;
-scr_particle_explode();
+scr_particle_explode2()
+image_alpha = 1
+scr_particle_explode()

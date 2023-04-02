@@ -58,3 +58,25 @@ if ((place_meeting(x, y + vsp, obj_platform) && !place_meeting(x, y - 1, obj_pla
     audio_play_sound(sn_walljump, 0, false)
 }
 y += vsp;
+
+if(obj_player.state == "grind")
+{
+    if y > room_height
+    {
+        event_perform(ev_other, ev_outside)
+    }
+    if (obj_player.trailTimer % 4 == 1)
+    {
+        with (instance_create_depth(x, y, depth, fx_aura))
+        {
+            visible = true
+            image_speed = 0
+            image_index = other.image_index
+            sprite_index = other.sprite_index
+            image_xscale = other.image_xscale
+            image_yscale = other.image_yscale
+            image_angle = other.image_angle
+            hspeed = -6
+        }
+    }
+}

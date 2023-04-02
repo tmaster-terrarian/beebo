@@ -105,6 +105,10 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
     recoil = 2;
     firingdelay = 4;
 
+    var v = 4
+    if(obj_player.state == "grind")
+        v = 2
+
     //fire bullet
     //for (var i = 0; i < 6; i += 1) //uncomment for spread
     //{
@@ -114,7 +118,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
             audio_play_sound(snShot, 1, false);
 
             speed = 12;
-            direction = other.image_angle + random_range(-4, 4);
+            direction = other.image_angle + random_range(-v, v);
             image_angle = direction;
         }
     //}
@@ -126,7 +130,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
         with(instance_create_depth(x + lengthdir_x(dist, image_angle), (y - 2) + lengthdir_y(dist, image_angle), depth - 1, fx_dust))
         {
             vy = random_range(-1.5, -1)
-            vx += obj_player.hsp
+            vx += obj_player.hsp + ((obj_player.state == "grind") * -6)
         }
     }
 }
@@ -139,7 +143,7 @@ else if(firingdelay < 0)
         with(instance_create_depth(x + lengthdir_x(dist, image_angle), (y - 2) + lengthdir_y(dist, image_angle), depth - 1, fx_dust))
         {
             vy = random_range(-1.5, -1) + obj_player.vsp
-            vx += obj_player.hsp
+            vx += obj_player.hsp + ((obj_player.state == "grind") * -6)
         }
         audio_play_sound(sn_steam, 1, false, heat/heat_max);
     }
@@ -178,8 +182,9 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
     with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
     {
         direction = other.image_angle;
-        hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.5);
+        hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.5) + ((obj_player.state == "grind") * -0.5);
         vsp = lengthdir_y(2, direction) + (obj_player.vsp * 0.25) - 1;
+        if((vsp > 0.2) && (obj_player.state == "grind")) max_bounces = 0
 
         if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) event_perform(ev_other, ev_user2);
     }
@@ -206,7 +211,7 @@ if (sprite_index == sGunR)
             with(instance_create_depth(x + random_range(-1, 1), y + random_range(-1, 1), depth - 1, fx_dust))
             {
                 vy = random_range(-1.5, -0.75);
-                vx = random_range(1.5, 2) * other.image_yscale + obj_player.hsp;
+                vx = random_range(1.5, 2) * other.image_yscale + obj_player.hsp + ((obj_player.state == "grind") * -6);
             }
         }
     }
@@ -242,7 +247,10 @@ if(obj_player.fxtrail)
             image_xscale = other.image_xscale
             image_yscale = other.image_yscale
             image_angle = other.image_angle
-            // image_alpha = 90
+            if(obj_player.state == "grind")
+            {
+                hspeed = -6
+            }
         }
     }
 }

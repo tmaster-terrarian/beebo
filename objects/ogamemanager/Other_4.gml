@@ -38,6 +38,12 @@ switch(room)
         current_st = 2
         save_st()
     break
+
+    case lvl3_0:
+        SetMusic(bgm_placeholder3)
+        current_st = 3
+        save_st()
+    break
 }
 
 // activation/deactivation

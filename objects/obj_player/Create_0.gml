@@ -20,6 +20,7 @@ lookup = 0;
 
 can_attack = 1;
 can_jump = 1;
+can_walljump = 1;
 can_dodge = 1;
 
 hp = 4;

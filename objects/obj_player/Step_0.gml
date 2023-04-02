@@ -33,7 +33,7 @@ else if(sprite_index == spr_player_crawl)
         case 7: gun_offs_x = -2 * sign(facing); gun_offs_y = -2; break;
     }
 }
-else if(sprite_index == spr_player || sprite_index == spr_player_lookup)
+else if(sprite_index == spr_player || sprite_index == spr_player_lookup || spr_player_grinding)
 {
     switch(floor(image_index))
     {
@@ -139,6 +139,7 @@ if(hascontrol)
         }
         case "normal":
         {
+            can_walljump = 1
             lookup = 0
             can_attack = 1
             can_jump = 1
@@ -296,6 +297,7 @@ if(hascontrol)
         }
         case "wallslide":
         {
+            can_walljump = 1
             if (vsp < 0)
                 vsp = approach(vsp, vsp_max, 0.5);
             else
@@ -327,6 +329,99 @@ if(hascontrol)
             vsp = clamp(vsp, -99, 2);
             break;
         }
+        case "grind":
+        {
+            timer0++
+            if get_timer() % 2 == 0
+                ScreenShake(1, 1)
+            can_walljump = 0
+            facing = 1
+            fxtrail = 1
+
+            x = clamp(x, 4, 260)
+
+            if(input_dir == 1)
+            {
+                if(hsp < 0)
+                    hsp = approach(hsp, 0, fric * 2)
+                else
+                    hsp = approach(hsp, walksp * 0.75, accel)
+                if get_timer() % 4 == 0
+                {
+                    with(instance_create_depth(bbox_left - 4 + random(12), ystart + 2, depth - 2, fx_spark2))
+                    {
+                        hsp = random_range(-5, -8)
+                        vsp = random_range(-1.2, -2.5)
+                        life_max = 3
+                        collide = 0
+                    }
+                }
+            }
+            else if(input_dir == -1)
+            {
+                if(hsp > 0)
+                    hsp = approach(hsp, 0, fric * 2)
+                else
+                    hsp = approach(hsp, -walksp * 1.15, accel)
+                if get_timer() % 2 == 0
+                {
+                    with(instance_create_depth(bbox_left - 4 + random(12), ystart + 2, depth - 2, fx_spark2))
+                    {
+                        hsp = random_range(-7, -10)
+                        vsp = random_range(-1.2, -2.5)
+                        life_max = 3
+                        collide = 0
+                    }
+                }
+            }
+            else
+            {
+                hsp = approach(hsp, sin(get_timer()/1000000) * 0.2, fric * 2)
+                if(get_timer() % 4 == 2)
+                {
+                    with(instance_create_depth(bbox_left - 4 + random(12), ystart + 2, depth - 2, fx_spark2))
+                    {
+                        hsp = random_range(-5, -8)
+                        vsp = random_range(-1.2, -2.5)
+                        life_max = 3
+                        collide = 0
+                    }
+                }
+            }
+            if(!on_ground)
+            {
+                sprite_index = spr_player_jump
+                if (vsp >= 0.1)
+                    vsp = approach(vsp, vsp_max, grv)
+                if (vsp < 0)
+                    vsp = approach(vsp, vsp_max, grv)
+                else if (vsp < 2)
+                    vsp = approach(vsp, vsp_max, grv * 0.25)
+                if (vsp < 0)
+                    image_index = approach(image_index, 1, 0.2)
+                else if (vsp >= 0.5)
+                    image_index = approach(image_index, 5, 0.5)
+                else
+                    image_index = 3
+            }
+            else
+            {
+                sprite_index = spr_player_grinding
+                image_speed = 0.2
+            }
+
+            with(obj_pixel)
+            {
+                hspeed -= 0.12
+                if(place_meeting(x, y + 1, obj_wall))
+                    hspeed = -7
+            }
+            with(obj_bomb)
+            {
+                hsp -= 0.01
+            }
+            break
+        }
     }
 
     if (keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_face1)) && can_jump
@@ -335,7 +430,7 @@ if(hascontrol)
         {
             if(!duck)
             {
-                state = "normal"
+                if(state != "grind") state = "normal"
                 image_index = 0
                 sprite_index = spr_player_jump
                 var c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
@@ -372,7 +467,7 @@ if(hascontrol)
                 audio_play_sound(sn_jump, 0, false)
             }
         }
-        else
+        else if can_walljump
         {
             if place_meeting((x + 2), y, obj_wall)
             {
@@ -408,6 +503,10 @@ if ((trailTimer % 4) == 1)
         sprite_index = other.sprite_index
         image_xscale = other.image_xscale
         image_yscale = other.image_yscale
+        if(other.state == "grind")
+        {
+            hspeed = -6
+        }
     }
 }
 
