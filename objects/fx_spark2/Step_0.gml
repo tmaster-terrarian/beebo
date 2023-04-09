@@ -25,4 +25,4 @@ if((place_meeting(x, y + vsp, obj_wall) || (place_meeting(x, y + vsp, obj_platfo
 y += vsp
 
 image_angle = point_direction(0, 0, hsp, vsp)
-image_xscale = floor(point_distance(0, 0, hsp, vsp)) + 2
+image_xscale = ceil(point_distance(0, 0, hsp, vsp)) + 2

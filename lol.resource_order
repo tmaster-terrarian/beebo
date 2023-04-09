@@ -175,6 +175,7 @@
     {"name":"spr_hp_bar_end","order":1,"path":"sprites/spr_hp_bar_end/spr_hp_bar_end.yy",},
     {"name":"oCrate","order":9,"path":"objects/oCrate/oCrate.yy",},
     {"name":"sn_menu_select","order":11,"path":"sounds/sn_menu_select/sn_menu_select.yy",},
+    {"name":"fx_speedline","order":61,"path":"objects/fx_speedline/fx_speedline.yy",},
     {"name":"mask_player_duck","order":75,"path":"sprites/mask_player_duck/mask_player_duck.yy",},
     {"name":"sn_hitmetal_2","order":58,"path":"sounds/sn_hitmetal_2/sn_hitmetal_2.yy",},
     {"name":"sn_glass_explode","order":52,"path":"sounds/sn_glass_explode/sn_glass_explode.yy",},

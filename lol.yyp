@@ -203,6 +203,7 @@
     {"id":{"name":"spr_hp_bar_end","path":"sprites/spr_hp_bar_end/spr_hp_bar_end.yy",},"order":1,},
     {"id":{"name":"oCrate","path":"objects/oCrate/oCrate.yy",},"order":9,},
     {"id":{"name":"sn_menu_select","path":"sounds/sn_menu_select/sn_menu_select.yy",},"order":11,},
+    {"id":{"name":"fx_speedline","path":"objects/fx_speedline/fx_speedline.yy",},"order":61,},
     {"id":{"name":"mask_player_duck","path":"sprites/mask_player_duck/mask_player_duck.yy",},"order":75,},
     {"id":{"name":"sn_hitmetal_2","path":"sounds/sn_hitmetal_2/sn_hitmetal_2.yy",},"order":58,},
     {"id":{"name":"sn_glass_explode","path":"sounds/sn_glass_explode/sn_glass_explode.yy",},"order":52,},

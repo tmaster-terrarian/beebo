@@ -346,7 +346,7 @@ if(hascontrol)
                     hsp = approach(hsp, 0, fric * 2)
                 else
                     hsp = approach(hsp, walksp * 0.75, accel)
-                if get_timer() % 4 == 0
+                if timer0 % 4 == 0
                 {
                     with(instance_create_depth(bbox_left - 4 + random(12), ystart + 2, depth - 2, fx_spark2))
                     {
@@ -363,7 +363,7 @@ if(hascontrol)
                     hsp = approach(hsp, 0, fric * 2)
                 else
                     hsp = approach(hsp, -walksp * 1.15, accel)
-                if get_timer() % 2 == 0
+                if timer0 % 2 == 0
                 {
                     with(instance_create_depth(bbox_left - 4 + random(12), ystart + 2, depth - 2, fx_spark2))
                     {
@@ -377,7 +377,7 @@ if(hascontrol)
             else
             {
                 hsp = approach(hsp, sin(get_timer()/1000000) * 0.2, fric * 2)
-                if(get_timer() % 4 == 2)
+                if(timer0 % 4 == 2)
                 {
                     with(instance_create_depth(bbox_left - 4 + random(12), ystart + 2, depth - 2, fx_spark2))
                     {
@@ -419,6 +419,14 @@ if(hascontrol)
             with(obj_bomb)
             {
                 hsp -= 0.01
+            }
+
+            if(timer0 % 3 == 0)
+            {
+                with(instance_create_depth(276, random_range(4, 146), -1000, fx_speedline))
+                {
+                    hsp = -20
+                }
             }
             break
         }
