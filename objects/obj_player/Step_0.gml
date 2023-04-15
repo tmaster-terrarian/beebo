@@ -5,58 +5,112 @@ if(sprite_index == spr_player || sprite_index == spr_player_lookup)
 
 running = (sprite_index == spr_player_run) || (sprite_index == spr_anime_run) || (sprite_index == spr_player_run_rev) || (sprite_index == spr_anime_run_rev);
 
+ponytail_visible = 1
 if(running)
 {
+    ponytail_visible = 1
     switch(floor(image_index))
     {
-        case 0: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
-        case 1: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
-        case 2: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
-        case 3: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
-        case 4: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
-        case 5: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
-        case 6: gun_offs_x = -3 * sign(facing); gun_offs_y = -5; break;
-        case 7: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
+        case 0:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -6;
+            break;
+        case 1:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -5;
+            break;
+        case 2:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -5;
+            break;
+        case 3:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -6;
+            break;
+        case 4:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -6;
+            break;
+        case 5:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -5;
+            break;
+        case 6:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -5;
+            break;
+        case 7:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -6;
+            break;
     }
 }
 else if(sprite_index == spr_player_crawl)
 {
+    ponytail_visible = 0
     switch(floor(image_index))
     {
-        case 0: gun_offs_x = -2 * sign(facing); gun_offs_y = -2; break;
-        case 1: gun_offs_x = -2 * sign(facing); gun_offs_y = -1; break;
-        case 2: gun_offs_x = -2 * sign(facing); gun_offs_y = -0; break;
-        case 3: gun_offs_x = -2 * sign(facing); gun_offs_y = -0; break;
-        case 4: gun_offs_x = -2 * sign(facing); gun_offs_y = -0; break;
-        case 5: gun_offs_x = -2 * sign(facing); gun_offs_y = -1; break;
-        case 6: gun_offs_x = -2 * sign(facing); gun_offs_y = -2; break;
-        case 7: gun_offs_x = -2 * sign(facing); gun_offs_y = -2; break;
+        case 0:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -2;
+            break;
+        case 1:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -1;
+            break;
+        case 2:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -0;
+            break;
+        case 3:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -0;
+            break;
+        case 4:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -0;
+            break;
+        case 5:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -1;
+            break;
+        case 6:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -2;
+            break;
+        case 7:
+            gun_offs_x = -2 * sign(facing); gun_offs_y = -2;
+            break;
     }
 }
-else if(sprite_index == spr_player || sprite_index == spr_player_lookup || spr_player_grinding)
+else if(sprite_index == spr_player || sprite_index == spr_player_lookup || sprite_index == spr_player_grinding)
 {
+    ponytail_visible = 1
+    if sprite_index == spr_player_grinding
+        ponytail_visible = 0
     switch(floor(image_index))
     {
-        case 0: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
-        case 1: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
-        case 2: gun_offs_x = -3 * sign(facing); gun_offs_y = -6; break;
-        case 3: gun_offs_x = -3 * sign(facing); gun_offs_y = -7; break;
-        case 4: gun_offs_x = -3 * sign(facing); gun_offs_y = -7; break;
-        case 5: gun_offs_x = -3 * sign(facing); gun_offs_y = -7; break;
+        case 0:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -6;
+            // hair.x = -5 * sign(facing); hair.y = -12;
+            break
+        case 1:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -6;
+            break;
+        case 2:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -6;
+            break;
+        case 3:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -7;
+            break;
+        case 4:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -7;
+            break;
+        case 5:
+            gun_offs_x = -3 * sign(facing); gun_offs_y = -7;
+            break;
     }
 }
 else if(state == "wallslide")
 {
+    ponytail_visible = 1
     gun_offs_x = 3 * sign(facing);
     gun_offs_y = -7;
 }
 else if(duck)
 {
+    ponytail_visible = 0
     gun_offs_x = (-3 + (1/3 * duck)) * sign(facing);
     gun_offs_y = -5 + duck;
 }
 else
 {
+    ponytail_visible = 1
     gun_offs_x = -3 * sign(facing);
     gun_offs_y = -7;
 }

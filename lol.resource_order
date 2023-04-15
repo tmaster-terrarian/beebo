@@ -57,6 +57,7 @@
     {"name":"spr_anime_dinder","order":1,"path":"sprites/spr_anime_dinder/spr_anime_dinder.yy",},
     {"name":"fnt_console","order":2,"path":"fonts/fnt_console/fnt_console.yy",},
     {"name":"fnt_dos","order":1,"path":"fonts/fnt_dos/fnt_dos.yy",},
+    {"name":"fx_segmentrope","order":62,"path":"objects/fx_segmentrope/fx_segmentrope.yy",},
     {"name":"spr_normal_distorter","order":88,"path":"sprites/spr_normal_distorter/spr_normal_distorter.yy",},
     {"name":"obj_prj_boomerbone","order":1,"path":"objects/obj_prj_boomerbone/obj_prj_boomerbone.yy",},
     {"name":"spr_anime_slide_b","order":12,"path":"sprites/spr_anime_slide_b/spr_anime_slide_b.yy",},

@@ -119,3 +119,19 @@ use_anim_state = function(anim_id, state)
         break;
     }
 }
+
+var c1 = make_color_rgb(52, 28, 39)
+var c2 = make_color_rgb(96, 44, 44)
+ponytail_colors = [c1,c2,c1,c2,c1,c2,c1]
+ponytail_points_count = 7
+ponytail_segment_len = []
+ponytail_points = []
+ponytail_visible = 1
+for(var a = 0; a < ponytail_points_count; a++)
+{
+    ponytail_points[a] = [0, 0]
+    if a % 2 == 0
+        ponytail_segment_len[a] = 1
+    else
+        ponytail_segment_len[a] = 2
+}
