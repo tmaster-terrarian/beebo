@@ -100,18 +100,16 @@ recoil = max(0, recoil - 1);
 if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (firingdelay < 0)
 {
     fire = 1;
+    if(obj_player.hp > 1)
+    {
+        ScreenShake(1, 5);
+        recoil = 2;
+        firingdelay = 4;
 
-    ScreenShake(1, 5);
-    recoil = 2;
-    firingdelay = 4;
+        var v = 4
+        if(obj_player.state == "grind")
+            v = 2
 
-    var v = 4
-    if(obj_player.state == "grind")
-        v = 2
-
-    //fire bullet
-    //for (var i = 0; i < 6; i += 1) //uncomment for spread
-    //{
         with (instance_create_depth(x, y, depth - 3, oBullet))
         {
             //play fire sound
@@ -121,7 +119,34 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
             direction = other.image_angle + random_range(-v, v);
             image_angle = direction;
         }
-    //}
+    }
+    else
+    {
+        ScreenShake(3, 5);
+        recoil = 3;
+        firingdelay = 6;
+
+        for(var i = 0; i < 2; i++)
+        {
+            with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 3, obj_helix_bullet))
+            {
+                //play fire sound
+                audio_play_sound(sn_helix_laser2, 1, false);
+
+                var dist = max(point_distance(x, y, mouse_x, mouse_y), 32)
+
+                s = max(dist / 28, 4)
+                d = dist
+                dd = 1/d
+                a = dd * pi
+                dis = min(max(8, dist / 4), 32)
+                dir = other.image_angle
+                u = -2 * i + 1
+                image_index += i
+            }
+        }
+    }
+
     heat = approach(heat, heat_max, heatspd);
     var n = irandom_range(0, heat_max/heat);
     if(n == 0)

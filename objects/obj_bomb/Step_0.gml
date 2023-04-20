@@ -59,6 +59,7 @@ if ((place_meeting(x, y + vsp, obj_platform) && !place_meeting(x, y - 1, obj_pla
 }
 y += vsp;
 
+if instance_exists(obj_player)
 if(obj_player.state == "grind")
 {
     if y > room_height

@@ -30,6 +30,6 @@ with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
 }
 ScreenShake(6, 60);
 done = true;
-scr_particle_explode2()
-image_alpha = 1
-scr_particle_explode()
+scr_particle_explode_violent()
+scr_particle_explode_violent()
+instance_destroy()

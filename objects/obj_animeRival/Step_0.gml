@@ -116,12 +116,8 @@ switch(state)
             if (vsp >= -0.5)
             {
                 if place_meeting(x + (2 * INPUT_MOVE), y, obj_wall)
-                    wallslideTimer++
+                    state = "wallslide"
             }
-            else
-                wallslideTimer = 0
-            if (wallslideTimer >= 5)
-                state = "wallslide"
             sprite_index = spr_anime_jump
             if (vsp >= 0.1)
                 vsp = approach(vsp, vsp_max, grv)
@@ -551,7 +547,7 @@ if(active) && (instance_exists(obj_player))
             if place_meeting(x + 2, y, obj_wall)
             {
                 hsp = -2
-                vsp = -2.5
+                vsp = -3.2
                 facing = -1
                 INPUT_MOVE = -1
                 audio_play_sound(sn_walljump, 0, false)
@@ -560,7 +556,7 @@ if(active) && (instance_exists(obj_player))
             if place_meeting(x - 2, y, obj_wall)
             {
                 hsp = 2
-                vsp = -2.5
+                vsp = -3.2
                 facing = 1
                 INPUT_MOVE = 1
                 audio_play_sound(sn_walljump, 0, false)

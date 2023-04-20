@@ -1,3 +1,5 @@
+var _dt = delta_time / 1000000
+
 // screen transition stuff
 if(mode != TRANS_MODE.OFF)
 {
@@ -213,7 +215,7 @@ if(global.console)
         }
 
         //more complicated argument-based commands
-        if(cmd("goto_direct"))
+        if(cmd("goto_direct "))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 2)
@@ -243,7 +245,7 @@ if(global.console)
             else console_log("invalid syntax! expected: goto [stage_index = 0] [room_index = 0]");
         }
 
-        if(cmd("config_write"))
+        if(cmd("config_write "))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 3)
@@ -282,7 +284,7 @@ if(global.console)
             else console_log("invalid syntax! expected: config_write <key> <value>");
         }
 
-        if(cmd("config_read"))
+        if(cmd("config_read "))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 2)
@@ -296,7 +298,7 @@ if(global.console)
             else console_log("invalid syntax! expected: config_read <key>");
         }
 
-        if(cmd("sp_hp"))
+        if(cmd("sp_hp "))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 2)
@@ -324,7 +326,7 @@ if(global.console)
             else console_log("invalid syntax! expected: sp_hp [amount = 1]");
         }
 
-        if(cmd("set_view"))
+        if(cmd("set_view "))
         {
             var _args = string_split(input_str, " ");
             switch(array_length(_args))
@@ -349,7 +351,7 @@ if(global.console)
             }
         }
 
-        if(cmd("spawn"))
+        if(cmd("spawn "))
         {
             var _args = string_split(input_str, " ");
             switch(array_length(_args))
@@ -365,6 +367,27 @@ if(global.console)
                 default:
                 {
                     console_log("invalid syntax! expected: spawn <object asset>");
+                }
+            }
+        }
+
+        if(cmd("hp "))
+        {
+            var _args = string_split(input_str, " ");
+            switch(array_length(_args))
+            {
+                case 2:
+                {
+                    with(oCamera)
+                    {
+                        if(string_starts_with(_args[1], "-")) follow.hp = -1 * real(string_digits(_args[1]))
+                        else follow.hp = real(string_digits(_args[1]))
+                    }
+                    break;
+                }
+                default:
+                {
+                    console_log("invalid syntax! expected: hp <value>");
                 }
             }
         }
@@ -392,5 +415,17 @@ if(keyboard_check_pressed(vk_anykey) || mouse_check_button_pressed(mb_any))
 
 if(global.speedrun_mode) && (global.gamestarted) && (!global.pausetimer) && (!global.introsequence)
 {
-    global.t += 100/60;
+    global.t += delta_time / 10000;
+}
+
+if(hitstop)
+{
+    room_speed = hitstop
+    hitstop = 0
+    global.hitstop = 0
+}
+if(global.hitstop)
+{
+    hitstop = room_speed
+    room_speed /= global.hitstop
 }

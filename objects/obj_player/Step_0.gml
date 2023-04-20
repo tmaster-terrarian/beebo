@@ -70,9 +70,7 @@ else if(sprite_index == spr_player_crawl)
 }
 else if(sprite_index == spr_player || sprite_index == spr_player_lookup || sprite_index == spr_player_grinding)
 {
-    ponytail_visible = 1
-    if sprite_index == spr_player_grinding
-        ponytail_visible = 0
+    ponytail_visible = 0
     switch(floor(image_index))
     {
         case 0:

@@ -28,16 +28,16 @@ can_dodge = 1;
 facing = 1;
 input_dir = 0;
 
-grv = 0.13;
-walksp = 2;
-jumpsp = -3;
+grv = 0.2;
+walksp = 2.5;
+jumpsp = -3.7;
 vsp_max = 20;
 hsp_max = 20;
 
-ground_accel = 0.1;
-ground_fric = 0.1;
-air_accel = 0.06;
-air_fric = 0.04;
+ground_accel = 0.12;
+ground_fric = 0.08;
+air_accel = 0.07;
+air_fric = 0.02;
 accel = 0;
 fric = 0;
 
@@ -61,3 +61,28 @@ INPUT_DUCK = 0
 INPUT_LOOKUP = 0
 
 TIMER_WALLJUMP = 0
+
+var c1 = make_color_rgb(37, 89, 137)
+var c2 = make_color_rgb(32, 64, 105)
+var c3 = make_color_rgb(64, 119, 163)
+hair1_colors = [c1,c1,c2,c2,c1,c1,c1,c3,c2]
+hair1_points_count = 9
+hair1_segment_len = []
+hair1_points = []
+for(var a = 0; a < hair1_points_count; a++)
+{
+    hair1_points[a] = [0, 0]
+    hair1_segment_len[a] = 1
+}
+
+hair2_colors = [c1,c1,c2,c2,c1,c1,c1,c3,c2]
+hair2_points_count = 9
+hair2_segment_len = []
+hair2_points = []
+for(var a = 0; a < hair2_points_count; a++)
+{
+    hair2_points[a] = [0, 0]
+    hair2_segment_len[a] = 1
+}
+
+hair_visible = 1

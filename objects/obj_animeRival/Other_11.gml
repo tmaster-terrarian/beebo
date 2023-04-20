@@ -9,6 +9,18 @@ if (state == "normal")
 }
 if (vsp > 0.2)
     audio_play_sound(sn_player_land, 0, false)
+if (vsp >= 0)
+{
+    for (var i = 0; i < 4; i++)
+    {
+        with (instance_create_depth((bbox_left + random(8)), random_range(bbox_bottom, bbox_bottom), (depth - 1), fx_dust))
+        {
+            sprite_index = spr_fx_dust2
+            vx = other.hsp
+            vz = 0
+        }
+    }
+}
 if (state == "backflip")
 {
     state = "backflip_end";

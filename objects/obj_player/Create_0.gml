@@ -47,8 +47,8 @@ fric = 0;
 lasthsp = 0
 lastvsp = 0
 
-hsp_max = 200;
-vsp_max = 200;
+hsp_max = 20;
+vsp_max = 20;
 
 jump_speed = -3.7;
 jump_buffer = 0;

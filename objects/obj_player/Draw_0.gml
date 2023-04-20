@@ -22,7 +22,7 @@ if(running)
 if(sprite_index == spr_player_jump)
 {
     px = x - 1 - 3 * facing
-    py = y - 12
+    py = y - 13
 }
 if(sprite_index == spr_player || sprite_index == spr_player_lookup)
 {

@@ -50,6 +50,7 @@ global.checkpointy = -1
 global.bonehive_started = 0
 global.loading_rm = noone
 global.loading_txt = ""
+global.hitstop = 0; hitstop = 0
 
 // boss
 currentboss = noone
