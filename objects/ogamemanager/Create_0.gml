@@ -76,7 +76,7 @@ stage_tips =
 [
     "",
     "idk",
-    "once I establish my theocracy.. I will throw you into my DUNGEON, where you will ROT for ETERNIT-",
+    "once I establish my theocracy.. I will throw you into my DUNGEON, and you will rot for ETERNIT-",
     "uh oh"
 ]
 
