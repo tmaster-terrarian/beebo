@@ -12,3 +12,5 @@ image_speed = 0.25
 f = 0
 
 u = 1
+
+bla = 1
