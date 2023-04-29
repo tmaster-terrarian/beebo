@@ -39,7 +39,7 @@ if move
         if(instance_exists(obj_player))
         {
             var snd_distance = 128
-            audio_play_sound(sn_steam, 0, false, ((-clamp(distance_to_point(obj_player.x, obj_player.y), 32, snd_distance)) + snd_distance) * (1/snd_distance))
+            audio_play_sound(sn_steam, 0, false, ((-clamp(distance_to_point(obj_player.x, obj_player.y), 32, snd_distance)) + snd_distance) * (1/snd_distance) * 0.75)
         }
     }
 

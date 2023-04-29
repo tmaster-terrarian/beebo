@@ -24,7 +24,7 @@ if p > 128
 if image_alpha == 0
     instance_destroy()
 
-if (f % 4 == 1)
+if (f % 2 == 1)
 {
     with (instance_create_depth(x, y, (depth + 101), fx_aura))
     {
@@ -33,7 +33,7 @@ if (f % 4 == 1)
         sprite_index = other.sprite_index
         image_index = other.image_index
         image_angle = other.image_angle
-        image_alpha = other.image_alpha
+        image_alpha = other.image_alpha * 0.5
         with(obj_player)
         {
             if(state == "grind")

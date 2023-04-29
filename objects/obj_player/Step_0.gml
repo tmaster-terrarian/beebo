@@ -137,8 +137,6 @@ else
 
 if(place_meeting(x, y, obj_wall)) y--;
 
-hsp = clamp(hsp, -20, 20);
-
 var input_dir = 0;
 input_dir = sign
 (
@@ -149,12 +147,11 @@ input_dir = sign
 
 if(!on_ground)
     duck = 0
-walksp = 2;
 if(duck)
 {
-    walksp = 1
-    if(abs(hsp) > 1)
-        hsp = approach(hsp, 1 * input_dir, 0.25)
+    walksp *= 0.5
+    if(abs(hsp) > walksp)
+        hsp = approach(hsp, walksp * input_dir, 0.25)
 }
 
 image_xscale = sign(facing);
@@ -169,8 +166,8 @@ if(hascontrol)
     {
         accel = air_accel;
         fric = air_fric;
-        if(abs(hsp) > 3)
-            fric = 0.005
+        if(abs(hsp) > walksp * 1.3)
+            fric *= 0.1
     }
 
     switch(state)
@@ -217,7 +214,7 @@ if(hascontrol)
                         sprite_index = spr_player_crawl;
                     }
                 }
-                if(abs(hsp) > 3)
+                if(abs(hsp) > walksp * 1.3)
                     run = 7
                 else
                     run = 0
@@ -249,7 +246,7 @@ if(hascontrol)
                         sprite_index = spr_player_crawl;
                     }
                 }
-                if(abs(hsp) > 3)
+                if(abs(hsp) > walksp * 1.3)
                     run = 7
                 else
                     run = 0
@@ -267,7 +264,7 @@ if(hascontrol)
             {
                 running = 0
                 hsp = approach(hsp, lasthsp, fric * 2)
-                if (abs(hsp) < 2)
+                if (abs(hsp) < walksp)
                 {
                     if run
                         run--
@@ -340,7 +337,7 @@ if(hascontrol)
                 image_index += abs(hsp / 4)
             landTimer = approach(landTimer, 0, 1)
 
-            if(abs(hsp) > 3)
+            if(abs(hsp) > walksp * 1.3)
             {
                 fxtrail = 1;
             }
@@ -360,7 +357,7 @@ if(hascontrol)
                 wallslideTimer = 0;
             }
             sprite_index = spr_player_wallslide;
-            var n = choose(0, 1, 0);
+            var n = choose(0, 1, 0, 1, 1, 0, 0, 0);
             if n
                 with (instance_create_depth(x + 4 * sign(facing), random_range(bbox_bottom - 12, bbox_bottom), depth - 1, fx_dust))
                 {
@@ -493,7 +490,7 @@ if(hascontrol)
                 if(state != "grind") state = "normal"
                 image_index = 0
                 sprite_index = spr_player_jump
-                var c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
+                var c = collision_point(x, y + 2, obj_moving_platform, 1, 1)
                 if c
                 {
                     lasthsp = c.hsp
@@ -505,7 +502,7 @@ if(hascontrol)
                 vsp += jump_speed
                 audio_play_sound(sn_jump, 0, false)
             }
-            else if(place_meeting(x, (y + 2), obj_platform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
+            else if(place_meeting(x, y + 2, obj_platform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
             {
                 sprite_index = spr_player_jump
                 y += 2
@@ -514,7 +511,7 @@ if(hascontrol)
             }
             else
             {
-                c = collision_point(x, (y + 2), obj_moving_platform, 1, 1)
+                c = collision_point(x, y + 2, obj_moving_platform, 1, 1)
                 if c
                 {
                     lasthsp = c.hsp
@@ -529,19 +526,19 @@ if(hascontrol)
         }
         else if can_walljump
         {
-            if place_meeting((x + 2), y, obj_wall)
+            if place_meeting(x + walksp, y, obj_wall)
             {
                 state = "normal"
-                hsp = -2
-                vsp = -3.2
+                hsp = -walksp
+                vsp = jump_speed
                 facing = -1
                 audio_play_sound(sn_walljump, 0, false)
             }
-            if place_meeting((x - 2), y, obj_wall)
+            if place_meeting(x - walksp, y, obj_wall)
             {
                 state = "normal"
-                hsp = 2
-                vsp = -3.2
+                hsp = walksp
+                vsp = jump_speed
                 facing = 1
                 audio_play_sound(sn_walljump, 0, false)
             }
@@ -553,9 +550,9 @@ if fxtrail && !global.cutscene
     trailTimer++
 else
     trailTimer = 0
-if ((trailTimer % 4) == 1)
+if (trailTimer % 4 == 1)
 {
-    with (instance_create_depth(x, y, (depth + 2), fx_aura))
+    with (instance_create_depth(x, y, depth + 2, fx_aura))
     {
         visible = true
         image_speed = 0
@@ -578,7 +575,7 @@ if place_meeting(x, y + 2, obj_wall)
         if (!audio_is_playing(footsound))
             audio_play_sound(footsound, 8, false)
     }
-    if(running && run && abs(hsp) >= 2 && ceil(image_index) % 2 == 0)
+    if(running && run && abs(hsp) >= walksp && ceil(image_index) % 2 == 0)
     {
         with(instance_create_depth(x, bbox_bottom, (depth - 10), fx_dust))
         {

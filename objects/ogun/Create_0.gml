@@ -24,3 +24,5 @@ firebomb = 0;
 
 lock = 0;
 lock_target = -1;
+
+firerate = 4

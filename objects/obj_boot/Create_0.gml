@@ -1,6 +1,8 @@
 audio_group_load(audiogroup_bgm);
 random_set_seed(0);
 
+audio_master_gain(0.75);
+
 started = 0;
 anim_timer = 0; //200 frames is 3.33 seconds, right when the dos boots in the sound that plays. the entire sound is 1882.2 frames long
 boot_sound = noone;

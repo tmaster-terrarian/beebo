@@ -23,11 +23,9 @@ can_jump = 1;
 can_walljump = 1;
 can_dodge = 1;
 
-hp = 4;
-hp_max = 4;
+hp = 5;
+hp_max = 5;
 
-if(global.playerhealth == 0) global.playerhealth = hp_max;
-hp = global.playerhealth;
 global.playermaxhealth = hp_max;
 
 if(global.hasgun) instance_create_depth(x, y, 300, oGun);
@@ -47,7 +45,6 @@ fric = 0;
 lasthsp = 0
 lastvsp = 0
 
-hsp_max = 20;
 vsp_max = 20;
 
 jump_speed = -3.7;

@@ -4,6 +4,11 @@ if move
     var xp = path_get_x(path, path_pos)
     var yp = path_get_y(path, path_pos)
     path_pos += (1 / (path_get_length(path) / (path_sp * path_dir)))
+    if (path_pos >= 1) && kys
+    {
+        instance_destroy()
+        return;
+    }
     if reverse
     {
         if (path_pos >= 1)
@@ -28,7 +33,9 @@ if move
         }
     }
     else if (path_pos >= 1)
+    {
         path_pos = 0
+    }
     hsp = lengthdir_x(point_distance(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)), point_direction(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)))
     vsp = lengthdir_y(point_distance(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)), point_direction(xp, yp, path_get_x(path, path_pos), path_get_y(path, path_pos)))
     if(move == 0)

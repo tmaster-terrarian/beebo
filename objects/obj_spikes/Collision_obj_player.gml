@@ -1,5 +1,14 @@
+if t
+    t--
 with (other)
 {
-	if(!invuln) hp -= other.damage
-    event_perform(ev_other, ev_user2)
+    if(!other.t)
+    {
+        other.t = 30
+        hp -= other.damage
+        state = "stunned"
+        timer0 = 0
+        flash = 5;
+        audio_play_sound(sn_player_hit, 0, false);
+    }
 }

@@ -104,7 +104,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
     {
         ScreenShake(1, 5);
         recoil = 2;
-        firingdelay = 4;
+        firingdelay = firerate;
 
         var v = 4
         if(obj_player.state == "grind")
@@ -124,7 +124,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
     {
         ScreenShake(3, 5);
         recoil = 3;
-        firingdelay = 6;
+        firingdelay = firerate * 2;
 
         for(var i = 0; i < 2; i++)
         {

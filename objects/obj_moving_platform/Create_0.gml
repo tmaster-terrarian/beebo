@@ -29,6 +29,8 @@ path_dir = 1
 cx = x
 cy = y
 
+kys = 0
+
 //animation
 smallcog_index = 0
 cog_rotl = 0
