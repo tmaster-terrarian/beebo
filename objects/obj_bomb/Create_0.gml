@@ -36,3 +36,4 @@ explode = function()
     done = true;
     scr_particle_explode();
 }
+bla = 1

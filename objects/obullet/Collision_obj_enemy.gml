@@ -12,5 +12,6 @@ with (other)
 
     //x += lengthdir_x(2, hitfrom);
     x += sign(hitfrom_as_digit) * 2;
+    audio_play_sound(sn_hit, 5, false)
 }
-instance_destroy();
+instance_destroy()

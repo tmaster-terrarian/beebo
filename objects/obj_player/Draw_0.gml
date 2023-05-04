@@ -69,7 +69,16 @@ if(ponytail_visible)
 }
 
 // lol
-draw_self();
+if(flash > 0)
+{
+    flash--;
+    shader_set(shWhite);
+    shader_set_uniform_f(upixelW, texelW);
+    shader_set_uniform_f(upixelH, texelH);
+    draw_self();
+    shader_reset();
+}
+else draw_self();
 
 // gun
 if(instance_exists(oGun))
@@ -136,12 +145,7 @@ if(instance_exists(oGun))
     );
 }
 
-if(flash > 0)
+foreach(buffs as (buff)
 {
-    flash--;
-    shader_set(shWhite);
-    shader_set_uniform_f(upixelW, texelW);
-    shader_set_uniform_f(upixelH, texelH);
-    draw_self();
-    shader_reset();
-}
+    buff.draw()
+})

@@ -106,9 +106,9 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
         recoil = 2;
         firingdelay = firerate;
 
-        var v = 4
+        var v = accuracy
         if(obj_player.state == "grind")
-            v = 2
+            v = accuracy / 2
 
         with (instance_create_depth(x, y, depth - 3, oBullet))
         {
@@ -118,6 +118,14 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
             speed = 12;
             direction = other.image_angle + random_range(-v, v);
             image_angle = direction;
+        }
+        with(instance_create_depth(x + lengthdir_x(4, image_angle), y + lengthdir_y(4, image_angle) - 1, depth - 5, fx_casing))
+        {
+            image_yscale = other.image_yscale
+            angle = other.image_angle
+            dir = other.image_yscale
+            hsp = -other.image_yscale * random_range(1, 1.5)
+            vsp = -1 + random_range(-0.2, 0.1)
         }
     }
     else

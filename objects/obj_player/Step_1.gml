@@ -1,4 +1,5 @@
 event_inherited();
+lasthp = hp
 
 cLeft = place_meeting((x - 1), y, obj_wall)
 cRight = place_meeting((x + 1), y, obj_wall)

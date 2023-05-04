@@ -15,8 +15,8 @@ menu[2] = "continued";
 menu[1] = "new";
 menu[0] = "quit";
 
-menu_items = array_length(menu);
-menu_cursor = 2;
+menu_items = array_length(menu) - 1;
+menu_cursor = 1;
 
 menu_top = menu_y - ((menu_itemheight * 1) * menu_items);
 

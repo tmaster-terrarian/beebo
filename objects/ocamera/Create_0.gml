@@ -18,15 +18,19 @@ usefollow = true;
 xTo = xstart;
 yTo = ystart;
 
-smooth_factor = 5;
+playerlasthpmax = 0
+playerlasthp = 0
 
-//x = follow.x;
-//y = follow.y;
+smooth_factor = 5;
 
 shake_length = 0; //60 is cool
 shake_magnitude = 0; //3 is cool, 6 is super cool
 shake_remain = 0; //3 is cool, 6 is super cool
 buff = 4;
+
+hudfont = font_add_sprite_ext(spr_hudnumbers, "/1234567890-", false, 0)
+hudfontstacks = font_add_sprite_ext(spr_hudstacksfnt, "1234567890", true, -1)
+hp_change = 0
 
 if(layer_exists("bg1"))
 {

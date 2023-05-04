@@ -23,31 +23,46 @@ can_jump = 1;
 can_walljump = 1;
 can_dodge = 1;
 
-hp = 5;
-hp_max = 5;
-
-global.playermaxhealth = hp_max;
-
 if(global.hasgun) instance_create_depth(x, y, 300, oGun);
 
 grv = 0.2;
-walksp = 2.5;
 facing = 1;
 attack = 0;
 
-ground_accel = 0.12;
-ground_fric = 0.08;
-air_accel = 0.07;
-air_fric = 0.02;
-accel = 0;
-fric = 0;
+stats =
+{
+    hp_max : 50,
+    regen_rate : 0.0133333,
+    spd : 2,
+    jumpspd : -3.7,
+    ground_accel : 0.12,
+    ground_fric : 0.08,
+    air_accel : 0.07,
+    air_fric : 0.02,
+    firerate : 4,
+    accuracy : 4
+}
+
+hp_max = stats.hp_max
+hp = hp_max
+lasthp = hp
+regen_rate = stats.regen_rate
+regen = 1
+
+walksp = stats.spd
+jump_speed = stats.jumpspd
+ground_accel = stats.ground_accel
+ground_fric = stats.ground_fric
+air_accel = stats.air_accel
+air_fric = stats.air_fric
+accel = 0
+fric = 0
 
 lasthsp = 0
 lastvsp = 0
 
 vsp_max = 20;
 
-jump_speed = -3.7;
 jump_buffer = 0;
 jump_buffer2 = 0;
 
@@ -59,6 +74,8 @@ flash = 0;
 
 fxtrail = 0;
 trailTimer = 0;
+
+dashtimer = 0
 
 upixelH = shader_get_uniform(shWhite, "pixelH");
 upixelW = shader_get_uniform(shWhite, "pixelW");
@@ -78,8 +95,6 @@ ch_animate = 0;
 ch_alpha = 0;
 
 gamepad_set_axis_deadzone(0, 0.2);
-
-y = ystart + 8;
 
 //use anim state
 use_anim_state = function(anim_id, state)
@@ -132,3 +147,8 @@ for(var a = 0; a < ponytail_points_count; a++)
     else
         ponytail_segment_len[a] = 2
 }
+
+buffs = {}
+initbuffs(id)
+
+items = global.playeritems

@@ -1,8 +1,9 @@
+stats =
+{
+    hp_max : 30,
+    spd : 0.25,
+    firerate : 4,
+    damage : 2
+}
 event_inherited()
 duck = 0
-hp = 99999
-
-heat = 0
-heat_max = 150
-heatspd = 1
-coolspd = 1

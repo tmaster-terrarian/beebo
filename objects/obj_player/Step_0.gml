@@ -1,5 +1,8 @@
 if(global.console) return;
 
+if dashtimer
+    dashtimer--
+
 if(sprite_index == spr_player || sprite_index == spr_player_lookup)
     image_index += 0.2
 
@@ -182,7 +185,7 @@ if(hascontrol)
             hsp = approach(hsp, 0, fric)
             if(!on_ground)
                 vsp = approach(vsp, vsp_max, grv)
-            if(invuln <= 0) || on_ground
+            if(invuln <= 0)
                 state = "normal"
             break
         }
@@ -378,6 +381,70 @@ if(hascontrol)
             vsp = clamp(vsp, -99, 2);
             break;
         }
+        case "dash":
+        {
+            if(timer0 == 0)
+            {
+                dashtimer = 180
+                hsp = 0
+                vsp = 0
+                duck = 0
+            }
+            if(timer0 < 5)
+            {
+                if(abs(input_dir))
+                    facing = input_dir
+            }
+            if(timer0 == 5)
+            {
+                hsp += 1 * facing
+                if(!on_ground)
+                {
+                    vsp = jump_speed * 0.8
+                }
+                fxtrail = 1
+                for(var i = 0; i < 12; i++)
+                {
+                    with(instance_create_depth(random_range(bbox_left, bbox_right), random_range(bbox_top, bbox_bottom), depth - 10, fx_dust))
+                    {
+                        vx = random_range(-0.1, 0.1) + other.facing * 0.5;
+                        vy = random_range(-0.1, 0.1);
+                    }
+                }
+            }
+            if(timer0 > 5)
+            {
+                hsp = approach(hsp, walksp * facing * 2, ground_accel * 3)
+                if(!on_ground)
+                    vsp = approach(vsp, vsp_max, grv)
+            }
+            if(!on_ground)
+            {
+                sprite_index = spr_player_jump
+                if (vsp < 0)
+                    image_index = approach(image_index, 1, 0.2)
+                else if (vsp >= 0.5)
+                    image_index = approach(image_index, 5, 0.5)
+                else
+                    image_index = 3
+            }
+            else
+            {
+                if(sign(hsp) != sign(facing)) use_anim_state(3, anim_state);
+                else use_anim_state(1, anim_state);
+                image_index += abs(hsp / 4)
+            }
+            timer0++
+            if(timer0 > 20 + 10 * (walksp / 2))
+            {
+                fxtrail = 0
+                timer0 = 0
+                if(abs(hsp) > walksp)
+                    hsp = walksp * facing
+                state = "normal"
+            }
+            break
+        }
         case "grind":
         {
             timer0++
@@ -487,7 +554,7 @@ if(hascontrol)
         {
             if(!duck)
             {
-                if(state != "grind") state = "normal"
+                if(state != "grind" && state != "dash") state = "normal"
                 image_index = 0
                 sprite_index = spr_player_jump
                 var c = collision_point(x, y + 2, obj_moving_platform, 1, 1)
@@ -543,6 +610,12 @@ if(hascontrol)
                 audio_play_sound(sn_walljump, 0, false)
             }
         }
+    }
+
+    if(keyboard_check_pressed(vk_lshift) && dashtimer == 0 && state == "normal")
+    {
+        state = "dash"
+        timer0 = 0
     }
 }
 

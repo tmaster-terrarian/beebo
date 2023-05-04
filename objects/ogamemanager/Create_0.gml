@@ -51,6 +51,7 @@ global.bonehive_started = 0
 global.loading_rm = noone
 global.loading_txt = ""
 global.hitstop = 0; hitstop = 0
+global.playeritems = []
 
 // boss
 currentboss = noone
@@ -88,7 +89,7 @@ save_st = function()
     if(current_st != ini_read_real("savedata", "stage", 0)) ini_write_real("savedata", "time_in_centiseconds", global.t);
     ini_write_real("savedata", "stage", current_st);
     ini_close();
-    console_log("saved (" + string(current_st) + "), t: " + string(global.t));
+    console_log("saved (" + string(current_st) + ")");
 }
 
 // settings

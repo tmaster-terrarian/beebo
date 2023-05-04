@@ -12,7 +12,7 @@ switch state
         sprite_index = spr_robotank_idle
         if(instance_exists(obj_player))
         {
-            hsp = 0.25 * sign(obj_player.x - x)
+            hsp = spd * sign(obj_player.x - x)
             facing = (hsp != 0) ? sign(obj_player.x - x) : 1
             if(timer0 == 120)
             {
@@ -51,23 +51,24 @@ switch state
         }
         if(timer0 > 60)
         {
-            if timer0 % 8 == 0
+            if timer0 % (2 * firerate) == 0
             {
                 with(instance_create_depth(x - 0, y - 14 + random_range(-1, 1), depth - 2, obj_enemy_bullet))
                 {
+                    damage = other.damage
                     image_xscale = 2
                     image_yscale = 0.8
                     image_speed = 1
-                    speed = 12
                     speed = 12
                     direction = point_direction(0, 0, other.facing, 0)
                     image_angle = 0
                 }
             }
-            if timer0 % 8 == 4
+            if timer0 % (2 * firerate) == 4
             {
                 with(instance_create_depth(x + 20, y - 14 + random_range(-1, 1), depth - 1, obj_enemy_bullet))
                 {
+                    damage = other.damage
                     image_xscale = 2
                     image_yscale = 0.8
                     image_speed = 1
@@ -76,9 +77,9 @@ switch state
                     image_angle = 0
                 }
             }
-            if(timer0 % 8 == 0 || timer0 % 8 == 4)
+            if(timer0 % (2 * firerate) == 0 || timer0 % (2 * firerate) == 4)
             {
-                hsp += -facing * 0.25
+                hsp += -facing * spd
                 ScreenShake(1, 5)
                 audio_play_sound(snShot, 1, false)
             }

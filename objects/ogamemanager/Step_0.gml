@@ -147,24 +147,6 @@ if(global.console)
                 break;
             }
 
-            case "goto_next":
-            {
-                gm_room_transition_next();
-                break;
-            }
-
-            case "view_rival":
-            {
-                with(oCamera) follow = obj_animeRival;
-                break;
-            }
-
-            case "view_player":
-            {
-                with(oCamera) follow = obj_player;
-                break;
-            }
-
             case "kill":
             {
                 with(obj_player) hp = 0;
@@ -174,13 +156,6 @@ if(global.console)
             case "benbo":
             {
                 console_log("fuck you");
-                break;
-            }
-
-            case "animemode":
-            {
-                global.animemode = !global.animemode;
-                if(global.animemode == 1) console_log("wtf??!??!?!?");
                 break;
             }
 
@@ -194,28 +169,10 @@ if(global.console)
                 ini_close()
                 break;
             }
-
-            case "impulse 101":
-            {
-                with(obj_gun_pickup) instance_destroy();
-                if(!instance_exists(oGun))
-                {
-                    with(obj_player)
-                    {
-                        instance_create_depth(x, y, 300, oGun);
-                    }
-                    global.hasgun = true;
-                    global.gunlesspercent = false;
-                    ini_open("save.ini");
-                    ini_write_real("savedata", "g", global.hasgun);
-                    ini_close();
-                }
-                break;
-            }
         }
 
         //more complicated argument-based commands
-        if(cmd("goto_direct "))
+        if(cmd("goto_direct"))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 2)
@@ -227,7 +184,7 @@ if(global.console)
             else console_log("invalid syntax! expected: goto_direct [room]");
         }
 
-        if(cmd("goto "))
+        if(cmd("goto"))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 3)
@@ -245,7 +202,7 @@ if(global.console)
             else console_log("invalid syntax! expected: goto [stage_index = 0] [room_index = 0]");
         }
 
-        if(cmd("config_write "))
+        if(cmd("config_write"))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 3)
@@ -284,7 +241,7 @@ if(global.console)
             else console_log("invalid syntax! expected: config_write <key> <value>");
         }
 
-        if(cmd("config_read "))
+        if(cmd("config_read"))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 2)
@@ -298,7 +255,7 @@ if(global.console)
             else console_log("invalid syntax! expected: config_read <key>");
         }
 
-        if(cmd("sp_hp "))
+        if(cmd("sp_hp"))
         {
             var _args = string_split(input_str, " ");
             if(array_length(_args) == 2)
@@ -323,10 +280,10 @@ if(global.console)
                 if(instance_exists(obj_player)) instance_create_depth(obj_player.x + obj_player.facing * 32, obj_player.y, 300, obj_hpup);
                 else if(instance_exists(oCamera)) instance_create_depth(oCamera.x, oCamera.y, 300, obj_hpup);
             }
-            else console_log("invalid syntax! expected: sp_hp [amount = 1]");
+            else console_log("invalid syntax! expected: sp_hp [amount]");
         }
 
-        if(cmd("set_view "))
+        if(cmd("set_view"))
         {
             var _args = string_split(input_str, " ");
             switch(array_length(_args))
@@ -346,12 +303,13 @@ if(global.console)
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: set_view <object>");
+                    console_log("invalid syntax! expected: set_view [object]");
+                    break
                 }
             }
         }
 
-        if(cmd("spawn "))
+        if(cmd("spawn"))
         {
             var _args = string_split(input_str, " ");
             switch(array_length(_args))
@@ -360,18 +318,26 @@ if(global.console)
                 {
                     var _obj = (string_digits(_args[1]) != "") ? real(string_digits(_args[1])) : asset_get_index(string(_args[1]));
 
-                    if(_obj != -1) instance_create_depth(mouse_x, mouse_y, 350, _obj);
+                    if(_obj != -1)
+                    {
+                        var spawned = instance_create_depth(mouse_x, mouse_y, 350, _obj);
+                        if(_obj == obj_item)
+                        {
+                            spawned.def = choose(new _itemdef_beeswax(), new _itemdef_eviction_notice())
+                        }
+                    }
                     else console_log("spawn failed: object asset does not exist");
                     break;
                 }
                 default:
                 {
                     console_log("invalid syntax! expected: spawn <object asset>");
+                    break
                 }
             }
         }
 
-        if(cmd("hp "))
+        if(cmd("hp"))
         {
             var _args = string_split(input_str, " ");
             switch(array_length(_args))
@@ -388,6 +354,36 @@ if(global.console)
                 default:
                 {
                     console_log("invalid syntax! expected: hp <value>");
+                    break
+                }
+            }
+        }
+
+        if(cmd("buff"))
+        {
+            var _args = string_split(input_str, " ");
+            switch(array_length(_args))
+            {
+                case 2:
+                {
+                    obj_player.buffs[$ _args[1]].set_stacks(1)
+                    break
+                }
+                case 3:
+                {
+                    obj_player.buffs[$ _args[1]].set_stacks(real(_args[2]))
+                    break
+                }
+                case 4:
+                {
+                    var _obj = (string_digits(_args[3]) != "") ? real(string_digits(_args[3])) : asset_get_index(string(_args[3]));
+                    _obj.buffs[$ _args[1]].set_stacks(_args[2])
+                    break
+                }
+                default:
+                {
+                    console_log("invalid syntax! expected: buff <buff_name> [stacks] [target_obj]");
+                    break
                 }
             }
         }
@@ -401,7 +397,7 @@ else keyboard_string = "";
 
 cmd = function(command)
 {
-    return string_starts_with(input_str, string(command));
+    return string_starts_with(input_str, string(command + " "));
 }
 
 if(gamepad_button_check_any_pressed())
@@ -426,6 +422,7 @@ if(hitstop)
 }
 if(global.hitstop)
 {
+    audio_play_sound(sn_hitstop, 0, false)
     hitstop = room_speed
     room_speed /= global.hitstop
 }

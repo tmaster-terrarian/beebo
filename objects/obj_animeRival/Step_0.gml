@@ -324,6 +324,7 @@ switch(state)
     case "encounter1":
     {
         obj_player.sprite_index = spr_player
+        obj_player.hsp = 0
         INPUT_MOVE = 0
         INPUT_JUMP = 0
         INPUT_DODGE = 0

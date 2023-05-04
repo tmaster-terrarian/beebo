@@ -22,6 +22,11 @@ switch(room)
         current_st = -1
     break
 
+    case lvl_random:
+        SetMusic(bgm_wavedashppt)
+        current_st = 1
+    break
+
     case lvl1_0:
         SetMusic(amb_birds)
         current_st = 0
@@ -30,20 +35,25 @@ switch(room)
     case lvl1_1: case lvl1_2: case lvl1_3: case lvl1_4:
         SetMusic(bgm_placeholder)
         current_st = 1
-        save_st()
     break
 
     case lvl2_0:
         SetMusic(bgm_project2)
         current_st = 2
-        save_st()
     break
 
     case lvl3_0:
         SetMusic(bgm_placeholder3)
         current_st = 3
-        save_st()
     break
+}
+
+with(oCamera)
+{
+    with(obj_player)
+    {
+        other.hp_change = hp
+    }
 }
 
 // activation/deactivation

@@ -26,3 +26,4 @@ lock = 0;
 lock_target = -1;
 
 firerate = 4
+accuracy = 4
