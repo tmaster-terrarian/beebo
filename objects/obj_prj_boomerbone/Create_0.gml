@@ -6,6 +6,8 @@ spd = spd_max;
 spd_mod = 0.08;
 dir = 0;
 
+damage = 15
+
 posx = xstart;
 posy = ystart;
 

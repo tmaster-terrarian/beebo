@@ -13,4 +13,4 @@ if(hp <= 0) && !ded
 }
 
 if(!place_meeting(x, y + 2, obj_wall))
-    vsp = approach(vsp, 99, grv)
+    vsp = approach(vsp, 20, grv)

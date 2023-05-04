@@ -1,3 +1,14 @@
+stats =
+{
+	hp_max : 8,
+    spd : 1,
+	firerate : 1,
+	damage : 5
+}
+event_inherited()
+flash = 0
+grv = 0
+collides = 0
 image_alpha = 0;
 
 hasheart = 0;

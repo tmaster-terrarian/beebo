@@ -23,6 +23,7 @@ timer0 = 0
 ded = 0
 image_speed = 0
 drawhp = 0
+playerally = 0
 
 statsmult = {}
 buffs = {}

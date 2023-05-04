@@ -10,16 +10,15 @@ else
     target = obj_player_dead;
 }
 
-if(appeared) circlepos += 2;
-if(circlepos >= 360) circlepos = 0;
+if(appeared) circlepos += 2 * spd;
 
 target_x = target.x + lengthdir_x(distancefrom, circlepos);
 target_y = target.y + lengthdir_y(distancefrom, circlepos);
 if(target == obj_player)
     target_y = target.y - 8 + lengthdir_y(distancefrom, circlepos);
 
-x += (target_x - x) / walksp;
-y += (target_y - y) / walksp;
+x += (target_x - x) / (walksp / spd);
+y += (target_y - y) / (walksp / spd);
 
 //jitter
 x += random_range(-shake_remain, shake_remain);
@@ -54,7 +53,7 @@ else
 
 //attackg
 attack_timer_cooldn = max(-1, attack_timer_cooldn - 1)
-if(attack_timer >= 120)
+if(attack_timer >= 120 / firerate)
 {
     attack = true;
 }
@@ -69,6 +68,7 @@ if(attack)
 
             with(instance_create_depth(x, y, depth - 20, obj_bone))
             {
+                damage = other.damage
                 proj_thrower = other
                 var p = instance_exists(obj_player) ? obj_player : obj_player_dead
 
@@ -101,4 +101,13 @@ if(attack)
         attack_timer_cooldn = 0;
         attack_timer = 0;
     }
+}
+
+if(hp < hp_max)
+    drawhp = 1
+
+if(hp <= 0) && !ded
+{
+    ded = 1
+    event_perform(ev_other, ev_user2)
 }

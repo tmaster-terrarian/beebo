@@ -1,3 +1,6 @@
+if y > room_height
+    instance_destroy()
+
 if(!done)
 {
     vsp = approach(vsp, 20, grv)

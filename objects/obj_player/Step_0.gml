@@ -185,7 +185,7 @@ if(hascontrol)
             hsp = approach(hsp, 0, fric)
             if(!on_ground)
                 vsp = approach(vsp, vsp_max, grv)
-            if(invuln <= 0)
+            if(invuln <= 0) || on_ground
                 state = "normal"
             break
         }

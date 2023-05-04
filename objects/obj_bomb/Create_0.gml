@@ -24,7 +24,7 @@ explode = function()
         with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
 
         with(obj_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
-        with(par_enemy) if(place_meeting(x, y, other)) hp -= other.dmg;
+        with(par_enemy) if(place_meeting(x, y, other) && !playerally) hp -= other.dmg;
         with(obj_boss) if(place_meeting(x, y, other)) {hp -= other.dmg; flash = 3}
 
         with(obj_player)

@@ -18,7 +18,8 @@ with(obj_player)
         spd : 1,
         jumpspd : 1,
         firerate : 1,
-        accuracy : 1
+        accuracy : 1,
+        damage : 1
     }
 
     var spdadd = 1
@@ -47,6 +48,8 @@ with(obj_player)
     air_fric = stats.air_fric * (walksp / stats.spd)
 
     statsmult.accuracy = max(statsmult.accuracy - _calcitem("beeswax", self), 0)
+
+    _calcitem("amorphous_plush", self)
 
     with(oGun)
     {

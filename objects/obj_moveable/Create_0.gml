@@ -5,3 +5,5 @@ h_counter = 0
 v_counter = 0
 on_ground = 0
 platformTarget = 0
+facing = 1
+collides = 1
