@@ -1,4 +1,6 @@
 event_inherited()
+damage = 1
+_team = team.player
 s = 2
 p = 0
 dir = 0

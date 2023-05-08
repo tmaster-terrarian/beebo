@@ -1,3 +1,5 @@
+depth = -1000
+
 // screen transition stuff
 w = display_get_gui_width();
 h = display_get_gui_height();
@@ -10,6 +12,7 @@ enum TRANS_MODE
     GOTO,
     DIRECT,
     RESTART,
+    SOFTRESTART,
     ACTIVE,
     ACTIVE2
 };
@@ -51,7 +54,14 @@ global.bonehive_started = 0
 global.loading_rm = noone
 global.loading_txt = ""
 global.hitstop = 0; hitstop = 0
-global.playeritems = []
+global.player = noone
+
+enum team
+{
+    player,
+	enemy,
+	neutral
+}
 
 // boss
 currentboss = noone

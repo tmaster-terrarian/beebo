@@ -4,7 +4,7 @@ firingdelay = 0;
 firingdelaybomb = 0;
 recoil = 0;
 
-bomb_timer_max = 70;
+bomb_timer_max = 90;
 
 heat = 0;
 heat_max = 100;

@@ -21,3 +21,4 @@ if inst != id
 x += 10000;
 playerally = 1
 t = 0
+r = 0

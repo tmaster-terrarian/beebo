@@ -4,9 +4,9 @@ function initbuffs(target)
 	{
 		target.buffs =
 		{
-			slow : new _slow(),
-			bleed : new _bleed(),
-			fast : new _fast()
+			debuff_slow : new _slow(),
+			debuff_bleed : new _bleed(),
+			buff_fast : new _fast()
 		}
 	}
 }

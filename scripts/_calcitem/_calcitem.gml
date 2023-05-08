@@ -1,6 +1,14 @@
 function _calcitem(_name, target)
 {
-    global.__calcitemnamearg = _name
-    global.__calcitemtargetarg = target
-    return (array_any(global.__calcitemtargetarg.items, function(_v, _i){return _v.name == global.__calcitemnamearg})) ? global.__calcitemtargetarg.items[array_find_index(global.__calcitemtargetarg.items, function(_v, _i){return _v.name == global.__calcitemnamearg})].calc() : 0
+    return (array_any(target.items, function(_v, _i, _n = _name){return _v.name == _n})) ? target.items[array_find_index(target.items, function(_v, _i, _n = _name){return _v.name == _n})].calc() : 0
+}
+
+function _getitem(_name, target)
+{
+    return (array_any(target.items, function(_v, _i, _n = _name){return _v.name == _n})) ? target.items[array_find_index(target.items, function(_v, _i, _n = _name){return _v.name == _n})] : -1
+}
+
+function _item_exists(_name, target)
+{
+    return (array_any(target.items, function(_v, _i, _n = _name){return _v.name == _n}))
 }

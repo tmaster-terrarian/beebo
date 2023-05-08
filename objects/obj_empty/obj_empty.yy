@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "parents and children",
+    "path": "folders/Objects/parents and children.yy",
   },
   "parentObjectId": null,
   "persistent": false,

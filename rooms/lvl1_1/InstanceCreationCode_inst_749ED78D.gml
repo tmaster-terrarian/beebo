@@ -1,1 +1,1 @@
-def = new _itemdef_amorphous_plush()
+def = new _itemdef_eviction_notice()

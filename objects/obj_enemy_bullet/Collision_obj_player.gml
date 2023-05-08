@@ -1,6 +1,9 @@
-with (other)
+if(_team == team.neutral || _team == team.enemy)
 {
-	hp -= other.damage
+	with (other)
+	{
+		hp -= other.damage
+	}
+	oCamera.alarm[0] = 10
+	scr_disintigrate()
 }
-oCamera.alarm[0] = 10
-scr_disintigrate()

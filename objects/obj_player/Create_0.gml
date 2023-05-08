@@ -2,7 +2,7 @@ event_inherited();
 
 depth = 300;
 
-state = "normal";
+state = "donothing";
 
 sprite_index = spr_player;
 image_speed = 0;
@@ -151,4 +151,4 @@ for(var a = 0; a < ponytail_points_count; a++)
 buffs = {}
 initbuffs(id)
 
-items = global.playeritems
+items = []

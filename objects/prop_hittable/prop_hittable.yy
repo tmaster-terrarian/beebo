@@ -12,8 +12,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "props",
-    "path": "folders/Objects/props.yy",
+    "name": "parents and children",
+    "path": "folders/Objects/parents and children.yy",
   },
   "parentObjectId": {
     "name": "obj_prop",

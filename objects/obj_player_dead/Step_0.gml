@@ -91,6 +91,13 @@ else
 			ScreenShake(4, 40);
 			MakeExplosion(posx, posy, 4, 4, 2, sn_explosion, depth + 150);
 		}
+
+		if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter)) || (gamepad_button_check_pressed(0, gp_face1))
+		{
+			scr_particle_explode2();
+			with(oGameManager) {audio_sound_gain(current_bgm, 1, 500)}
+			gm_room_transition_softrestart();
+		}
     }
 	if(explosiontimer == -5)
 	{
@@ -106,12 +113,3 @@ else
 	}
 }
 bg.image_alpha = (-1 * (explosiontimer / 80) + 1);
-
-if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter)) || (gamepad_button_check_pressed(0, gp_face1))
-{
-	global.pausetimer = false;
-	global.playerhealth = hp_max;
-	with(oGameManager) {audio_sound_gain(current_bgm, 1, 500); audio_sound_set_track_position(current_bgm, 0)}
-	gm_room_transition_direct(rm, TRANS_TYPE.BOX);
-	scr_particle_explode2();
-}

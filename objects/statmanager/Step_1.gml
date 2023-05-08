@@ -23,10 +23,10 @@ with(obj_player)
     }
 
     var spdadd = 1
-    spdadd += (variable_struct_exists(buffs, "fast")) ? buffs.fast.calc() : 0
+    spdadd += (variable_struct_exists(buffs, "buff_fast")) ? buffs.buff_fast.calc() : 0
 
     var spdsub = 1
-    spdsub += (variable_struct_exists(buffs, "slow")) ? buffs.slow.calc() : 0
+    spdsub += (variable_struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
 
     statsmult.spd = spdadd / spdsub
 
@@ -75,10 +75,10 @@ with(par_enemy)
     }
 
     var spdadd = 1
-    spdadd += buffs.fast.calc()
+    spdadd += (variable_struct_exists(buffs, "fast")) ? buffs.fast.calc() : 0
 
     var spdsub = 1
-    spdsub += buffs.slow.calc()
+    spdsub += (variable_struct_exists(buffs, "slow")) ? buffs.slow.calc() : 0
 
     statsmult.spd = spdadd / spdsub
 

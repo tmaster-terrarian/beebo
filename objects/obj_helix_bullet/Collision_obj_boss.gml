@@ -1,6 +1,10 @@
-with (other)
+if(_team == team.neutral || _team == team.player)
 {
-	hp -= 1;
-	flash = 3;
+	with (other)
+	{
+		hp -= other.damage;
+		flash = 3;
+	}
+	audio_play_sound(sn_hit, 5, false)
+	instance_destroy()
 }
-alpha = 1/30

@@ -10,13 +10,12 @@ switch(state)
             xx = x;
             x -= 10000;
             inst = instance_nearest(xx, y, par_enemy);
-            if inst
-            {
-                if inst.object_index != obj_catfriend
-                    target = inst
-            }
             x += 10000;
-            if(instance_exists(obj_enemy))
+            if inst && inst.object_index != obj_catfriend
+            {
+                target = inst
+            }
+            else if(instance_exists(obj_enemy))
                 target = instance_nearest(x, y, obj_enemy)
             else if(instance_exists(obj_boss))
                 target = instance_nearest(x, y, obj_boss)
@@ -68,6 +67,21 @@ switch(state)
                 target.hp -= 10
                 scr_particle_explode()
             }
+            r++
+            if(r >= 180)
+            {
+                r = 0
+                var inst, xx;
+                xx = x;
+                x -= 10000;
+                inst = instance_nearest(xx, y, par_enemy);
+                x += 10000;
+                if inst && inst.object_index != obj_catfriend && inst != target
+                {
+                    target = inst
+                }
+                else target = noone
+            }
         }
         else state = "normal"
 
@@ -78,7 +92,7 @@ t++
 
 image_speed = hsp/6
 if(hsp == 0)
-    image_speed = 0.2
+    image_speed = 0.1
 
 if(hsp != 0)
     facing = sign(hsp)

@@ -154,8 +154,8 @@
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"bg0","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":1200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":{"name":"sBG0alt","path":"sprites/sBG0alt/sBG0alt.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":true,"x":0,"y":0,},
   ],
   "parent": {
-    "name": "Rooms",
-    "path": "folders/Rooms.yy",
+    "name": "levels",
+    "path": "folders/Rooms/levels.yy",
   },
   "parentRoom": null,
   "physicsSettings": {

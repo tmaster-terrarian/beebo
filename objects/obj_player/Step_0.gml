@@ -175,6 +175,7 @@ if(hascontrol)
 
     switch(state)
     {
+        case "donothing": {break}
         case "stunned":
         {
             lookup = 0

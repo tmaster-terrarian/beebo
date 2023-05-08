@@ -1,4 +1,5 @@
 event_inherited()
+depth = 400
 grv = 0.2
 if(stats == noone)
 {

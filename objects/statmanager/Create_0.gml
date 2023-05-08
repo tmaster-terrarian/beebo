@@ -73,11 +73,6 @@ function _bleed() : _buff("debuff_bleed") constructor
                 oCamera.alarm[0] = 5
         }
     }
-    // draw = function()
-    // {
-    //     if(timeleft)
-    //         draw_sprite(spr_debuff_bleed, 0, other.bbox_right + 2, other.bbox_top - 2)
-    // }
 }
 
 function _fast() : _buff("buff_fast") constructor

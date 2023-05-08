@@ -7,7 +7,7 @@ switch(room)
         current_st = -1
     break
 
-    case rMenu: case rm_settings:
+    case rMenu: case rm_settings: case rm_lobby:
         SetMusic(bgm_placeholder)
         current_st = -1
     break

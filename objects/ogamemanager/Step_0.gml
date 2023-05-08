@@ -41,11 +41,13 @@ if(mode != TRANS_MODE.OFF)
                     room_goto(target)
                 }
             break
-            case TRANS_MODE.RESTART:
-                if(global.rich_presence)
+            case TRANS_MODE.RESTART: case TRANS_MODE.SOFTRESTART:
+                if(global.rich_presence) || (mode == TRANS_MODE.SOFTRESTART)
                 {
                     audio_stop_all()
-                    room_goto(boot)
+                    if(mode == TRANS_MODE.RESTART)
+                        room_goto(boot)
+                    else room_goto(rMenu)
                     with(all)
                     {
                         if persistent && object_index != objNekoPresenceDemo
@@ -323,7 +325,7 @@ if(global.console)
                         var spawned = instance_create_depth(mouse_x, mouse_y, 350, _obj);
                         if(_obj == obj_item)
                         {
-                            spawned.def = choose(new _itemdef_beeswax(), new _itemdef_eviction_notice())
+                            spawned.def = choose(new _itemdef_beeswax(), new _itemdef_eviction_notice(), new _itemdef_amorphous_plush())
                         }
                     }
                     else console_log("spawn failed: object asset does not exist");

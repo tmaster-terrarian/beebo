@@ -1,2 +1,2 @@
 alarm[0] = 1
-image_index += 0.5 * sign(hsp)
+image_index += 1 * sign(hsp)

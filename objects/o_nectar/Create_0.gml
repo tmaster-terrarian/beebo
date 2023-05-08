@@ -1,6 +1,6 @@
 stats =
 {
-	hp_max : 8,
+	hp_max : 10,
     spd : 1,
 	firerate : 1,
 	damage : 5

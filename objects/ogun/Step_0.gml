@@ -53,10 +53,10 @@ if(global.controller)
         }
     }
 
-    if(gamepad_button_check_pressed(0, gp_stickr))
-    {
-        lock = !lock;
-    }
+    // if(gamepad_button_check_pressed(0, gp_stickr))
+    // {
+    //     lock = !lock;
+    // }
 
     if(lock)
     {
