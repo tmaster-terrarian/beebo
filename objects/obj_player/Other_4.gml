@@ -4,10 +4,5 @@ if(instance_exists(obj_playernode))
     y = obj_playernode.y
     state = obj_playernode.startstate
 }
-else
-{
-    x = 0
-    y = 0
-    state = "donothing"
-}
 global.gamestarted = true;
+if(global.hasgun) instance_create_depth(x, y, 300, oGun);

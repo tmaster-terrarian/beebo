@@ -2,7 +2,7 @@ event_inherited();
 
 depth = 300;
 
-state = "donothing";
+state = "normal";
 
 sprite_index = spr_player;
 image_speed = 0;
@@ -22,8 +22,6 @@ can_attack = 1;
 can_jump = 1;
 can_walljump = 1;
 can_dodge = 1;
-
-if(global.hasgun) instance_create_depth(x, y, 300, oGun);
 
 grv = 0.2;
 facing = 1;

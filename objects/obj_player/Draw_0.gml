@@ -152,3 +152,9 @@ if(state != "donothing")
         buff.draw()
     })
 }
+
+if(global.draw_debug)
+{
+    // draw_rectangle_color(bbox_left + 1, bbox_top + 1, bbox_right - 1, bbox_bottom - 1, c_red, c_red, c_red, c_red, true)
+    // draw_rectangle_color(x - 1, y - 1, x, y, c_lime, c_lime, c_lime, c_lime, true)
+}

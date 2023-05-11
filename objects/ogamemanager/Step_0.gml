@@ -24,7 +24,7 @@ if(mode != TRANS_MODE.OFF)
             break
             case TRANS_MODE.DIRECT:
                 mode = TRANS_MODE.ACTIVE
-                console_log("loading room (mode: direct): '" + string(room_get_name(target)) + "' [warning: stage will not be saved!]")
+                console_log("loading room (mode: direct): '" + room_get_name(target) + "'")
                 room_goto(target)
             break
             case TRANS_MODE.GOTO:
@@ -32,12 +32,12 @@ if(mode != TRANS_MODE.OFF)
                 target = stages[target_st, target_rm]
                 if(current_st != target_st) && (current_st != -1)
                 {
-                    console_log("loading room (mode: goto): " + string(room_get_name(target) + " (" + string(target_st) + ", " + string(target_rm) + ")"))
+                    console_log("loading room (mode: goto): '" + room_get_name(target) + "' (" + string(target_st) + ", " + string(target_rm) + ")")
                     scr_loadingscreen(target, stage_tips[target_st])
                 }
                 else
                 {
-                    console_log("loading room (mode: goto): " + string(room_get_name(target) + " (" + string(target_st) + ", " + string(target_rm) + ")"))
+                    console_log("loading room (mode: goto): '" + room_get_name(target) + "' (" + string(target_st) + ", " + string(target_rm) + ")")
                     room_goto(target)
                 }
             break
@@ -73,6 +73,8 @@ if(keyboard_check(vk_lcontrol))
     {
         x = mouse_x;
         y = mouse_y;
+        vsp = 0
+        hsp = 0
     }
 }
 

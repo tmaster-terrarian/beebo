@@ -5,11 +5,11 @@ increase damage by 20% (+10% per stack) of additional movement speed
 
 stages
 [ ] random level generation using the templates model
-    [ ] invent gamemaker prefabs (yippee!!!!!! so FUN!! AAAAAAAAAAAAAAAAAAAA)
+    [x] invent gamemaker prefabs (yippee!!!!!! so FUN!! AAAAAAAAAAAAAAAAAAAA)
         constructors?
         hard-coded tile positions?
         tilemap-layers or objects?
-        json? (that would be cool...)
+        json? (that would be cool...) <<< did this one
     [ ] level metadata
         enemy whitelist
         level name, type, etc.
@@ -17,7 +17,7 @@ stages
         single room stages
     [ ] tilemap stuff
         [ ] auto tiling with 8-bit mask
-        [ ] place obj_wall in the right spots
+        [x] place obj_wall in the right spots
         [ ] randomness for variety
 [ ] make ice level as alternate first stage
 

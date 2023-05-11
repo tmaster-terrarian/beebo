@@ -4,9 +4,9 @@ _startgame = function()
     global.g = true;
     global.hasgun = true;
     global.introcutscene = false;
-    global.player = instance_create_depth(0, 0, 300, obj_player)
     ScreenShake(12, 60);
     gm_room_transition_direct(lvl_random, TRANS_TYPE.SLOW_HORIZONTAL);
+    global.player = instance_create_depth(128, 0, 300, obj_player)
     caninput = 0
 }
 

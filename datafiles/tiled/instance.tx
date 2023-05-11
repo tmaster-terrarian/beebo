@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object name="obj_wall2" width="8" height="8">
+  <properties>
+   <property name="chance" type="float" value="1"/>
+  </properties>
+ </object>
+</template>

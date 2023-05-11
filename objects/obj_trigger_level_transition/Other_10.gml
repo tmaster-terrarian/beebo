@@ -10,5 +10,5 @@ with (obj_player)
 }
 with (oGameManager)
 {
-    gm_room_transition_goto(other.target_st, other.target_rm, TRANS_TYPE.BOX);
+    gm_room_transition_goto(other.target_st, other.target_rm, other.target_x, other.target_y);
 }

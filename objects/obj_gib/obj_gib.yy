@@ -14,10 +14,7 @@
     "name": "fx",
     "path": "folders/Objects/fx.yy",
   },
-  "parentObjectId": {
-    "name": "obj_moveable",
-    "path": "objects/obj_moveable/obj_moveable.yy",
-  },
+  "parentObjectId": null,
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

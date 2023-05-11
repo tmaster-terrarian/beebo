@@ -19,6 +19,8 @@ switch(room)
             loading_rm = global.loading_rm
             txt_string = global.loading_txt
         }
+        with(obj_player)
+            state = "donothing"
         current_st = -1
     break
 

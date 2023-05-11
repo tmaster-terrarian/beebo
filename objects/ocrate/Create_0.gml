@@ -1,4 +1,5 @@
 event_inherited();
+image_speed = 0
 
 hp = 2
 flash = -1

@@ -13,7 +13,10 @@
     "name": "fx",
     "path": "folders/Objects/fx.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "fx_base",
+    "path": "objects/fx_base/fx_base.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

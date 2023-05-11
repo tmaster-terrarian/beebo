@@ -76,6 +76,7 @@ if(draw_ui)
             for(var i = 0; i < array_length(items); i++)
             {
                 var spr = asset_get_index("spr_item_" + items[i].name)
+                draw_sprite_ext((spr != -1) ? spr : spr_buff_missing, 0, 11 + 16 * i, 144 - 9, 1, 1, 0, c_black, 1)
                 draw_sprite((spr != -1) ? spr : spr_buff_missing, 0, 10 + 16 * i, 144 - 10)
                 if(items[i].stacks > 1)
                 {

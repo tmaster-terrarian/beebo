@@ -312,8 +312,8 @@ if(hascontrol)
                 if (wallslideTimer >= 5)
                     state = "wallslide"
 
-                jump_buffer = max(jump_buffer - 1, 0);
-                jump_buffer2 = max(jump_buffer2 - 1, 0);
+                if jump_buffer
+                    jump_buffer--
 
                 sprite_index = spr_player_jump
                 if (vsp >= 0.1)
@@ -334,6 +334,7 @@ if(hascontrol)
                 wallslideTimer = 0
                 lasthsp = 0
                 lastvsp = 0
+                jump_buffer = 10
             }
             if (running)
                 image_index += abs(hsp / 6)
@@ -551,7 +552,7 @@ if(hascontrol)
 
     if (keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_face1)) && can_jump
     {
-        if(on_ground)
+        if(on_ground) || (jump_buffer && vsp > 0)
         {
             if(!duck)
             {
@@ -567,7 +568,7 @@ if(hascontrol)
                     if(c.vsp < 0)
                         vsp = c.vsp
                 }
-                vsp += jump_speed
+                vsp = jump_speed
                 audio_play_sound(sn_jump, 0, false)
             }
             else if(place_meeting(x, y + 2, obj_platform)) && (keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) > 0) || gamepad_button_check(0, gp_padd))
@@ -591,6 +592,19 @@ if(hascontrol)
                 vsp += jump_speed / 2
                 audio_play_sound(sn_jump, 0, false)
             }
+
+            if(!on_ground)
+            {
+                for (var i = 0; i < 4; i++)
+                {
+                    with (instance_create_depth((bbox_left + random(8)), random_range(bbox_bottom, bbox_bottom), (depth - 1), fx_dust))
+                    {
+                        sprite_index = spr_fx_dust2
+                        vx = random_range(-0.5, 0.5)
+                        vz = random_range(-0.2, 0)
+                    }
+                }
+            }
         }
         else if can_walljump
         {
@@ -613,11 +627,11 @@ if(hascontrol)
         }
     }
 
-    if(keyboard_check_pressed(vk_lshift) && dashtimer == 0 && state == "normal")
-    {
-        state = "dash"
-        timer0 = 0
-    }
+    // if(keyboard_check_pressed(vk_lshift) && dashtimer == 0 && state == "normal")
+    // {
+    //     state = "dash"
+    //     timer0 = 0
+    // }
 }
 
 if fxtrail && !global.cutscene
