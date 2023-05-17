@@ -1,4 +1,4 @@
-depth = -1000
+depth = -15000
 
 // screen transition stuff
 w = display_get_gui_width();

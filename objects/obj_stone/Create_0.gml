@@ -9,5 +9,3 @@ hp = 1;
 flash = 0;
 
 item = noone;
-
-event_perform(ev_other, ev_user0);

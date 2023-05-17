@@ -6,3 +6,10 @@ if(instance_exists(obj_playernode))
 }
 global.gamestarted = true;
 if(global.hasgun) instance_create_depth(x, y, 300, oGun);
+
+with(oCamera)
+{
+    event_perform(ev_step, ev_step_begin)
+    x = xTo
+    y = yTo
+}

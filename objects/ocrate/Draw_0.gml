@@ -10,7 +10,7 @@ if(flash > 0)
 else draw_self();
 if(hp <= 0)
 {
-    if(item != noone)
+    if(item)
     {
         instance_create_depth(x, y, 400, item);
     }

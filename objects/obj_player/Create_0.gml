@@ -13,6 +13,9 @@ wallslideTimer = 0;
 running = 0;
 run = 0;
 
+lastSafeX = x
+lastSafeY = y
+
 up = 0
 
 duck = 0;

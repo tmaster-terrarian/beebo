@@ -1,4 +1,4 @@
-if(!obj_player.hascontrol || obj_player.state == "stunned")
+if(!obj_player.hascontrol || obj_player.state == "stunned" || obj_player.state == "donothing")
 {
     sprite_index = sGun;
     image_index = 0;
