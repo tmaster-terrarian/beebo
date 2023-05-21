@@ -55,6 +55,7 @@ switch state
             {
                 with(instance_create_depth(x - 0, y - 14 + random_range(-1, 1), depth - 2, obj_enemy_bullet))
                 {
+			        parent = other.id
                     damage = other.damage
                     image_xscale = 2
                     image_yscale = 0.8
@@ -68,6 +69,7 @@ switch state
             {
                 with(instance_create_depth(x + 20, y - 14 + random_range(-1, 1), depth - 1, obj_enemy_bullet))
                 {
+			        parent = other.id
                     damage = other.damage
                     image_xscale = 2
                     image_yscale = 0.8

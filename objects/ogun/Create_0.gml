@@ -27,3 +27,7 @@ lock_target = -1;
 
 firerate = 4
 accuracy = 4
+
+lastmousex = mouse_x
+lastmousey = mouse_y
+idle_counder = 0

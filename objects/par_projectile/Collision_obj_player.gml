@@ -1,9 +1,7 @@
 if(_team == team.neutral || _team == team.enemy)
 {
-	with (other)
-	{
-		hp -= other.damage
-	}
+	var _event = new damage_event(parent, other, proctype.onhit, damage, proc)
+
 	oCamera.alarm[0] = 10
 	instance_destroy()
 }

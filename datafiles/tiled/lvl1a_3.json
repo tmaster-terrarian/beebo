@@ -65,7 +65,7 @@
                 {
                  "height":16,
                  "id":7,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",

@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "width": 368,
+    "height": 256
+  },
+  "variants": [
+    {
+      "weight": 1,
+      "entities": [
+        {
+          "id": "obj_wall",
+          "x": 176,
+          "y": 160,
+          "__tx": 11,
+          "__ty": 10,
+          "width": 4,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 288,
+          "y": 224,
+          "__tx": 18,
+          "__ty": 14,
+          "width": 3,
+          "height": 3,
+          "data": {
+            "chance": 0.5
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 112,
+          "y": 176,
+          "__tx": 7,
+          "__ty": 11,
+          "width": 9,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 192,
+          "__tx": 0,
+          "__ty": 12,
+          "width": 18,
+          "height": 5,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 336,
+          "y": 192,
+          "__tx": 21,
+          "__ty": 12,
+          "width": 2,
+          "height": 5,
+          "data": {
+            "chance": 1
+          }
+        }
+      ]
+    }
+  ]
+}

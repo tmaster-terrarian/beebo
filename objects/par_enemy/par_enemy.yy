@@ -22,8 +22,8 @@
     "path": "folders/Objects/parents and children.yy",
   },
   "parentObjectId": {
-    "name": "obj_moveable",
-    "path": "objects/obj_moveable/obj_moveable.yy",
+    "name": "par_unit",
+    "path": "objects/par_unit/par_unit.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
@@ -40,6 +40,11 @@
   "physicsStartAwake": true,
   "properties": [
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"stats","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"noone","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"_team","filters":[],"listItems":[
+        "team.player",
+        "team.enemy",
+        "team.neutral",
+      ],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"team.enemy","varType":6,},
   ],
   "solid": false,
   "spriteId": null,

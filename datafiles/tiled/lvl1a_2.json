@@ -164,7 +164,7 @@
                 {
                  "height":16,
                  "id":23,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -181,7 +181,7 @@
                 {
                  "height":16,
                  "id":24,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -198,7 +198,7 @@
                 {
                  "height":16,
                  "id":25,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -215,7 +215,7 @@
                 {
                  "height":16,
                  "id":26,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -420,7 +420,7 @@
                 {
                  "height":16,
                  "id":81,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -437,7 +437,7 @@
                 {
                  "height":16,
                  "id":82,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -454,7 +454,7 @@
                 {
                  "height":16,
                  "id":83,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -802,7 +802,7 @@
                 {
                  "height":16,
                  "id":74,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -813,7 +813,7 @@
                 {
                  "height":16,
                  "id":75,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -824,7 +824,7 @@
                 {
                  "height":16,
                  "id":76,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "rotation":0,
                  "type":"",
                  "visible":true,

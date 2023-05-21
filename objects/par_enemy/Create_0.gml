@@ -11,6 +11,28 @@ if(stats == noone)
         damage : 10
     }
 }
+_target = noone
+switch(_team)
+{
+	case team.player:
+	{
+		playerally = 1
+		_target = par_enemy
+		break
+	}
+	case team.enemy:
+	{
+		playerally = 0
+		_target = obj_player
+		break
+	}
+	case team.neutral:
+	{
+		playerally = 0
+		_target = choose(obj_player, par_enemy)
+		break
+	}
+}
 hp_max = stats.hp_max
 hp = hp_max
 lasthp = hp
@@ -29,3 +51,5 @@ playerally = 0
 statsmult = {}
 buffs = {}
 initbuffs(id)
+
+items = []

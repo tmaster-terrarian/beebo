@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "width": 192,
+    "height": 256
+  },
+  "variants": [
+    {
+      "weight": 1,
+      "entities": [
+        {
+          "id": "obj_robo",
+          "x": 176,
+          "y": 120,
+          "__tx": 11,
+          "__ty": 7.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.5
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 80,
+          "y": 160,
+          "__tx": 5,
+          "__ty": 10,
+          "width": 3,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 192,
+          "__tx": 0,
+          "__ty": 12,
+          "width": 12,
+          "height": 4,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 64,
+          "y": 176,
+          "__tx": 4,
+          "__ty": 11,
+          "width": 8,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 176,
+          "y": 128,
+          "__tx": 11,
+          "__ty": 8,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 160,
+          "y": 128,
+          "__tx": 10,
+          "__ty": 8,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        }
+      ]
+    },
+    {
+      "weight": 1,
+      "entities": [
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 192,
+          "__tx": 0,
+          "__ty": 12,
+          "width": 12,
+          "height": 4,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 64,
+          "y": 176,
+          "__tx": 4,
+          "__ty": 11,
+          "width": 8,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 80,
+          "y": 160,
+          "__tx": 5,
+          "__ty": 10,
+          "width": 3,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        }
+      ]
+    }
+  ]
+}

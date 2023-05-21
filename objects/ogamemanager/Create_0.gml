@@ -56,13 +56,6 @@ global.loading_txt = ""
 global.hitstop = 0; hitstop = 0
 global.player = noone
 
-enum team
-{
-    player,
-	enemy,
-	neutral
-}
-
 // boss
 currentboss = noone
 drawbossbar = 0

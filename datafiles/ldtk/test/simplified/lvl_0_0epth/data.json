@@ -1,0 +1,116 @@
+{
+	"identifier": "lvl_0_0epth",
+	"uniqueIdentifer": "08e82100-ed50-11ed-9e63-8725e17357a0",
+	"x": -1,
+	"y": -1,
+	"width": 256,
+	"height": 256,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields" : {},
+	"layers": [
+		"walls.png",
+		"fancy_tiles.png"
+	],
+	"entities": {
+		"oCrate": [
+			{
+				"id": "oCrate",
+				"iid": "920bf040-ed50-11ed-9e63-2bdeb4b427d7",
+				"layer": "entities",
+				"x": 208,
+				"y": 192,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields": {
+					"item": "obj_empty",
+					"chance": 1
+				}
+			},
+			{
+				"id": "oCrate",
+				"iid": "927f4b80-ed50-11ed-9e63-5b2c54e910f3",
+				"layer": "entities",
+				"x": 224,
+				"y": 192,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields": {
+					"item": "obj_empty",
+					"chance": 1
+				}
+			},
+			{
+				"id": "oCrate",
+				"iid": "92c63f90-ed50-11ed-9e63-8fae14a92ab5",
+				"layer": "entities",
+				"x": 224,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields": {
+					"item": "obj_empty",
+					"chance": 1
+				}
+			},
+			{
+				"id": "oCrate",
+				"iid": "b533b990-ed50-11ed-9e63-a17c530ec47b",
+				"layer": "entities",
+				"x": 208,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields": {
+					"item": "obj_empty",
+					"chance": 1
+				}
+			}
+		],
+		"obj_platform": [
+			{
+				"id": "obj_platform",
+				"iid": "1718f430-ed50-11ed-9e63-bd5a12d2555a",
+				"layer": "entities",
+				"x": 144,
+				"y": 176,
+				"width": 16,
+				"height": 4,
+				"color": 14120515,
+				"customFields": {
+					"chance": 1
+				}
+			},
+			{
+				"id": "obj_platform",
+				"iid": "176e8e40-ed50-11ed-9e63-ffa1e3be3881",
+				"layer": "entities",
+				"x": 160,
+				"y": 176,
+				"width": 16,
+				"height": 4,
+				"color": 14120515,
+				"customFields": {
+					"chance": 1
+				}
+			}
+		],
+		"obj_playernode": [
+			{
+				"id": "obj_playernode",
+				"iid": "7c388ec0-ed50-11ed-9e63-b15fe7bc3ff8",
+				"layer": "entities",
+				"x": 56,
+				"y": 208,
+				"width": 8,
+				"height": 14,
+				"color": 15389866,
+				"customFields" : {}
+			}
+		]
+	}
+}

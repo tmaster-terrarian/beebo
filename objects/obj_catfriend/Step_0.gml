@@ -9,27 +9,25 @@ switch(state)
             var inst, xx;
             xx = x;
             x -= 10000;
-            inst = instance_nearest(xx, y, par_enemy);
+			if(_team == team.neutral)
+				_target = choose(obj_player, par_enemy)
+            inst = instance_nearest(xx, y, _target);
             x += 10000;
             if inst && inst.object_index != obj_catfriend
             {
                 target = inst
             }
-            else if(instance_exists(obj_enemy))
-                target = instance_nearest(x, y, obj_enemy)
-            else if(instance_exists(obj_boss))
-                target = instance_nearest(x, y, obj_boss)
         }
         else
         {
             state = "attack"
         }
 
-        if(instance_exists(obj_player))
+        if(instance_exists(parent))
         {
-            if(point_distance(x, y, obj_player.x, obj_player.y) > 24)
+            if(point_distance(x, y, parent.x, parent.y) > 24)
             {
-                hsp = approach(hsp, spd * sign(obj_player.x - x), 0.1)
+                hsp = approach(hsp, spd * sign(parent.x - x), 0.1)
             }
             else
             {
@@ -60,7 +58,10 @@ switch(state)
 
         if(instance_exists(target))
         {
-            hsp = approach(hsp, spd * 1.5 * sign(target.x - x), 0.1)
+			if(sign(abs(hsp)) != facing)
+				hsp = approach(hsp, 0, 0.13)
+            else
+				hsp = approach(hsp, spd * 1.5 * sign(target.x - x), 0.1)
             if(collision_rectangle(x - 8, y, x + 8, y - 16, target, false, true))
             {
                 audio_play_sound(sn_hit, 5, false)
@@ -72,15 +73,16 @@ switch(state)
             {
                 r = 0
                 var inst, xx;
-                xx = x;
-                x -= 10000;
-                inst = instance_nearest(xx, y, par_enemy);
-                x += 10000;
-                if inst && inst.object_index != obj_catfriend && inst != target
-                {
-                    target = inst
-                }
-                else target = noone
+	            xx = x;
+	            x -= 10000;
+				if(_team == team.neutral)
+					_target = choose(obj_player, par_enemy)
+	            inst = instance_nearest(xx, y, _target);
+	            x += 10000;
+	            if inst && inst.object_index != obj_catfriend
+	            {
+	                target = inst
+	            }
             }
         }
         else state = "normal"

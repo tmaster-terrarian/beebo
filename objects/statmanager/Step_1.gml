@@ -8,7 +8,7 @@ with(obj_player)
 
     for(var i = 0; i < array_length(items); i++)
     {
-        items[i].step()
+        items[i].step(obj_player)
     }
 
     statsmult = 
@@ -49,8 +49,6 @@ with(obj_player)
 
     statsmult.accuracy = max(statsmult.accuracy - _calcitem("beeswax", self), 0)
 
-    _calcitem("amorphous_plush", self)
-
     with(oGun)
     {
         firerate = other.stats.firerate * other.statsmult.firerate
@@ -75,10 +73,10 @@ with(par_enemy)
     }
 
     var spdadd = 1
-    spdadd += (variable_struct_exists(buffs, "fast")) ? buffs.fast.calc() : 0
+    spdadd += (variable_struct_exists(buffs, "buff_fast")) ? buffs.buff_fast.calc() : 0
 
     var spdsub = 1
-    spdsub += (variable_struct_exists(buffs, "slow")) ? buffs.slow.calc() : 0
+    spdsub += (variable_struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
 
     statsmult.spd = spdadd / spdsub
 

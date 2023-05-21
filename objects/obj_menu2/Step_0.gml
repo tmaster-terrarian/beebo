@@ -106,7 +106,7 @@ if(key_en)
                         audio_play_sound(sn_tp, 3, false);
                         var memeplayer = instance_create_depth(m_x + m_w * 0.5, m_y + m_h * 0.5, 300, obj_player);
                         var memegun = instance_create_depth(m_x + m_w * 0.5, m_y + m_h * 0.5 + 16, 200, oGun);
-                        var memeenemy = instance_create_depth(m_x + m_w * 0.5, m_y + m_h * 0.5, 300, obj_enemy);
+                        var memeenemy = instance_create_depth(m_x + m_w * 0.5, m_y + m_h * 0.5, 300, obj_robo);
                         instance_create_depth(m_x, m_y, 400, oCrate);
                     }
                     break;

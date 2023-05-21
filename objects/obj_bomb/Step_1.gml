@@ -20,7 +20,7 @@ event_inherited();
 
 // //v
 // var c = noone
-// if (place_meeting(x, y + vsp, oCrate)) || (place_meeting(x, y + vsp, obj_stone)) || (place_meeting(x, y + vsp, obj_enemy)) || (place_meeting(x, y + vsp, obj_boss))
+// if (place_meeting(x, y + vsp, oCrate)) || (place_meeting(x, y + vsp, obj_stone)) || (place_meeting(x, y + vsp, obj_robo)) || (place_meeting(x, y + vsp, obj_boss))
 // {
 //     explode();
 // }

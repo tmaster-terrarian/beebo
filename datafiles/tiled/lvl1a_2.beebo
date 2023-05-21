@@ -1,0 +1,876 @@
+{
+  "metadata": {
+    "width": 304,
+    "height": 256
+  },
+  "variants": [
+    {
+      "weight": 1,
+      "entities": [
+        {
+          "id": "o_nectar",
+          "x": 256,
+          "y": 112,
+          "__tx": 16,
+          "__ty": 7,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "o_nectar",
+          "x": 264,
+          "y": 115,
+          "__tx": 16.5,
+          "__ty": 7.1875,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.25
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 64,
+          "y": 120,
+          "__tx": 4,
+          "__ty": 7.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.75
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 128,
+          "y": 168,
+          "__tx": 8,
+          "__ty": 10.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 80,
+          "y": 168,
+          "__tx": 5,
+          "__ty": 10.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 240,
+          "y": 200,
+          "__tx": 15,
+          "__ty": 12.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.5
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 272,
+          "y": 176,
+          "__tx": 17,
+          "__ty": 11,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 288,
+          "y": 160,
+          "__tx": 18,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 288,
+          "y": 144,
+          "__tx": 18,
+          "__ty": 9,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 288,
+          "y": 176,
+          "__tx": 18,
+          "__ty": 11,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 272,
+          "y": 144,
+          "__tx": 17,
+          "__ty": 9,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 272,
+          "y": 160,
+          "__tx": 17,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 208,
+          "__tx": 0,
+          "__ty": 13,
+          "width": 19,
+          "height": 4,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 272,
+          "y": 192,
+          "__tx": 17,
+          "__ty": 12,
+          "width": 2,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 272,
+          "y": 0,
+          "__tx": 17,
+          "__ty": 0,
+          "width": 2,
+          "height": 8,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 256,
+          "y": 128,
+          "__tx": 16,
+          "__ty": 8,
+          "width": 5,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 176,
+          "__tx": 0,
+          "__ty": 11,
+          "width": 13,
+          "height": 2,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 48,
+          "y": 128,
+          "__tx": 3,
+          "__ty": 8,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 80,
+          "y": 128,
+          "__tx": 5,
+          "__ty": 8,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.5
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 64,
+          "y": 128,
+          "__tx": 4,
+          "__ty": 8,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        }
+      ]
+    },
+    {
+      "weight": 1,
+      "entities": [
+        {
+          "id": "o_nectar",
+          "x": 256,
+          "y": 112,
+          "__tx": 16,
+          "__ty": 7,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "o_nectar",
+          "x": 264,
+          "y": 115,
+          "__tx": 16.5,
+          "__ty": 7.1875,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.25
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 240,
+          "y": 200,
+          "__tx": 15,
+          "__ty": 12.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.5
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 80,
+          "y": 168,
+          "__tx": 5,
+          "__ty": 10.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 128,
+          "y": 168,
+          "__tx": 8,
+          "__ty": 10.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 272,
+          "y": 144,
+          "__tx": 17,
+          "__ty": 9,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 288,
+          "y": 176,
+          "__tx": 18,
+          "__ty": 11,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 272,
+          "y": 176,
+          "__tx": 17,
+          "__ty": 11,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 288,
+          "y": 144,
+          "__tx": 18,
+          "__ty": 9,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 288,
+          "y": 160,
+          "__tx": 18,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 272,
+          "y": 160,
+          "__tx": 17,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 256,
+          "y": 0,
+          "__tx": 16,
+          "__ty": 0,
+          "width": 3,
+          "height": 9,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 256,
+          "y": 192,
+          "__tx": 16,
+          "__ty": 12,
+          "width": 3,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 304,
+          "y": 128,
+          "__tx": 19,
+          "__ty": 8,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 208,
+          "__tx": 0,
+          "__ty": 13,
+          "width": 19,
+          "height": 4,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 192,
+          "y": 192,
+          "__tx": 12,
+          "__ty": 12,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 176,
+          "__tx": 0,
+          "__ty": 11,
+          "width": 12,
+          "height": 2,
+          "data": {
+            "chance": 1
+          }
+        }
+      ]
+    },
+    {
+      "weight": 1,
+      "entities": [
+        {
+          "id": "o_nectar",
+          "x": 288,
+          "y": 16,
+          "__tx": 18,
+          "__ty": 1,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "o_nectar",
+          "x": 288,
+          "y": 128,
+          "__tx": 18,
+          "__ty": 8,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.25
+          }
+        },
+        {
+          "id": "obj_platform",
+          "x": 144,
+          "y": 160,
+          "__tx": 9,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_platform",
+          "x": 272,
+          "y": 112,
+          "__tx": 17,
+          "__ty": 7,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_platform",
+          "x": 128,
+          "y": 160,
+          "__tx": 8,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_platform",
+          "x": 112,
+          "y": 112,
+          "__tx": 7,
+          "__ty": 7,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_platform",
+          "x": 288,
+          "y": 160,
+          "__tx": 18,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_platform",
+          "x": 128,
+          "y": 112,
+          "__tx": 8,
+          "__ty": 7,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 64,
+          "y": 152,
+          "__tx": 4,
+          "__ty": 9.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 176,
+          "y": 200,
+          "__tx": 11,
+          "__ty": 12.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 184,
+          "y": 104,
+          "__tx": 11.5,
+          "__ty": 6.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 224,
+          "y": 80,
+          "__tx": 14,
+          "__ty": 5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 224,
+          "y": 64,
+          "__tx": 14,
+          "__ty": 4,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 240,
+          "y": 96,
+          "__tx": 15,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 240,
+          "y": 64,
+          "__tx": 15,
+          "__ty": 4,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 224,
+          "y": 96,
+          "__tx": 14,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_stone",
+          "x": 240,
+          "y": 80,
+          "__tx": 15,
+          "__ty": 5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 48,
+          "y": 160,
+          "__tx": 3,
+          "__ty": 10,
+          "width": 5,
+          "height": 3,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 224,
+          "y": 0,
+          "__tx": 14,
+          "__ty": 0,
+          "width": 3,
+          "height": 2,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 144,
+          "y": 112,
+          "__tx": 9,
+          "__ty": 7,
+          "width": 8,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 176,
+          "y": 128,
+          "__tx": 11,
+          "__ty": 8,
+          "width": 6,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 208,
+          "y": 0,
+          "__tx": 13,
+          "__ty": 0,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 240,
+          "y": 160,
+          "__tx": 15,
+          "__ty": 10,
+          "width": 3,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 256,
+          "y": 192,
+          "__tx": 16,
+          "__ty": 12,
+          "width": 3,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 208,
+          "__tx": 0,
+          "__ty": 13,
+          "width": 19,
+          "height": 4,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 256,
+          "y": 176,
+          "__tx": 16,
+          "__ty": 11,
+          "width": 2,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 208,
+          "y": 144,
+          "__tx": 13,
+          "__ty": 9,
+          "width": 4,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 224,
+          "y": 32,
+          "__tx": 14,
+          "__ty": 2,
+          "width": 2,
+          "height": 2,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 176,
+          "__tx": 0,
+          "__ty": 11,
+          "width": 3,
+          "height": 2,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 240,
+          "y": 192,
+          "__tx": 15,
+          "__ty": 12,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 224,
+          "y": 176,
+          "__tx": 14,
+          "__ty": 11,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "item": "obj_hpup",
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 208,
+          "y": 192,
+          "__tx": 13,
+          "__ty": 12,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 224,
+          "y": 192,
+          "__tx": 14,
+          "__ty": 12,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 240,
+          "y": 176,
+          "__tx": 15,
+          "__ty": 11,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        }
+      ]
+    }
+  ]
+}

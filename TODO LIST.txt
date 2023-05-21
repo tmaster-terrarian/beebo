@@ -15,10 +15,10 @@ stages
         level name, type, etc.
     [ ] reuse old stage-room system, but randomized instead
         single room stages
-    [ ] tilemap stuff
-        [ ] auto tiling with 8-bit mask
+    [x] tilemap stuff
+        [x] auto tiling with 8-bit mask
         [x] place obj_wall in the right spots
-        [ ] randomness for variety
+        [x] randomness for variety
 [ ] make ice level as alternate first stage
 
 enemies

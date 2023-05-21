@@ -3,20 +3,16 @@ function _itemdef(_name) constructor
     name = _name
     displayname = name
     stacks = 1
+	proc_type = proctype.none
 
     shortdesc = "undefined"
 
-    static remove = function()
-    {
-        delete other.items[$ name]
-    }
-
     static calc = function() { return 0 }
     static draw = function() {}
-    static step = function() {}
+    static step = function(target) {}
 
-    static on_hit = function(target) {}
-    static on_kill = function(target) {}
+    static proc = function(_a, _t, _d, _p) {}
+	static on_owner_damaged = function(_o, _d) { return _d }
 }
 
 function _itemdef_beeswax() : _itemdef("beeswax") constructor
@@ -32,11 +28,23 @@ function _itemdef_beeswax() : _itemdef("beeswax") constructor
 function _itemdef_eviction_notice() : _itemdef("eviction_notice") constructor
 {
     displayname = "Eviction Notice"
-    shortdesc = "+10% chance to bleed"
+    shortdesc = "Throw razor-sharp legal papers on hit when above 90% health"
     calc = function()
     {
         return 0.1 * stacks
     }
+}
+
+function _itemdef_serrated_stinger() : _itemdef("serrated_stinger") constructor
+{
+    displayname = "Serrated Stinger"
+    shortdesc = "+10% chance to bleed on hit"
+	proc_type = proctype.onhit
+	proc = function(_a, _t, _d, _p)
+	{
+		if(global.utils.chance(0.1 * stacks * _p))
+			_inflict(_t, new statmanager._bleed(_p, _d))
+	}
 }
 
 function _itemdef_amorphous_plush() : _itemdef("amorphous_plush") constructor
@@ -44,19 +52,16 @@ function _itemdef_amorphous_plush() : _itemdef("amorphous_plush") constructor
     displayname = "Amorphous Plush"
     shortdesc = "A protective feline follows you"
     t = 0
-    calc = function()
+    step = function(target)
     {
-        t++
-        if(instance_exists(obj_player) && t % 600 == 1)
+        if(instance_exists(target) && t == 30)
         {
-            if(!instance_exists(obj_catfriend))
-            {
-                instance_create_depth(obj_player.x + random_range(-24, 24), obj_player.y, 0, obj_catfriend)
-            }
-            var o = obj_catfriend
+            var o = instance_create_depth(target.x + random_range(-8, 8), target.y, 0, obj_catfriend, { _team : target._team, parent : target })
             o.hp_max = o.stats.hp_max + 0.1 * stacks
             o.spd = o.stats.spd + 0.1 * stacks
             o.damage = o.stats.damage + 0.2 * stacks
         }
+        t++
+		if(t > 600) t = 0
     }
 }

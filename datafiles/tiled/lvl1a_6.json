@@ -93,7 +93,7 @@
                 {
                  "height":16,
                  "id":8,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -104,7 +104,7 @@
                 {
                  "height":16,
                  "id":9,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -120,7 +120,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -204,7 +204,7 @@
                 {
                  "height":16,
                  "id":17,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -215,7 +215,7 @@
                 {
                  "height":16,
                  "id":18,
-                 "name":"obj_enemy",
+                 "name":"obj_robo",
                  "properties":[
                         {
                          "name":"chance",
@@ -252,6 +252,12 @@
                  "y":160
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"weight",
+                 "type":"float",
+                 "value":2
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -261,11 +267,11 @@
  "nextobjectid":22,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[],
  "tilewidth":16,
  "type":"map",
- "version":1.4,
+ "version":"1.10",
  "width":14
 }

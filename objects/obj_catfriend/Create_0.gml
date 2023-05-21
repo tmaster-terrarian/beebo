@@ -10,15 +10,13 @@ depth = 310
 image_speed = 0
 state = "normal"
 target = noone
-var inst, xx;
-xx = x;
+var xx = x;
 x -= 10000;
-inst = instance_nearest(xx, y, par_enemy);
-if inst != id
+var inst = instance_nearest(xx, y, _target);
+if inst && inst.object_index != obj_catfriend
 {
     target = inst
 }
 x += 10000;
-playerally = 1
 t = 0
 r = 0

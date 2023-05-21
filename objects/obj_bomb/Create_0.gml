@@ -1,4 +1,5 @@
 event_inherited();
+proc = 2
 _team = team.player
 damage = 5
 done = false;

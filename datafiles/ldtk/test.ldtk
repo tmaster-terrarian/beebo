@@ -11,10 +11,10 @@
 	"iid": "08e7d2e0-ed50-11ed-9e63-257b3fc7ef20",
 	"jsonVersion": "1.3.3",
 	"appBuildId": 467698,
-	"nextUid": 70,
+	"nextUid": 71,
 	"identifierStyle": "Free",
 	"toc": [],
-	"worldLayout": "Free",
+	"worldLayout": "LinearHorizontal",
 	"worldGridWidth": 256,
 	"worldGridHeight": 256,
 	"defaultLevelWidth": 256,
@@ -27,7 +27,7 @@
 	"minifyJson": false,
 	"externalLevels": false,
 	"exportTiled": false,
-	"simplifiedExport": false,
+	"simplifiedExport": true,
 	"imageExportMode": "None",
 	"exportLevelBg": true,
 	"pngFilePattern": null,
@@ -1815,8 +1815,8 @@
 			"identifier": "lvl_0_0epth",
 			"iid": "08e82100-ed50-11ed-9e63-8725e17357a0",
 			"uid": 0,
-			"worldX": 0,
-			"worldY": 0,
+			"worldX": -1,
+			"worldY": -1,
 			"worldDepth": 0,
 			"pxWid": 256,
 			"pxHei": 256,
@@ -2134,14 +2134,14 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [{ "levelIid": "0652b530-ed50-11ed-8102-3f26c070faf9", "dir": "e" }]
+			"__neighbours": []
 		},
 		{
 			"identifier": "lvl_1_0epth",
 			"iid": "0652b530-ed50-11ed-8102-3f26c070faf9",
 			"uid": 53,
-			"worldX": 256,
-			"worldY": 0,
+			"worldX": -1,
+			"worldY": -1,
 			"worldDepth": 0,
 			"pxWid": 304,
 			"pxHei": 256,
@@ -2437,7 +2437,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [{ "levelIid": "08e82100-ed50-11ed-9e63-8725e17357a0", "dir": "w" }]
+			"__neighbours": []
 		}
 	],
 	"worlds": [],

@@ -149,6 +149,8 @@ for(var a = 0; a < ponytail_points_count; a++)
         ponytail_segment_len[a] = 2
 }
 
+_team = team.player
+
 buffs = {}
 initbuffs(id)
 

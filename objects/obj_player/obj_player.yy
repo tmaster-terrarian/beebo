@@ -21,8 +21,8 @@
     "path": "folders/Objects.yy",
   },
   "parentObjectId": {
-    "name": "obj_moveable",
-    "path": "objects/obj_moveable/obj_moveable.yy",
+    "name": "par_unit",
+    "path": "objects/par_unit/par_unit.yy",
   },
   "persistent": true,
   "physicsAngularDamping": 0.1,

@@ -44,11 +44,6 @@ function _slow() : _buff("debuff_slow") constructor
     timed = 1
     calc = function()
     {
-        if(stacks > 1)
-        {
-            stacks = 1
-            timeleft = duration
-        }
         return stacks ? 0.5 : 0
     }
     draw = function()
@@ -58,15 +53,17 @@ function _slow() : _buff("debuff_slow") constructor
     }
 }
 
-function _bleed() : _buff("debuff_bleed") constructor
+function _bleed(_p = 1, _d = 10) : _buff("debuff_bleed") constructor
 {
-    duration = 180
     timed = 1
+	proc = _p
+	damage = _d
+    duration = 180 * proc
     tick = function(target)
     {
         if(timeleft % 15 == 1)
         {
-            target.hp -= 2
+            target.hp -= damage * 0.5
             if(target.object_index != obj_player)
                 audio_play_sound(sn_hit, 5, false)
             else
@@ -81,11 +78,6 @@ function _fast() : _buff("buff_fast") constructor
     timed = 1
     calc = function()
     {
-        if(stacks > 1)
-        {
-            stacks = 1
-            timeleft = duration
-        }
         return stacks ? 0.3 : 0
     }
 }

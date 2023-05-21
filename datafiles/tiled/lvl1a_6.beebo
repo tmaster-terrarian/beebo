@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "width": 224,
+    "height": 256
+  },
+  "variants": [
+    {
+      "weight": 1,
+      "entities": [
+        {
+          "id": "obj_robo",
+          "x": 112,
+          "y": 88,
+          "__tx": 7,
+          "__ty": 5.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.25
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 72,
+          "y": 136,
+          "__tx": 4.5,
+          "__ty": 8.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 64,
+          "y": 144,
+          "__tx": 4,
+          "__ty": 9,
+          "width": 5,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 192,
+          "__tx": 0,
+          "__ty": 12,
+          "width": 14,
+          "height": 5,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 48,
+          "y": 160,
+          "__tx": 3,
+          "__ty": 10,
+          "width": 7,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 32,
+          "y": 176,
+          "__tx": 2,
+          "__ty": 11,
+          "width": 12,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 112,
+          "y": 96,
+          "__tx": 7,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 96,
+          "y": 96,
+          "__tx": 6,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 80,
+          "y": 96,
+          "__tx": 5,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "item": "obj_hpup",
+            "chance": 1
+          }
+        }
+      ]
+    },
+    {
+      "weight": 2,
+      "entities": [
+        {
+          "id": "obj_platform",
+          "x": 16,
+          "y": 144,
+          "__tx": 1,
+          "__ty": 9,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 128,
+          "y": 88,
+          "__tx": 8,
+          "__ty": 5.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 0.25
+          }
+        },
+        {
+          "id": "obj_robo",
+          "x": 40,
+          "y": 136,
+          "__tx": 2.5,
+          "__ty": 8.5,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 160,
+          "y": 160,
+          "__tx": 10,
+          "__ty": 10,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 32,
+          "y": 176,
+          "__tx": 2,
+          "__ty": 11,
+          "width": 12,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 0,
+          "y": 192,
+          "__tx": 0,
+          "__ty": 12,
+          "width": 14,
+          "height": 5,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "obj_wall",
+          "x": 32,
+          "y": 144,
+          "__tx": 2,
+          "__ty": 9,
+          "width": 8,
+          "height": 2,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 128,
+          "y": 96,
+          "__tx": 8,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 144,
+          "y": 96,
+          "__tx": 9,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "chance": 1
+          }
+        },
+        {
+          "id": "oCrate",
+          "x": 112,
+          "y": 96,
+          "__tx": 7,
+          "__ty": 6,
+          "width": 1,
+          "height": 1,
+          "data": {
+            "item": "obj_hpup",
+            "chance": 1
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -60,17 +60,20 @@ if(global.controller)
 
     if(lock)
     {
-        if(instance_exists(obj_enemy)) {lock_target = instance_nearest(x + aim_w, y + aim_h, obj_enemy); image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
+        if(instance_exists(obj_robo)) {lock_target = instance_nearest(x + aim_w, y + aim_h, obj_robo); image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
         else if(instance_exists(obj_animeRival)) {lock_target = obj_animeRival; image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
         else if(instance_exists(obj_boss)) {lock_target = obj_boss; image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
         else lock = false;
     }
     else lock_target = noone;
 }
-else image_angle = point_direction(x, y, mouse_x, mouse_y);
-image_angle = round(image_angle / 10) * 10;
+else if(idle_counder < 180)
+{
+    image_angle = point_direction(x, y, mouse_x, mouse_y);
+    image_angle = round(image_angle / 10) * 10;
+}
 
-if(obj_player.state == "normal")
+if(obj_player.state == "normal" && idle_counder < 180)
 {
     if (image_angle > 90 && image_angle < 270)
     {
@@ -95,7 +98,7 @@ else
     }
 }
 
-firingdelay -= 1;
+firingdelay--;
 recoil = max(0, recoil - 1);
 if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (firingdelay < 0)
 {
@@ -112,6 +115,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
 
         with (instance_create_depth(x, y, depth - 3, oBullet))
         {
+			parent = obj_player
             //play fire sound
             audio_play_sound(snShot, 1, false);
 
@@ -138,6 +142,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
         {
             with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 3, obj_helix_bullet))
             {
+				parent = obj_player
                 //play fire sound
                 audio_play_sound(sn_helix_laser2, 1, false);
 
@@ -192,7 +197,7 @@ if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_sh
     }
 }
 
-firingdelaybomb -= 1;
+firingdelaybomb--;
 if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (firingdelaybomb < 0)
 {
     with(obj_bomb)
@@ -287,3 +292,46 @@ if(obj_player.fxtrail)
         }
     }
 }
+
+if !global.controller
+{
+    if(lastmousex == window_mouse_get_x() && lastmousey == window_mouse_get_y() && !fire)
+        idle_counder++
+    else
+        idle_counder = 0
+    if(idle_counder > 180 && idle_counder < 190)
+    {
+        var _target_angle = 0
+        if(sign(obj_player.facing) == 1)
+        {
+            image_yscale = 1;
+            _target_angle = 0;
+        }
+        if(sign(obj_player.facing) == -1)
+        {
+            image_yscale = -1;
+            _target_angle = 180;
+        }
+        image_angle += (_target_angle - image_angle) / 4
+    }
+    if(idle_counder >= 190)
+    {
+        if(sign(obj_player.facing) == 1)
+        {
+            image_yscale = 1;
+            image_angle = 0;
+        }
+        if(sign(obj_player.facing) == -1)
+        {
+            image_yscale = -1;
+            image_angle = 180;
+        }
+    }
+    lastmousex = window_mouse_get_x()
+    lastmousey = window_mouse_get_y()
+}
+else
+{
+    idle_counder = 0
+}
+fire = 0

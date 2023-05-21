@@ -59,5 +59,5 @@ with(oCamera)
 }
 
 // activation/deactivation
-instance_deactivate_object(obj_enemy);
+instance_deactivate_object(obj_robo);
 instance_deactivate_object(par_enemy)
