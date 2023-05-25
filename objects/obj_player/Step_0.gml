@@ -709,3 +709,15 @@ if(enemy_enabler_counter == 0)
     var _vh = camera_get_view_height(view_camera[0]);
     instance_activate_region(_vx - 20, _vy - 20, _vw + 20, _vh + 20, true);
 }
+
+// if(mouse_check_button_pressed(mb_right) && !instance_exists(oGun))
+// {
+//     with(instance_create_depth(x, y - 8, depth + 1, obj_animesword))
+//     {
+//         _team = team.player
+
+//         speed = 12
+//         direction = point_direction(other.x, other.y - 8, mouse_x, mouse_y)
+//         image_angle = direction
+//     }
+// }

@@ -341,6 +341,30 @@ if(global.console)
             }
         }
 
+        if(cmd("destroy"))
+        {
+            var _args = string_split(input_str, " ");
+            switch(array_length(_args))
+            {
+                case 2:
+                {
+                    var _obj = (string_digits(_args[1]) != "") ? real(string_digits(_args[1])) : asset_get_index(string(_args[1]));
+
+                    if(_obj != -1 && (_obj != oGameManager && _obj != oCamera && _obj != obj_player && _obj != objNekoPresenceDemo && _obj != statmanager && _obj != obj_roomgen && _obj != obj_lobby && _obj != obj_loading && _obj != obj_menu2 && _obj != oMenu && _obj != obj_node && _obj != obj_boot && _obj != par_unit))
+                    {
+                        instance_destroy(_obj)
+                    }
+                    else console_log("destroy failed: object asset does not exist or object is too important to destroy");
+                    break;
+                }
+                default:
+                {
+                    console_log("invalid syntax! expected: destroy <object asset>");
+                    break
+                }
+            }
+        }
+
         if(cmd("hp"))
         {
             var _args = string_split(input_str, " ");

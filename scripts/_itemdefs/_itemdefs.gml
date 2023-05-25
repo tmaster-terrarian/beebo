@@ -29,10 +29,26 @@ function _itemdef_eviction_notice() : _itemdef("eviction_notice") constructor
 {
     displayname = "Eviction Notice"
     shortdesc = "Throw razor-sharp legal papers on hit when above 90% health"
-    calc = function()
-    {
-        return 0.1 * stacks
-    }
+    proc_type = proctype.onhit
+	proc = function(_a, _t, _d, _p)
+	{
+		if(_a.hp/_a.hp_max >= 0.9)
+		{
+            var offx = 0
+            var offy = 0
+            if(_a == obj_player)
+            {
+                offy = -12
+            }
+
+			var p = instance_create_depth(_a.x + offx, _a.y + offy, _a.depth + 2, obj_paperwork)
+			p.damage = _d * (stacks + 1)
+            p._team = _a._team
+            p.dir = point_direction(_a.x + offx, _a.y + offy, _t.x, _t.y)
+            p.pmax = point_distance(_a.x + offx, _a.y + offy, _t.x, _t.y)
+            p.target = _t
+		}
+	}
 }
 
 function _itemdef_serrated_stinger() : _itemdef("serrated_stinger") constructor
