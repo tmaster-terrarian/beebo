@@ -28,7 +28,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_fx_cut",
+    "path": "sprites/spr_fx_cut/spr_fx_cut.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
 }
