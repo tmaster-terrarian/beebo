@@ -1,7 +1,14 @@
-upixelH = shader_get_uniform(shWhite, "pixelH");
-upixelW = shader_get_uniform(shWhite, "pixelW");
-texelW = texture_get_texel_width(sprite_get_texture(sprite_index, 0));
-texelH = texture_get_texel_height(sprite_get_texture(sprite_index, 0));
-
-facing = 1;
-helixhit = 0
+stats =
+{
+	hp_max : 4,
+    spd : 1,
+	firerate : 1,
+	damage : 5
+}
+_team = team.enemy
+event_inherited()
+hsp = spd
+vsp = 0
+grv = 0.2
+t = 0
+proc = 1

@@ -42,6 +42,7 @@ firerate = stats.firerate
 damage = stats.damage
 facing = 1
 state = "normal"
+flash = 0
 timer0 = 0
 ded = 0
 image_speed = 0

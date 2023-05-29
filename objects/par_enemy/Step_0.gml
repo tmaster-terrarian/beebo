@@ -12,5 +12,5 @@ if(hp <= 0) && !ded
     event_perform(ev_other, ev_user2)
 }
 
-if(!place_meeting(x, y + 2, obj_wall))
+if(!on_ground)
     vsp = approach(vsp, 20, grv)

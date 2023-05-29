@@ -47,7 +47,6 @@ global.gunlesspercent = false
 global.playerhealth = 0
 global.playermaxhealth = 0
 global.animemode = false
-global.draw_debug = false
 global.checkpointx = -1
 global.checkpointy = -1
 global.bonehive_started = 0
@@ -108,7 +107,7 @@ global.t = ini_read_real("savedata", "time_in_centiseconds", 0);
 
 global.rich_presence = ini_read_real("settings", "rich_presence", 0);
 
-global.draw_debug = ini_read_real("debug", "draw_debug", 0);
+global.fx_bias = ini_read_real("settings", "fx_bias", 0);
 
 ini_close();
 

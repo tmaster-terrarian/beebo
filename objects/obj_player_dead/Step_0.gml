@@ -72,7 +72,7 @@ else
 			timer_finished = true;
 			with(oCrate) hp = 0;
 			with(obj_stone) hp = 0;
-			with(obj_robo) hp = 0;
+			// with(obj_robo) hp = 0;
 			with(obj_gun_dead) scr_particle_explode();
 			audio_play_sound(snBigExplode, 10, false);
 			x = round(x);

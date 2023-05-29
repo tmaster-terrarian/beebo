@@ -3,7 +3,7 @@ stats =
     hp_max : 1,
     spd : 2.5,
 	firerate : 1,
-	damage : 4
+	damage : 10
 }
 event_inherited()
 depth = 310

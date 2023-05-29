@@ -25,7 +25,7 @@ switch(room)
     break
 
     case lvl_random:
-        SetMusic(bgm_wavedashppt)
+        SetMusic(bgm_placeholder)
         current_st = 1
     break
 
@@ -59,5 +59,5 @@ with(oCamera)
 }
 
 // activation/deactivation
-instance_deactivate_object(obj_robo);
+// instance_deactivate_object(obj_robo);
 instance_deactivate_object(par_enemy)

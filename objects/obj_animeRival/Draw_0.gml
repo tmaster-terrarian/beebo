@@ -50,13 +50,13 @@ if(hair_visible)
 {
     for (var i = 0; i < hair1_points_count - 1; i++)
     {
-        draw_line_width_colour(hair1_points[i][0], hair1_points[i][1], hair1_points[i + 1][0], hair1_points[i + 1][1], 3, c_black, c_black)
+        draw_line_width_colour(hair1_points[i, 0], hair1_points[i, 1], hair1_points[i + 1, 0], hair1_points[i + 1, 1], 3, c_black, c_black)
         if i == hair1_points_count - 2
-            draw_line_width_colour(hair1_points[i][0], hair1_points[i][1], hair1_points[i + 1][0] + lengthdir_x(1, point_direction(hair1_points[i][0], hair1_points[i][1], hair1_points[i + 1][0], hair1_points[i + 1][1])), hair1_points[i + 1][1] + lengthdir_y(1, point_direction(hair1_points[i][0], hair1_points[i][1], hair1_points[i + 1][0], hair1_points[i + 1][1])), 1, c_black, c_black)
+            draw_line_width_colour(hair1_points[i, 0], hair1_points[i, 1], hair1_points[i + 1, 0] + lengthdir_x(1, point_direction(hair1_points[i, 0], hair1_points[i, 1], hair1_points[i + 1, 0], hair1_points[i + 1, 1])), hair1_points[i + 1, 1] + lengthdir_y(1, point_direction(hair1_points[i, 0], hair1_points[i, 1], hair1_points[i + 1, 0], hair1_points[i + 1, 1])), 1, c_black, c_black)
     }
     for (var i = 0; i < hair1_points_count - 1; i++)
     {
-        draw_line_width_colour(hair1_points[i][0], hair1_points[i][1], hair1_points[i + 1][0], hair1_points[i + 1][1], 1, hair1_colors[i], hair1_colors[i])
+        draw_line_width_colour(hair1_points[i, 0], hair1_points[i, 1], hair1_points[i + 1, 0], hair1_points[i + 1, 1], 1, hair1_colors[i], hair1_colors[i])
     }
 }
 
@@ -111,13 +111,13 @@ if(hair_visible)
 {
     for (var i = 0; i < hair2_points_count - 1; i++)
     {
-        draw_line_width_colour(hair2_points[i][0], hair2_points[i][1], hair2_points[i + 1][0], hair2_points[i + 1][1], 3, c_black, c_black)
+        draw_line_width_colour(hair2_points[i, 0], hair2_points[i, 1], hair2_points[i + 1, 0], hair2_points[i + 1, 1], 3, c_black, c_black)
         if i == hair2_points_count - 2
-            draw_line_width_colour(hair2_points[i][0], hair2_points[i][1], hair2_points[i + 1][0] + lengthdir_x(1, point_direction(hair2_points[i][0], hair2_points[i][1], hair2_points[i + 1][0], hair2_points[i + 1][1])), hair2_points[i + 1][1] + lengthdir_y(1, point_direction(hair2_points[i][0], hair2_points[i][1], hair2_points[i + 1][0], hair2_points[i + 1][1])), 1, c_black, c_black)
+            draw_line_width_colour(hair2_points[i, 0], hair2_points[i, 1], hair2_points[i + 1, 0] + lengthdir_x(1, point_direction(hair2_points[i, 0], hair2_points[i, 1], hair2_points[i + 1, 0], hair2_points[i + 1, 1])), hair2_points[i + 1, 1] + lengthdir_y(1, point_direction(hair2_points[i, 0], hair2_points[i, 1], hair2_points[i + 1, 0], hair2_points[i + 1, 1])), 1, c_black, c_black)
     }
     for (var i = 0; i < hair2_points_count - 1; i++)
     {
-        draw_line_width_colour(hair2_points[i][0], hair2_points[i][1], hair2_points[i + 1][0], hair2_points[i + 1][1], 1, hair2_colors[i], hair2_colors[i])
+        draw_line_width_colour(hair2_points[i, 0], hair2_points[i, 1], hair2_points[i + 1, 0], hair2_points[i + 1, 1], 1, hair2_colors[i], hair2_colors[i])
     }
 }
 

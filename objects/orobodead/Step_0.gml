@@ -1,4 +1,4 @@
-if (done == 0)
+if !done
 {
     vsp += grv;
 
@@ -33,4 +33,4 @@ if (done == 0)
     x = round(x);
     y = round(y);
 }
-else scr_particle_explode();
+else {scr_particle_explode_violent(); scr_particle_explode2(); scr_particle_explode()}

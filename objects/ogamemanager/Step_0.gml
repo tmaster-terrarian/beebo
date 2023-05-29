@@ -416,6 +416,49 @@ if(global.console)
             }
         }
 
+        if(cmd("item"))
+        {
+            var _args = string_split(input_str, " ");
+            switch(array_length(_args))
+            {
+                case 2:
+                {
+                    if(itemdef_exists(_args[1]))
+                        _pickupitem(obj_player, get_new_itemdef(_args[1]))
+                    else
+                        console_log("item failed: item_def does not exist");
+                    break
+                }
+                case 3:
+                {
+                    if(itemdef_exists(_args[1]))
+                        repeat(real(string_digits(_args[2])))
+                            _pickupitem(obj_player, get_new_itemdef(_args[1]))
+                    else
+                        console_log("item failed: item_def does not exist");
+                    break
+                }
+                case 4:
+                {
+                    var _obj = asset_get_index(_args[3])
+                    if(itemdef_exists(_args[1]))
+                        if(object_get_parent(_obj) == par_unit)
+                            repeat(real(string_digits(_args[2])))
+                                _pickupitem(_obj, get_new_itemdef(_args[1]))
+                        else
+                            console_log("item failed: object cannot accept items");
+                    else
+                        console_log("item failed: item_def does not exist");
+                    break
+                }
+                default:
+                {
+                    console_log("invalid syntax! expected: item <item_name> [stacks] [target_obj]");
+                    break
+                }
+            }
+        }
+
         if(keyboard_string != "") last_input_str = input_str;
         keyboard_string = "";
     }

@@ -14,7 +14,7 @@ function gm_room_transition_goto(st, rm, _x = -1, _y = -1, transition_type = TRA
 	{
 		mode = TRANS_MODE.GOTO;
 		transtype = transition_type;
-		target = stages[st][rm];
+		target = stages[st, rm];
 		target_st = st;
 		target_rm = rm;
 	}

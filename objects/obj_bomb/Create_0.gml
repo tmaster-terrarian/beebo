@@ -1,6 +1,7 @@
 event_inherited();
 proc = 2
 _team = team.player
+parent = obj_player
 damage = 5
 done = false;
 hsp *= obj_player.facing;

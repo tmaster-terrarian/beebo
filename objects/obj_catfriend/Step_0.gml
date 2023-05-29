@@ -58,14 +58,10 @@ switch(state)
 
         if(instance_exists(target))
         {
-			if(sign(abs(hsp)) != facing)
-				hsp = approach(hsp, 0, 0.13)
-            else
-				hsp = approach(hsp, spd * 1.5 * sign(target.x - x), 0.1)
+			hsp = approach(hsp, spd * 1.5 * sign(target.x - x), 0.1)
             if(collision_rectangle(x - 8, y, x + 8, y - 16, target, false, true))
             {
-                audio_play_sound(sn_hit, 5, false)
-                target.hp -= 10
+				target.hp -= damage
                 scr_particle_explode()
             }
             r++

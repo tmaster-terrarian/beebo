@@ -1,4 +1,6 @@
 event_inherited();
+_team = team.player
+playerally = 1
 
 depth = 320;
 

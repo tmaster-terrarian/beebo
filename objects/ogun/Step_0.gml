@@ -60,8 +60,8 @@ if(global.controller)
 
     if(lock)
     {
-        if(instance_exists(obj_robo)) {lock_target = instance_nearest(x + aim_w, y + aim_h, obj_robo); image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
-        else if(instance_exists(obj_animeRival)) {lock_target = obj_animeRival; image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
+        // if(instance_exists(obj_robo)) {lock_target = instance_nearest(x + aim_w, y + aim_h, obj_robo); image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
+        if(instance_exists(obj_animeRival)) {lock_target = obj_animeRival; image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
         else if(instance_exists(obj_boss)) {lock_target = obj_boss; image_angle = point_direction(x, y, lock_target.x, lock_target.y);}
         else lock = false;
     }

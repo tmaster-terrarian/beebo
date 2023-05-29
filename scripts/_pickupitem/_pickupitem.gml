@@ -1,7 +1,8 @@
 function _pickupitem(target, def)
 {
-    if(array_any(target.items, function(_v, _i){return _v.name == def.name}))
-        target.items[array_find_index(target.items, function(_v,_i){return (_v.name == def.name)})].stacks++
+    _def = def
+    if(array_any(target.items, function(_v, _i){return _v.name == _def.name}))
+        target.items[array_find_index(target.items, function(_v,_i){return (_v.name == _def.name)})].stacks++
     else
-        array_push(target.items, def)
+        array_push(target.items, _def)
 }

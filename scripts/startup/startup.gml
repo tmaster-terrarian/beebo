@@ -14,6 +14,9 @@ else
 {
     window_set_fullscreen(true);
 }
+
+global.draw_debug = ini_read_real("debug", "draw_debug", 0);
+
 ini_close();
 
 // enums
@@ -53,7 +56,7 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 	var dmg = damage
 	for(var i = 0; i < array_length(target.items); i++)
 	{
-		dmg = target.items[i].on_owner_hit(target, dmg)
+		dmg = target.items[i].on_owner_damaged(target, dmg)
 	}
 	target.hp -= dmg
 }

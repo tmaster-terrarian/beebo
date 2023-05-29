@@ -10,6 +10,14 @@ if(audio_group_load_progress(audiogroup_bgm) < 100)
 
 draw_set_halign(fa_left);
 
+if(global.draw_debug)
+{
+    draw_set_color(c_ltgray);
+    draw_text_transformed(1, 0, "t: " + string(anim_timer), t_scale, t_scale, 0);
+
+    draw_set_color(c_white);
+}
+
 if(anim_timer >= 200)
 {
     draw_text_transformed(t_pad_x, t_pad_y + t_line_size * 0, "CS Soup BIOS v3.1, A Skellio Industries Ally", t_scale, t_scale, 0);

@@ -13,6 +13,8 @@ wallslideTimer = 0;
 running = 0;
 run = 0;
 
+_target = noone
+
 lastSafeX = x
 lastSafeY = y
 

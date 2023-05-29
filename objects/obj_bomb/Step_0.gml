@@ -23,7 +23,6 @@ if c
     bounce_counter += 1
     audio_play_sound(sn_walljump, 0, false)
 }
-x += hsp;
 
 //v
 var c = noone
@@ -57,7 +56,6 @@ if ((place_meeting(x, y + vsp, obj_platform) && !place_meeting(x, y - 1, obj_pla
     bounce_counter += 1;
     audio_play_sound(sn_walljump, 0, false)
 }
-y += vsp;
 
 if instance_exists(obj_player)
 if(obj_player.state == "grind")
@@ -81,3 +79,6 @@ if(obj_player.state == "grind")
         }
     }
 }
+
+x += hsp;
+y += vsp;

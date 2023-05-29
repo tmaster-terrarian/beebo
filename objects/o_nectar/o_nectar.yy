@@ -5,7 +5,6 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":12,"eventType":7,"isDnD":false,},
@@ -13,15 +12,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":11,"eventType":7,"isDnD":false,},
   ],
   "managed": true,
-  "overriddenProperties": [
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_robo","path":"objects/obj_robo/obj_robo.yy",},"propertyId":{"name":"grv","path":"objects/obj_robo/obj_robo.yy",},"value":"0",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_robo","path":"objects/obj_robo/obj_robo.yy",},"propertyId":{"name":"hp","path":"objects/obj_robo/obj_robo.yy",},"value":"4",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_robo","path":"objects/obj_robo/obj_robo.yy",},"propertyId":{"name":"walksp","path":"objects/obj_robo/obj_robo.yy",},"value":"5",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_robo","path":"objects/obj_robo/obj_robo.yy",},"propertyId":{"name":"vsp","path":"objects/obj_robo/obj_robo.yy",},"value":"0",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_robo","path":"objects/obj_robo/obj_robo.yy",},"propertyId":{"name":"size","path":"objects/obj_robo/obj_robo.yy",},"value":"1",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_robo","path":"objects/obj_robo/obj_robo.yy",},"propertyId":{"name":"hsp","path":"objects/obj_robo/obj_robo.yy",},"value":"0",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_robo","path":"objects/obj_robo/obj_robo.yy",},"propertyId":{"name":"damage","path":"objects/obj_robo/obj_robo.yy",},"value":"0",},
-  ],
+  "overriddenProperties": [],
   "parent": {
     "name": "enemies",
     "path": "folders/Objects/enemies.yy",

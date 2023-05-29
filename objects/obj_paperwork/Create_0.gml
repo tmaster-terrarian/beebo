@@ -1,7 +1,7 @@
 event_inherited()
 image_speed = 0
 image_index = irandom(3)
-proc = 1
+proc = 0
 damage = 1
 target = noone
 p = 0

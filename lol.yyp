@@ -382,6 +382,7 @@
     {"id":{"name":"obj_fx_emitter","path":"objects/obj_fx_emitter/obj_fx_emitter.yy",},},
     {"id":{"name":"obj_ui_slider","path":"objects/obj_ui_slider/obj_ui_slider.yy",},},
     {"id":{"name":"mask_item","path":"sprites/mask_item/mask_item.yy",},},
+    {"id":{"name":"sh_flash","path":"shaders/sh_flash/sh_flash.yy",},},
     {"id":{"name":"fx_dust","path":"objects/fx_dust/fx_dust.yy",},},
     {"id":{"name":"obj_prop","path":"objects/obj_prop/obj_prop.yy",},},
     {"id":{"name":"bgm_placeholder3","path":"sounds/bgm_placeholder3/bgm_placeholder3.yy",},},

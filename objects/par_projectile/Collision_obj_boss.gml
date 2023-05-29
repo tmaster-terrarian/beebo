@@ -5,6 +5,7 @@ if(_team == team.neutral || _team == team.player)
 	    hp -= other.damage;
 	    flash = 3;
 	}
-	audio_play_sound(sn_hit, 5, false)
+	if(_team == team.player)
+		audio_play_sound(sn_hit, 5, false)
 	instance_destroy();
 }

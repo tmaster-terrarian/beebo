@@ -1,9 +1,15 @@
 event_inherited();
-audio_play_sound(sn_flip, 1, false);
-hit = 0;
-hsp = 0;
-vsp = 0;
-grv = 0;
+
+_team = team.enemy
+damage = 5
+proc = 1
+target = obj_player
+
+hsp = 0
+vsp = 0
+grv = 0
+
 alarm[0] = 5;
-proj_thrower = noone;
 image_speed = 0;
+
+audio_play_sound(sn_flip, 1, false);

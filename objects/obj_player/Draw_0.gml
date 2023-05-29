@@ -60,13 +60,13 @@ if(state != "donothing")
     {
         for (var i = 0; i < ponytail_points_count - 1; i++)
         {
-            draw_line_width_colour(ponytail_points[i][0], ponytail_points[i][1], ponytail_points[i + 1][0], ponytail_points[i + 1][1], 3, c_black, c_black)
+            draw_line_width_colour(ponytail_points[i, 0], ponytail_points[i, 1], ponytail_points[i + 1, 0], ponytail_points[i + 1, 1], 3, c_black, c_black)
             if i == ponytail_points_count - 2
-                draw_line_width_colour(ponytail_points[i][0], ponytail_points[i][1], ponytail_points[i + 1][0] + lengthdir_x(1, point_direction(ponytail_points[i][0], ponytail_points[i][1], ponytail_points[i + 1][0], ponytail_points[i + 1][1])), ponytail_points[i + 1][1] + lengthdir_y(1, point_direction(ponytail_points[i][0], ponytail_points[i][1], ponytail_points[i + 1][0], ponytail_points[i + 1][1])), 1, c_black, c_black)
+                draw_line_width_colour(ponytail_points[i, 0], ponytail_points[i, 1], ponytail_points[i + 1, 0] + lengthdir_x(1, point_direction(ponytail_points[i, 0], ponytail_points[i, 1], ponytail_points[i + 1, 0], ponytail_points[i + 1, 1])), ponytail_points[i + 1, 1] + lengthdir_y(1, point_direction(ponytail_points[i, 0], ponytail_points[i, 1], ponytail_points[i + 1, 0], ponytail_points[i + 1, 1])), 1, c_black, c_black)
         }
         for (var i = 0; i < ponytail_points_count - 1; i++)
         {
-            draw_line_width_colour(ponytail_points[i][0], ponytail_points[i][1], ponytail_points[i + 1][0], ponytail_points[i + 1][1], 1, ponytail_colors[i], ponytail_colors[i])
+            draw_line_width_colour(ponytail_points[i, 0], ponytail_points[i, 1], ponytail_points[i + 1, 0], ponytail_points[i + 1, 1], 1, ponytail_colors[i], ponytail_colors[i])
         }
     }
 

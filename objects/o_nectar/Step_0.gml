@@ -70,6 +70,7 @@ if(attack)
             {
                 damage = other.damage
                 proj_thrower = other
+                parent = other
                 var p = instance_exists(obj_player) ? obj_player : obj_player_dead
 
                 var _y = (p.y - y - 8)

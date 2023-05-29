@@ -3,12 +3,12 @@ with(obj_player)
     foreach(buffs as (buff)
     {
         buff.step()
-        buff.tick(obj_player)
+        buff.tick(id)
     })
 
     for(var i = 0; i < array_length(items); i++)
     {
-        items[i].step(obj_player)
+        items[i].step(id)
     }
 
     statsmult = 
@@ -63,6 +63,11 @@ with(par_enemy)
         buff.step()
         buff.tick(id)
     })
+
+    for(var i = 0; i < array_length(items); i++)
+    {
+        items[i].step(id)
+    }
 
     statsmult =
     {

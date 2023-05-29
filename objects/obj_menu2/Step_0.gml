@@ -77,7 +77,7 @@ if(key_en)
                     ini_close();
                     break;
                 }
-                case 6:
+                case 7:
                 {
                     ScreenShakeCursed(6, 60);
                     ini_open("save.ini");
@@ -86,7 +86,7 @@ if(key_en)
                     ini_close();
                     break;
                 }
-                case 7:
+                case 8:
                 {
                     gm_room_transition_direct(rMenu, TRANS_TYPE.BOX)
                     break;
@@ -256,6 +256,24 @@ switch(m_submenu)
                     audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
                     ini_open("save.ini");
                     ini_write_real("settings", "music_volume", global.bgm_volume);
+                    ini_close();
+                }
+                break;
+            }
+            case 6:
+            {
+                if(key_rt)
+                {
+                    global.fx_bias = clamp(global.fx_bias + 0.1, 0, 1);
+                    ini_open("save.ini");
+                    ini_write_real("settings", "fx_bias", global.fx_bias);
+                    ini_close();
+                }
+                if(key_lt)
+                {
+                    global.fx_bias = clamp(global.fx_bias - 0.1, 0, 1);
+                    ini_open("save.ini");
+                    ini_write_real("settings", "fx_bias", global.fx_bias);
                     ini_close();
                 }
                 break;

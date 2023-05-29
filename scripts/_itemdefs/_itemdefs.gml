@@ -7,12 +7,12 @@ function _itemdef(_name) constructor
 
     shortdesc = "undefined"
 
-    static calc = function() { return 0 }
-    static draw = function() {}
-    static step = function(target) {}
+    calc = function() { return 0 }
+    draw = function() {}
+    step = function(target) {}
 
-    static proc = function(_a, _t, _d, _p) {}
-	static on_owner_damaged = function(_o, _d) { return _d }
+    proc = function(_a, _t, _d, _p) {}
+	on_owner_damaged = function(_o, _d) { return _d }
 }
 
 function _itemdef_beeswax() : _itemdef("beeswax") constructor
@@ -32,7 +32,7 @@ function _itemdef_eviction_notice() : _itemdef("eviction_notice") constructor
     proc_type = proctype.onhit
 	proc = function(_a, _t, _d, _p)
 	{
-		if(_a.hp/_a.hp_max >= 0.9)
+		if(_a.hp/_a.hp_max >= 0.9) && sign(_p)
 		{
             var offx = 0
             var offy = 0
@@ -47,6 +47,7 @@ function _itemdef_eviction_notice() : _itemdef("eviction_notice") constructor
             p.dir = point_direction(_a.x + offx, _a.y + offy, _t.x, _t.y)
             p.pmax = point_distance(_a.x + offx, _a.y + offy, _t.x, _t.y)
             p.target = _t
+            p.parent = _a
 		}
 	}
 }
@@ -70,14 +71,63 @@ function _itemdef_amorphous_plush() : _itemdef("amorphous_plush") constructor
     t = 0
     step = function(target)
     {
-        if(instance_exists(target) && t == 30)
+        if(instance_exists(target) && t == 30) && target.object_index != obj_catfriend
         {
-            var o = instance_create_depth(target.x + random_range(-8, 8), target.y, 0, obj_catfriend, { _team : target._team, parent : target })
-            o.hp_max = o.stats.hp_max + 0.1 * stacks
-            o.spd = o.stats.spd + 0.1 * stacks
-            o.damage = o.stats.damage + 0.2 * stacks
+            var o = instance_create_depth(target.x + random_range(-8, 8), target.y, 0, obj_catfriend, { _team : target._team, parent : target})
+            o.hp_max = o.stats.hp_max + (0.1 * o.stats.hp_max * stacks)
+            o.spd = o.stats.spd + (0.1 * o.stats.spd * stacks)
+            o.damage = o.stats.damage + (0.2 * o.stats.damage * stacks)
         }
         t++
 		if(t > 600) t = 0
+    }
+}
+
+function get_new_itemdef(_name)
+{
+    switch _name
+    {
+        default:
+        {
+            return -1
+            break
+        }
+        case "beeswax":
+        {
+            return new _itemdef_beeswax()
+            break
+        }
+        case "eviction_notice":
+        {
+            return new _itemdef_eviction_notice()
+            break
+        }
+        case "serrated_stinger":
+        {
+            return new _itemdef_serrated_stinger()
+            break
+        }
+        case "amorphous_plush":
+        {
+            return new _itemdef_amorphous_plush()
+            break
+        }
+    }
+}
+
+function itemdef_exists(_name)
+{
+    switch _name
+    {
+        default:
+        {
+            return 0
+            break
+        }
+        case "beeswax": case "eviction_notice": case "serrated_stinger": case "amorphous_plush":
+        {
+            return 1
+            break
+        }
     }
 }

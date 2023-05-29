@@ -41,34 +41,41 @@ for(var i = 0; i < m_options_length; i++)
                         var _txt = string(global.screenSize);
                     else
                         var _txt = "FULLSCREEN";
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 151, m_y + m_padding + (m_size * i), _txt, 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
-                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 115, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
-                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 85 + round(10 * (global.screenSize - 1)), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 161, m_y + m_padding + (m_size * i), _txt, 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 125, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 95 + round(10 * (global.screenSize - 1)), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 1:
                 {
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 151, m_y + m_padding + (m_size * i), string(round(global.snd_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
-                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 115, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
-                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 85 + round(60 * global.snd_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 161, m_y + m_padding + (m_size * i), string(round(global.snd_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 125, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 95 + round(60 * global.snd_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 2:
                 {
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 151, m_y + m_padding + (m_size * i), string(round(global.bgm_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
-                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 115, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
-                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 85 + round(60 * global.bgm_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 161, m_y + m_padding + (m_size * i), string(round(global.bgm_volume * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 125, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 95 + round(60 * global.bgm_volume), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 4:
                 {
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 96, m_y + m_padding + (m_size * i), "Enables speedrun timer", 12, 10000, 0.5, 0.5, 0, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
-                    draw_sprite_ext(spr_ui_checkbox, global.speedrun_mode, m_x + m_padding + selectoffset + 88, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 106, m_y + m_padding + (m_size * i), "Enables speedrun timer", 12, 10000, 0.5, 0.5, 0, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+                    draw_sprite_ext(spr_ui_checkbox, global.speedrun_mode, m_x + m_padding + selectoffset + 98, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
                 case 5:
                 {
-                    draw_sprite_ext(spr_ui_checkbox, global.rich_presence, m_x + m_padding + selectoffset + 88, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_checkbox, global.rich_presence, m_x + m_padding + selectoffset + 98, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
+                    break;
+                }
+                case 6:
+                {
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 161, m_y + m_padding + (m_size * i), string(round(global.fx_bias * 100)) + "%", 12, 10000, 0.5, 0.5, 0, _c, _c, _c, _c, 1);
+                    draw_sprite_ext(spr_ui_slider, 0, m_x + m_padding + selectoffset + 125, m_y + m_padding + (m_size * i) + 4, 16, 1, 0, _c, 1);
+                    draw_sprite_ext(spr_ui_slider_handle, 0, m_x + m_padding + selectoffset + 95 + round(60 * global.fx_bias), m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }
             }

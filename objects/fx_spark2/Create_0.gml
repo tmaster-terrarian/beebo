@@ -1,3 +1,4 @@
+event_inherited()
 image_speed = 0
 fric = 0.1
 hsp = 0

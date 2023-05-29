@@ -59,7 +59,7 @@ if(global.speedrun_mode) && (global.gamestarted)
     draw_set_halign(fa_right);
     draw_set_valign(fa_top);
 
-    var centiseconds = global.t - 100/60;
+    var centiseconds = global.t;
     var cs = floor(centiseconds % 100);
     var seconds = floor((centiseconds / 100) % 60);
     var minutes = floor((centiseconds / (100 * 60)) % 60);
@@ -69,10 +69,6 @@ if(global.speedrun_mode) && (global.gamestarted)
     if(cs < 10) cs = "0" + string(cs);
 
     draw_text(254, 2, string(minutes) + ":" + string(seconds) + "." + string(cs));
-    // if(global.gunlesspercent)
-    // {
-    //     draw_text(254, 12, "gunless%");
-    // }
 }
 
 if(global.draw_debug)
@@ -81,4 +77,29 @@ if(global.draw_debug)
     draw_set_font(fnt_basic)
     draw_set_halign(fa_left)
     draw_set_valign(fa_top)
+
+    if(instance_exists(obj_player))
+    {
+        if(!obj_player.on_ground)
+            draw_set_color(c_yellow)
+        draw_text(2, 25, "x: " + string(obj_player.x) + " (" + string(floor(obj_player.x / 16)) + ")")
+        draw_text(2, 35, "y: " + string(obj_player.y) + " (" + string(floor(obj_player.y / 16)) + ")")
+        draw_set_color(c_white)
+
+        draw_text(76, 25, "hsp: " + string(obj_player.hsp))
+        draw_text(76, 35, "vsp: " + string(obj_player.vsp))
+
+        if(obj_player.state != "normal")
+            draw_set_color(c_yellow)
+        draw_text(2, 50, "state: " + obj_player.state)
+        draw_set_color(c_white)
+
+        draw_text(2, 65, "spr: " + sprite_get_name(obj_player.sprite_index))
+        draw_text(2, 75, "img: " + string(floor(obj_player.image_index)))
+    }
+
+    if(instance_exists(obj_player_dead))
+    {
+        draw_text(2, 25, "dead")
+    }
 }
