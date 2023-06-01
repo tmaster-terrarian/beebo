@@ -19,5 +19,5 @@
   "sampleRate": 44100,
   "soundFile": "bgm_project4.mp3",
   "type": 1,
-  "volume": 0.8,
+  "volume": 0.82,
 }

@@ -14,23 +14,23 @@ if(stats == noone)
 _target = noone
 switch(_team)
 {
+	case team.neutral:
+	{
+		playerally = 0
+		_target = choose(obj_player, par_enemy)
+		break;
+	}
 	case team.player:
 	{
 		playerally = 1
 		_target = par_enemy
-		break
+		break;
 	}
 	case team.enemy:
 	{
 		playerally = 0
 		_target = obj_player
-		break
-	}
-	case team.neutral:
-	{
-		playerally = 0
-		_target = choose(obj_player, par_enemy)
-		break
+		break;
 	}
 }
 hp_max = stats.hp_max
@@ -45,6 +45,7 @@ state = "normal"
 flash = 0
 timer0 = 0
 ded = 0
+bulletproof = 0
 image_speed = 0
 drawhp = 0
 playerally = 0

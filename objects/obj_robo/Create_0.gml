@@ -5,8 +5,8 @@ stats =
 	firerate : 1,
 	damage : 5
 }
-_team = team.enemy
 event_inherited()
+_team = team.enemy
 hsp = spd
 vsp = 0
 grv = 0.2

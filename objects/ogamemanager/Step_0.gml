@@ -442,7 +442,7 @@ if(global.console)
                 {
                     var _obj = asset_get_index(_args[3])
                     if(itemdef_exists(_args[1]))
-                        if(object_get_parent(_obj) == par_unit)
+                        if(object_is_ancestor(_obj.object_index, par_unit))
                             repeat(real(string_digits(_args[2])))
                                 _pickupitem(_obj, get_new_itemdef(_args[1]))
                         else

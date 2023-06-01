@@ -19,6 +19,9 @@ global.draw_debug = ini_read_real("debug", "draw_debug", 0);
 
 ini_close();
 
+macaw_set_seed(0)
+global.perlin = macaw_generate(512, 512, 6, 100)
+
 // enums
 enum team
 {

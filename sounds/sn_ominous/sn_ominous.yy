@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "sn_ominous",
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "audiogroup_bgm",
+    "path": "audiogroups/audiogroup_bgm",
   },
   "bitDepth": 1,
   "bitRate": 128,
@@ -18,6 +18,6 @@
   "preload": false,
   "sampleRate": 44100,
   "soundFile": "sn_ominous.wav",
-  "type": 0,
+  "type": 1,
   "volume": 1.0,
 }

@@ -1,4 +1,3 @@
-shader_reset()
 if(drawhp)
 {
     var c = c_black
