@@ -1,3 +1,5 @@
+display_set_gui_size(256, 144)
+
 // game is too fucking LOUD
 audio_master_gain(0.75);
 
@@ -49,9 +51,11 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 	{
 		for(var i = 0; i < array_length(attacker.items); i++)
 	    {
-	        if(attacker.items[i].proc_type == proc_type)
+			var _item = global.itemdefs[$ attacker.items[i].id]
+			var _stacks = attacker.items[i].stacks
+	        if(variable_struct_exists(global.itemdefs, attacker.items[i].id) && _item.proc_type == proc_type)
 			{
-				attacker.items[i].proc(attacker, target, damage, proc)
+				_item.proc(attacker, target, damage, proc, _stacks)
 			}
 	    }
 	}
@@ -59,16 +63,15 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 	var dmg = damage
 	for(var i = 0; i < array_length(target.items); i++)
 	{
-		dmg = target.items[i].on_owner_damaged(target, dmg)
+		dmg = target.items[i].on_owner_damaged(target, dmg, target.items[i].stacks)
 	}
 	target.hp -= dmg
 }
 
-function utils() constructor
+global.utils =
 {
-	static chance = function(_value)
+	chance : function(_value)
 	{
 		return random(1) <= _value
 	}
 }
-global.utils = new utils()

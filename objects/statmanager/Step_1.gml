@@ -8,7 +8,7 @@ with(obj_player)
 
     for(var i = 0; i < array_length(items); i++)
     {
-        items[i].step(id)
+        items[i].step(id, items[i].stacks)
     }
 
     statsmult = 
@@ -47,7 +47,8 @@ with(obj_player)
     air_accel = stats.air_accel * (walksp / stats.spd)
     air_fric = stats.air_fric * (walksp / stats.spd)
 
-    statsmult.accuracy = max(statsmult.accuracy - _calcitem("beeswax", self), 0)
+    statsmult.accuracy -= _calcitem("beeswax", id)
+    if(statsmult.accuracy < 0) statsmult.accuracy = 0
 
     with(oGun)
     {
@@ -66,7 +67,7 @@ with(par_enemy)
 
     for(var i = 0; i < array_length(items); i++)
     {
-        items[i].step(id)
+        items[i].step(id, items[i].stacks)
     }
 
     statsmult =

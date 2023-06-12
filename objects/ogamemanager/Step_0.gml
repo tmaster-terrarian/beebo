@@ -162,17 +162,6 @@ if(global.console)
                 console_log("fuck you");
                 break;
             }
-
-            case "draw_debug":
-            {
-                global.draw_debug = !global.draw_debug;
-                console_log("draw_debug set to " + string(global.draw_debug));
-
-                ini_open("save.ini")
-                ini_write_real("debug", "draw_debug", global.draw_debug)
-                ini_close()
-                break;
-            }
         }
 
         //more complicated argument-based commands
@@ -199,11 +188,73 @@ if(global.console)
             {
                 gm_room_transition_goto(_args[1], 0);
             }
-            else if(array_length(_args) == 1)
+            else console_log("invalid syntax! expected: goto <stage_index> [room_index]");
+        }
+
+        if(cmd("flag"))
+        {
+            var _args = string_split(input_str, " ");
+            if(array_length(_args) >= 2 && array_length(_args) <= 4)
             {
-                gm_room_transition_direct(room);
+                switch(_args[1])
+                {
+                    case "list":
+                    {
+                        if(array_length(_args) > 2)
+                            console_log("flag:list failed: invalid argument count [" + string(array_length(_args) - 1) + "], expected [1]")
+                        else
+                            console_log("{ " + $"draw_debug : {global.draw_debug}" + " }")
+                        break
+                    }
+                    case "get":
+                    {
+                        if(array_length(_args) != 3)
+                            console_log("flag:get failed: invalid argument count [" + string(array_length(_args) - 1) + "], expected [2]")
+                        else
+                        {
+                            switch(_args[2])
+                            {
+                                default:
+                                {
+                                    console_log("flag:get failed: flag '" + string(_args[2]) + "' does not exist")
+                                    break
+                                }
+                                case "draw_debug":
+                                {
+                                    console_log("flag draw_debug is set to " + string(global.draw_debug) + ".")
+                                    break
+                                }
+                            }
+                        }
+                        break
+                    }
+                    case "set":
+                    {
+                        if(array_length(_args) != 4)
+                            console_log("flag:set failed: invalid argument count [" + string(array_length(_args) - 1) + "], expected [3]")
+                        else
+                        {
+                            switch(_args[2])
+                            {
+                                default:
+                                {
+                                    console_log("flag:set failed: flag '" + string(_args[2]) + "' does not exist")
+                                    break
+                                }
+                                case "draw_debug":
+                                {
+                                    global.draw_debug = real(string_digits(_args[3]));
+                                    console_log("flag draw_debug has been updated to " + string(global.draw_debug) + ".");
+                                    ini_open("save.ini"); ini_write_real("debug", "draw_debug", global.draw_debug); ini_close()
+                                    break
+                                }
+                            }
+                        }
+                        break
+                    }
+                }
             }
-            else console_log("invalid syntax! expected: goto [stage_index = 0] [room_index = 0]");
+            else console_log("invalid syntax! expected: flag {list | set <flag_name> <value> | get <flag_name>}");
         }
 
         if(cmd("config_write"))
@@ -254,7 +305,7 @@ if(global.console)
                 var _val = ini_read_real("settings", _args[1], -1)
                 ini_close();
                 if(_val != -1) console_log("'" + string(_args[1]) + "' = " + string(_val));
-                else console_log("config_read failed: key '" + string(_args[1]) + "' is either unset or does not exist.");
+                else console_log("config_read command failed: key '" + string(_args[1]) + "' is either unset or does not exist.");
             }
             else console_log("invalid syntax! expected: config_read <key>");
         }
@@ -295,14 +346,14 @@ if(global.console)
                 case 1:
                 {
                     if(instance_exists(obj_player)) with(oCamera) {follow = obj_player}
-                    else console_log("set_view failed: could not find player");
+                    else console_log("set_view command failed: could not find player");
                     break;
                 }
                 case 2:
                 {
                     var _obj = asset_get_index(string(_args[1]));
                     if(instance_exists(_obj)) with(oCamera) {follow = _obj}
-                    else console_log("set_view failed: object does not exist");
+                    else console_log("set_view command failed: object does not exist");
                     break;
                 }
                 default:
@@ -322,15 +373,16 @@ if(global.console)
                 {
                     var _obj = (string_digits(_args[1]) != "") ? real(string_digits(_args[1])) : asset_get_index(string(_args[1]));
 
-                    if(_obj != -1)
+                    if(_obj)
                     {
-                        var spawned = instance_create_depth(mouse_x, mouse_y, 350, _obj);
                         if(_obj == obj_item)
                         {
-                            spawned.def = choose(new _itemdef_beeswax(), new _itemdef_eviction_notice(), new _itemdef_amorphous_plush())
+                            _dropranditem(_x, _y)
                         }
+                        else
+                            instance_create_depth(mouse_x, mouse_y, 350, _obj);
                     }
-                    else console_log("spawn failed: object asset does not exist");
+                    else console_log("spawn command failed: object asset does not exist");
                     break;
                 }
                 default:
@@ -350,16 +402,16 @@ if(global.console)
                 {
                     var _obj = (string_digits(_args[1]) != "") ? real(string_digits(_args[1])) : asset_get_index(string(_args[1]));
 
-                    if(_obj != -1 && (_obj != oGameManager && _obj != oCamera && _obj != obj_player && _obj != objNekoPresenceDemo && _obj != statmanager && _obj != obj_roomgen && _obj != obj_lobby && _obj != obj_loading && _obj != obj_menu2 && _obj != oMenu && _obj != obj_node && _obj != obj_boot && _obj != par_unit))
+                    if(_obj && (_obj != oGameManager && _obj != oCamera && _obj != obj_player && _obj != objNekoPresenceDemo && _obj != statmanager && _obj != obj_roomgen && _obj != obj_lobby && _obj != obj_loading && _obj != obj_menu2 && _obj != oMenu && _obj != obj_node && _obj != obj_boot && _obj != par_unit))
                     {
                         instance_destroy(_obj)
                     }
-                    else console_log("destroy failed: object asset does not exist or object is too important to destroy");
+                    else console_log("destroy command failed: object index does not exist or object is too important to destroy");
                     break;
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: destroy <object asset>");
+                    console_log("invalid syntax! expected: destroy <object index>");
                     break
                 }
             }
@@ -410,7 +462,7 @@ if(global.console)
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: buff <buff_name> [stacks] [target_obj]");
+                    console_log("invalid syntax! expected: buff <id> [stacks] [target_obj]");
                     break
                 }
             }
@@ -423,37 +475,37 @@ if(global.console)
             {
                 case 2:
                 {
-                    if(itemdef_exists(_args[1]))
-                        _pickupitem(obj_player, get_new_itemdef(_args[1]))
+                    if(variable_struct_exists(global.itemdefs, _args[1]))
+                        _pickupitem(obj_player, _args[1])
                     else
-                        console_log("item failed: item_def does not exist");
+                        console_log("item command failed: itemdef does not exist");
                     break
                 }
                 case 3:
                 {
-                    if(itemdef_exists(_args[1]))
+                    if(variable_struct_exists(global.itemdefs, _args[1]))
                         repeat(real(string_digits(_args[2])))
-                            _pickupitem(obj_player, get_new_itemdef(_args[1]))
+                            _pickupitem(obj_player, _args[1])
                     else
-                        console_log("item failed: item_def does not exist");
+                        console_log("item command failed: itemdef does not exist");
                     break
                 }
                 case 4:
                 {
                     var _obj = asset_get_index(_args[3])
-                    if(itemdef_exists(_args[1]))
+                    if(variable_struct_exists(global.itemdefs, _args[1]))
                         if(object_is_ancestor(_obj.object_index, par_unit))
                             repeat(real(string_digits(_args[2])))
-                                _pickupitem(_obj, get_new_itemdef(_args[1]))
+                                _pickupitem(_obj, _args[1])
                         else
-                            console_log("item failed: object cannot accept items");
+                            console_log("item command failed: object cannot accept items");
                     else
-                        console_log("item failed: item_def does not exist");
+                        console_log("item command failed: itemdef does not exist");
                     break
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: item <item_name> [stacks] [target_obj]");
+                    console_log("invalid syntax! expected: item <id> [stacks] [target_obj]");
                     break
                 }
             }
@@ -468,7 +520,7 @@ else keyboard_string = "";
 
 cmd = function(command)
 {
-    return string_starts_with(input_str, string(command + " "));
+    return string_starts_with(input_str, string(command) + " ")
 }
 
 if(gamepad_button_check_any_pressed())

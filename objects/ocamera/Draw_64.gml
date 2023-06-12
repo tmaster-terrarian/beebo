@@ -72,17 +72,20 @@ if(draw_ui)
                 }
                 else buffoffsi--
             })
+        }
+    }
 
-            for(var i = 0; i < array_length(items); i++)
+    with(obj_player)
+    {
+        for(var i = 0; i < array_length(items); i++)
+        {
+            var spr = asset_get_index("spr_item_" + items[i].id)
+            draw_sprite_ext((spr != -1) ? spr : spr_buff_missing, 0, 11 + 16 * i, 144 - 9, 1, 1, 0, c_black, 1)
+            draw_sprite((spr != -1) ? spr : spr_buff_missing, 0, 10 + 16 * i, 144 - 10)
+            if(items[i].stacks > 1)
             {
-                var spr = asset_get_index("spr_item_" + items[i].name)
-                draw_sprite_ext((spr != -1) ? spr : spr_buff_missing, 0, 11 + 16 * i, 144 - 9, 1, 1, 0, c_black, 1)
-                draw_sprite((spr != -1) ? spr : spr_buff_missing, 0, 10 + 16 * i, 144 - 10)
-                if(items[i].stacks > 1)
-                {
-                    draw_set_halign(fa_right); draw_set_valign(fa_bottom); draw_set_font(other.hudfontstacks)
-                    draw_text(18 + 16 * i, 144 - 2, string(items[i].stacks))
-                }
+                draw_set_halign(fa_right); draw_set_valign(fa_bottom); draw_set_font(other.hudfontstacks)
+                draw_text(18 + 16 * i, 144 - 2, string(items[i].stacks))
             }
         }
     }

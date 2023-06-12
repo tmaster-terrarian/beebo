@@ -4,28 +4,45 @@ item that makes you do more damage the faster youre going
 increase damage by 20% (+10% per stack) of additional movement speed
 
 stages
-[ ] random level generation using the templates model
+[x] random level generation using the templates model
     [x] invent gamemaker prefabs (yippee!!!!!! so FUN!! AAAAAAAAAAAAAAAAAAAA)
-        constructors?
-        hard-coded tile positions?
-        tilemap-layers or objects?
-        json? (that would be cool...) <<< did this one
-    [ ] level metadata
+    [/] level metadata
         enemy whitelist
         level name, type, etc.
-    [ ] reuse old stage-room system, but randomized instead
-        single room stages
-    [x] tilemap stuff
+    [/] tilemap stuff
         [x] auto tiling with 8-bit mask
-        [x] place obj_wall in the right spots
         [x] randomness for variety
-[ ] make ice level as alternate first stage
+
+item system
+[ ] rework to use ids (similarish to minecraft's approach), instead of direct references to the defs (hard to manage, hard to make dynamic)
+    format:
+    {
+        id : string,
+        stacks : number
+    }
+    example:
+    obj_player.items =
+    [
+        {
+            id : "amorphous_plush",
+            stacks : 2
+        },
+        {
+            id : "eviction_notice",
+            stacks : 1
+        },
+        {
+            id : "serrated_stinger",
+            stacks : 2
+        }
+    ]
+    for item effects, loop through array and run the function relating to the item's id
+    to check for a specific item, loop through array and check if the item's id matches the selector, otherwise use fallback value
 
 enemies
 [ ] enemy spawner/manager
     arena-based, on level start
-    [ ] enemy items (maybe)
-        per-enemy or universal? or just both?
+    [/] enemy items
     [ ] enemy difficulty scaling
         levels?
 [ ] enemy families
@@ -34,5 +51,5 @@ enemies
 player stuff
 [x] make player persistent
     [x] add a "do nothing" state for the """"loading"""" screen
-[ ] make buffs better at their mf job
+[x] make buffs better at their mf job
 

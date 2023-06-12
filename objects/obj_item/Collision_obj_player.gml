@@ -1,10 +1,10 @@
-if(def.name != "")
+if(id != "")
 {
-	_pickupitem(other, def)
+	_pickupitem(other, id)
 	with instance_create_depth(x, y - 6, depth, fx_pickuptext)
 	{
-		name = other.def.displayname
-		shortdesc = other.def.shortdesc
+		name = global.itemdefs[$ id].displayname
+		shortdesc = global.itemdefs[$ id].shortdesc
 	}
 }
 instance_destroy()
