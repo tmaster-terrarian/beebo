@@ -9,7 +9,7 @@ else
     flip = 1
 }
 
-if(p < pmax)
+if(p < pmax / 2)
 {
     p += sp
 

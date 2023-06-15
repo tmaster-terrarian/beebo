@@ -1,4 +1,14 @@
-if(global.console) return;
+if(!hascontrol)
+{
+    input_dir = 0
+    if(!on_ground)
+        vsp = approach(vsp, vsp_max, grv)
+    else
+    {
+        sprite_index = spr_player
+    }
+    hsp = approach(hsp, 0, 0.1)
+}
 
 if dashtimer
     dashtimer--
@@ -690,13 +700,6 @@ if(!global.introsequence)
 if(y > room_height + 200)
 {
     hp = 0;
-}
-
-if(!hascontrol)
-{
-    input_dir = 0
-    if(!on_ground)
-        vsp = approach(vsp, vsp_max, grv)
 }
 
 enemy_enabler_counter = max(0, enemy_enabler_counter - 1);

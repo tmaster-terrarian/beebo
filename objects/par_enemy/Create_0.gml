@@ -54,4 +54,7 @@ statsmult = {}
 buffs = {}
 initbuffs(id)
 
-items = []
+items =
+[
+	new item("amorphous_plush", 1)
+]

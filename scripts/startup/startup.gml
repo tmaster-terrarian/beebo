@@ -51,9 +51,9 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 	{
 		for(var i = 0; i < array_length(attacker.items); i++)
 	    {
-			var _item = global.itemdefs[$ attacker.items[i].id]
+			var _item = global.itemdefs[$ attacker.items[i]._id]
 			var _stacks = attacker.items[i].stacks
-	        if(variable_struct_exists(global.itemdefs, attacker.items[i].id) && _item.proc_type == proc_type)
+	        if(variable_struct_exists(global.itemdefs, attacker.items[i]._id) && _item.proc_type == proc_type)
 			{
 				_item.proc(attacker, target, damage, proc, _stacks)
 			}
@@ -63,7 +63,7 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 	var dmg = damage
 	for(var i = 0; i < array_length(target.items); i++)
 	{
-		dmg = target.items[i].on_owner_damaged(target, dmg, target.items[i].stacks)
+		dmg = global.itemdefs[$ target.items[i]._id].on_owner_damaged(target, dmg, target.items[i].stacks)
 	}
 	target.hp -= dmg
 }

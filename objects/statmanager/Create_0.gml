@@ -3,7 +3,7 @@ function _calcitem(_name, target)
     global.__calcitemnamearg = _name
     global.__calcitemtargetarg = target
     var _item = global.__calcitemtargetarg.items[array_find_index(global.__calcitemtargetarg.items, function(_v, _i){return _v.name == global.__calcitemnamearg})]
-    return (array_any(global.__calcitemtargetarg.items, function(_v, _i){return _v.name == global.__calcitemnamearg})) ? global.itemdefs[$ _item.id].calc(_item.stacks) : 0
+    return (array_any(global.__calcitemtargetarg.items, function(_v, _i){return _v.name == global.__calcitemnamearg})) ? global.itemdefs[$ _item._id].calc(_item.stacks) : 0
 }
 
 function _buff(_name) constructor

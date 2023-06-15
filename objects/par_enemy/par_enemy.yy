@@ -17,7 +17,9 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
   ],
   "managed": true,
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"par_unit","path":"objects/par_unit/par_unit.yy",},"propertyId":{"name":"_team","path":"objects/par_unit/par_unit.yy",},"value":"team.enemy",},
+  ],
   "parent": {
     "name": "parents and children",
     "path": "folders/Objects/parents and children.yy",
@@ -41,11 +43,6 @@
   "physicsStartAwake": true,
   "properties": [
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"stats","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"noone","varType":0,},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"_team","filters":[],"listItems":[
-        "team.player",
-        "team.enemy",
-        "team.neutral",
-      ],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"team.enemy","varType":6,},
   ],
   "solid": false,
   "spriteId": null,

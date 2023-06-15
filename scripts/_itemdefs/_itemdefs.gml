@@ -30,7 +30,7 @@ function _itemdef_eviction_notice() : _itemdef("eviction_notice") constructor
     displayname = "Eviction Notice"
     shortdesc = "Throw razor-sharp legal papers on hit when above 90% health"
     proc_type = proctype.onhit
-	proc = function(_a, _t, _d, _p, _s)
+	proc = function(_a, _t, _d, _p, _s) //attacker, target, damage, proc coefficient, item stacks
 	{
 		if(_a.hp/_a.hp_max >= 0.9) && sign(_p)
 		{
@@ -135,11 +135,25 @@ function itemdef_exists(_name)
 global.itemdefs =
 {
     beeswax: new _itemdef_beeswax(),
-    serrated_stinger: new _itemdef_serrated_stinger()
+    eviction_notice: new _itemdef_eviction_notice(),
+    serrated_stinger: new _itemdef_serrated_stinger(),
+    amorphous_plush: new _itemdef_amorphous_plush()
 }
 
-function item(_id, _stacks = 1) constructor
+function item(__id, _stacks = 1) constructor
 {
-    id = _id
+    _id = __id
     stacks = _stacks
+}
+
+function get_item_stacks(_id, _target)
+{
+    for(var i = 0; i < array_length(_target.items); i++)
+    {
+        if(_target.items[i]._id == _id)
+        {
+            return _target.items[i].stacks
+        }
+    }
+    return 0
 }

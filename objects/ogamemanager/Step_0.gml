@@ -377,7 +377,7 @@ if(global.console)
                     {
                         if(_obj == obj_item)
                         {
-                            _dropranditem(_x, _y)
+                            _dropranditem(mouse_x, mouse_y)
                         }
                         else
                             instance_create_depth(mouse_x, mouse_y, 350, _obj);
