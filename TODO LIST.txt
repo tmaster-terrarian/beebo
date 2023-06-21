@@ -14,7 +14,7 @@ stages
         [x] randomness for variety
 
 item system
-[ ] rework to use ids (similarish to minecraft's approach), instead of direct references to the defs (hard to manage, hard to make dynamic)
+[x] rework to use ids (similarish to minecraft's approach), instead of direct references to the defs (hard to manage, hard to make dynamic)
     format:
     {
         id : string,
