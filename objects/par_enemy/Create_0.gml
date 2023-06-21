@@ -56,5 +56,5 @@ initbuffs(id)
 
 items =
 [
-	// new item("amorphous_plush", 1)
+	// new inventory_item("amorphous_plush", 1)
 ]

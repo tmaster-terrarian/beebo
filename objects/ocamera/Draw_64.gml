@@ -79,9 +79,8 @@ if(draw_ui)
     {
         for(var i = 0; i < array_length(items); i++)
         {
-            var spr = asset_get_index("spr_item_" + items[i]._id)
-            draw_sprite_ext((spr != -1) ? spr : spr_buff_missing, 0, 11 + 16 * i, 144 - 9,  1, 1, 0, c_black, 1)
-            draw_sprite_ext((spr != -1) ? spr : spr_buff_missing, 0, 10 + 16 * i, 144 - 10, 1, 1, 0, c_white, 1)
+            var spr = asset_get_index("spr_item_" + items[i].item_id)
+            draw_sprite_outlined_ext((spr != -1) ? spr : spr_buff_missing, 0, 10 + 16 * i, 144 - 10, 1, 1, 0, c_white, itemdata.rarity_colors[global.itemdefs[$ items[i].item_id].rarity], 1, 1, 0)
             if(items[i].stacks > 1)
             {
                 draw_set_halign(fa_right); draw_set_valign(fa_bottom); draw_set_font(other.hudfontstacks)

@@ -450,6 +450,7 @@
     {"id":{"name":"spr_anime_backflip_b","path":"sprites/spr_anime_backflip_b/spr_anime_backflip_b.yy",},},
     {"id":{"name":"spr_anime_wallslide","path":"sprites/spr_anime_wallslide/spr_anime_wallslide.yy",},},
     {"id":{"name":"spr_enemy_bullet","path":"sprites/spr_enemy_bullet/spr_enemy_bullet.yy",},},
+    {"id":{"name":"spr_item_placeholder","path":"sprites/spr_item_placeholder/spr_item_placeholder.yy",},},
     {"id":{"name":"spr_slope1","path":"sprites/spr_slope1/spr_slope1.yy",},},
     {"id":{"name":"sn_alert","path":"sounds/sn_alert/sn_alert.yy",},},
     {"id":{"name":"checkBelow","path":"scripts/checkBelow/checkBelow.yy",},},

@@ -369,6 +369,7 @@
     {"name":"spr_anime_backflip_b","order":8,"path":"sprites/spr_anime_backflip_b/spr_anime_backflip_b.yy",},
     {"name":"spr_anime_wallslide","order":17,"path":"sprites/spr_anime_wallslide/spr_anime_wallslide.yy",},
     {"name":"spr_enemy_bullet","order":97,"path":"sprites/spr_enemy_bullet/spr_enemy_bullet.yy",},
+    {"name":"spr_item_placeholder","order":5,"path":"sprites/spr_item_placeholder/spr_item_placeholder.yy",},
     {"name":"sn_alert","order":36,"path":"sounds/sn_alert/sn_alert.yy",},
     {"name":"checkBelow","order":13,"path":"scripts/checkBelow/checkBelow.yy",},
     {"name":"sn_explosion2","order":17,"path":"sounds/sn_explosion2/sn_explosion2.yy",},

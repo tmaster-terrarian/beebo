@@ -1,9 +1,7 @@
 if(flash > 0)
 {
     flash--;
-    shader_set(shWhite);
-    shader_set_uniform_f(upixelW, texelW);
-    shader_set_uniform_f(upixelH, texelH);
+    shader_set(sh_flash);
     draw_self();
     shader_reset();
 }

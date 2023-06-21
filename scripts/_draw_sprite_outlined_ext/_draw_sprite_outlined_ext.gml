@@ -35,3 +35,17 @@ function draw_sprite_outlined_ext(spr, subimg, _x, _y, xscale = 1, yscale = 1, r
 
 	draw_sprite_ext(spr, subimg, _x, _y, xscale, yscale, rot, col, alpha)
 }
+
+function draw_sprite_flat(_sprite, _subimg, _x, _y)
+{
+	shader_set(sh_flash)
+	draw_sprite_ext(_sprite, _subimg, _x, _y, 1, 1, 0, draw_get_color(), draw_get_alpha())
+	shader_reset()
+}
+
+function draw_sprite_flat_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, _rot, _color, _alpha)
+{
+	shader_set(sh_flash)
+	draw_sprite_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, _rot, _color, _alpha)
+	shader_reset()
+}

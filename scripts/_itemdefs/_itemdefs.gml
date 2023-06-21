@@ -4,6 +4,7 @@ function _itemdef(_name) constructor
     displayname = name
     stacks = 1
 	proc_type = proctype.none
+    rarity = item_rarity.none
 
     shortdesc = "undefined"
 
@@ -19,6 +20,7 @@ function _itemdef_beeswax() : _itemdef("beeswax") constructor
 {
     displayname = "Beeswax"
     shortdesc = "+10% bullet accuracy"
+    rarity = item_rarity.common
     calc = function(_s)
     {
         return 0.1 * _s
@@ -30,6 +32,7 @@ function _itemdef_eviction_notice() : _itemdef("eviction_notice") constructor
     displayname = "Eviction Notice"
     shortdesc = "Throw razor-sharp legal papers on hit when above 90% health"
     proc_type = proctype.onhit
+    rarity = item_rarity.rare
 	proc = function(_a, _t, _d, _p, _s) //attacker, target, damage, proc coefficient, item stacks
 	{
 		if(_a.hp/_a.hp_max >= 0.9) && sign(_p)
@@ -57,9 +60,10 @@ function _itemdef_serrated_stinger() : _itemdef("serrated_stinger") constructor
     displayname = "Serrated Stinger"
     shortdesc = "+10% chance to bleed on hit"
 	proc_type = proctype.onhit
+    rarity = item_rarity.common
 	proc = function(_a, _t, _d, _p, _s)
 	{
-		if(global.utils.chance(0.1 * _s * _p))
+		if(random(1) <= (0.1 * _s * _p))
 			_inflict(_t, new statmanager._bleed(_p, _d))
 	}
 }
@@ -68,6 +72,7 @@ function _itemdef_amorphous_plush() : _itemdef("amorphous_plush") constructor
 {
     displayname = "Amorphous Plush"
     shortdesc = "A protective feline follows you"
+    rarity = item_rarity.rare
     t = 0
     step = function(target, _s)
     {
@@ -83,53 +88,11 @@ function _itemdef_amorphous_plush() : _itemdef("amorphous_plush") constructor
     }
 }
 
-function get_new_itemdef(_name)
+function _itemdef_placeholder() : _itemdef("placeholder") constructor
 {
-    switch _name
-    {
-        default:
-        {
-            return -1
-            break
-        }
-        case "beeswax":
-        {
-            return new _itemdef_beeswax()
-            break
-        }
-        case "eviction_notice":
-        {
-            return new _itemdef_eviction_notice()
-            break
-        }
-        case "serrated_stinger":
-        {
-            return new _itemdef_serrated_stinger()
-            break
-        }
-        case "amorphous_plush":
-        {
-            return new _itemdef_amorphous_plush()
-            break
-        }
-    }
-}
-
-function itemdef_exists(_name)
-{
-    switch _name
-    {
-        default:
-        {
-            return 0
-            break
-        }
-        case "beeswax": case "eviction_notice": case "serrated_stinger": case "amorphous_plush":
-        {
-            return 1
-            break
-        }
-    }
+    displayname = "unknown"
+    shortdesc = "unknown"
+    rarity = item_rarity.legendary
 }
 
 global.itemdefs =
@@ -137,22 +100,31 @@ global.itemdefs =
     beeswax: new _itemdef_beeswax(),
     eviction_notice: new _itemdef_eviction_notice(),
     serrated_stinger: new _itemdef_serrated_stinger(),
-    amorphous_plush: new _itemdef_amorphous_plush()
+    amorphous_plush: new _itemdef_amorphous_plush(),
+    placeholder: new _itemdef_placeholder()
 }
 
-function item(__id, _stacks = 1) constructor
+global.itemdefs_by_rarity = [{}, {}, {}, {}, {}]
+struct_foreach(global.itemdefs as (_name, _item)
 {
-    _id = __id
+    global.itemdefs_by_rarity[_item.rarity][$ _name] = _item
+})
+global.itemdefs_by_rarity[0].placeholder = global.itemdefs.placeholder
+global.itemdefs_by_rarity[4].placeholder = global.itemdefs.placeholder
+
+function inventory_item(__id, _stacks = 1) constructor
+{
+    item_id = __id
     stacks = _stacks
 }
 
-function get_item_stacks(_id, _target)
+function get_item_stacks(item_id, target)
 {
-    for(var i = 0; i < array_length(_target.items); i++)
+    for(var i = 0; i < array_length(target.items); i++)
     {
-        if(_target.items[i]._id == _id)
+        if(target.items[i].item_id == item_id)
         {
-            return _target.items[i].stacks
+            return target.items[i].stacks
         }
     }
     return 0

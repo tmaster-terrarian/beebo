@@ -8,7 +8,7 @@ with(obj_player)
 
     for(var i = 0; i < array_length(items); i++)
     {
-        global.itemdefs[$ items[i]._id].step(id, items[i].stacks)
+        global.itemdefs[$ items[i].item_id].step(id, items[i].stacks)
     }
 
     statsmult = 
@@ -67,7 +67,7 @@ with(par_enemy)
 
     for(var i = 0; i < array_length(items); i++)
     {
-        global.itemdefs[$ items[i]._id].step(id, items[i].stacks)
+        global.itemdefs[$ items[i].item_id].step(id, items[i].stacks)
     }
 
     statsmult =
