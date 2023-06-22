@@ -1,5 +1,5 @@
 function _softrestart()
 {
-	instance_destroy(oGameManager)
+	instance_destroy(gm)
 	room_goto(rMenu)
 }

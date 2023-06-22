@@ -441,7 +441,7 @@
     {"name":"obj_platform_spawner","order":4,"path":"objects/obj_platform_spawner/obj_platform_spawner.yy",},
     {"name":"sn_sniper1","order":68,"path":"sounds/sn_sniper1/sn_sniper1.yy",},
     {"name":"sCrate","order":13,"path":"sprites/sCrate/sCrate.yy",},
-    {"name":"oGameManager","order":8,"path":"objects/oGameManager/oGameManager.yy",},
+    {"name":"gm","order":8,"path":"objects/gm/gm.yy",},
     {"name":"spr_player_kick","order":36,"path":"sprites/spr_player_kick/spr_player_kick.yy",},
     {"name":"obj_empty","order":2,"path":"objects/obj_empty/obj_empty.yy",},
     {"name":"sWall","order":1,"path":"sprites/sWall/sWall.yy",},

@@ -79,8 +79,11 @@ if(draw_ui)
     {
         for(var i = 0; i < array_length(items); i++)
         {
-            var spr = asset_get_index("spr_item_" + items[i].item_id)
-            draw_sprite_outlined_ext((spr != -1) ? spr : spr_buff_missing, 0, 10 + 16 * i, 144 - 10, 1, 1, 0, c_white, itemdata.rarity_colors[global.itemdefs[$ items[i].item_id].rarity], 1, 1, 0)
+            var _spr = asset_get_index("spr_item_" + items[i].item_id)
+            draw_sprite_outlined_ext((_spr != -1) ? _spr : spr_buff_missing, 0, 10 + 16 * i, 144 - 10, 1, 1, 0, c_white, itemdata.rarity_colors[global.itemdefs[$ items[i].item_id].rarity], 1, 1, 0)
+        }
+        for(var i = 0; i < array_length(items); i++)
+        {
             if(items[i].stacks > 1)
             {
                 draw_set_halign(fa_right); draw_set_valign(fa_bottom); draw_set_font(other.hudfontstacks)
@@ -89,12 +92,12 @@ if(draw_ui)
         }
     }
 
-    if(oGameManager.drawbossbar)
+    if(gm.drawbossbar)
     {
         var c = c_black
         draw_rectangle_color(34, 131, 249, 138, c, c, c, c, false)
 
-        var b = oGameManager.currentboss
+        var b = gm.currentboss
         if(instance_exists(b) && b.hp)
         {
             draw_sprite_ext(spr_bossbar_fill, 0, 34, 131, (b.hp / b.hpmax) * 216, 1, 0, c_white, 1)

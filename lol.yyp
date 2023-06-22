@@ -533,7 +533,7 @@
     {"id":{"name":"sn_sniper1","path":"sounds/sn_sniper1/sn_sniper1.yy",},},
     {"id":{"name":"Sequence1","path":"sequences/Sequence1/Sequence1.yy",},},
     {"id":{"name":"sCrate","path":"sprites/sCrate/sCrate.yy",},},
-    {"id":{"name":"oGameManager","path":"objects/oGameManager/oGameManager.yy",},},
+    {"id":{"name":"gm","path":"objects/gm/gm.yy",},},
     {"id":{"name":"spr_player_kick","path":"sprites/spr_player_kick/spr_player_kick.yy",},},
     {"id":{"name":"obj_empty","path":"objects/obj_empty/obj_empty.yy",},},
     {"id":{"name":"sWall","path":"sprites/sWall/sWall.yy",},},

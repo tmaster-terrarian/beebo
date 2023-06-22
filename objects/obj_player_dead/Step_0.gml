@@ -95,7 +95,7 @@ else
 		if(keyboard_check_pressed(vk_space)) || (keyboard_check_pressed(vk_enter)) || (gamepad_button_check_pressed(0, gp_face1))
 		{
 			scr_particle_explode2();
-			with(oGameManager) {audio_sound_gain(current_bgm, 1, 500)}
+			with(gm) {audio_sound_gain(current_bgm, 1, 500)}
 			gm_room_transition_softrestart();
 		}
     }

@@ -402,7 +402,7 @@ if(global.console)
                 {
                     var _obj = (string_digits(_args[1]) != "") ? real(string_digits(_args[1])) : asset_get_index(string(_args[1]));
 
-                    if(_obj && (_obj != oGameManager && _obj != oCamera && _obj != obj_player && _obj != objNekoPresenceDemo && _obj != statmanager && _obj != obj_roomgen && _obj != obj_lobby && _obj != obj_loading && _obj != obj_menu2 && _obj != oMenu && _obj != obj_node && _obj != obj_boot && _obj != par_unit))
+                    if(_obj && (_obj != gm && _obj != oCamera && _obj != obj_player && _obj != objNekoPresenceDemo && _obj != statmanager && _obj != obj_roomgen && _obj != obj_lobby && _obj != obj_loading && _obj != obj_menu2 && _obj != oMenu && _obj != obj_node && _obj != obj_boot && _obj != par_unit))
                     {
                         instance_destroy(_obj)
                     }

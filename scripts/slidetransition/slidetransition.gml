@@ -1,6 +1,6 @@
 function SlideTransition(_mode, _type = TRANS_TYPE.BOX, _target = room)
 {
-	with (oGameManager)
+	with (gm)
 	{
 		mode = _mode;
 		transtype = _type;
@@ -10,7 +10,7 @@ function SlideTransition(_mode, _type = TRANS_TYPE.BOX, _target = room)
 
 function gm_room_transition_goto(st, rm, _x = -1, _y = -1, transition_type = TRANS_TYPE.BOX)
 {
-	with (oGameManager)
+	with (gm)
 	{
 		mode = TRANS_MODE.GOTO;
 		transtype = transition_type;
@@ -27,7 +27,7 @@ function gm_room_transition_goto(st, rm, _x = -1, _y = -1, transition_type = TRA
 
 function gm_room_transition_direct(target_room, _x = -1, _y = -1, transition_type = TRANS_TYPE.BOX)
 {
-	with (oGameManager)
+	with (gm)
 	{
 		mode = TRANS_MODE.DIRECT;
 		transtype = transition_type;
@@ -42,7 +42,7 @@ function gm_room_transition_direct(target_room, _x = -1, _y = -1, transition_typ
 
 function gm_room_transition_restart(transition_type = TRANS_TYPE.BOX)
 {
-	with (oGameManager)
+	with (gm)
 	{
 		mode = TRANS_MODE.RESTART;
 		transtype = transition_type;
@@ -51,7 +51,7 @@ function gm_room_transition_restart(transition_type = TRANS_TYPE.BOX)
 
 function gm_room_transition_softrestart(transition_type = TRANS_TYPE.BOX)
 {
-	with (oGameManager)
+	with (gm)
 	{
 		mode = TRANS_MODE.SOFTRESTART;
 		transtype = transition_type;
