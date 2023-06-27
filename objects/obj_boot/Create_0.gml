@@ -30,7 +30,7 @@ if(ja)
 {
 	global.fonts.basic = fnt_ja
 	global.fonts.console = fnt_ja
-    global.fonts.offset = -4
+    global.fonts.offset = -3
 }
 
 ini_close()
