@@ -3,6 +3,8 @@ item that makes you do more damage the faster youre going
 "the faster you move the harder you hit"
 increase damage by 20% (+10% per stack) of additional movement speed
 
+item that has a chance to repair consumed items on stage start
+
 stages
 [x] random level generation using the templates model
     [x] invent gamemaker prefabs (yippee!!!!!! so FUN!! AAAAAAAAAAAAAAAAAAAA)

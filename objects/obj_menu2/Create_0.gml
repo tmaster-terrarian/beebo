@@ -10,10 +10,34 @@ m_pos = 0;
 
 m_options =
 [
-    ["Screen Size:", "Sound Volume:", "Music Volume:", "dont.", "Speedrun Mode", "Rich Presence", "VFX Culling Bias:", "\nDelete Savedata", "Back >"],
+    ["Screen Size:", "Sound Volume:", "Music Volume:", "dont.", "Speedrun Mode", "Rich Presence", "VFX Culling Bias:", "Language... >", "Delete Savedata", "Back >"],
     ["do not", "Back >"],
+    ["Language:", "Back >"],
     ["Option:", "Slider:", "Checkbox:", "Back >"]
 ];
+
+language_names = ["< English (US) >", "< Spanish (AR) >", "< Japanese >"]
+languages = ["en", "es", "ja"]
+language_selection = 0
+ini_open("save.ini")
+switch(ini_read_string("settings", "lang", "en"))
+{
+    case "en": default:
+    {
+        language_selection = 0
+        break
+    }
+    case "es":
+    {
+        language_selection = 1
+        break
+    }
+    case "ja":
+    {
+        language_selection = 2
+        break
+    }
+}
 
 m_options_length = 0;
 m_submenu = 0;

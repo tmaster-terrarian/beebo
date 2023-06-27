@@ -19,12 +19,12 @@ else
 if done && timer_finished
 {
 	depth = -1000
-	draw_set_font(fnt_basic)
+	draw_set_font(global.fonts.basic)
 	draw_set_halign(fa_left)
 	draw_set_valign(fa_top)
 
 	var xx = oCamera.x
-	var yy = oCamera.y
+	var yy = oCamera.y + global.fonts.offset
 
 	var txt_full = "YOUU FUCKING DIED LMAOO                      \n\n\n\n\n\n\n        PRESS  BUTTON TO RETRY"
 	txt = string_copy(txt_full, 1, textchar)

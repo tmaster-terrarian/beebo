@@ -1,3 +1,6 @@
+if global.console
+    return;
+
 m_options_length = array_length(m_options[m_submenu]);
 
 key_up = keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W")) || gamepad_button_check_pressed(0, gp_padu);
@@ -79,6 +82,13 @@ if(key_en)
                 }
                 case 7:
                 {
+                    m_submenu = 2;
+                    m_options_length = array_length(m_options[m_submenu]);
+                    m_pos = 0;
+                    break;
+                }
+                case 8:
+                {
                     ScreenShakeCursed(6, 60);
                     ini_open("save.ini");
                     ini_key_delete("savedata", "stage");
@@ -86,7 +96,7 @@ if(key_en)
                     ini_close();
                     break;
                 }
-                case 8:
+                case 9:
                 {
                     gm_room_transition_direct(rMenu, TRANS_TYPE.BOX)
                     break;
@@ -125,6 +135,20 @@ if(key_en)
         {
             switch(m_pos)
             {
+                case 1:
+                {
+                    m_submenu = 0
+                    m_options_length = array_length(m_options[m_submenu])
+                    m_pos = 0
+                    break
+                }
+            }
+            break
+        }
+        case 3:
+        {
+            switch(m_pos)
+            {
                 case 2:
                 {
                     test_checkbox = !test_checkbox;
@@ -149,11 +173,10 @@ if(keyboard_check_pressed(vk_escape)) || (gamepad_button_check_pressed(0, gp_fac
     {
         case 0:
         {
-            
             gm_room_transition_direct(rMenu, TRANS_TYPE.BOX)
             break;
         }
-        case 1: case 2:
+        case 1: case 2: case 3:
         {
             m_submenu = 0;
             m_options_length = array_length(m_options[m_submenu]);
@@ -282,6 +305,37 @@ switch(m_submenu)
         break;
     }
     case 2:
+    {
+        switch(m_pos)
+        {
+            case 0:
+            {
+                if(key_rt)
+                {
+                    language_selection++
+                    if(language_selection >= array_length(languages))
+                        language_selection = 0
+                    ini_open("save.ini");
+                    ini_write_string("settings", "lang", languages[language_selection]);
+                    ini_close();
+                    global.locale = languages[language_selection]
+                }
+                if(key_lt)
+                {
+                    language_selection--
+                    if(language_selection < 0)
+                        language_selection = array_length(languages) - 1
+                    ini_open("save.ini");
+                    ini_write_string("settings", "lang", languages[language_selection]);
+                    ini_close();
+                    global.locale = languages[language_selection]
+                }
+                break;
+            }
+        }
+        break;
+    }
+    case 3:
     {
         switch(m_pos)
         {

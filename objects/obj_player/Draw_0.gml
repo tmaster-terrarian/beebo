@@ -1,3 +1,9 @@
+var xx = x
+var yy = y
+
+x += irandom_range(-shake, shake)
+y += irandom_range(-shake, shake)
+
 if(state != "donothing")
 {
     if state == "grind"
@@ -75,10 +81,9 @@ if(state != "donothing")
     {
         flash--
         shader_set(sh_flash)
-        draw_self()
-        shader_reset()
     }
-    else draw_self()
+    draw_self()
+    shader_reset()
 
     // gun
     if(instance_exists(oGun))
@@ -150,6 +155,9 @@ if(state != "donothing")
         buff.draw()
     })
 }
+
+x = xx
+y = yy
 
 if(global.draw_debug)
 {

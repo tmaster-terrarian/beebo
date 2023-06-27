@@ -47,7 +47,7 @@ with(obj_player)
     air_accel = stats.air_accel * (walksp / stats.spd)
     air_fric = stats.air_fric * (walksp / stats.spd)
 
-    statsmult.accuracy -= 0.1 * get_item_stacks("beeswax", id)
+    statsmult.accuracy -= 0.1 * item_get_stacks("beeswax", id)
     if(statsmult.accuracy < 0) statsmult.accuracy = 0
 
     with(oGun)

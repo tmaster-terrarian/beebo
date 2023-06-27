@@ -67,12 +67,12 @@ if(mode != TRANS_MODE.OFF)
 }
 
 //:lollmao:
-if(keyboard_check(vk_lcontrol))
+if(keyboard_check(vk_lcontrol) && !global.console)
 {
     with(obj_player)
     {
-        x = mouse_x;
-        y = mouse_y;
+        x = round(mouse_x);
+        y = round(mouse_y);
         vsp = 0
         hsp = 0
     }
@@ -92,10 +92,20 @@ with(obj_player)
 //console
 if(keyboard_check_pressed(vk_f1))
 {
-    global.console = true;
-    input_str = "";
-    controltimer = 99999999;
+    global.console = !global.console
+    if(global.console == 1)
+    {
+        input_str = ""
+        controltimer = 99999999
+    }
+    else
+    {
+        input_str = ""
+        keyboard_string = ""
+        controltimer = 0
+    }
 }
+
 if(global.console)
 {
     cursor_timer = max(0, cursor_timer - 1);
@@ -116,7 +126,7 @@ if(global.console)
 
     if(keyboard_check_pressed(vk_escape))
     {
-        global.console = false;
+        global.console = 0;
         input_str = "";
         keyboard_string = "";
         controltimer = 0;
@@ -513,6 +523,10 @@ if(global.console)
 
         if(keyboard_string != "") last_input_str = input_str;
         keyboard_string = "";
+    }
+    if(keyboard_check(vk_lcontrol) && keyboard_check_pressed(ord("V")))
+    {
+        keyboard_string += clipboard_get_text()
     }
     input_str = keyboard_string;
 }

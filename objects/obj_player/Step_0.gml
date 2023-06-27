@@ -240,7 +240,7 @@ if(hascontrol)
                     facing = 1
                 }
                 else
-                    facing = approach(facing, 1, 0.2)
+                    facing = 1
             }
             else if (input_dir == -1)
             {
@@ -272,7 +272,7 @@ if(hascontrol)
                     facing = -1
                 }
                 else
-                    facing = approach(facing, -1, 0.2)
+                    facing = -1
             }
             else
             {
@@ -392,6 +392,65 @@ if(hascontrol)
             }
             vsp = clamp(vsp, -99, 2);
             break;
+        }
+        case "revive":
+        {
+            if(timer0 == 0)
+            {
+                hsp = -2 * facing
+                vsp = -2
+                sprite_index = spr_player_dead
+                image_index = 0
+                mask_index = mask_player
+                audio_play_sound(sn_slowmo, 2, false)
+                lastSafeX = x
+                lastSafeY = y
+            }
+            if(on_ground)
+            {
+                hsp = approach(hsp, 0, ground_fric)
+                image_index = 1
+            }
+            else
+            {
+                hsp = approach(hsp, 0, air_fric)
+                vsp = approach(vsp, vsp_max / 2, grv / 2)
+                image_index = 0
+            }
+            if(timer0 > 60 && timer0 < 100)
+            {
+                x += (lastSafeX - x) / 6
+                y += (lastSafeY - y) / 6
+                shake = approach(shake, 4, 0.1)
+            }
+            if(timer0 >= 100)
+            {
+                flash = 20
+            }
+            if(timer0 < 120)
+            {
+                timer0++
+                hp = 0
+                regen = 0
+                can_jump = 0
+            }
+            else
+            {
+                shake = 0
+                ded = 0
+                timer0 = 0
+                state = "normal"
+                vsp = -4
+                hsp = 0
+                hp = hp_max
+                item_add_stacks("emergency_field_kit", id, -1)
+                item_add_stacks("emergency_field_kit_consumed", id, 1)
+                with(par_enemy)
+                {
+                    hp -= 5
+                }
+            }
+            break
         }
         case "dash":
         {

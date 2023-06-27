@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "_itemdefs",
+  "name": "int_lang",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

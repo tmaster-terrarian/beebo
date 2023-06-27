@@ -1,4 +1,4 @@
-draw_set_font(fnt_console); draw_set_halign(fa_middle); draw_set_valign(fa_center)
+draw_set_font(global.fonts.console); draw_set_halign(fa_middle); draw_set_valign(fa_center)
 
 var key_en = keyboard_check(vk_enter) || keyboard_check(vk_space) || gamepad_button_check(0, gp_face1)
 
@@ -12,7 +12,7 @@ for(var i = 0; i < array_length(m_options); i++)
             draw_sprite_ext(m.sprite, ((i == m_pos) ? 1 * key_en : 0), m.x, m.y + ((i == m_pos) ? 2 * key_en : 0), m.w/sprite_get_width(m.sprite), m.h/sprite_get_height(m.sprite), 0, c_white, 1)
         }
         draw_set_color(m.text_color)
-        draw_text(m.x + m.w/2, m.y + m.h/2 + 2 + ((i == m_pos) ? 2 * key_en : 0), m.name)
+        draw_text(m.x + m.w/2, m.y + m.h/2 + 2 + ((i == m_pos) ? 2 * key_en : 0) + global.fonts.offset, m.name)
     }
     if(is_instanceof(m, slider))
     {

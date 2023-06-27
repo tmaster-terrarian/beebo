@@ -86,6 +86,8 @@ switch(mode)
                 }
                 roomx += rooms[i].width
             }
+
+            delete data
         }
 
         instance_create_depth(roomx + 64, 208, 399, prop_sign_1)

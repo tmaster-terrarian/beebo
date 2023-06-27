@@ -4,6 +4,7 @@ depth = 300;
 
 state = "normal";
 
+ded = 0
 sprite_index = spr_player;
 image_speed = 0;
 image_index = 0;
@@ -12,6 +13,7 @@ landTimer = 0;
 wallslideTimer = 0;
 running = 0;
 run = 0;
+shake = 0
 
 _target = noone
 
