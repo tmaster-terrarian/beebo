@@ -45,7 +45,6 @@ state = "normal"
 flash = 0
 timer0 = 0
 ded = 0
-bulletproof = 0
 image_speed = 0
 drawhp = 0
 playerally = 0

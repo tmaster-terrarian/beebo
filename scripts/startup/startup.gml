@@ -1,3 +1,4 @@
+// pixelate gui
 display_set_gui_size(256, 144)
 
 // game is too fucking LOUD
@@ -57,25 +58,42 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 	damage = _damage
 	proc = _proc
 
-	if(instance_exists(attacker))
+	if(instance_exists(target))
 	{
-		for(var i = 0; i < array_length(attacker.items); i++)
-	    {
-			var _item = global.itemdefs[$ attacker.items[i].item_id]
-			var _stacks = attacker.items[i].stacks
-	        if(variable_struct_exists(global.itemdefs, attacker.items[i].item_id) && _item.proc_type == proc_type)
+		if(instance_exists(attacker))
+		{
+			for(var i = 0; i < array_length(attacker.items); i++)
 			{
-				_item.proc(attacker, target, damage, proc, _stacks)
+				if(variable_struct_exists(global.itemdefs, attacker.items[i].item_id))
+				{
+					var _item = global.itemdefs[$ attacker.items[i].item_id]
+					var _stacks = attacker.items[i].stacks
+					if(_item.proc_type == proc_type)
+					{
+						_item.proc(attacker, target, damage, proc, _stacks)
+					}
+				}
 			}
-	    }
-	}
 
-	var dmg = damage
-	for(var i = 0; i < array_length(target.items); i++)
-	{
-		dmg = global.itemdefs[$ target.items[i].item_id].on_owner_damaged(target, dmg, target.items[i].stacks)
+			if(attacker._team == team.player)
+			{
+				if(!crit)
+					audio_play_sound(sn_hit, 5, false)
+				else
+					audio_play_sound(sn_hit_crit, 5, false)
+			}
+
+			damage += damage * ((target.facing == 1 && target.x >= attacker.x) || (target.facing == -1 && target.x < attacker.x)) * (0.2 * item_get_stacks("bloody_dagger", attacker))
+			damage *= 1 + (random(1) <= min(attacker.crit_chance, 1))
+		}
+
+		var dmg = damage
+		for(var i = 0; i < array_length(target.items); i++)
+		{
+			dmg = global.itemdefs[$ target.items[i].item_id].on_owner_damaged(target, dmg, target.items[i].stacks)
+		}
+		target.hp -= dmg
 	}
-	target.hp -= dmg
 }
 
 // global variables
@@ -157,7 +175,9 @@ global.lang.en =
 	item_emergency_field_kit_name: "Emergency Field Kit",
 	item_emergency_field_kit_shortdesc: "Gain an extra life",
 	item_emergency_field_kit_consumed_name: "Emergency Field Kit (Consumed)",
-	item_emergency_field_kit_consumed_shortdesc: "A used item with no power"
+	item_emergency_field_kit_consumed_shortdesc: "A used item with no power",
+	item_bloody_dagger_name: "Bloody Dagger",
+	item_bloody_dagger_shortdesc: "Attacks from behind deal bonus damage"
 }
 global.lang.es =
 {
@@ -272,6 +292,12 @@ function _itemdef_emergency_field_kit_consumed() : _itemdef("emergency_field_kit
     displayname = string_loc("item.emergency_field_kit_consumed.name")
     shortdesc = string_loc("item.emergency_field_kit_consumed.shortdesc")
     rarity = item_rarity.none
+}
+
+function _itemdef_bloody_dagger() : _itemdef("bloody_dagger") constructor {
+    displayname = string_loc("item.bloody_dagger.name")
+    shortdesc = string_loc("item.bloody_dagger.shortdesc")
+    rarity = item_rarity.common
 }
 
 global.itemdefs =

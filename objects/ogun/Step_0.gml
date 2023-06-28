@@ -100,10 +100,10 @@ else
 
 firingdelay--;
 recoil = max(0, recoil - 1);
-if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (firingdelay < 0)
+if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (firingdelay <= 0)
 {
     fire = 1;
-    if(obj_player.hp > 1)
+    if(obj_player.hp > 0)
     {
         ScreenShake(1, 5);
         recoil = 2;
@@ -116,7 +116,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
         with (instance_create_depth(x, y, depth - 3, oBullet))
         {
 			parent = obj_player
-            //play fire sound
+            _team = team.player
             audio_play_sound(snShot, 1, false);
 
             speed = 12;
@@ -143,7 +143,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
             with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 3, obj_helix_bullet))
             {
 				parent = obj_player
-                //play fire sound
+                _team = team.player
                 audio_play_sound(sn_helix_laser2, 1, false);
 
                 var dist = max(point_distance(x, y, mouse_x, mouse_y), 32)
@@ -156,6 +156,8 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
                 dir = other.image_angle
                 u = -2 * i + 1
                 image_index += i
+
+                damage = obj_player.damage
             }
         }
     }
@@ -172,7 +174,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
         }
     }
 }
-else if(firingdelay < 0)
+else if(firingdelay <= 0)
 {
     heat = approach(heat, 0, coolspd);
     if(floor(heat) mod 8 == 7)

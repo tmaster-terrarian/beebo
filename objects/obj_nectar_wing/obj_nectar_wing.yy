@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "o_nectar_wing",
+  "name": "obj_nectar_wing",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],

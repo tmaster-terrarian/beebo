@@ -63,7 +63,7 @@ switch(tl_position)
         if(bonehive.hp <= 0)
         {
             instance_destroy(obj_trigger_camera_pos)
-            with(o_nectar) hp = 0
+            with(obj_nectar) hp = 0
             tl_position += 1
             tl_running = 1
             global.cutscene = 1

@@ -9,14 +9,17 @@ with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
     with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
     with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
 
-    with(par_enemy) if(place_meeting(x, y, other) && (other._team == team.neutral || (other._team == team.player && !playerally))) {var _event = new damage_event(other.parent, id, proctype.onhit, other.dmg, other.proc)}
+    with(par_enemy) if(place_meeting(x, y, other) && (other._team == team.neutral || (other._team == team.player && !playerally))) {var _event = new damage_event(other.parent, id, proctype.onhit, other.dmg, other.proc); delete _event}
 
-    with(obj_boss) if(place_meeting(x, y, other) && (other._team == team.neutral || other._team == team.player)) {var _event = new damage_event(other.parent, id, proctype.onhit, other.dmg, other.proc)}
+    with(obj_boss) if(place_meeting(x, y, other) && (other._team == team.neutral || other._team == team.player)) {var _event = new damage_event(other.parent, id, proctype.onhit, other.dmg, other.proc); delete _event}
 
     with(obj_player)
     {
 		if(place_meeting(x, y, other) && (other._team == team.neutral || other._team == team.enemy))
+        {
 			var _event = new damage_event(other.parent, id, proctype.onhit, other.dmg, other.proc)
+            delete _event
+        }
         other.hspeed = ((state == "grind") * -7)
     }
 

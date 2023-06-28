@@ -1,5 +1,4 @@
 attack_timer += 1;
-facing = 0;
 
 if(instance_exists(obj_player))
 {
@@ -24,6 +23,8 @@ y += (target_y - y) / (walksp / spd);
 x += random_range(-shake_remain, shake_remain);
 y += random_range(-shake_remain, shake_remain);
 shake_remain = max(0, shake_remain - ((1 / shake_length) * shake_magnitude));
+
+facing = (x >= target.x) ? -1 : 1
 
 wing_left.image_xscale = -1;
 wing_left.x = x - 4;

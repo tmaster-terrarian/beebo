@@ -48,7 +48,9 @@ repeat abs(v)
         if (vsp <= 0)
         {
             if place_meeting(x, (y + sign(v)), obj_wall)
+            {
                 collide = 1
+            }
             else
             {
                 y += sign(v)
@@ -58,11 +60,15 @@ repeat abs(v)
             break
         }
         else if checkBelow()
+        {
             collide = 1
+        }
         else
             y += sign(v)
     }
     else y += sign(v)
 }
 if collide
+{
     event_perform(ev_other, ev_user1)
+}

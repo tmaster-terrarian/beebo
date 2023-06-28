@@ -8,7 +8,7 @@
       "weight": 1,
       "entities": [
         {
-          "id": "o_nectar",
+          "id": "obj_nectar",
           "x": 256,
           "y": 112,
           "__tx": 16,
@@ -20,7 +20,7 @@
           }
         },
         {
-          "id": "o_nectar",
+          "id": "obj_nectar",
           "x": 264,
           "y": 115,
           "__tx": 16.5,
@@ -253,7 +253,7 @@
       "weight": 1,
       "entities": [
         {
-          "id": "o_nectar",
+          "id": "obj_nectar",
           "x": 256,
           "y": 112,
           "__tx": 16,
@@ -265,7 +265,7 @@
           }
         },
         {
-          "id": "o_nectar",
+          "id": "obj_nectar",
           "x": 264,
           "y": 115,
           "__tx": 16.5,
@@ -462,7 +462,7 @@
       "weight": 1,
       "entities": [
         {
-          "id": "o_nectar",
+          "id": "obj_nectar",
           "x": 288,
           "y": 16,
           "__tx": 18,
@@ -474,7 +474,7 @@
           }
         },
         {
-          "id": "o_nectar",
+          "id": "obj_nectar",
           "x": 288,
           "y": 128,
           "__tx": 18,

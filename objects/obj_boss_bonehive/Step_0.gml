@@ -92,7 +92,7 @@ switch(state)
             else
             {
                 audio_play_sound(sn_throw, 0, false);
-                with(instance_create_depth(x, y, 300, o_nectar))
+                with(instance_create_depth(x, y, 300, obj_nectar))
                 {
                     hasheart = 1;
                 }

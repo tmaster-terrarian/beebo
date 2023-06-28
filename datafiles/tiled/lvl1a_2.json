@@ -153,7 +153,7 @@
                 {
                  "height":16,
                  "id":22,
-                 "name":"o_nectar",
+                 "name":"obj_nectar",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -232,7 +232,7 @@
                 {
                  "height":16,
                  "id":27,
-                 "name":"o_nectar",
+                 "name":"obj_nectar",
                  "properties":[
                         {
                          "name":"chance",
@@ -409,7 +409,7 @@
                 {
                  "height":16,
                  "id":79,
-                 "name":"o_nectar",
+                 "name":"obj_nectar",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -471,7 +471,7 @@
                 {
                  "height":16,
                  "id":84,
-                 "name":"o_nectar",
+                 "name":"obj_nectar",
                  "properties":[
                         {
                          "name":"chance",
@@ -835,7 +835,7 @@
                 {
                  "height":16,
                  "id":77,
-                 "name":"o_nectar",
+                 "name":"obj_nectar",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -846,7 +846,7 @@
                 {
                  "height":16,
                  "id":78,
-                 "name":"o_nectar",
+                 "name":"obj_nectar",
                  "properties":[
                         {
                          "name":"chance",

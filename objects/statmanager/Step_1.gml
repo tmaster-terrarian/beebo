@@ -19,7 +19,8 @@ with(obj_player)
         jumpspd : 1,
         firerate : 1,
         accuracy : 1,
-        damage : 1
+        damage : 1,
+        crit_chance : 1
     }
 
     var spdadd = 1
@@ -46,6 +47,11 @@ with(obj_player)
     ground_fric = stats.ground_fric * (walksp / stats.spd)
     air_accel = stats.air_accel * (walksp / stats.spd)
     air_fric = stats.air_fric * (walksp / stats.spd)
+
+    damage = stats.damage * statsmult.damage
+
+    crit_chance = clamp(stats.crit_chance * statsmult.crit_chance, 0, 1)
+    if(crit_chance == 0) crit_chance += 0.01
 
     statsmult.accuracy -= 0.1 * item_get_stacks("beeswax", id)
     if(statsmult.accuracy < 0) statsmult.accuracy = 0
@@ -85,6 +91,8 @@ with(par_enemy)
     spdsub += (variable_struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
 
     statsmult.spd = spdadd / spdsub
+
+    damage = stats.damage * statsmult.damage
 
     hp_max = stats.hp_max * statsmult.hp_max
     spd = stats.spd * statsmult.spd

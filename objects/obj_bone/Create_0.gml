@@ -4,6 +4,7 @@ _team = team.enemy
 damage = 5
 proc = 1
 target = obj_player
+destroy_on_hit = 1
 
 hsp = 0
 vsp = 0

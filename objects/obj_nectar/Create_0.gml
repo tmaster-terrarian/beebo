@@ -13,11 +13,11 @@ image_alpha = 0;
 
 hasheart = 0;
 
-wing_left = instance_create_depth(x, y, depth + 2, o_nectar_wing);
+wing_left = instance_create_depth(x, y, depth + 2, obj_nectar_wing);
 wing_left.image_alpha = 0;
 wing_rotation_start = 0;
 wing_rotation_end = 45;
-wing_right = instance_create_depth(x, y, depth + 2, o_nectar_wing);
+wing_right = instance_create_depth(x, y, depth + 2, obj_nectar_wing);
 wing_right.image_alpha = 0;
 wing_direction = 1;
 

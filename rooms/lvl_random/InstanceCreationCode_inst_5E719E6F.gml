@@ -1,1 +1,1 @@
-item_id = "emergency_field_kit"
+item_id = "bloody_dagger"

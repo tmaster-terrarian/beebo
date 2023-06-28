@@ -380,14 +380,14 @@ check = function(_x, _y)
     return (place_meeting(_x, _y, obj_wall) || place_meeting(_x, _y, obj_platform));
 }
 
-if(active) && (instance_exists(obj_player))
+if(active) && (instance_exists(target))
 {
-    var chance = floor(random_range(1, 120));
+    var chance = irandom_range(1, 120);
 
     if(on_ground)
     {
         //jump over gaps
-        if(!check(x + (sign(facing) * 16), y + 8)) && (y > obj_player.y - 16) && (can_jump)
+        if(!check(x + (sign(facing) * 16), y + 8)) && (y > target.y - 16) && (can_jump)
         {
             can_jump = 0
             INPUT_JUMP = 1
@@ -395,7 +395,7 @@ if(active) && (instance_exists(obj_player))
         }
 
         //jump onto platforms
-        if(place_meeting(x, y - 24, obj_platform)) && (y > obj_player.y - 4) && (can_jump)
+        if(place_meeting(x, y - 24, obj_platform)) && (y > target.y - 4) && (can_jump)
         {
             can_jump = 0
             INPUT_JUMP = 1
@@ -405,7 +405,7 @@ if(active) && (instance_exists(obj_player))
         //drop through platforms
         if(place_meeting(x, y + 1, obj_platform)) && (!place_meeting(x, y + 1, obj_wall))
         {
-            if(y < (obj_player.y - 8))
+            if(y < (target.y - 8))
             {
                 INPUT_DUCK = 1
                 if(INPUT_DUCK && duck == 3)
@@ -417,14 +417,14 @@ if(active) && (instance_exists(obj_player))
         }
 
         //initiate walljump chains if too low from player
-        // if(y - obj_player.y > 80) && (place_meeting(x + sign(facing) * 8, y, obj_wall)) && (can_jump)
+        // if(y - target.y > 80) && (place_meeting(x + sign(facing) * 8, y, obj_wall)) && (can_jump)
         // {
         //     can_jump = 0
         //     INPUT_JUMP = 1
         // }
 
         //jump over ledges
-        if collision_rectangle(x + sign(facing) * 8, y - 40, x + sign(facing), y + 5, obj_wall, false, true) && !place_meeting(x, y - 40, obj_wall) && can_jump && (y > obj_player.y)
+        if collision_rectangle(x + sign(facing) * 8, y - 40, x + sign(facing), y + 5, obj_wall, false, true) && !place_meeting(x, y - 40, obj_wall) && can_jump && (y > target.y)
         {
             can_jump = 0
             INPUT_JUMP = 1
@@ -432,7 +432,7 @@ if(active) && (instance_exists(obj_player))
     }
 
     //walljumps only if below player and there's adequate space above and below
-    else if(!check(x, y + 32)) && (!place_meeting(x, y - 16, obj_wall)) && ((y >= obj_player.y) || (y > room_height))
+    else if(!check(x, y + 32)) && (!place_meeting(x, y - 16, obj_wall)) && ((y >= target.y) || (y > room_height))
     {
         chance = -1
 
@@ -478,7 +478,7 @@ if(active) && (instance_exists(obj_player))
                 if TIMER_WALLJUMP >= 20
                 {
                     TIMER_WALLJUMP = 0
-                    var h = irandom_range(0, 1)
+                    var h = irandom(1)
                     if h
                     {
                         INPUT_JUMP = 1
@@ -491,14 +491,14 @@ if(active) && (instance_exists(obj_player))
     }
 
     //charge towards player without random stopping if offscreen
-    if(abs(x - obj_player.x) > 128)
+    if(abs(x - target.x) > 128)
     {
-        if(chance) INPUT_MOVE = sign(obj_player.x - x);
+        if(chance) INPUT_MOVE = sign(target.x - x);
         chance = -1;
     }
 
     //adjust speed to aim at player during freefall while above
-    if(obj_player.y - y > 64) && (abs(x - obj_player.x) < 16) && (!on_ground)
+    if(target.y - y > 64) && (abs(x - target.x) < 16) && (!on_ground)
     {
         hsp = approach(hsp, 0, air_accel);
     }
@@ -572,7 +572,7 @@ if(active) && (instance_exists(obj_player))
         INPUT_DUCK = 0
 
         //cool backflip ledge save
-        if(!place_meeting(x, y + 32, obj_wall)) && (!place_meeting(x - (sign(hsp) * 40), y - 8, obj_wall)) && (place_meeting(x - (sign(hsp) * 40), y + 8, obj_wall)) && (state == "normal") && (can_dodge) && (abs(x - obj_player.x) < 80) && ((y - obj_player.y) >= -8)
+        if(!place_meeting(x, y + 32, obj_wall)) && (!place_meeting(x - (sign(hsp) * 40), y - 8, obj_wall)) && (place_meeting(x - (sign(hsp) * 40), y + 8, obj_wall)) && (state == "normal") && (can_dodge) && (abs(x - target.x) < 80) && ((y - target.y) >= -8)
         {
             timer0 = 0;
             image_index = 0;
@@ -583,17 +583,17 @@ if(active) && (instance_exists(obj_player))
     //randomly choose between moving and not moving toward the player
     if(chance <= 6) && (chance >= 1)
     {
-        with(obj_player) other.INPUT_MOVE = sign(x - other.x) + round(random_range(-1, 1));
+        INPUT_MOVE = clamp(sign(target.x - x) + irandom_range(-1, 1), -1, 1)
     }
 
-    // if(chance == 1) && (obj_player.facing == -sign(facing)) && (state == "normal") && (can_dodge)
+    // if(chance == 1) && (target.facing == -sign(facing)) && (state == "normal") && (can_dodge)
     // {
     //     timer0 = 0
     //     image_index = 0
     //     state = "backflip_start"
     // }
 
-    // if(chance == 2) && (obj_player.facing == -sign(facing)) && (state == "normal") && (can_dodge)
+    // if(chance == 2) && (target.facing == -sign(facing)) && (state == "normal") && (can_dodge)
     // {
     //     flip_counter = 0
     //     timer0 = 0
@@ -611,7 +611,5 @@ if(instance_exists(obj_player_dead)) && (active)
     image_index = 0;
     facing = sign(obj_player_dead.x - x);
 }
-
-INPUT_MOVE = clamp(INPUT_MOVE, -1, 1);
 
 image_xscale = sign(facing);

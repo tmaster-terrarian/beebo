@@ -1,4 +1,1 @@
-if (checkBelow() && vsp >= 0)
-    on_ground = 1
-else
-    on_ground = 0
+on_ground = (checkBelow() && vsp >= 0)

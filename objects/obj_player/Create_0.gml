@@ -40,12 +40,14 @@ stats =
     regen_rate : 0.0133333,
     spd : 2,
     jumpspd : -3.7,
+    firerate : 4,
+    accuracy : 4,
+    damage : 1,
+    crit_chance : 0,
     ground_accel : 0.12,
     ground_fric : 0.08,
     air_accel : 0.07,
-    air_fric : 0.02,
-    firerate : 4,
-    accuracy : 4
+    air_fric : 0.02
 }
 
 hp_max = stats.hp_max
@@ -62,6 +64,9 @@ air_accel = stats.air_accel
 air_fric = stats.air_fric
 accel = 0
 fric = 0
+
+damage = stats.damage
+crit_chance = stats.crit_chance
 
 lasthsp = 0
 lastvsp = 0
@@ -152,6 +157,8 @@ for(var a = 0; a < ponytail_points_count; a++)
     else
         ponytail_segment_len[a] = 2
 }
+
+hair_visible = 1
 
 _team = team.player
 

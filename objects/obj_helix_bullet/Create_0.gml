@@ -1,5 +1,6 @@
 event_inherited()
 damage = 1
+parent = noone
 _team = team.player
 proc = 1
 s = 2
