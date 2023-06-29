@@ -18,9 +18,9 @@ with(obj_player)
         spd : 1,
         jumpspd : 1,
         firerate : 1,
-        accuracy : 1,
+        spread : 1,
         damage : 1,
-        crit_chance : 1
+        crit_chance : 0
     }
 
     var spdadd = 1
@@ -50,16 +50,16 @@ with(obj_player)
 
     damage = stats.damage * statsmult.damage
 
-    crit_chance = clamp(stats.crit_chance * statsmult.crit_chance, 0, 1)
+    crit_chance = clamp(statsmult.crit_chance, 0, 1)
     if(crit_chance == 0) crit_chance += 0.01
 
-    statsmult.accuracy -= 0.1 * item_get_stacks("beeswax", id)
-    if(statsmult.accuracy < 0) statsmult.accuracy = 0
+    statsmult.spread -= 0.1 * item_get_stacks("beeswax", id)
+    if(statsmult.spread < 0) statsmult.spread = 0
 
     with(oGun)
     {
         firerate = other.stats.firerate * other.statsmult.firerate
-        accuracy = other.stats.accuracy * other.statsmult.accuracy
+        spread = other.stats.spread * other.statsmult.spread
     }
 }
 
@@ -81,7 +81,8 @@ with(par_enemy)
         hp_max : 1,
         spd : 1,
         firerate : 1,
-        damage : 1
+        damage : 1,
+        crit_chance : 0
     }
 
     var spdadd = 1
@@ -93,6 +94,8 @@ with(par_enemy)
     statsmult.spd = spdadd / spdsub
 
     damage = stats.damage * statsmult.damage
+
+    crit_chance = clamp(statsmult.crit_chance, 0, 1)
 
     hp_max = stats.hp_max * statsmult.hp_max
     spd = stats.spd * statsmult.spd

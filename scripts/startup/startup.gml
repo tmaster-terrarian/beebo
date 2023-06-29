@@ -50,29 +50,34 @@ enum item_rarity
 }
 
 // classes
-function damage_event(_attacker, _target, _type, _damage, _proc) constructor
+function damage_event(attacker, target, proc_type, damage, proc, attacker_has_items = 1)
 {
-	attacker = _attacker
-	target = _target
-	proc_type = _type
-	damage = _damage
-	proc = _proc
-
 	if(instance_exists(target))
 	{
 		if(instance_exists(attacker))
 		{
-			for(var i = 0; i < array_length(attacker.items); i++)
+			var crit = 0
+
+			if(attacker_has_items)
 			{
-				if(variable_struct_exists(global.itemdefs, attacker.items[i].item_id))
+				if(random(1) <= attacker.crit_chance)
+					crit = 1
+
+				for(var i = 0; i < array_length(attacker.items); i++)
 				{
-					var _item = global.itemdefs[$ attacker.items[i].item_id]
-					var _stacks = attacker.items[i].stacks
-					if(_item.proc_type == proc_type)
+					if(variable_struct_exists(global.itemdefs, attacker.items[i].item_id))
 					{
-						_item.proc(attacker, target, damage, proc, _stacks)
+						var _item = global.itemdefs[$ attacker.items[i].item_id]
+						var _stacks = attacker.items[i].stacks
+						if(_item.proc_type == proc_type)
+						{
+							_item.proc(attacker, target, damage, proc, _stacks)
+						}
 					}
 				}
+
+				damage += damage * ((target.facing == 1 && target.x >= attacker.x) || (target.facing == -1 && target.x < attacker.x)) * (0.2 * item_get_stacks("bloody_dagger", attacker))
+				damage *= 1 + crit
 			}
 
 			if(attacker._team == team.player)
@@ -82,9 +87,11 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 				else
 					audio_play_sound(sn_hit_crit, 5, false)
 			}
-
-			damage += damage * ((target.facing == 1 && target.x >= attacker.x) || (target.facing == -1 && target.x < attacker.x)) * (0.2 * item_get_stacks("bloody_dagger", attacker))
-			damage *= 1 + (random(1) <= min(attacker.crit_chance, 1))
+			else if(target.object_index == obj_player)
+			{
+				audio_play_sound(sn_player_hit, 5, false)
+				oCamera.alarm[0] = 10
+			}
 		}
 
 		var dmg = damage
@@ -93,6 +100,8 @@ function damage_event(_attacker, _target, _type, _damage, _proc) constructor
 			dmg = global.itemdefs[$ target.items[i].item_id].on_owner_damaged(target, dmg, target.items[i].stacks)
 		}
 		target.hp -= dmg
+
+		target.flash = 3
 	}
 }
 
@@ -307,7 +316,8 @@ global.itemdefs =
 	serrated_stinger : new _itemdef_serrated_stinger(),
 	amorphous_plush : new _itemdef_amorphous_plush(),
 	emergency_field_kit : new _itemdef_emergency_field_kit(),
-	emergency_field_kit_consumed : new _itemdef_emergency_field_kit_consumed()
+	emergency_field_kit_consumed : new _itemdef_emergency_field_kit_consumed(),
+	bloody_dagger : new _itemdef_bloody_dagger(),
 }
 
 global.itemdefs_by_rarity = [{}, {}, {}, {}, {}]

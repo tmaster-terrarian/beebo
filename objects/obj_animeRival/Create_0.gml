@@ -42,7 +42,7 @@ stats =
     spd : 2,
     jumpspd : -3.7,
     firerate : 4,
-    accuracy : 4,
+    spread : 4,
     damage : 1,
     crit_chance : 0,
     ground_accel : 0.12,
@@ -121,6 +121,8 @@ items = []
 node_dist = 16
 node_x = clamp(round(x / node_dist), 0, round(room_width / node_dist))
 node_y = clamp(round(y / node_dist), 0, round(room_height / node_dist))
+last_node_x = node_x
+last_node_y = node_y
 
 node_grid = array_create(round(room_width / node_dist), array_create(round(room_height / node_dist), 0))
 

@@ -89,7 +89,7 @@ for(var i = 0; i < m_options_length; i++)
                 {
                     var _txt = language_names[language_selection]
                     draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 52, m_y + m_padding + (m_size * i) + global.fonts.offset, _txt, 12, 10000, 1, 1, 0, _c, _c, _c, _c, 1);
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 106, m_y + m_padding + (m_size * i) + global.fonts.offset, "Relaunch to apply change", 12, 10000, 1, 1, 0, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset, m_y + m_padding + (m_size * (i + 1)) + global.fonts.offset, "Relaunch to apply change", 12, 10000, 1, 1, 0, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
                     break;
                 }
             }

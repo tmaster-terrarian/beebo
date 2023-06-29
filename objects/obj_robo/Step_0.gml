@@ -17,7 +17,7 @@ if(_t)
 	if(!t)
 	{
 		t = 30
-		var _event = new damage_event(id, _t, proctype.onhit, damage, 1)
+		damage_event(id, _t, proctype.onhit, damage, 1)
 
 		if(_t.object_index == obj_player)
 		{

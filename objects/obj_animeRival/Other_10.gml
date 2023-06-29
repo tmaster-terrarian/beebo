@@ -23,3 +23,4 @@ else for (var i = 0; i < 3; i++)
     }
 }
 hsp = 0;
+INPUT_MOVE = 0

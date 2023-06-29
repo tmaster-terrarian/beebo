@@ -103,15 +103,15 @@ recoil = max(0, recoil - 1);
 if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (firingdelay <= 0)
 {
     fire = 1;
-    if(obj_player.hp > 0)
+    if(obj_player.hp > 1)
     {
         ScreenShake(1, 5);
         recoil = 2;
         firingdelay = firerate;
 
-        var v = accuracy
+        var v = spread
         if(obj_player.state == "grind")
-            v = accuracy / 2
+            v = spread / 2
 
         with (instance_create_depth(x, y, depth - 3, oBullet))
         {
@@ -122,6 +122,8 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
             speed = 12;
             direction = other.image_angle + random_range(-v, v);
             image_angle = direction;
+
+            damage = obj_player.damage
         }
         with(instance_create_depth(x + lengthdir_x(4, image_angle), y + lengthdir_y(4, image_angle) - 1, depth - 5, fx_casing))
         {
@@ -136,7 +138,7 @@ if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) && (fi
     {
         ScreenShake(3, 5);
         recoil = 3;
-        firingdelay = firerate * 2;
+        firingdelay = firerate * 1.5;
 
         for(var i = 0; i < 2; i++)
         {
@@ -221,6 +223,8 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
 
     with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
     {
+        parent = obj_player.id
+        _team = team.player
         direction = other.image_angle;
         hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.5) + ((obj_player.state == "grind") * -0.5);
         vsp = lengthdir_y(2, direction) + (obj_player.vsp * 0.25) - 1;

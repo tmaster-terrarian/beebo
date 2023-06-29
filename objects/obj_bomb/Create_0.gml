@@ -13,6 +13,8 @@ bounce_counter = 0;
 max_bounces = 1;
 decel_rate = 0.01;
 
+destroy_on_hit = 0
+
 if(obj_player.state == "grind")
 {
     hsp0 = -7
