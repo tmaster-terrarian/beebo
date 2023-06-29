@@ -1,3 +1,13 @@
+ambient_level = 0
+difficulty_rate = 0
+difficulty_mult = 1
+
+run_initialize = function()
+{
+    ambient_level = 1
+    difficulty_rate = 1
+}
+
 function _calcitem(_name, target)
 {
     global.__calcitemnamearg = _name

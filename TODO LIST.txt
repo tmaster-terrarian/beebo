@@ -44,7 +44,7 @@ item system
 enemies
 [ ] enemy spawner/manager
     arena-based, on level start
-    [/] enemy items
+    [x] enemy items
     [ ] enemy difficulty scaling
         levels?
 [ ] enemy families

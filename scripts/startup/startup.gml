@@ -2,7 +2,7 @@
 display_set_gui_size(256, 144)
 
 // game is too fucking LOUD
-audio_master_gain(0.75);
+audio_master_gain(0.5);
 
 // read and apply screenSize and draw_debug flags
 ini_open("save.ini");
