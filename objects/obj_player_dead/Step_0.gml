@@ -107,8 +107,8 @@ else
 			deact = 10;
 			ticker = 10;
 			image_alpha = 10;
-			hspeed *= lengthdir_x(10, point_direction(x, y, other.x, other.y));
-			vspeed *= lengthdir_y(-10, point_direction(x, y, other.x, other.y));
+			hspeed += lengthdir_x(10, point_direction(other.x, other.y, x, y));
+			vspeed += lengthdir_y(10, point_direction(other.x, other.y, x, y));
 		}
 	}
 }

@@ -1,4 +1,8 @@
 //h
+INPUT_GRAPPLE = keyboard_check_pressed(ord("G"))
+
+if(place_meeting(x, y, obj_wall))
+    y--
 
 if(!on_ground)
 {
@@ -24,6 +28,10 @@ else
 }
 switch(state)
 {
+    case "donothing":
+    {
+        break
+    }
     case "normal": default:
     {
         can_attack = 1;
@@ -371,6 +379,64 @@ switch(state)
         }
         break;
     }
+    case "grapple":
+    {
+        INPUT_MOVE = 0
+        INPUT_JUMP = 0
+        INPUT_DODGE = 0
+        can_jump = 0
+        can_dodge = 0
+        if(timer0 == 0)
+        {
+            sprite_index = spr_anime_run
+            image_index = 5
+            timer0++
+            gx = x
+            gy = y
+            vsp = 0
+            hsp = 0
+
+            var _wall = instance_place(gtx, gty, obj_wall)
+            if(_wall)
+            {
+                if(gtx > x)
+                    gtx = _wall.bbox_left
+                else
+                    gtx = _wall.bbox_right
+            }
+        }
+        if(timer0 == 1)
+        {
+            gx = approach(gx, gtx, 12)
+            if(gx == gtx)
+            {
+                timer0 = 2
+                image_index = 6
+            }
+        }
+        if(timer0 >= 2 && timer0 < 10)
+        {
+            timer0++
+        }
+        if(timer0 == 10)
+        {
+            x = approach(x, gtx, 14)
+            if(x == gtx)
+            {
+                x -= 6 * facing
+                timer0 = 11
+            }
+        }
+        if(timer0 > 10 && timer0 < 15)
+        {
+            timer0++
+        }
+        if(timer0 == 15)
+        {
+            state = "normal"
+        }
+        break
+    }
 }
 
 invuln = max(0, invuln - 1);
@@ -380,7 +446,7 @@ check = function(_x, _y)
     return (place_meeting(_x, _y, obj_wall) || place_meeting(_x, _y, obj_platform));
 }
 
-if(active) && (instance_exists(target))
+if(active) && (instance_exists(_target))
 {
     var chance = irandom_range(1, 120);
 
@@ -565,6 +631,28 @@ if(active) && (instance_exists(target))
             }
         }
         can_jump = 0
+    }
+
+    if(INPUT_GRAPPLE)
+    {
+        var inst = noone
+        for(var i = 0; i < 64; i++)
+        {
+            var _i = instance_place(x + facing * (i * 8), y, obj_wall)
+            if(_i)
+            {
+                inst = _i
+                i = 64
+                break
+            }
+        }
+        if(inst)
+        {
+            state = "grapple"
+            timer0 = 0
+            gtx = (facing == 1) ? inst.bbox_left : inst.bbox_right
+            gty = y
+        }
     }
 
     if(!on_ground)

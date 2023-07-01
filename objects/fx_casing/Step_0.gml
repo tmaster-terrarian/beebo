@@ -1,3 +1,6 @@
+if(instance_exists(obj_player) && obj_player.state == "grind")
+	hspeed = -7
+
 if y > room_height
     instance_destroy()
 
@@ -48,7 +51,7 @@ else
     }
     image_angle = approach(image_angle, final_angle, 20)
     vsp = 0
-    hsp = approach(hsp, 0, 0.1)
+	hsp = approach(hsp, 0, 0.1)
 
     image_alpha = approach(image_alpha, 0, 0.2)
     if image_alpha == 0

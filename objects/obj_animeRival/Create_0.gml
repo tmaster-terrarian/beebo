@@ -9,7 +9,8 @@ y = ystart + 8;
 
 state = "normal";
 active = 0;
-target = obj_player
+_target = obj_player
+target = node_create(x, y, node_type.ai, "rivalLastTargetPos")
 
 sprite_index = spr_anime;
 image_speed = 0;
@@ -58,7 +59,7 @@ regen_rate = stats.regen_rate
 regen = 1
 
 walksp = stats.spd
-jump_speed = stats.jumpspd
+jumpsp = stats.jumpspd
 ground_accel = stats.ground_accel
 ground_fric = stats.ground_fric
 air_accel = stats.air_accel
@@ -85,6 +86,7 @@ INPUT_JUMP = 0
 INPUT_DODGE = 0
 INPUT_DUCK = 0
 INPUT_LOOKUP = 0
+INPUT_GRAPPLE = 0
 
 TIMER_WALLJUMP = 0
 
@@ -127,3 +129,8 @@ last_node_y = node_y
 node_grid = array_create(round(room_width / node_dist), array_create(round(room_height / node_dist), 0))
 
 alarm[2] = 1
+
+gx = 0
+gy = 0
+gtx = 0
+gty = 0

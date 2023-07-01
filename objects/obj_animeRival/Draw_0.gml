@@ -121,6 +121,16 @@ if(hair_visible)
     }
 }
 
+if(state == "grapple") && timer0 != 0
+{
+    var len = 8
+    for(var i = 0; i < floor(point_distance(x, y, gx, gy)/6); i++)
+    {
+        draw_sprite_ext(spr_fx_chain, (timer0 >= 2), gx + lengthdir_x(8 + i * 6, point_direction(gx, gy, x, y)), gy + lengthdir_y(8 + i * 6, point_direction(gx, gy, x, y)), 1, -facing, point_direction(gx, gy, x, y), c_white, 1)
+    }
+    draw_sprite_ext(spr_fx_grapple_claw, !(timer0 == 1), gx, gy, -facing, 1, 0, c_white, 1)
+}
+
 draw_self();
 
 // draw_set_alpha(1);
@@ -130,3 +140,8 @@ draw_self();
 // draw_set_valign(fa_top);
 
 // draw_text(x + 16, y + 16, string(timer0));
+
+if(global.draw_debug)
+{
+    draw_line_color(x, y, target.x, target.y, c_white, c_aqua)
+}

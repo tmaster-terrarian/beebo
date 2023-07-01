@@ -533,7 +533,7 @@ if(hascontrol)
                     hsp = approach(hsp, 0, fric * 2)
                 else
                     hsp = approach(hsp, walksp * 0.75, accel)
-                if timer0 % 4 == 0
+                if timer0 % 3 == 0
                 {
                     with(instance_create_depth(bbox_left - 4 + random(12), ystart + 2, depth - 2, fx_spark2))
                     {

@@ -1,6 +1,6 @@
 function scr_loadingscreen(rm, txt)
 {
-	if(txt == "") return
+	if(txt == "") return;
     else
     {
         global.loading_rm = rm
