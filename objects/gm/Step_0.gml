@@ -486,7 +486,7 @@ if(global.console)
                 case 2:
                 {
                     if(variable_struct_exists(global.itemdefs, _args[1]))
-                        _pickupitem(obj_player, _args[1])
+                        item_add_stacks(_args[1], obj_player)
                     else
                         console_log("item command failed: itemdef does not exist");
                     break
@@ -494,8 +494,7 @@ if(global.console)
                 case 3:
                 {
                     if(variable_struct_exists(global.itemdefs, _args[1]))
-                        repeat(real(string_digits(_args[2])))
-                            _pickupitem(obj_player, _args[1])
+                        item_add_stacks(_args[1], obj_player, _args[2])
                     else
                         console_log("item command failed: itemdef does not exist");
                     break
@@ -505,8 +504,7 @@ if(global.console)
                     var _obj = asset_get_index(_args[3])
                     if(variable_struct_exists(global.itemdefs, _args[1]))
                         if(object_is_ancestor(_obj.object_index, par_unit))
-                            repeat(real(string_digits(_args[2])))
-                                _pickupitem(_obj, _args[1])
+                            item_add_stacks(_args[1], _obj, _args[2])
                         else
                             console_log("item command failed: object cannot accept items");
                     else

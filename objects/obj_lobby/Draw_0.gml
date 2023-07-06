@@ -30,7 +30,7 @@ for(var i = 0; i < array_length(m_options); i++)
 		draw_point_color(m.x + 4, m.y + m.h - 1, c)			//bottom-left
 		draw_point_color(m.x + m.w - 5, m.y + m.h - 1, c)	//bottom-right
 
-		draw_text(m.x + m.w/2, m.y + m.h/2 + 4 + global.fonts.offset, m.value)
+		draw_text(m.x + m.w/2, m.y + m.h/2 + 4 + global.fonts.offset, string(m.value) + "x")
 
 		draw_set_halign(fa_right)
 		draw_text(m.x + 5 - m.arrow_move, m.y + m.h/2 + 4 + global.fonts.offset, "<")

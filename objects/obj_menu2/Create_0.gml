@@ -16,8 +16,8 @@ m_options =
     ["Option:", "Slider:", "Checkbox:", "Back >"]
 ];
 
-language_names = ["< English (US) >", "< Spanish (AR) >", "< Japanese >"]
-languages = ["en", "es", "ja"]
+language_names = ["< English (US) >", "< Spanish (AR) >"]
+languages = ["en", "es"]
 language_selection = 0
 ini_open("save.ini")
 switch(ini_read_string("settings", "lang", "en"))
@@ -32,11 +32,11 @@ switch(ini_read_string("settings", "lang", "en"))
         language_selection = 1
         break
     }
-    case "ja":
-    {
-        language_selection = 2
-        break
-    }
+    // case "ja":
+    // {
+    //     language_selection = 2
+    //     break
+    // }
 }
 
 m_options_length = 0;

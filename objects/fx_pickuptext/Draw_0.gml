@@ -1,13 +1,10 @@
-draw_set_halign(fa_middle)
-draw_set_valign(fa_center)
-draw_set_font(fnt_itemdesc)
+var txt = scribble("[fnt_basic][d#" + string(itemdata.rarity_colors[global.itemdefs[$ item_id].rarity]) + "]" + name + "[/color]\n[fnt_itemdesc][c_ltgray]" + shortdesc + "[/color]")
+.starting_format("fnt_itemdesc", c_ltgray)
+.blend(c_white, image_alpha)
+.wrap(128)
 
-var c = c_black
-draw_text_color(x + 1, y - 5, shortdesc, c,c,c,c, image_alpha)
-c = c_ltgray
-draw_text_color(x, y - 6, shortdesc, c,c,c,c, image_alpha)
+txt.flash(c_black, 1).draw(x - 61, y + 21)
+txt.flash(c_black, 0).draw(x - 62, y + 20)
 
-c = c_black
-draw_text_color(x + 1, y - 11, name, c,c,c,c, image_alpha)
-c = c_white
-draw_text_color(x, y - 12, name, c,c,c,c, image_alpha)
+var _spr = asset_get_index("spr_item_" + item_id)
+draw_sprite_outlined_ext((_spr != -1) ? _spr : spr_buff_missing, 0, x - 74, y + 32, 1, 1, 0, c_white, (_spr != -1) ? itemdata.rarity_colors[global.itemdefs[$ item_id].rarity] : itemdata.rarity_colors.none, image_alpha, image_alpha, 0)

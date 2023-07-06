@@ -5,6 +5,7 @@ if(item_id != "")
 	{
 		name = global.itemdefs[$ other.item_id].displayname
 		shortdesc = global.itemdefs[$ other.item_id].shortdesc
+		item_id = other.item_id
 	}
 }
 instance_destroy()

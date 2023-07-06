@@ -53,7 +53,4 @@ statsmult = {}
 buffs = {}
 initbuffs(id)
 
-items =
-[
-	// new inventory_item("amorphous_plush", 1)
-]
+items = statmanager.items
