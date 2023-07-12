@@ -179,25 +179,29 @@ function item_id_get_random(_by_rarity, _table = itemdata.item_tables.any_obtain
 	}
 }
 
-function random_weighted(_list) // example values: [{v:3,w:1}, {v:4,w:3}, {v:2,w:5}]; v:value, w:weight. must be sorted by lowest weight.
+function random_weighted(_list) // example values: [{v:3,w:1}, {v:4,w:3}, {v:2,w:5}]; v:value, w:weight. automatically sorted by lowest weight.
 {
 	var _tw = 0
 	var _w = 0
 	var _v = 0
-	for(var i = 0; i < array_length(_list); i++)
+
+	var _l = []; array_copy(_l, 0, _list, 0, array_length(_list))
+	array_sort(_l, function(_e1, _e2) { return sign(_e1.w - _e2.w) })
+
+	for(var i = 0; i < array_length(_l); i++)
 	{
-		_tw += _list[i].w
+		_tw += _l[i].w
 	}
 
 	var _rand = random(_tw)
-	for(var j = 0; j < array_length(_list); j++)
+	for(var j = 0; j < array_length(_l); j++)
 	{
-		if(_rand <= _list[j].w + _w)
-			return _list[j].v
+		if(_rand <= _l[j].w + _w)
+			return _l[j].v
 		else
-			_w += _list[j].w
+			_w += _l[j].w
 	}
-	return _list[0].v
+	return array_last(_l).v
 }
 
 // localization
