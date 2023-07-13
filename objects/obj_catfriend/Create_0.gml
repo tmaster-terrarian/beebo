@@ -9,14 +9,6 @@ event_inherited()
 depth = 310
 image_speed = 0
 state = "normal"
-target = noone
-var xx = x;
-x -= 10000;
-var inst = instance_nearest(xx, y, _target);
-if inst && inst.object_index != obj_catfriend
-{
-    target = inst
-}
-x += 10000;
-t = 0
+target = get_nearest_notme(x, y, _target)
 r = 0
+autoaggro = 0

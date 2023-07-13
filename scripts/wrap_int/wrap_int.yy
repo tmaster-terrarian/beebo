@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "GetRoom",
+  "name": "wrap_int",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

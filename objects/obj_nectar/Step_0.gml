@@ -1,30 +1,27 @@
 attack_timer += 1;
 
-if(instance_exists(obj_player))
+if(_target == obj_player && !instance_exists(obj_player))
 {
-    target = obj_player;
-}
-else
-{
-    target = obj_player_dead;
+    _target = obj_player_dead;
 }
 
-if(appeared) circlepos += 2 * spd;
+if(appeared)
+{
+    circlepos += 2 * spd;
+}
 
-target_x = target.x + lengthdir_x(distancefrom, circlepos);
-target_y = target.y + lengthdir_y(distancefrom, circlepos);
-if(target == obj_player)
-    target_y = target.y - 8 + lengthdir_y(distancefrom, circlepos);
+target_x = agpos.x + lengthdir_x(distancefrom, circlepos);
+target_y = agpos.cy + lengthdir_y(distancefrom, circlepos);
 
-x += (target_x - x) / (walksp / spd);
-y += (target_y - y) / (walksp / spd);
+x += (target_x - x) / (circlespd / spd);
+y += (target_y - y) / (circlespd / spd);
 
 //jitter
 x += random_range(-shake_remain, shake_remain);
 y += random_range(-shake_remain, shake_remain);
 shake_remain = max(0, shake_remain - ((1 / shake_length) * shake_magnitude));
 
-facing = (x >= target.x) ? -1 : 1
+facing = (x >= agpos.x) ? -1 : 1
 
 wing_left.image_xscale = -1;
 wing_left.x = x - 4;
@@ -72,7 +69,7 @@ if(attack)
                 damage = other.damage
                 proj_thrower = other
                 parent = other
-                var p = instance_exists(obj_player) ? obj_player : obj_player_dead
+                var p = other.agpos
 
                 var _y = (p.y - y - 8)
                 var _x = (p.x - x)

@@ -1,23 +1,14 @@
 event_inherited()
 depth = 400
 grv = 0.2
-if(stats == noone)
-{
-    stats =
-    {
-        hp_max : 20,
-        spd : 1,
-        firerate : 4,
-        damage : 10
-    }
-}
 _target = noone
+target = noone
 switch(_team)
 {
 	case team.neutral:
 	{
 		playerally = 0
-		_target = choose(obj_player, par_enemy)
+		_target = par_unit
 		break;
 	}
 	case team.player:
@@ -40,6 +31,8 @@ hp_change = hp
 spd = stats.spd
 firerate = stats.firerate
 damage = stats.damage
+base_damage = stats.damage
+crit_chance = 0
 facing = 1
 state = "normal"
 flash = 0
@@ -54,3 +47,10 @@ buffs = {}
 initbuffs(id)
 
 items = statmanager.items
+
+t = 0
+autoaggro = 1
+agpos = {x:x, y:y, cy:y-8}
+seethruwalls = 0
+
+aggrotimer = 0

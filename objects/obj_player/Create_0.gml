@@ -36,19 +36,26 @@ attack = 0;
 
 stats =
 {
-    hp_max : 50,
-    regen_rate : 0.0133333,
+    hp_max : 100,
+    regen_rate : 1,
     spd : 2,
     jumpspd : -3.7,
     firerate : 5,
     spread : 4,
-    damage : 0.5,
-    crit_chance : 0,
+    damage : 12,
     ground_accel : 0.12,
     ground_fric : 0.08,
     air_accel : 0.07,
     air_fric : 0.02
 }
+
+stats_per_level =
+{
+    hp_max : 30,
+    damage : 2.4
+}
+xp_max = 50
+xp = 0
 
 hp_max = stats.hp_max
 hp = hp_max
@@ -56,7 +63,7 @@ lasthp = hp
 regen_rate = stats.regen_rate
 regen = 1
 
-walksp = stats.spd
+spd = stats.spd
 jump_speed = stats.jumpspd
 ground_accel = stats.ground_accel
 ground_fric = stats.ground_fric
@@ -66,7 +73,8 @@ accel = 0
 fric = 0
 
 damage = stats.damage
-crit_chance = stats.crit_chance
+base_damage = stats.damage
+crit_chance = 0
 
 lasthsp = 0
 lastvsp = 0
@@ -75,6 +83,9 @@ vsp_max = 20;
 
 jump_buffer = 0;
 jump_buffer2 = 0;
+
+jumps_max = 1
+jumps = jumps_max
 
 hascontrol = true;
 

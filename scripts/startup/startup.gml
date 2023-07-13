@@ -34,12 +34,14 @@ enum team
 	enemy,
 	neutral
 }
+
 enum proctype
 {
 	onhit,
 	onkill,
 	none
 }
+
 enum item_rarity
 {
 	none,
@@ -49,19 +51,40 @@ enum item_rarity
 	special
 }
 
+enum damage_notif_type
+{
+	generic,
+	crit,
+	heal,
+	revive
+}
+
+enum healtype
+{
+	generic,
+	regen
+}
+
 // classes
 function damage_event(attacker, target, proc_type, damage, proc, attacker_has_items = 1)
 {
 	if(instance_exists(target))
 	{
+		var _damage_type = damage_notif_type.generic
+		var _dir = 1
+
 		if(instance_exists(attacker))
 		{
 			var crit = 0
+			_dir = sign(target.x - attacker.x)
 
 			if(attacker_has_items)
 			{
 				if(random(1) <= attacker.crit_chance)
+				{
 					crit = 1
+					_damage_type = damage_notif_type.crit
+				}
 
 				for(var i = 0; i < array_length(attacker.items); i++)
 				{
@@ -100,6 +123,9 @@ function damage_event(attacker, target, proc_type, damage, proc, attacker_has_it
 			dmg = global.itemdefs[$ target.items[i].item_id].on_owner_damaged(target, dmg, target.items[i].stacks)
 		}
 		target.hp -= dmg
+
+		if(target.object_index != obj_player)
+			instance_create_depth((target.bbox_left + target.bbox_right) / 2, (target.bbox_top + target.bbox_bottom) / 2, 10, fx_damage_number, {notif_type: _damage_type, value: ceil(dmg), dir: _dir})
 
 		// activate on kill items if target died
 		if(target.hp <= 0) && (target.object_index != obj_player)
@@ -140,6 +166,14 @@ function damage_event(attacker, target, proc_type, damage, proc, attacker_has_it
 	}
 }
 
+function heal_event(target, value, healtype = healtype.generic)
+{
+	target.hp += value
+
+	if(healtype != healtype.regen)
+		instance_create_depth((target.bbox_left + target.bbox_right) / 2, (target.bbox_top + target.bbox_bottom) / 2, 10, fx_damage_number, {notif_type: damage_notif_type.heal, value: value, dir: -target.facing})
+}
+
 // global variables
 function itemdata()
 {
@@ -156,6 +190,13 @@ function itemdata()
 		#E8F6F4,
 		#38EB73,
 		#F3235E,
+		#D508E5
+	]
+	static damage_type_colors =
+	[
+		#E8F6F4,
+		#F3235E,
+		#9CE562,
 		#D508E5
 	]
 }
@@ -322,7 +363,7 @@ global.itemdefs =
 		proc : function(_a, _t, _d, _p = 1, _s = 1)
 		{
 			if(random(1) <= (0.1 * _s * _p))
-				_inflict(_t, new statmanager._bleed(_p, _d))
+				_inflict(_t, new statmanager._bleed(_p, _a.base_damage))
 		}
 	}),
 	amorphous_plush : itemdef(new _itemdef("amorphous_plush"), {
@@ -334,9 +375,9 @@ global.itemdefs =
 			if(instance_exists(target) && (target.t % 600) == 30) && target.object_index != obj_catfriend
 			{
 				var o = instance_create_depth(target.x + random_range(-8, 8), target.y, 0, obj_catfriend, { _team : target._team, parent : target})
-				o.hp_max = o.stats.hp_max + (0.1 * o.stats.hp_max * _s)
-				o.spd = o.stats.spd + (0.1 * o.stats.spd * _s)
-				o.damage = o.stats.damage + (0.2 * o.stats.damage * _s)
+				o.stats.hp_max += (0.1 * o.stats.hp_max * (_s - 1))
+				o.stats.spd += (0.1 * o.stats.spd * (_s - 1))
+				o.stats.damage += (0.2 * o.stats.damage * (_s - 1))
 			}
 		}
 	}),

@@ -2,9 +2,12 @@ audio_stop_sound(throwsound);
 with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
 {
 	_team = other._team
-    dmg = other.damage * 2
+    dmg = other.damage
     parent = other.parent
     proc = other.proc
+
+    var _cc = parent.crit_chance
+    parent.crit_chance = 1
 
     with(oCrate) if(place_meeting(x, y, other)) hp -= other.dmg;
     with(obj_stone) if(place_meeting(x, y, other)) hp -= other.dmg;
@@ -18,10 +21,11 @@ with(MakeExplosion(x, y, size * 1.3, size * 1.3, (1 / 2), sn_explosion2))
 		if(place_meeting(x, y, other) && (other._team == team.neutral || other._team == team.enemy))
         {
 			damage_event(other.parent, id, proctype.onhit, other.dmg, other.proc)
-            
         }
         other.hspeed = ((state == "grind") * -7)
     }
+
+    parent.crit_chance = _cc
 
     if(place_meeting(x, y, obj_player) && (_team == team.player))
     {

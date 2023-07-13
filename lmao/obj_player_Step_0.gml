@@ -20,10 +20,10 @@ if (inputDash < 5)
 if (!on_ground)
     duck = 0
 S_RUN_ACCEL = 0.1
-walksp = 2
+spd = 2
 if (duck && state != "slide")
 {
-    walksp = 1
+    spd = 1
     if (abs(hsp) > 1)
         hsp = approach(hsp, (1 * input_dir), 0.25)
 }
@@ -76,8 +76,8 @@ switch state
             }
             if run
                 run = 7
-            if (hsp < walksp)
-                hsp = approach(hsp, walksp, accel)
+            if (hsp < spd)
+                hsp = approach(hsp, spd, accel)
             if on_ground
                 facing = 1
             else
@@ -98,8 +98,8 @@ switch state
                 else if duck
                     sprite_index = spr_player_crawl
             }
-            if (hsp > (-walksp))
-                hsp = approach(hsp, (-walksp), accel)
+            if (hsp > (-spd))
+                hsp = approach(hsp, (-spd), accel)
             if run
                 run = 7
             if on_ground
@@ -356,7 +356,7 @@ switch state
         if (sprite_index == spr_player_flip)
         {
             if (input_dir != 0)
-                hsp = approach(hsp, (input_dir * walksp), (accel / 2))
+                hsp = approach(hsp, (input_dir * spd), (accel / 2))
             canAttack = 1
             canJump = 1
             fxtrail = 1

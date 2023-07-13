@@ -1,13 +1,8 @@
-stats =
-{
-	hp_max : 10,
-    spd : 0,
-	firerate : 1,
-	damage : 30
-}
 _team = team.enemy
 event_inherited()
 _target = obj_player
+target = _target
+autoaggro = 0
 
 grv = 0
 

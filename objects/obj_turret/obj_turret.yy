@@ -9,7 +9,12 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,},
   ],
   "managed": true,
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"par_enemy","path":"objects/par_enemy/par_enemy.yy",},"propertyId":{"name":"stats.hp_max","path":"objects/par_enemy/par_enemy.yy",},"value":"100",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"par_enemy","path":"objects/par_enemy/par_enemy.yy",},"propertyId":{"name":"stats.spd","path":"objects/par_enemy/par_enemy.yy",},"value":"0",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"par_enemy","path":"objects/par_enemy/par_enemy.yy",},"propertyId":{"name":"stats.firerate","path":"objects/par_enemy/par_enemy.yy",},"value":"1",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"par_enemy","path":"objects/par_enemy/par_enemy.yy",},"propertyId":{"name":"stats.damage","path":"objects/par_enemy/par_enemy.yy",},"value":"30",},
+  ],
   "parent": {
     "name": "enemies",
     "path": "folders/Objects/enemies.yy",

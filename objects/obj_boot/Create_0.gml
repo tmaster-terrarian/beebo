@@ -18,7 +18,8 @@ global.fonts =
 	basic : fnt_basic,
 	console : fnt_console,
 	dos : fnt_dos,
-	itemdesc : fnt_itemdesc
+	itemdesc : fnt_itemdesc,
+	itemstack : font_add_sprite_ext(spr_hudstacksfnt, "1234567890", true, -1)
 }
 
 ini_open("save.ini")

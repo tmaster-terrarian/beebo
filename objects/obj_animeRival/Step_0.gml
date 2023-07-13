@@ -8,10 +8,10 @@ if(!on_ground)
 {
     duck = 0
 }
-walksp = 2;
+spd = 2;
 if(duck)
 {
-    walksp = 1
+    spd = 1
     if(abs(hsp) > 1)
         hsp = approach(hsp, 1 * input_dir, 0.25)
 }
@@ -55,8 +55,8 @@ switch(state)
             }
             if run
                 run = 7
-            if (hsp < walksp)
-                hsp = approach(hsp, walksp, accel)
+            if (hsp < spd)
+                hsp = approach(hsp, spd, accel)
             if on_ground
                 facing = 1
             else
@@ -77,8 +77,8 @@ switch(state)
             }
             if run
                 run = 7
-            if (hsp > -walksp)
-                hsp = approach(hsp, -walksp, accel)
+            if (hsp > -spd)
+                hsp = approach(hsp, -spd, accel)
             if on_ground
                 facing = -1
             else

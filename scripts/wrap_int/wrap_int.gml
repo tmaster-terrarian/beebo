@@ -1,4 +1,4 @@
-function wrap(_value, _min, _max)
+function wrap_int(_value, _min, _max)
 {
 	var __value = floor(_value);
 	var __min = floor(min(_min, _max));

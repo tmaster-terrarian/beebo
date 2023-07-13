@@ -30,7 +30,7 @@ if(global.draw_debug)
 		if(instance_exists(parent))
 		{
 			draw_line_color(x, y, parent.x, parent.y, c_red, c_red)
-			draw_text(x, bbox_bottom, string(object_get_name(parent)))
+			draw_text(x, bbox_bottom, string(object_get_name(parent.object_index)))
 		}
 	}
 	with(fx_base)

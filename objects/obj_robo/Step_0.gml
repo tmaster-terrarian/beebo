@@ -2,45 +2,46 @@ event_inherited()
 
 if(place_meeting(x, y, obj_wall)) y--
 
-if (!place_meeting(x + facing, y + 5, obj_wall) && !place_meeting(x + facing, y + 5, obj_platform))
+hsp = approach(hsp, sign(agpos.x - x) * spd, ground_accel)
+if(abs(sign(agpos.x - x))) facing = sign(agpos.x - x)
+
+if(place_meeting(x + sign(agpos.x - x), y, obj_wall))
 {
-    hsp = -hsp;
-	facing = sign(hsp)
+	hsp = 0
+	if(on_ground)
+		vsp = -3
 }
 
-if t
-	t--
-
-var _t = instance_place(x, y, _target)
 if(_t)
-{
-	if(!t)
-	{
-		t = 30
-		damage_event(id, _t, proctype.onhit, damage, 1)
+	_t--
 
-		if(_t.object_index == obj_player)
+var __t = instance_place(x, y, target)
+if(__t)
+{
+	if(!_t)
+	{
+		_t = 30
+		damage_event(id, __t, proctype.onhit, damage, 1)
+
+		if(__t.object_index == obj_player)
 		{
-			audio_play_sound(sn_player_hit, 0, 0);
-			_t.state = "stunned"
-		    _t.timer0 = 0
-		    _t.flash = 5
-			oCamera.alarm[0] = 10
+			__t.state = "stunned"
+		    __t.timer0 = 0
+			__t.hsp = -__t.facing * 1.2
 		}
 	}
 }
 
 //animation
-if (!on_ground)
+if(!on_ground)
 {
     sprite_index = sRoboA;
     image_speed = 0;
-    if (vsp > 0) image_index = 1; else image_index = 0;
+    image_index = (vsp > 0);
 }
 else
 {
-    
-    if (hsp == 0)
+    if(hsp == 0)
     {
         sprite_index = sRobo;
 		image_speed = 0.2;
@@ -48,7 +49,7 @@ else
     else
     {
         sprite_index = sRoboR;
-		image_speed = abs(hsp/8);
+		image_speed = abs(hsp/6);
     }
 }
 

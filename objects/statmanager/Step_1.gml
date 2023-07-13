@@ -1,8 +1,9 @@
+// player
 with(obj_player)
 {
     foreach(buffs as (buff)
     {
-        buff.step()
+        buff.step(id)
         buff.tick(id)
     })
 
@@ -31,24 +32,30 @@ with(obj_player)
 
     statsmult.spd = spdadd / spdsub
 
-    if ((hp / hp_max) != (hp / (stats.hp_max * statsmult.hp_max)))
+    if ((hp / hp_max) != (hp / ((stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max)))
     {
         hp *= statsmult.hp_max
         lasthp *= statsmult.hp_max
         oCamera.hp_change *= statsmult.hp_max
     }
 
-    hp_max = stats.hp_max * statsmult.hp_max
-    regen_rate = stats.regen_rate * statsmult.regen_rate
-    walksp = stats.spd * statsmult.spd
+    hp_max = (stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max
+
+    var regenFac = 1 + 0.2 * (level - 1)
+    regenFac -= ((other.difficulty_mult - 1) * 0.125)
+
+    regen_rate = stats.regen_rate * regenFac
+
     jump_speed = stats.jumpspd * statsmult.jumpspd
 
-    ground_accel = stats.ground_accel * (walksp / stats.spd)
-    ground_fric = stats.ground_fric * (walksp / stats.spd)
-    air_accel = stats.air_accel * (walksp / stats.spd)
-    air_fric = stats.air_fric * (walksp / stats.spd)
+    spd = stats.spd * statsmult.spd
+    ground_accel = stats.ground_accel * (spd / stats.spd)
+    ground_fric = stats.ground_fric * (spd / stats.spd)
+    air_accel = stats.air_accel * (spd / stats.spd)
+    air_fric = stats.air_fric * (spd / stats.spd)
 
-    damage = stats.damage * statsmult.damage
+    base_damage = (stats.damage + stats_per_level.damage * (level - 1))
+    damage = base_damage * statsmult.damage
 
     crit_chance = clamp(statsmult.crit_chance, 0, 1)
     if(crit_chance == 0) crit_chance += 0.01
@@ -63,11 +70,17 @@ with(obj_player)
     }
 }
 
+// enemies
 with(par_enemy)
 {
+    if(level != other.global_level)
+    {
+        level = other.global_level
+    }
+
     foreach(buffs as (buff)
     {
-        buff.step()
+        buff.step(id)
         buff.tick(id)
     })
 
@@ -93,12 +106,25 @@ with(par_enemy)
 
     statsmult.spd = spdadd / spdsub
 
-    damage = stats.damage * statsmult.damage
+    if ((hp / hp_max) != (hp / ((stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max)))
+    {
+        hp *= statsmult.hp_max
+        lasthp *= statsmult.hp_max
+        hp_change *= statsmult.hp_max
+    }
+
+    hp_max = (stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max
+
+    spd = stats.spd * statsmult.spd
+    ground_accel =  0.12 * (spd / stats.spd)
+    ground_fric =   0.08 * (spd / stats.spd)
+    air_accel =     0.07 * (spd / stats.spd)
+    air_fric =      0.02 * (spd / stats.spd)
+
+    base_damage = (stats.damage + stats_per_level.damage * (level - 1))
+    damage = base_damage * statsmult.damage
+
+    firerate = stats.firerate * statsmult.firerate
 
     crit_chance = clamp(statsmult.crit_chance, 0, 1)
-
-    hp_max = stats.hp_max * statsmult.hp_max
-    spd = stats.spd * statsmult.spd
-    firerate = stats.firerate * statsmult.firerate
-    damage = stats.damage * statsmult.damage
 }

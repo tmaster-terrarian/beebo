@@ -4,7 +4,7 @@ if(flash)
 	shader_set(sh_flash)
 }
 
-if(state == "targeting") && instance_exists(_target)
+if(state == "targeting") && instance_exists(target)
 {
     var c = merge_color(merge_color(c_red, c_black, 0.3), c_red, clamp(timer0/160, 0, 1))
     if(timer0 > 160)
@@ -19,7 +19,7 @@ if(state == "targeting") && instance_exists(_target)
     draw_line_color(x + barrelpos_x, y + barrelpos_y, x + barrelpos_x + lengthdir_x(10000, aim_dir), y + barrelpos_y + lengthdir_y(10000, aim_dir), c, c)
     draw_set_alpha(1)
 }
-if(state == "fire") && instance_exists(_target)
+if(state == "fire") && instance_exists(target)
 {
     var c = c_red
     if(timer0 % 4 == 0)

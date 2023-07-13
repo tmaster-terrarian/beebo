@@ -58,7 +58,7 @@ lasthp = hp
 regen_rate = stats.regen_rate
 regen = 1
 
-walksp = stats.spd
+spd = stats.spd
 jumpsp = stats.jumpspd
 ground_accel = stats.ground_accel
 ground_fric = stats.ground_fric

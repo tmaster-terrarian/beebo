@@ -6,13 +6,9 @@ switch(state)
     {
         if(!instance_exists(target))
         {
-            var inst, xx;
-            xx = x;
-            x -= 10000;
 			if(_team == team.neutral)
-				_target = choose(obj_player, par_enemy)
-            inst = instance_nearest(xx, y, _target);
-            x += 10000;
+				_target = par_unit
+            var inst = get_nearest_notme(x, y, _target)
             if inst && inst.object_index != obj_catfriend
             {
                 target = inst
@@ -61,20 +57,16 @@ switch(state)
 			hsp = approach(hsp, spd * 1.5 * sign(target.x - x), 0.1)
             if(collision_rectangle(x - 8, y, x + 8, y - 16, target, false, true))
             {
-				target.hp -= damage
+				damage_event(parent, target, proctype.onhit, damage)
                 scr_particle_explode()
             }
             r++
             if(r >= 180)
             {
                 r = 0
-                var inst, xx;
-	            xx = x;
-	            x -= 10000;
 				if(_team == team.neutral)
-					_target = choose(obj_player, par_enemy)
-	            inst = instance_nearest(xx, y, _target);
-	            x += 10000;
+					_target = par_unit
+	            var inst = get_nearest_notme(x, y, _target)
 	            if inst && inst.object_index != obj_catfriend
 	            {
 	                target = inst
@@ -86,7 +78,6 @@ switch(state)
         break
     }
 }
-t++
 
 image_speed = hsp/6
 if(hsp == 0)

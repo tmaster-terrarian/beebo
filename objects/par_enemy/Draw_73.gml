@@ -1,7 +1,7 @@
 if(drawhp)
 {
     var c = c_black
-    var w = clamp(hp_max * 0.5, 32, 48)
+    var w = ceil(clamp(hp_max * 0.2, 32, 48))
     // var avgx = (bbox_left + bbox_right) / 2
     var avgx = x
     draw_rectangle_color(avgx - floor(w/2) - 2, bbox_top - 4, avgx + ceil(w/2) + 1, bbox_top - 13, c,c,c,c,false)
@@ -21,7 +21,7 @@ if(drawhp)
     buffoffsi = 0
     foreach(buffs as (buff, name, i)
     {
-		var w = clamp(hp_max * 0.5, 32, 48)
+		var w = ceil(clamp(hp_max * 0.2, 32, 48))
         var buffsx = x - w/2
         var buffsy = bbox_top - 18
         if(buff.stacks > 0)

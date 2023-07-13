@@ -1,3 +1,6 @@
+hsp = 0
+vsp = 0
+
 _rope.p0.x = lengthdir_x(-10 * facing, image_angle)
 _rope.p0.y = lengthdir_x(-10 * facing, image_angle)
 _rope.p1.x = -3 * facing
@@ -9,14 +12,18 @@ _rope.curvepoint.y = lerp(_rope.p0.x, _rope.p1.x, 0.5) + 8
 _rope.x = x
 _rope.y = y - 3
 
+agpos.x = target.x
+agpos.y = target.y
+agpos.cy = (target.bbox_bottom + target.bbox_top)/2
+
 event_inherited()
 image_xscale = 1
 var toffsx = 0
 var toffsy = 0
 
-if(_target == obj_player)
+if(instance_exists(target) && _target == obj_player)
 {
-	if(instance_exists(obj_player) && obj_player.duck) toffsy = -6
+	if(target.duck) toffsy = -6
 	else toffsy = -12
 }
 
@@ -30,9 +37,9 @@ switch(state)
 {
 	case "normal":
     {
-		if(instance_exists(_target))
+		if(instance_exists(target))
 		{
-			if(!collision_line(x, y, _target.x + toffsx, _target.y + toffsy, obj_wall, 0, 0))
+			if(!collision_line(x, y, agpos.x + toffsx, agpos.y + toffsy, obj_wall, 0, 0))
 			{
 				timer0++
 
@@ -55,19 +62,19 @@ switch(state)
     }
 	case "targeting":
 	{
-		if(instance_exists(_target))
+		if(instance_exists(target))
 		{
 			if(timer0 == 0)
 			{
-				aim_dir = point_direction(x + barrelpos_x, y + barrelpos_y, _target.x + toffsx, _target.y + toffsy)
+				aim_dir = point_direction(x + barrelpos_x, y + barrelpos_y, agpos.x + toffsx, agpos.y + toffsy)
 				audio_play_sound(sn_turret_activate, 0, 0, 1.85, 0, 1.5)
 			}
-			if(!collision_line(x + barrelpos_x, y + barrelpos_y, _target.x + toffsx, _target.y + toffsy, obj_wall, 0, 0))
+			if(!collision_line(x + barrelpos_x, y + barrelpos_y, agpos.x + toffsx, agpos.y + toffsy, obj_wall, 0, 0))
 			{
-				if(abs(point_direction(x + barrelpos_x, y + barrelpos_y, _target.x + toffsx, _target.y + toffsy) - aim_dir) > 300)
-					aim_dir = point_direction(x + barrelpos_x, y + barrelpos_y, _target.x + toffsx, _target.y + toffsy)
+				if(abs(point_direction(x + barrelpos_x, y + barrelpos_y, agpos.x + toffsx, agpos.y + toffsy) - aim_dir) > 300)
+					aim_dir = point_direction(x + barrelpos_x, y + barrelpos_y, agpos.x + toffsx, agpos.y + toffsy)
 				else
-					aim_dir += (point_direction(x + barrelpos_x, y + barrelpos_y, _target.x + toffsx, _target.y + toffsy) - aim_dir) / aim_sp
+					aim_dir += (point_direction(x + barrelpos_x, y + barrelpos_y, agpos.x + toffsx, agpos.y + toffsy) - aim_dir) / aim_sp
 			}
 		}
 		else

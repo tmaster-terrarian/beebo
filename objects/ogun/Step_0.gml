@@ -224,6 +224,7 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
     with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
     {
         parent = obj_player
+        damage = obj_player.damage * 5
         _team = team.player
         direction = other.image_angle;
         hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.5) + ((obj_player.state == "grind") * -0.5);

@@ -1,10 +1,3 @@
-stats =
-{
-	hp_max : 10,
-    spd : 1,
-	firerate : 1,
-	damage : 5
-}
 event_inherited()
 flash = 0
 grv = 0
@@ -41,8 +34,10 @@ upixelW = shader_get_uniform(shWhite, "pixelW");
 texelW = texture_get_texel_width(sprite_get_texture(sprite_index, 0));
 texelH = texture_get_texel_height(sprite_get_texture(sprite_index, 0));
 
-walksp = 4
+circlespd = 4
 
 appeared = false;
+
+seethruwalls = 1
 
 instance_deactivate_object(id)

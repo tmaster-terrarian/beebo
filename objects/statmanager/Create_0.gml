@@ -1,15 +1,15 @@
-ambient_level = 0
+global_level = 0
 difficulty_rate = 0
 difficulty_mult = 1
 items = []
 
 run_initialize = function()
 {
-    ambient_level = 1
+    global_level = 1
     difficulty_rate = 1
     items =
     [
-        {item_id: "serrated_stinger", stacks: 10}
+        // {item_id: "serrated_stinger", stacks: 10}
     ]
 }
 
@@ -43,12 +43,17 @@ function _buff(_name) constructor
     static calc = function() { return 1 }
     static draw = function() {}
     static tick = function() {}
-    step = function()
+    static stop = function(target) {}
+    step = function(target)
     {
         if(timeleft && timed)
             timeleft--
         if(!timeleft && timed)
+        {
+            if(stacks)
+                stop(target)
             stacks = 0
+        }
     }
 }
 
@@ -93,5 +98,10 @@ function _fast() : _buff("buff_fast") constructor
     calc = function()
     {
         return stacks ? 0.3 : 0
+    }
+    stop = function(target)
+    {
+        if abs(target.hsp) > target.spd
+            target.hsp = clamp(target.hsp, -target.spd, target.spd)
     }
 }

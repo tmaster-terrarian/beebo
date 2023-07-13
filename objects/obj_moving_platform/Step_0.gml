@@ -10,8 +10,8 @@ if move
     smallcog_index = approach(smallcog_index, 4, 0.2 * path_sp)
     if(smallcog_index == 4) smallcog_index = 0
 
-    cog_rotl = wrap(cog_rotl + (cog_rotsp * -path_sp), 0, 360)
-    cog_rotr = wrap(cog_rotr + (cog_rotsp * path_sp), 0, 360)
+    cog_rotl = wrap_int(cog_rotl + (cog_rotsp * -path_sp), 0, 360)
+    cog_rotr = wrap_int(cog_rotr + (cog_rotsp * path_sp), 0, 360)
 
     if(timer % 12 == 0)
     {

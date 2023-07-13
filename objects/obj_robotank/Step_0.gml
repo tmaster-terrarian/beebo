@@ -10,14 +10,14 @@ switch state
     case "normal":
     {
         sprite_index = spr_robotank_idle
-        if(instance_exists(obj_player))
+        if(instance_exists(target))
         {
-            hsp = spd * sign(obj_player.x - x)
-            facing = (hsp != 0) ? sign(obj_player.x - x) : 1
+            hsp = spd * sign(agpos.x - x)
+            facing = (hsp != 0) ? sign(agpos.x - x) : 1
             if(timer0 == 120)
             {
                 timer0 = 0
-                if(abs(obj_player.x - x) < 96)
+                if(abs(agpos.x - x) < 96)
                 {
                     state = "fire"
                     hsp = 0

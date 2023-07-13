@@ -544,7 +544,7 @@ if(keyboard_check_pressed(vk_anykey) || mouse_check_button_pressed(mb_any))
     global.controller = false
 }
 
-if(global.speedrun_mode) && (global.gamestarted) && (!global.pausetimer) && (!global.introsequence)
+if(global.gamestarted) && (!global.pausetimer) && (!global.introsequence)
 {
     global.t += delta_time / 10000;
 }
