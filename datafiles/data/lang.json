@@ -1,0 +1,36 @@
+{
+    "en":
+    {
+        "ui_warning": "WARNING",
+
+        "item_unknown_name": "Undefined",
+        "item_unknown_shortdesc": "undefined",
+        "item_beeswax_name": "Beeswax",
+        "item_beeswax_shortdesc": "[kw_number]+10%[/c] [kw_projectile]bullet accuracy[/c].",
+        "item_eviction_notice_name": "Eviction Notice",
+        "item_eviction_notice_shortdesc": "Throw [kw_damage]razor-sharp[/c] [kw_projectile]legal papers[/c] [kw_proctype]on hit[/c] when above [kw_number]90%[/c] [kw_health]health[/c].",
+        "item_serrated_stinger_name": "Serrated Stinger",
+        "item_serrated_stinger_shortdesc": "[kw_number]+10%[/c] chance to inflict [kw_damage]bleeding[/c] [kw_proctype]on hit[/c].",
+        "item_amorphous_plush_name": "Amorphous Plush",
+        "item_amorphous_plush_shortdesc": "A protective feline follows you.",
+        "item_emergency_field_kit_name": "Emergency Field Kit",
+        "item_emergency_field_kit_shortdesc": "Gain an [kw_health]extra life[/c].",
+        "item_emergency_field_kit_consumed_name": "Emergency Field Kit (Consumed)",
+        "item_emergency_field_kit_consumed_shortdesc": "A used item with no power.",
+        "item_bloody_dagger_name": "Bloody Dagger",
+        "item_bloody_dagger_shortdesc": "Attacks from behind deal [kw_damage]bonus damage[/c] [kw_proctype]on hit[/c]."
+    },
+    "es":
+    {
+        "item_unknown_name": "Indefinido",
+        "item_unknown_shortdesc": "indefinido",
+        "item_beeswax_name": "Cera de Abejas",
+        "item_beeswax_shortdesc": "[kw_number]+10%[/c] [kw_projectile]precision de bala[/c].",
+        "item_eviction_notice_name": "Aviso de Desalojo",
+        "item_eviction_notice_shortdesc": "Tira [kw_projectile]documentos legales[/c] [kw_damage]afilados[/c] cuando te pegan con mas del [kw_number]90%[/c] de [kw_health]vida[/c].",
+        "item_serrated_stinger_name": "Aguijon Serrado",
+        "item_serrated_stinger_shortdesc": "[kw_number]+10%[/c] chance to inflict [kw_damage]bleeding[/c] [kw_proctype]on hit[/c].",
+        "item_amorphous_plush_name": "Peluche Amorfo",
+        "item_amorphous_plush_shortdesc": "Un felino protectivo te sigue."
+    }
+}

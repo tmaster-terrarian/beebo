@@ -47,7 +47,7 @@ switch(mode)
     case "v2":
     {
         var roomx = 0
-        var dir = working_directory + "leveldata/lvl" + levelid + ".beebo"
+        var dir = working_directory + "data/levels/lvl" + levelid + ".beebo"
 
         if(file_exists(dir))
         {
