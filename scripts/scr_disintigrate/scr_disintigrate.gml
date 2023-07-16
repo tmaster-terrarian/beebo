@@ -9,7 +9,7 @@ function scr_disintigrate() //gml_Script_scr_disintigrate
             if collision_point((myX + i), (myY + j), object_index, 1, 0)
             {
                 var n = instance_create_depth((myX + i), (myY + j), -1000, obj_pixel)
-                n.drawColor = draw_getpixel((((myX + i) - __view_get((0 << 0), 0)) * global.screenSize), (((myY + j) - __view_get((1 << 0), 0)) * global.screenSize))
+                n.drawColor = draw_getpixel((((myX + i) - __view_get((0 << 0), 0)) * global.sc), (((myY + j) - __view_get((1 << 0), 0)) * global.sc))
             }
         }
     }
@@ -27,7 +27,7 @@ function scr_disintigrate_nodestroy()
             if collision_point((myX + i), (myY + j), object_index, 1, 0)
             {
                 var n = instance_create_depth((myX + i), (myY + j), -1000, obj_pixel)
-                n.drawColor = draw_getpixel((((myX + i) - __view_get((0 << 0), 0)) * global.screenSize), (((myY + j) - __view_get((1 << 0), 0)) * global.screenSize))
+                n.drawColor = draw_getpixel((((myX + i) - __view_get((0 << 0), 0)) * global.sc), (((myY + j) - __view_get((1 << 0), 0)) * global.sc))
             }
         }
     }

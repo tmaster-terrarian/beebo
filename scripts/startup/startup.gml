@@ -254,6 +254,8 @@ function string_loc(key) // example key: item.beeswax.name
 global.lang = { en: {}, es: {}, ja: {} }
 global.lang.en =
 {
+	ui_warning: "WARNING",
+
 	item_unknown_name: "Undefined",
 	item_unknown_shortdesc: "undefined",
 	item_beeswax_name: "Beeswax",

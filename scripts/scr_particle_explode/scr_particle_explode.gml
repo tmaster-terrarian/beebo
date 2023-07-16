@@ -13,7 +13,7 @@ function scr_particle_explode() //gml_Script_scr_particle_explode
                 if collision_point((myX + i), (myY + j), object_index, 1, 0) && random(1) > global.fx_bias
                 {
                     var n = instance_create_depth((myX + i), (myY + j), 302, obj_pixel)
-                    n.drawColor = draw_getpixel((((myX + i) - __view_get((0 << 0), 0)) * global.screenSize), (((myY + j) - __view_get((1 << 0), 0)) * global.screenSize))
+                    n.drawColor = draw_getpixel((((myX + i) - __view_get((0 << 0), 0)) * global.sc), (((myY + j) - __view_get((1 << 0), 0)) * global.sc))
                     n.active = 1
                     n.hspeed = random_range(-2, 2)
                     n.vspeed = random_range(-2, 2)
@@ -31,7 +31,7 @@ function scr_particle_explode() //gml_Script_scr_particle_explode
                 if collision_point((myX - i), (myY + j), object_index, 1, 0) && random(1) > global.fx_bias
                 {
                     n = instance_create_depth((myX - i), (myY + j), 302, obj_pixel)
-                    n.drawColor = draw_getpixel((((myX - i) - __view_get((0 << 0), 0)) * global.screenSize), (((myY + j) - __view_get((1 << 0), 0)) * global.screenSize))
+                    n.drawColor = draw_getpixel((((myX - i) - __view_get((0 << 0), 0)) * global.sc), (((myY + j) - __view_get((1 << 0), 0)) * global.sc))
                     n.active = 1
                     n.hspeed = random_range(-2, 2)
                     n.vspeed = random_range(-2, 2)

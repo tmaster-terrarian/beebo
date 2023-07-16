@@ -1,5 +1,5 @@
-h_counter += hsp
-v_counter += vsp
+h_counter += hsp * global.dt
+v_counter += vsp * global.dt
 var h = round(h_counter)
 var v = round(v_counter)
 h_counter -= h

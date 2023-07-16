@@ -185,7 +185,7 @@ if(hascontrol)
 
     switch(state)
     {
-        case "donothing": {break}
+        case "donothing": {fxtrail = 0; can_jump = 0; break}
         case "stunned":
         {
             lookup = 0
@@ -234,6 +234,8 @@ if(hascontrol)
                     run = 0
                 if (hsp < spd)
                     hsp = approach(hsp, spd, accel)
+                if (hsp > spd) && on_ground
+                    hsp = approach(hsp, spd, fric/2)
                 if on_ground
                 {
                     running = 1
@@ -266,6 +268,8 @@ if(hascontrol)
                     run = 0
                 if (hsp > -spd)
                     hsp = approach(hsp, -spd, accel)
+                if (hsp < -spd) && on_ground
+                    hsp = approach(hsp, -spd, fric/2)
                 if on_ground
                 {
                     running = 1
