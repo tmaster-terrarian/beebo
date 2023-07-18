@@ -145,7 +145,7 @@ if(global.console)
         {
             default:
             {
-                if(keyboard_string != "") console_log("| " + keyboard_string);
+                if(keyboard_string != "") console_log(keyboard_string);
                 break;
             }
 
@@ -172,6 +172,12 @@ if(global.console)
                 console_log("fuck you");
                 break;
             }
+
+            case "timer":
+            {
+                console_log($"run timer is: [[{timer_to_timestamp(global.t * 10000)}]")
+                break
+            }
         }
 
         //more complicated argument-based commands
@@ -184,7 +190,7 @@ if(global.console)
                 if(_rm == 0) gm_room_transition_restart();
                 else gm_room_transition_direct(_rm);
             }
-            else console_log("invalid syntax! expected: goto_direct [room]");
+            else console_log("[c_red]invalid syntax! expected:[/c] [c_yellow]goto_direct[/c] [c_ltblue]<room_index>[/c]");
         }
 
         if(cmd("goto"))
@@ -198,7 +204,7 @@ if(global.console)
             {
                 gm_room_transition_goto(_args[1], 0);
             }
-            else console_log("invalid syntax! expected: goto <stage_index> [room_index]");
+            else console_log("[c_red]invalid syntax! expected:[/c] [c_yellow]goto[/c] [c_ltblue]<stage_index>[/c] [c_ltblue][[room_index][/c]");
         }
 
         if(cmd("flag"))
@@ -211,7 +217,7 @@ if(global.console)
                     case "list":
                     {
                         if(array_length(_args) > 2)
-                            console_log("flag:list failed: invalid argument count [" + string(array_length(_args) - 1) + "], expected [1]")
+                            console_log("flag:list failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]1[/c]]")
                         else
                             console_log("{ " + $"draw_debug : {global.draw_debug}" + " }")
                         break
@@ -219,7 +225,7 @@ if(global.console)
                     case "get":
                     {
                         if(array_length(_args) != 3)
-                            console_log("flag:get failed: invalid argument count [" + string(array_length(_args) - 1) + "], expected [2]")
+                            console_log("flag:get failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]2[/c]]")
                         else
                         {
                             switch(_args[2])
@@ -241,7 +247,7 @@ if(global.console)
                     case "set":
                     {
                         if(array_length(_args) != 4)
-                            console_log("flag:set failed: invalid argument count [" + string(array_length(_args) - 1) + "], expected [3]")
+                            console_log("flag:set failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]3[/c]]")
                         else
                         {
                             switch(_args[2])
@@ -315,7 +321,7 @@ if(global.console)
                 var _val = ini_read_real("settings", _args[1], -1)
                 ini_close();
                 if(_val != -1) console_log("'" + string(_args[1]) + "' = " + string(_val));
-                else console_log("config_read command failed: key '" + string(_args[1]) + "' is either unset or does not exist.");
+                else console_log("[c_red]config_read command failed: key [/c]'" + string(_args[1]) + "'[c_red] is either unset or does not exist.[/c]");
             }
             else console_log("invalid syntax! expected: config_read <key>");
         }
@@ -345,7 +351,7 @@ if(global.console)
                 if(instance_exists(obj_player)) instance_create_depth(obj_player.x + obj_player.facing * 32, obj_player.y, 300, obj_hpup);
                 else if(instance_exists(oCamera)) instance_create_depth(oCamera.x, oCamera.y, 300, obj_hpup);
             }
-            else console_log("invalid syntax! expected: sp_hp [amount]");
+            else console_log("invalid syntax! expected: sp_hp [[amount]");
         }
 
         if(cmd("set_view"))
@@ -356,19 +362,19 @@ if(global.console)
                 case 1:
                 {
                     if(instance_exists(obj_player)) with(oCamera) {follow = obj_player}
-                    else console_log("set_view command failed: could not find player");
+                    else console_log("[c_red]set_view command failed: could not find player[/c]");
                     break;
                 }
                 case 2:
                 {
                     var _obj = asset_get_index(string(_args[1]));
                     if(instance_exists(_obj)) with(oCamera) {follow = _obj}
-                    else console_log("set_view command failed: object does not exist");
+                    else console_log("[c_red]set_view command failed: object does not exist[/c]");
                     break;
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: set_view [object]");
+                    console_log("[c_red]invalid syntax! expected: set_view [[object][/c]");
                     break
                 }
             }
@@ -392,12 +398,12 @@ if(global.console)
                         else
                             instance_create_depth(mouse_x, mouse_y, 350, _obj);
                     }
-                    else console_log("spawn command failed: object asset does not exist");
+                    else console_log("[c_red]spawn command failed: object asset does not exist[/c]");
                     break;
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: spawn <object asset>");
+                    console_log("[c_red]invalid syntax! expected: spawn <object asset>[/c]");
                     break
                 }
             }
@@ -449,6 +455,27 @@ if(global.console)
             }
         }
 
+        if(cmd("timer"))
+        {
+            var _args = string_split(input_str, " ");
+            switch(array_length(_args))
+            {
+                case 2:
+                {
+                    var _val = real(string_digits(_args[1])) * 100 * (string_starts_with(_args[1], "-") ? -1 : 1)
+                    global.t = _val
+                    console_log($"set the run timer to [[{timer_to_timestamp(_val * 10000)}]")
+                    break;
+                }
+                default:
+                {
+                    if(array_length(_args) > 1)
+                        console_log("invalid syntax! expected: timer [[value]");
+                    break
+                }
+            }
+        }
+
         if(cmd("buff"))
         {
             var _args = string_split(input_str, " ");
@@ -472,7 +499,7 @@ if(global.console)
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: buff <id> [stacks] [target_obj]");
+                    console_log("invalid syntax! expected: buff <id> [[stacks] [[target_obj]");
                     break
                 }
             }
@@ -513,7 +540,7 @@ if(global.console)
                 }
                 default:
                 {
-                    console_log("invalid syntax! expected: item <id> [stacks] [target_obj]");
+                    console_log("invalid syntax! expected: item <id> [[stacks] [[target_obj]");
                     break
                 }
             }
@@ -549,15 +576,15 @@ if(global.gamestarted) && (!global.pausetimer) && (!global.introsequence)
     global.t += delta_time / 10000;
 }
 
-if(hitstop)
-{
-    room_speed = hitstop
-    hitstop = 0
-    global.hitstop = 0
-}
-if(global.hitstop)
-{
-    audio_play_sound(sn_hitstop, 0, false)
-    hitstop = room_speed
-    room_speed /= global.hitstop
-}
+// if(hitstop)
+// {
+//     room_speed = hitstop
+//     hitstop = 0
+//     global.hitstop = 0
+// }
+// if(global.hitstop)
+// {
+//     audio_play_sound(sn_hitstop, 0, false)
+//     hitstop = room_speed
+//     room_speed /= global.hitstop
+// }

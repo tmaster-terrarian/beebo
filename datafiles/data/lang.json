@@ -18,7 +18,14 @@
         "item_emergency_field_kit_consumed_name": "Emergency Field Kit (Consumed)",
         "item_emergency_field_kit_consumed_shortdesc": "A used item with no power.",
         "item_bloody_dagger_name": "Bloody Dagger",
-        "item_bloody_dagger_shortdesc": "Attacks from behind deal [kw_damage]bonus damage[/c] [kw_proctype]on hit[/c]."
+        "item_bloody_dagger_shortdesc": "Attacks from behind deal [kw_damage]bonus damage[/c] [kw_proctype]on hit[/c].",
+
+        "modifier_unknown_name": "Unknown",
+        "modifier_unknown_shortdesc": "unknown",
+        "modifier_reckless_name": "Reckless",
+        "modifier_reckless_shortdesc": "Deal [kw_damage]double damage[/c]...\n[kw_downside]but halve your health[/c].",
+        "modifier_evolution_name": "Evolution",
+        "modifier_evolution_shortdesc": "[kw_downside]Everything[/c] gets [kw_number]3 stacks[/c] of a [kw_downside]random item[/c]."
     },
     "es":
     {
@@ -31,6 +38,9 @@
         "item_serrated_stinger_name": "Aguijon Serrado",
         "item_serrated_stinger_shortdesc": "[kw_number]+10%[/c] chance to inflict [kw_damage]bleeding[/c] [kw_proctype]on hit[/c].",
         "item_amorphous_plush_name": "Peluche Amorfo",
-        "item_amorphous_plush_shortdesc": "Un felino protectivo te sigue."
+        "item_amorphous_plush_shortdesc": "Un felino protectivo te sigue.",
+
+        "modifier_unknown_name": "Indefinido",
+        "modifier_unknown_shortdesc": "indefinido"
     }
 }

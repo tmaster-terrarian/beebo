@@ -1,3 +1,6 @@
+var _elapsedBootTime = get_timer()
+file_delete("latest.log")
+
 // pixelate gui
 display_set_gui_size(256, 144)
 
@@ -5,25 +8,27 @@ display_set_gui_size(256, 144)
 audio_master_gain(0.5);
 
 // read and apply screenSize and draw_debug flags
+debug_log("startup", "getting settings")
+
 ini_open("save.ini");
 global.screenSize = clamp(floor(ini_read_real("settings", "res", 4)), 1, 7);
 if(global.screenSize < 7)
 {
     window_set_fullscreen(false);
     window_set_size((256 * global.screenSize), (144 * global.screenSize));
-	window_center()
 }
 else
 {
     window_set_fullscreen(true);
 }
+window_center()
 
 global.draw_debug = ini_read_real("debug", "draw_debug", 0)
 global.locale = ini_read_string("settings", "lang", "en")
-
 ini_close();
 
 // create basic perlin noise to reference wherever
+debug_log("macaw", "generating perlin noise with seed 0")
 macaw_set_seed(0)
 global.perlin = macaw_generate(512, 512, 6, 100)
 
@@ -245,11 +250,41 @@ function random_weighted(_list) // example values: [{v:3,w:1}, {v:4,w:3}, {v:2,w
 	return array_last(_l).v
 }
 
+function timer_to_timestamp(_t)
+{
+	var _c = floor((abs(_t) / 10000) % 100)
+	var _s = floor((abs(_t) / 1000000) % 60)
+	var _m = floor((_s / 60) % 60)
+	var _h = floor((_m / 60) % 60)
+	var h = string(_h) + ":"
+
+	if(_c < 10) _c = "0" + string(_c)
+	if(_s < 10) _s = "0" + string(_s)
+	if(_m < 10) _m = "0" + string(_m)
+	if(_h < 10) h = "0" + string(_h) + ":"
+
+	var str = ((_t < 0) ? "-" : "") + ((_h) ? h : "") + $"{_m}:{_s}:{_c}"
+
+	return str
+}
+
+function debug_log(src, str)
+{
+	show_debug_message($"[{timer_to_timestamp(get_timer())}] [{src}]: {str}")
+
+	var file = file_text_open_append("latest.log")
+	file_text_write_string(file, $"[{timer_to_timestamp(get_timer())}] [{src}]: {str}")
+	file_text_writeln(file)
+	file_text_close(file)
+}
+
 // localization
 function string_loc(key) // example key: item.beeswax.name
 {
 	return (variable_struct_exists(global.lang, global.locale) && variable_struct_exists(global.lang[$ global.locale], string_replace_all(key, ".", "_"))) ? global.lang[$ global.locale][$ string_replace_all(key, ".", "_")] : (variable_struct_exists(global.lang.en, string_replace_all(key, ".", "_")) ? global.lang.en[$ string_replace_all(key, ".", "_")] : key)
 }
+
+debug_log("startup", "getting language data")
 
 global.lang = { en: {}, es: {} }
 
@@ -265,6 +300,8 @@ while(!file_text_eof(file))
 file_text_close(file)
 
 global.lang = json_parse(json)
+
+debug_log("startup", $"loaded languages: {struct_get_names(global.lang)}")
 
 // itemdefs.gml
 function _itemdef(_name) constructor {
@@ -283,6 +320,9 @@ function _itemdef(_name) constructor {
 
 function itemdef(__struct, _struct)
 {
+	static total_items = 0
+	total_items++
+
 	// hhhhhh i hate scope issues so much
 	var names = variable_struct_get_names(_struct)
     var size = variable_struct_names_count(_struct);
@@ -295,6 +335,8 @@ function itemdef(__struct, _struct)
 	delete _struct
 	return __struct
 }
+
+debug_log("startup", "creating itemdefs")
 
 global.itemdefs =
 {
@@ -351,7 +393,7 @@ global.itemdefs =
 		rarity : item_rarity.rare,
 		step : function(target, _s)
 		{
-			if(instance_exists(target) && (target.t % 600) == 30) && target.object_index != obj_catfriend
+			if(instance_exists(target) && (target.t % 600) == 30) && (target.object_index != obj_catfriend) && (instance_number(obj_catfriend) < 1)
 			{
 				var o = instance_create_depth(target.x + random_range(-8, 8), target.y, 0, obj_catfriend, { _team : target._team, parent : target})
 				o.stats.hp_max += (0.1 * o.stats.hp_max * (_s - 1))
@@ -376,6 +418,8 @@ global.itemdefs =
 		rarity : item_rarity.common
 	})
 }
+
+debug_log("startup", $"successfully created {itemdef.total_items} items")
 
 global.itemdefs_by_rarity = [{}, {}, {}, {}, {}]
 struct_foreach(global.itemdefs as (_name, _item)
@@ -403,9 +447,9 @@ function item_get_stacks(item_id, target)
 
 function item_add_stacks(item_id, target, stacks = 1, notify = 1)
 {
-	if(notify)
+	if(notify && stacks >= 1 && target.object_index == obj_player)
 	{
-		var _i = instance_create_depth(target.x, target.y - 6, depth, fx_pickuptext)
+		var _i = instance_create_depth(0, 0, 0, fx_pickuptext)
 		_i.name = global.itemdefs[$ item_id].displayname
 		_i.shortdesc = global.itemdefs[$ item_id].shortdesc
 		_i.item_id = item_id
@@ -427,8 +471,16 @@ function item_add_stacks(item_id, target, stacks = 1, notify = 1)
 	}
 }
 
-function item_set_stacks(item_id, target, stacks)
+function item_set_stacks(item_id, target, stacks, notify = 1)
 {
+	if(notify && stacks >= 1 && target.object_index == obj_player)
+	{
+		var _i = instance_create_depth(0, 0, 0, fx_pickuptext)
+		_i.name = global.itemdefs[$ item_id].displayname
+		_i.shortdesc = global.itemdefs[$ item_id].shortdesc
+		_i.item_id = item_id
+	}
+
     for(var i = 0; i < array_length(target.items); i++)
     {
         if(target.items[i].item_id == item_id)
@@ -451,4 +503,67 @@ function _modifierdef(_name) constructor
 	name = _name
 	displayname = string_loc("modifier.unknown.name")
 	desc = string_loc("modifier.unknown.desc")
+
+	on_pickup = function() {}
 }
+
+function modifierdef(__blankdef, _struct)
+{
+	static total_modifiers = 0
+	total_modifiers++
+
+	var names = variable_struct_get_names(_struct)
+    var size = variable_struct_names_count(_struct);
+
+    for (var i = 0; i < size; i++) {
+        var name = names[i];
+        var element = variable_struct_get(_struct, name);
+        variable_struct_set(__blankdef, name, element)
+    }
+	delete _struct
+	return __blankdef
+}
+
+debug_log("startup", "creating modifiers")
+
+global.modifierdefs =
+{
+	unknown : new _modifierdef("unknown"),
+	reckless : modifierdef(new _modifierdef("reckless"), {
+		displayname : string_loc("modifier.reckless.name"),
+    	shortdesc : string_loc("modifier.reckless.shortdesc")
+	}),
+	evolution : modifierdef(new _modifierdef("evolution"), {
+		displayname : string_loc("modifier.evolution.name"),
+    	shortdesc : string_loc("modifier.evolution.shortdesc"),
+		on_pickup : function()
+		{
+			var _item = item_id_get_random(1, itemdata.item_tables.chest_small)
+			if(instance_exists(obj_player))
+				item_add_stacks(_item, obj_player, 3)
+			item_add_stacks(_item, statmanager, 3, 0)
+		}
+	})
+}
+
+debug_log("startup", $"successfully created {modifierdef.total_modifiers} modifiers")
+
+function modifier(_modifier_id, _stacks = 1) constructor
+{
+	modifier_id = _modifier_id
+	stacks = _stacks
+}
+
+function modifier_get_stacks(modifier_id)
+{
+    for(var i = 0; i < array_length(statmanager.run_modifiers); i++)
+    {
+        if(statmanager.run_modifiers[i].modifier_id == modifier_id)
+        {
+            return statmanager.run_modifiers[i].stacks
+        }
+    }
+    return 0
+}
+
+debug_log("startup", $"initialization completed, elapsed time: [{timer_to_timestamp(get_timer() - _elapsedBootTime)}]")

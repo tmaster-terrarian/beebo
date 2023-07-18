@@ -1,7 +1,8 @@
-global_level = 0
+global_level = 1
 difficulty_rate = 0
 difficulty_mult = 1
 items = []
+run_modifiers = []
 
 run_initialize = function()
 {
@@ -11,6 +12,7 @@ run_initialize = function()
     [
         // {item_id: "serrated_stinger", stacks: 10}
     ]
+    run_modifiers = []
 }
 
 function _calcitem(_name, target)

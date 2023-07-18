@@ -23,3 +23,16 @@ removed unused files in the `datafiles` directory.<br>
 level data has been moved from `leveldata` to `data/levels`
 
 translations are now data-driven! you can find them in `data/lang.json`
+
+# v2.1c
+
+the console now records output to the debug log.<br>
+modified the `console_log()` function to be able to be safely called by objects/structs/scripts that are not the Game Manager object.
+
+added Run Modifiers - mid-run gameplay additions that both benefit and detriment the player.
+
+the console and debug messages are now recorded to a file called `latest.log`, which can be found in the save directory.
+
+the console now uses Scribble text.
+
+added command `timer`

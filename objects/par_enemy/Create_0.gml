@@ -42,6 +42,8 @@ image_speed = 0
 drawhp = 0
 playerally = 0
 
+level = floor(statmanager.global_level)
+
 statsmult = {}
 buffs = {}
 initbuffs(id)
