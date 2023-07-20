@@ -34,7 +34,8 @@ with(obj_player)
 
     statsmult.spd = spdadd / spdsub
 
-    statsmult.hp_max *= power(0.5, modifier_get_stacks("reckless"))
+    stats.curse = power(0.5, modifier_get_stacks("reckless"))
+    statsmult.hp_max *= stats.curse
 
     if ((hp / hp_max) != (hp / ((stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max)))
     {

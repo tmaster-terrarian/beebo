@@ -28,9 +28,9 @@ global.locale = ini_read_string("settings", "lang", "en")
 ini_close();
 
 // create basic perlin noise to reference wherever
-debug_log("macaw", "generating perlin noise with seed 0")
 macaw_set_seed(0)
 global.perlin = macaw_generate(512, 512, 6, 100)
+debug_log("macaw", "generated perlin noise with seed 0")
 
 // enums
 enum team
@@ -278,13 +278,21 @@ function debug_log(src, str)
 	file_text_close(file)
 }
 
+function string_to_real(str)
+{
+	return (string_starts_with(str, "-") ? -1 : 1) * real(string_digits(str))
+}
+
+function string_is_real(str)
+{
+	return !((string_digits(str) == "") || (string_replace(str, "-", "") != string_digits(str)))
+}
+
 // localization
 function string_loc(key) // example key: item.beeswax.name
 {
 	return (variable_struct_exists(global.lang, global.locale) && variable_struct_exists(global.lang[$ global.locale], string_replace_all(key, ".", "_"))) ? global.lang[$ global.locale][$ string_replace_all(key, ".", "_")] : (variable_struct_exists(global.lang.en, string_replace_all(key, ".", "_")) ? global.lang.en[$ string_replace_all(key, ".", "_")] : key)
 }
-
-debug_log("startup", "getting language data")
 
 global.lang = { en: {}, es: {} }
 
@@ -335,8 +343,6 @@ function itemdef(__struct, _struct)
 	delete _struct
 	return __struct
 }
-
-debug_log("startup", "creating itemdefs")
 
 global.itemdefs =
 {
@@ -488,7 +494,7 @@ function item_set_stacks(item_id, target, stacks, notify = 1)
             target.items[i].stacks = stacks
 			if(target.items[i].stacks <= 0)
 				array_delete(target.items, i, 1)
-			return
+			return;
         }
     }
 	if(stacks > 0)
@@ -523,8 +529,6 @@ function modifierdef(__blankdef, _struct)
 	delete _struct
 	return __blankdef
 }
-
-debug_log("startup", "creating modifiers")
 
 global.modifierdefs =
 {
@@ -564,6 +568,42 @@ function modifier_get_stacks(modifier_id)
         }
     }
     return 0
+}
+
+function modifier_add_stacks(modifier_id, stacks = 1)
+{
+    for(var i = 0; i < array_length(statmanager.run_modifiers); i++)
+    {
+        if(statmanager.run_modifiers[i].modifier_id == modifier_id)
+        {
+            statmanager.run_modifiers[i].stacks += stacks
+			if(statmanager.run_modifiers[i].stacks <= 0)
+				array_delete(statmanager.run_modifiers, i, 1)
+			return;
+        }
+    }
+	if(stacks > 0)
+	{
+		array_push(statmanager.run_modifiers, new modifier(modifier_id, stacks))
+	}
+}
+
+function modifier_set_stacks(modifier_id, stacks)
+{
+    for(var i = 0; i < array_length(statmanager.run_modifiers); i++)
+    {
+        if(statmanager.run_modifiers[i].modifier_id == modifier_id)
+        {
+            statmanager.run_modifiers[i].stacks = stacks
+			if(statmanager.run_modifiers[i].stacks <= 0)
+				array_delete(statmanager.run_modifiers, i, 1)
+			return;
+        }
+    }
+	if(stacks > 0)
+	{
+		array_push(statmanager.run_modifiers, new modifier(modifier_id, stacks))
+	}
 }
 
 debug_log("startup", $"initialization completed, elapsed time: [{timer_to_timestamp(get_timer() - _elapsedBootTime)}]")

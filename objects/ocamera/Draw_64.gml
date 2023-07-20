@@ -10,32 +10,39 @@ if(draw_ui)
         var dtxt = ""
         if(instance_exists(p))
         {
-            draw_sprite_ext(spr_hpbar2_fill2, 0, 19, 4, ceil((hp_change / p.hp_max) * 74), 1, 0, c_white, 1)
-            draw_sprite_ext(spr_hpbar2_fill, 0, 19, 4, ceil((p.hp / p.hp_max) * 74), 1, 0, c_white, 1)
+            draw_sprite_ext(spr_hpbar2_fill2, 0, 19, 4, ceil((hp_change / p.hp_max) * (74 * p.stats.curse)), 1, 0, c_white, 1)
+            draw_sprite_ext(spr_hpbar2_fill, 0, 19, 4, ceil((p.hp / p.hp_max) * (74 * p.stats.curse)), 1, 0, c_white, 1)
             if(ceil(hp_change) < ceil(p.hp))
             {
-                draw_sprite_ext(spr_hpbar2_fill3, 0, 19 + ceil((p.hp / p.hp_max) * 74), 4, ceil(-(p.hp - hp_change)), 1, 0, c_white, 1)
+                draw_sprite_ext(spr_hpbar2_fill3, 0, 19 + ceil((p.hp / p.hp_max) * (74 * p.stats.curse)), 4, ceil(-(p.hp - hp_change)), 1, 0, c_white, 1)
             }
 
             playerlasthpmax = ceil(p.hp_max)
             playerlasthp = ceil(p.hp)
+            playercurse = p.stats.curse
             dtxt = string(ceil(p.hp)) + "/" + string(ceil(p.hp_max))
         }
         else
         {
-            draw_sprite_ext(spr_hpbar2_fill2, 0, 19, 4, ceil((hp_change / playerlasthpmax) * 74), 1, 0, c_white, 1)
+            draw_sprite_ext(spr_hpbar2_fill2, 0, 19, 4, ceil((hp_change / playerlasthpmax) * (74 * p.stats.curse)), 1, 0, c_white, 1)
 
             dtxt = string(playerlasthp) + "/" + string(playerlasthpmax)
         }
         drawbuffs = 1
 
+        if(playercurse < 1)
+            draw_sprite_ext(spr_curseoverlay, 0, 94, 3, ceil(playercurse * 76)/76, 1, 0, c_white, 1)
+
         draw_sprite(spr_hpbar2_front, 0, 0, 0)
 
-        var c = c_white
         draw_set_font(hudfont)
         draw_set_halign(fa_center)
         draw_set_valign(fa_top)
-        draw_text_color(56, 4, dtxt, c,c,c,c,1)
+
+        var c = c_black
+        draw_text_color(19 + ceil(37 * playercurse), 5, dtxt, c,c,c,c,1)
+        var c = c_white
+        draw_text_color(19 + ceil(37 * playercurse), 4, dtxt, c,c,c,c,1)
     }
 
     if(instance_exists(oGun))
@@ -44,7 +51,7 @@ if(draw_ui)
         var bomb_timer = -oGun.firingdelaybomb + bomb_timer_max;
         if(bomb_timer > bomb_timer_max) bomb_timer = bomb_timer_max;
 
-        draw_sprite(spr_hud_bombtimer, (bomb_timer * (1/bomb_timer_max)) * 10, 13, 10);
+        draw_sprite(spr_hud_bombtimer, (bomb_timer * (1/bomb_timer_max)) * 10, 12, 10);
     }
     else if(instance_exists(obj_player_dead))
     {

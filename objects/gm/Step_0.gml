@@ -214,10 +214,15 @@ if(global.console)
             {
                 switch(_args[1])
                 {
+                    default:
+                    {
+                        console_log("invalid syntax! argument 2 must be one of the following values: {list | set | get}");
+                        break
+                    }
                     case "list":
                     {
                         if(array_length(_args) > 2)
-                            console_log("flag:list failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]1[/c]]")
+                            console_log("flag:list command failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]1[/c]]")
                         else
                             console_log("{ " + $"draw_debug : {global.draw_debug}" + " }")
                         break
@@ -225,7 +230,7 @@ if(global.console)
                     case "get":
                     {
                         if(array_length(_args) != 3)
-                            console_log("flag:get failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]2[/c]]")
+                            console_log("flag:get command failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]2[/c]]")
                         else
                         {
                             switch(_args[2])
@@ -237,7 +242,7 @@ if(global.console)
                                 }
                                 case "draw_debug":
                                 {
-                                    console_log("flag draw_debug is set to " + string(global.draw_debug) + ".")
+                                    console_log("the flag [[draw_debug] is set to " + string(global.draw_debug) + ".")
                                     break
                                 }
                             }
@@ -247,14 +252,14 @@ if(global.console)
                     case "set":
                     {
                         if(array_length(_args) != 4)
-                            console_log("flag:set failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]3[/c]]")
+                            console_log("flag:set command failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [[[kw_number]3[/c]]")
                         else
                         {
                             switch(_args[2])
                             {
                                 default:
                                 {
-                                    console_log("flag:set failed: flag '" + string(_args[2]) + "' does not exist")
+                                    console_log("flag:set command failed: flag '" + string(_args[2]) + "' does not exist")
                                     break
                                 }
                                 case "draw_debug":
@@ -469,7 +474,7 @@ if(global.console)
                 }
                 default:
                 {
-                    if(array_length(_args) > 1)
+                    if(array_length(_args) > 2)
                         console_log("invalid syntax! expected: timer [[value]");
                     break
                 }
@@ -543,6 +548,64 @@ if(global.console)
                     console_log("invalid syntax! expected: item <id> [[stacks] [[target_obj]");
                     break
                 }
+            }
+        }
+
+        if(cmd("modifier")) // syntax: modifier {list | add <modifier_id> <stacks> | set <modifier_id> <stacks>}
+        {
+            var _args = string_split(input_str, " ");
+            if(array_length(_args) <= 4)
+            {
+                switch(_args[1])
+                {
+                    default:
+                    {
+                        console_log("invalid syntax! argument 2 must be one of the following values: {list | add | set}");
+                        break
+                    }
+                    case "list":
+                    {
+                        if(array_length(_args) > 2)
+                            console_log("modifier:list command failed: invalid argument count [[" + string(array_length(_args) - 1) + "], expected [kw_number]1[/c]")
+                        else
+                            console_log($"current run modifiers are: [[{statmanager.modifiers_tostring()}]")
+                        break
+                    }
+                    case "add":
+                    {
+                        if(array_length(_args) != 4)
+                            console_log("modifier:set command failed: invalid argument count [kw_number]" + string(array_length(_args) - 1) + "[/c], expected [kw_number]3[/c]")
+                        else if(!variable_struct_exists(global.modifierdefs, _args[2]))
+                            console_log($"modifier:set command failed at argument [kw_number]1[/c]: modifier_id '{_args[2]}' does not exist")
+                        else if(!string_is_real(_args[3]))
+                            console_log($"modifier:set command failed at argument [kw_number]2[/c]: invalid argument type '[c_orange]string[/c]', expected type '[kw_number]real[/c]' at >{_args[3]}<")
+                        else
+                        {
+                            modifier_add_stacks(_args[2], string_to_real(_args[3]))
+                            console_log($"added [c_blue]{string_to_real(_args[3])}[/c] stacks to run modifier '{_args[2]}'")
+                        }
+                        break
+                    }
+                    case "set":
+                    {
+                        if(array_length(_args) != 4)
+                            console_log("modifier:set command failed: invalid argument count [kw_number]" + string(array_length(_args) - 1) + "[/c], expected [kw_number]3[/c]")
+                        else if(!variable_struct_exists(global.modifierdefs, _args[2]))
+                            console_log($"modifier:set command failed at argument [kw_number]1[/c]: modifier_id '{_args[2]}' does not exist")
+                        else if(!string_is_real(_args[3]))
+                            console_log($"modifier:set command failed at argument [kw_number]2[/c]: invalid argument type '[c_orange]string[/c]', expected type '[kw_number]real[/c]' at >{_args[3]}<")
+                        else
+                        {
+                            modifier_set_stacks(_args[2], string_to_real(_args[3]))
+                            console_log($"set run modifier '{_args[2]}' stacks to [c_blue]{string_to_real(_args[3])}[/c]")
+                        }
+                        break
+                    }
+                }
+            }
+            else
+            {
+                console_log("invalid syntax! expected: modifier {list | add <modifier_id> <stacks> | set <modifier_id> <stacks>}");
             }
         }
 

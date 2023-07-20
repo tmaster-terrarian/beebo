@@ -88,7 +88,6 @@ stage_tips =
 save_st = function()
 {
     ini_open("save.ini");
-    if(current_st != ini_read_real("savedata", "stage", 0)) ini_write_real("savedata", "time_in_centiseconds", global.t);
     ini_write_real("savedata", "stage", current_st);
     ini_close();
     console_log("saved (" + string(current_st) + ")");
@@ -102,8 +101,7 @@ global.bgm_volume = ini_read_real("settings", "music_volume", 0.8);
 audio_group_set_gain(audiogroup_default, global.snd_volume, 0);
 audio_group_set_gain(audiogroup_bgm, global.bgm_volume, 0);
 
-global.speedrun_mode = ini_read_real("settings", "speedrun_mode", 0);
-global.t = ini_read_real("savedata", "time_in_centiseconds", 0);
+global.speedrun_mode = ini_read_real("settings", "speedrun_mode", 1);
 
 global.rich_presence = ini_read_real("settings", "rich_presence", 0);
 

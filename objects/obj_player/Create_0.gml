@@ -38,6 +38,7 @@ stats =
 {
     hp_max : 100,
     regen_rate : 1,
+    curse : 1,
     spd : 2,
     jumpspd : -3.7,
     firerate : 5,

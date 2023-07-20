@@ -6,13 +6,11 @@ run_modifiers = []
 
 run_initialize = function()
 {
+    global.t = 0
     global_level = 1
     difficulty_rate = 1
-    items =
-    [
-        // {item_id: "serrated_stinger", stacks: 10}
-    ]
-    run_modifiers = []
+    items = []
+    run_modifiers = [{modifier_id:"reckless",stacks:1}]
 }
 
 function _calcitem(_name, target)
@@ -21,6 +19,23 @@ function _calcitem(_name, target)
     global.__calcitemtargetarg = target
     var _item = global.__calcitemtargetarg.items[array_find_index(global.__calcitemtargetarg.items, function(_v, _i){return _v.name == global.__calcitemnamearg})]
     return (array_any(global.__calcitemtargetarg.items, function(_v, _i){return _v.name == global.__calcitemnamearg})) ? global.itemdefs[$ _item.item_id].calc(_item.stacks) : 0
+}
+
+function modifiers_tostring()
+{
+    var str = ""
+    for(var i = 0; i < array_length(run_modifiers); i++)
+    {
+        var _str = ""
+
+        if(i != 0) _str = ", "
+
+        _str += string(run_modifiers[i].modifier_id)
+        if(run_modifiers[i].stacks > 1) _str += $" ({run_modifiers[i].stacks})"
+
+        str += _str
+    }
+    return str
 }
 
 function _buff(_name) constructor

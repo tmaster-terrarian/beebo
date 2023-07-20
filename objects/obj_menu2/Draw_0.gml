@@ -62,7 +62,6 @@ for(var i = 0; i < m_options_length; i++)
                 }
                 case 4:
                 {
-                    draw_text_ext_transformed_color(m_x + m_padding + selectoffset + 106, m_y + m_padding + (m_size * i) + global.fonts.offset, "Enables speedrun timer", 12, 10000, 1, 1, 0, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
                     draw_sprite_ext(spr_ui_checkbox, global.speedrun_mode, m_x + m_padding + selectoffset + 98, m_y + m_padding + (m_size * i) + 4, 1, 1, 0, _c, 1);
                     break;
                 }

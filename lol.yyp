@@ -355,6 +355,7 @@
     {"id":{"name":"__scribble_gen_6_build_lines","path":"scripts/__scribble_gen_6_build_lines/__scribble_gen_6_build_lines.yy",},},
     {"id":{"name":"__scribble_font_add_msdf_from_project","path":"scripts/__scribble_font_add_msdf_from_project/__scribble_font_add_msdf_from_project.yy",},},
     {"id":{"name":"obj_trigger","path":"objects/obj_trigger/obj_trigger.yy",},},
+    {"id":{"name":"spr_curseoverlay","path":"sprites/spr_curseoverlay/spr_curseoverlay.yy",},},
     {"id":{"name":"more","path":"scripts/more/more.yy",},},
     {"id":{"name":"obj_helix_bullet","path":"objects/obj_helix_bullet/obj_helix_bullet.yy",},},
     {"id":{"name":"spr_slope2","path":"sprites/spr_slope2/spr_slope2.yy",},},

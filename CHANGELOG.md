@@ -33,6 +33,7 @@ added Run Modifiers - mid-run gameplay additions that both benefit and detriment
 
 the console and debug messages are now recorded to a file called `latest.log`, which can be found in the save directory.
 
-the console now uses Scribble text.
+the console now uses Scribble.
 
-added command `timer`
+added command `timer`<br> - allows the player to manipulate the run timer (`global.t`)
+added command `modifier` - allows the player to manage run modifiers

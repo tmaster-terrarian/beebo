@@ -308,6 +308,7 @@
     {"name":"__scribble_gen_6_build_lines","order":6,"path":"scripts/__scribble_gen_6_build_lines/__scribble_gen_6_build_lines.yy",},
     {"name":"__scribble_font_add_msdf_from_project","order":8,"path":"scripts/__scribble_font_add_msdf_from_project/__scribble_font_add_msdf_from_project.yy",},
     {"name":"obj_trigger","order":5,"path":"objects/obj_trigger/obj_trigger.yy",},
+    {"name":"spr_curseoverlay","order":16,"path":"sprites/spr_curseoverlay/spr_curseoverlay.yy",},
     {"name":"more","order":22,"path":"scripts/more/more.yy",},
     {"name":"obj_helix_bullet","order":3,"path":"objects/obj_helix_bullet/obj_helix_bullet.yy",},
     {"name":"spr_slope2","order":1,"path":"sprites/spr_slope2/spr_slope2.yy",},
