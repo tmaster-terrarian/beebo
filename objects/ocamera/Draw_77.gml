@@ -8,4 +8,12 @@ if(global.hitstop)
 
     draw_surface_ext(application_surface, 0, 0, global.screenSize * zoom, global.screenSize * zoom, 0, c_white, 0.7)
 }
+// else if(global.retro)
+// {
+//     application_surface_draw_enable(false)
+
+//     shader_set(sh_retro)
+//     draw_surface_ext(application_surface, 0, 0, global.screenSize * zoom, global.screenSize * zoom, 0, c_white, 1)
+//     shader_reset()
+// }
 else application_surface_draw_enable(e)

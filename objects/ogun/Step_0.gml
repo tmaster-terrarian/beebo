@@ -195,19 +195,13 @@ image_blend = merge_color(c_white, c_red, (heat/heat_max)*0.5);
 
 if(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_shoulderlb)) && (firingdelaybomb > 0)
 {
-    with(obj_bomb)
-    {
-        explode()
-    }
+    event_perform(ev_alarm, 0)
 }
 
 firingdelaybomb--;
-if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (firingdelaybomb < 0)
+if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (firingdelaybomb <= 0)
 {
-    with(obj_bomb)
-    {
-        explode()
-    }
+    event_perform(ev_alarm, 0)
 
     fire = 1;
 
@@ -221,17 +215,25 @@ if (mouse_check_button(mb_right) || gamepad_button_check(0, gp_shoulderlb)) && (
     image_index = 0;
     image_speed = 0.25;
 
-    with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, obj_bomb))
+    with (instance_create_depth(x + lengthdir_x(12, image_angle), y + lengthdir_y(12, image_angle) - 1, depth - 2, bomb_projectile))
     {
         parent = obj_player
-        damage = obj_player.damage * 5
         _team = team.player
-        direction = other.image_angle;
-        hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.5) + ((obj_player.state == "grind") * -0.5);
-        vsp = lengthdir_y(2, direction) + (obj_player.vsp * 0.25) - 1;
-        if((vsp > 0.2) && (obj_player.state == "grind")) max_bounces = 0
+        switch(object_index)
+        {
+            case obj_bomb:
+            {
+                damage = obj_player.damage * 5
+                direction = other.image_angle;
+                hsp = lengthdir_x(2, direction) + (obj_player.hsp * 0.5) + ((obj_player.state == "grind") * -0.5);
+                vsp = lengthdir_y(2, direction) + (obj_player.vsp * 0.25) - 1;
+                if((vsp > 0.2) && (obj_player.state == "grind")) max_bounces = 0
 
-        if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) event_perform(ev_other, ev_user2);
+                if(mouse_check_button(mb_left) || gamepad_button_check(0, gp_shoulderrb)) event_perform(ev_other, ev_user2);
+
+                break
+            }
+        }
     }
 }
 
@@ -319,7 +321,7 @@ if !global.controller
             image_yscale = -1;
             _target_angle = 180;
         }
-        image_angle += (_target_angle - image_angle) / 4
+        image_angle += ((_target_angle - 180) - (image_angle - 180)) / 4 + 180
     }
     if(idle_counder >= 190)
     {

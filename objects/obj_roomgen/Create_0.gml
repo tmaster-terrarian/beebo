@@ -29,7 +29,7 @@ function node(_x = 0, _y = 0, _instance = obj_empty, _data) constructor
 
     static create = function(_node, _x)
     {
-        if(random(1) <= _node.chance)
+        if(random(1) < _node.chance)
         {
             var inst = noone
             if(_node.instance == obj_wall)
@@ -48,7 +48,7 @@ function node(_x = 0, _y = 0, _instance = obj_empty, _data) constructor
 
     static createV2 = function(_node, _x, _y = 0)
     {
-        if(random(1) <= _node.data.chance)
+        if(random(1) < _node.data.chance)
         {
             var inst = noone
             inst = instance_create_depth(_node.x + _x, _node.y, 0, _node.instance, _node.data)

@@ -5,3 +5,5 @@ playerally = 0
 t = 0
 
 level = 1
+
+invincible = 0

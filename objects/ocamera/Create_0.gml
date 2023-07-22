@@ -13,6 +13,9 @@ zoom = 1;
 
 draw_ui = true;
 
+invpos = 0
+invpostarget = 0
+
 follow = obj_player;
 usefollow = true;
 xTo = xstart;

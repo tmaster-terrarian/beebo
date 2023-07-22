@@ -10,7 +10,7 @@ run_initialize = function()
     global_level = 1
     difficulty_rate = 1
     items = []
-    run_modifiers = [{modifier_id:"reckless",stacks:1}]
+    run_modifiers = []
 }
 
 function _calcitem(_name, target)

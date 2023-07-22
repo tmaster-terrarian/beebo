@@ -1,2 +1,2 @@
-if(random(1) <= global.fx_bias)
+if(random(1) < global.fx_bias)
 	instance_destroy()

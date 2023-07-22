@@ -3,6 +3,18 @@
     {
         "ui_warning": "WARNING",
 
+        "options_screen_size": "Screen Size",
+        "options_sound_volume": "Sound Volume",
+        "options_music_volume": "Music Volume",
+        "options_dont": "dont.",
+        "options_do_not": "do not",
+        "options_timer": "Show Timer",
+        "options_discord_rpc": "Rich Presence",
+        "options_vfx_culling_bias": "VFX Culling Bias",
+        "options_language": "Language",
+        "options_delete_save": "Delete Savedata",
+        "options_back": "Back",
+
         "item_unknown_name": "Undefined",
         "item_unknown_shortdesc": "undefined",
         "item_beeswax_name": "Beeswax",
@@ -29,6 +41,18 @@
     },
     "es":
     {
+        "options_screen_size": "Screen Size",
+        "options_sound_volume": "Sound Volume",
+        "options_music_volume": "Music Volume",
+        "options_dont": "dont.",
+        "options_do_not": "do not",
+        "options_timer": "Show Timer",
+        "options_discord_rpc": "Rich Presence",
+        "options_vfx_culling_bias": "VFX Culling Bias",
+        "options_language": "Language",
+        "options_delete_save": "Delete Savedata",
+        "options_back": "Back",
+
         "item_unknown_name": "Indefinido",
         "item_unknown_shortdesc": "indefinido",
         "item_beeswax_name": "Cera de Abejas",

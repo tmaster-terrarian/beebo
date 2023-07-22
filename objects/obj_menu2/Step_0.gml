@@ -319,6 +319,9 @@ switch(m_submenu)
                     ini_write_string("settings", "lang", languages[language_selection]);
                     ini_close();
                     global.locale = languages[language_selection]
+
+                    locale.reload()
+                    reload_names()
                 }
                 if(key_lt)
                 {
@@ -329,6 +332,9 @@ switch(m_submenu)
                     ini_write_string("settings", "lang", languages[language_selection]);
                     ini_close();
                     global.locale = languages[language_selection]
+
+                    locale.reload()
+                    reload_names()
                 }
                 break;
             }

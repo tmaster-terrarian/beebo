@@ -13,8 +13,8 @@ x += random_range(-shake_remain, shake_remain);
 y += random_range(-shake_remain, shake_remain);
 shake_remain = max(0, shake_remain - ((1 / shake_length) * shake_magnitude));
 
-var _x = round(x - view_w_half);
-var _y = round(y - view_h_half);
+_x = round(x - view_w_half);
+_y = round(y - view_h_half);
 
 camera_set_view_pos(cam, _x, _y);
 camera_set_view_size(cam, cam_w / zoom, cam_h / zoom);
@@ -34,3 +34,10 @@ layer_y(bg_near0, floor(lerp(room_height - 180, _y, 0.5)));
 layer_y(bg_far0,  floor(lerp(room_height - 180, _y, 0.7)));
 layer_y(bg_sky0,  _y);
 layer_y(bg_sky1,  _y);
+
+invpos += (invpostarget - invpos) / 4
+
+if(keyboard_check(vk_tab))
+    invpostarget = -104
+else
+    invpostarget = 0

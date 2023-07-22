@@ -97,12 +97,16 @@ if(keyboard_check_pressed(vk_f1))
     {
         input_str = ""
         controltimer = 99999999
+        bgm_bus.effects[0].cutoff = 400
+        bgm_bus.effects[0].bypass = 0
+        alarm[0] = -1
     }
     else
     {
         input_str = ""
         keyboard_string = ""
         controltimer = 0
+        bgm_bus.effects[0].bypass = 1
     }
 }
 
@@ -130,6 +134,7 @@ if(global.console)
         input_str = "";
         keyboard_string = "";
         controltimer = 0;
+        bgm_bus.effects[0].bypass = 1
     }
 
     if(keyboard_check_pressed(vk_up))

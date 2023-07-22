@@ -1,6 +1,6 @@
 if(_team == team.neutral || _team == team.player)
 {
-	crit = (random(1) <= parent.crit_chance)
+	crit = (random(1) < parent.crit_chance)
 	with (other)
 	{
 	    hp -= other.damage * (2 * other.crit);

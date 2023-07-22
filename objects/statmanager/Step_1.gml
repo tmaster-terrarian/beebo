@@ -93,14 +93,20 @@ with(par_enemy)
     var _lastlevel = level
     var _level = floor(other.global_level)
 
+    var _hp_max = (stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max
+
     if(_level != _lastlevel)
     {
         level = _level
 
-        hp *= statsmult.hp_max
-        lasthp *= statsmult.hp_max
-        hp_change *= statsmult.hp_max
+        _hp_max = (stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max
+
+        hp *= _hp_max/hp_max
+        lasthp *= _hp_max/hp_max
+        hp_change *= _hp_max/hp_max
     }
+
+    hp_max = _hp_max
 
     foreach(buffs as (buff)
     {
@@ -120,8 +126,6 @@ with(par_enemy)
     spdsub += (variable_struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
 
     statsmult.spd = spdadd / spdsub
-
-    hp_max = (stats.hp_max + stats_per_level.hp_max * (level - 1)) * statsmult.hp_max
 
     spd = stats.spd * statsmult.spd
     ground_accel =  0.12 * (spd / stats.spd)

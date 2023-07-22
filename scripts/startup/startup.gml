@@ -61,7 +61,8 @@ enum damage_notif_type
 	generic,
 	crit,
 	heal,
-	revive
+	revive,
+	playerhurt
 }
 
 enum healtype
@@ -71,26 +72,27 @@ enum healtype
 }
 
 // classes
-function damage_event(attacker, target, proc_type, damage, proc, attacker_has_items = 1)
+function damage_event(attacker, target, proc_type, damage, proc, attacker_has_items = 1, force_crit = 0)
 {
-	if(instance_exists(target))
+	var _damage_type = damage_notif_type.generic
+	var crit = 0
+
+	if(instance_exists(target) && !target.invincible)
 	{
-		var _damage_type = damage_notif_type.generic
 		var _dir = 1
 
 		if(instance_exists(attacker))
 		{
-			var crit = 0
 			_dir = sign(target.x - attacker.x)
+
+			if(random(1) < attacker.crit_chance) || force_crit
+			{
+				crit = 1
+				_damage_type = damage_notif_type.crit
+			}
 
 			if(attacker_has_items)
 			{
-				if(random(1) <= attacker.crit_chance)
-				{
-					crit = 1
-					_damage_type = damage_notif_type.crit
-				}
-
 				for(var i = 0; i < array_length(attacker.items); i++)
 				{
 					if(variable_struct_exists(global.itemdefs, attacker.items[i].item_id))
@@ -104,8 +106,10 @@ function damage_event(attacker, target, proc_type, damage, proc, attacker_has_it
 					}
 				}
 
-				damage += damage * ((target.facing == 1 && target.x >= attacker.x) || (target.facing == -1 && target.x < attacker.x)) * (0.2 * item_get_stacks("bloody_dagger", attacker))
-				damage *= 1 + crit
+				var dmg_fac = 1
+				dmg_fac += ((target.facing == 1 && target.x >= attacker.x) || (target.facing == -1 && target.x < attacker.x)) * (0.2 * item_get_stacks("bloody_dagger", attacker))
+
+				damage *= dmg_fac
 			}
 
 			if(attacker._team == team.player)
@@ -115,12 +119,17 @@ function damage_event(attacker, target, proc_type, damage, proc, attacker_has_it
 				else
 					audio_play_sound(sn_hit_crit, 5, false)
 			}
-			else if(target.object_index == obj_player)
+		}
+		else 
+		{
+			if(force_crit)
 			{
-				audio_play_sound(sn_player_hit, 5, false)
-				oCamera.alarm[0] = 10
+				crit = 1
+				_damage_type = damage_notif_type.crit
 			}
 		}
+
+		damage *= 1 + crit
 
 		var dmg = damage
 		for(var i = 0; i < array_length(target.items); i++)
@@ -129,8 +138,14 @@ function damage_event(attacker, target, proc_type, damage, proc, attacker_has_it
 		}
 		target.hp -= dmg
 
-		if(target.object_index != obj_player)
-			instance_create_depth((target.bbox_left + target.bbox_right) / 2, (target.bbox_top + target.bbox_bottom) / 2, 10, fx_damage_number, {notif_type: _damage_type, value: ceil(dmg), dir: _dir})
+		if(target.object_index == obj_player)
+		{
+			audio_play_sound(sn_player_hit, 5, false)
+			oCamera.alarm[0] = 10
+			_damage_type = damage_notif_type.playerhurt
+		}
+
+		instance_create_depth((target.bbox_left + target.bbox_right) / 2, (target.bbox_top + target.bbox_bottom) / 2, 10, fx_damage_number, {notif_type: _damage_type, value: ceil(dmg), dir: _dir})
 
 		// activate on kill items if target died
 		if(target.hp <= 0) && (target.object_index != obj_player)
@@ -173,7 +188,8 @@ function damage_event(attacker, target, proc_type, damage, proc, attacker_has_it
 
 function heal_event(target, value, healtype = healtype.generic)
 {
-	target.hp += value
+	var heal_fac = 1
+	target.hp += value * heal_fac
 
 	if(healtype != healtype.regen)
 		instance_create_depth((target.bbox_left + target.bbox_right) / 2, (target.bbox_top + target.bbox_bottom) / 2, 10, fx_damage_number, {notif_type: damage_notif_type.heal, value: value, dir: -target.facing})
@@ -202,13 +218,16 @@ function itemdata()
 		#E8F6F4,
 		#F3235E,
 		#9CE562,
-		#D508E5
+		#D508E5,
+		#7b003b
 	]
 }
 itemdata()
 
 global.timescale = 1
 global.dt = 1
+
+global.retro = 1
 
 // functions
 function item_id_get_random(_by_rarity, _table = itemdata.item_tables.any_obtainable)
@@ -224,6 +243,107 @@ function item_id_get_random(_by_rarity, _table = itemdata.item_tables.any_obtain
 		return _array[irandom(array_length(_array) - 1)]
 	}
 }
+
+// the following eight functions are credited to D'Andrëw Box on Github and are licensed under the MIT license.
+function array_fill(_array, _val)
+{
+	for (var i = 0; i < array_length(_array); i++)
+	{
+		_array[i] = _val;
+	}
+}
+
+function array_clear(_array)
+{
+	array_delete(_array, 0, array_length(_array));
+}
+
+function array_empty(_array)
+{
+	return (array_length(_array) == 0);
+}
+
+function array_find_index_by_value(_array, _val)
+{
+	for (var i = 0; i < array_length(_array); i++)
+	{
+		if (_array[i] == _val)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+function file_text_read_whole(_file) {
+	if (_file < 0) return "";
+
+	var _file_str = ""
+	while (!file_text_eof(_file)) {
+	    _file_str += file_text_readln(_file);
+	}
+
+	return _file_str;
+}
+
+function file_json_read(_file) {
+	var _str = file_text_read_whole(_file);
+	return json_parse(_str);
+}
+
+function file_text_get_lines_array(_file) {
+	if (_file < 0) return [];
+
+	var _file_arr = [];
+	var _str = "";
+	while (!file_text_eof(_file)) {
+		_str = file_text_readln(_file);
+	    array_push(_file_arr, _str);
+	}
+
+	return _file_arr;
+}
+
+function json2file(_filename, _json = {}, _iteration = 0) {
+	if (!is_struct(_json)) return "";
+
+	var _str	= "{";
+	var _keys	= struct_keys(_json);
+	array_sort(_keys, true);
+	for (var i = 0; i < get_size(_keys); i++) {
+		var _value = _json[$ _keys[i]];
+		if (is_struct(_value)) {
+			_value = json2file("", _value, _iteration + 1);
+		} else if (is_string(_value)) {
+			_value = string("\"{0}\"", _value);
+			_value = string_replace_all(_value, "\n", "\\n");
+		}
+		_str += "\n\t";
+		for (var j = 0; j < _iteration; j++) {
+			_str += "\t";
+		}
+		_str += string(
+			"\"{0}\": {1}",
+			_keys[i],
+			_value
+		);
+		_str += ( i != get_size(_keys) - 1 ? "," : "" );
+	}
+	_str += "\n";
+	for (var j = 0; j < _iteration; j++) {
+		_str += "\t";
+	}
+	_str += "}";
+
+	if (_filename != "") {
+		var _file = file_text_open_write(_filename);
+		file_text_write_string(_file, _str);
+		file_text_close(_file);
+	}
+
+	return _str;
+}
+// end of 3rd party functions
 
 function random_weighted(_list) // example values: [{v:3,w:1}, {v:4,w:3}, {v:2,w:5}]; v:value, w:weight. automatically sorted by lowest weight.
 {
@@ -294,21 +414,49 @@ function string_loc(key) // example key: item.beeswax.name
 	return (variable_struct_exists(global.lang, global.locale) && variable_struct_exists(global.lang[$ global.locale], string_replace_all(key, ".", "_"))) ? global.lang[$ global.locale][$ string_replace_all(key, ".", "_")] : (variable_struct_exists(global.lang.en, string_replace_all(key, ".", "_")) ? global.lang.en[$ string_replace_all(key, ".", "_")] : key)
 }
 
+function locale()
+{
+	static init = function()
+	{
+		delete global.lang
+
+		global.lang = { en: {}, es: {} }
+
+		var file = file_text_open_read("data/lang.json")
+		global.lang = file_json_read(file)
+		file_text_close(file)
+	}
+	static reload = function()
+	{
+		var _starttime = get_timer()
+		debug_log("system", "reloading language data")
+
+		locale.init()
+		debug_log("system", $"loaded languages: {struct_get_names(global.lang)}")
+
+		struct_foreach(global.itemdefs as (_name, _item)
+		{
+			global.itemdefs[$ _name].displayname = string_loc($"item.{_name}.name")
+			global.itemdefs[$ _name].shortdesc = string_loc($"item.{_name}.shortdesc")
+			global.itemdefs[$ _name].lore = string_loc($"item.{_name}.lore")
+		})
+		debug_log("system", "reloaded item language data")
+
+		struct_foreach(global.modifierdefs as (_name, _item)
+		{
+			global.modifierdefs[$ _name].displayname = string_loc($"modifier.{_name}.name")
+			global.modifierdefs[$ _name].desc = string_loc($"modifier.{_name}.desc")
+		})
+		debug_log("system", "reloaded modifier language data")
+
+		debug_log("system", $"language data reload completed, elapsed time: [{timer_to_timestamp(get_timer() - _starttime)}]")
+	}
+}
+locale()
+
 global.lang = { en: {}, es: {} }
 
-var dir = working_directory + "data/lang.json"
-var file = file_text_open_read(dir)
-
-var json = ""
-
-while(!file_text_eof(file))
-{
-	json += file_text_readln(file)
-}
-file_text_close(file)
-
-global.lang = json_parse(json)
-
+locale.init()
 debug_log("startup", $"loaded languages: {struct_get_names(global.lang)}")
 
 // itemdefs.gml
@@ -389,7 +537,7 @@ global.itemdefs =
 		rarity : item_rarity.common,
 		proc : function(_a, _t, _d, _p = 1, _s = 1)
 		{
-			if(random(1) <= (0.1 * _s * _p))
+			if(random(1) < (0.1 * _s * _p))
 				_inflict(_t, new statmanager._bleed(_p, _a.base_damage))
 		}
 	}),
@@ -425,13 +573,13 @@ global.itemdefs =
 	})
 }
 
-debug_log("startup", $"successfully created {itemdef.total_items} items")
-
 global.itemdefs_by_rarity = [{}, {}, {}, {}, {}]
 struct_foreach(global.itemdefs as (_name, _item)
 {
     global.itemdefs_by_rarity[_item.rarity][$ _name] = _item
 })
+
+debug_log("startup", $"successfully created {itemdef.total_items} items")
 
 function inventory_item(__id, _stacks = 1) constructor
 {
@@ -535,11 +683,11 @@ global.modifierdefs =
 	unknown : new _modifierdef("unknown"),
 	reckless : modifierdef(new _modifierdef("reckless"), {
 		displayname : string_loc("modifier.reckless.name"),
-    	shortdesc : string_loc("modifier.reckless.shortdesc")
+    	desc : string_loc("modifier.reckless.shortdesc")
 	}),
 	evolution : modifierdef(new _modifierdef("evolution"), {
 		displayname : string_loc("modifier.evolution.name"),
-    	shortdesc : string_loc("modifier.evolution.shortdesc"),
+    	desc : string_loc("modifier.evolution.shortdesc"),
 		on_pickup : function()
 		{
 			var _item = item_id_get_random(1, itemdata.item_tables.chest_small)

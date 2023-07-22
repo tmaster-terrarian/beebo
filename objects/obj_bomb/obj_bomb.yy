@@ -14,6 +14,8 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":11,"eventType":7,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"obj_boss","path":"objects/obj_boss/obj_boss.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"par_unit","path":"objects/par_unit/par_unit.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":1,"eventType":2,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -43,7 +45,6 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vsp","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"0","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"grv","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"0.1","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"damage","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"4","varType":0,},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"size","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"1","varType":0,},
   ],
   "solid": false,
   "spriteId": {

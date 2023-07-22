@@ -62,6 +62,19 @@ drawbossbar = 0
 // music
 current_bgm = noone;
 
+bgm_bus = audio_bus_create();
+
+lowpasseffect = audio_effect_create(AudioEffectType.LPF2)
+lowpasseffect.cutoff = 400
+lowpasseffect.q = 2
+bgm_bus.effects[0] = lowpasseffect
+
+bgm_emitter = audio_emitter_create();
+audio_emitter_bus(bgm_emitter, bgm_bus);
+// example method of playing sounds: audio_play_sound_on(bgm_emitter, snd_Ambience, true, 100);
+
+audio_listener_orientation(0, 0, 1, 0, -1, 0)
+
 // rmm
 current_st = -1;
 target_st = 0;

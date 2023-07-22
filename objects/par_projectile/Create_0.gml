@@ -7,3 +7,6 @@ lifetime = -1
 
 destroy_on_hit = 0
 crit = 0
+
+max_instances = -1
+_max_instances = -1

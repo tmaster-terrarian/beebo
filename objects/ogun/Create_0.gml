@@ -22,6 +22,10 @@ fire = 0;
 
 firebomb = 0;
 
+bomb_projectile = obj_bomb
+bomb_count = 0
+bomb_count_max = 1
+
 lock = 0;
 lock_target = -1;
 

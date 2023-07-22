@@ -1,5 +1,5 @@
 event_inherited();
-proc = 2
+proc = 1
 _team = team.player
 parent = obj_player
 damage = 40
@@ -26,3 +26,7 @@ explode = function()
     event_perform(ev_other, ev_user1)
 }
 bla = 1
+
+alarm[1] = 1
+
+size = 1
