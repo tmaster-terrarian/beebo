@@ -1,6 +1,7 @@
 audio_stop_sound(throwsound);
 with(MakeExplosion(x, y, size * 1.3, size * 1.3, 0.5, sn_explosion2))
 {
+    image_index += 1
 	_team = other._team
     dmg = other.damage
     parent = other.parent

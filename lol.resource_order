@@ -552,6 +552,7 @@
     {"name":"bgm_80s_commercial","order":6,"path":"sounds/bgm_80s_commercial/bgm_80s_commercial.yy",},
     {"name":"spr_stone","order":59,"path":"sprites/spr_stone/spr_stone.yy",},
     {"name":"rTemplate","order":3,"path":"rooms/rTemplate/rTemplate.yy",},
+    {"name":"spr_item_crit_up","order":9,"path":"sprites/spr_item_crit_up/spr_item_crit_up.yy",},
     {"name":"int_lang","order":36,"path":"scripts/int_lang/int_lang.yy",},
     {"name":"string_height_scribble","order":2,"path":"scripts/string_height_scribble/string_height_scribble.yy",},
     {"name":"scribble_refresh_everything","order":6,"path":"scripts/scribble_refresh_everything/scribble_refresh_everything.yy",},

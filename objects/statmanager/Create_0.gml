@@ -89,21 +89,18 @@ function _slow() : _buff("debuff_slow") constructor
     }
 }
 
-function _bleed(_p = 1, _d = 10) : _buff("debuff_bleed") constructor
+function _bleed(_a = noone, _p = 1, _d = 10) : _buff("debuff_bleed") constructor
 {
     timed = 1
 	proc = _p
 	damage = _d
     duration = 180 * proc
+    attacker = _a
     tick = function(target)
     {
         if(timeleft % 15 == 1)
         {
-            target.hp -= damage * 0.5
-            if(target.object_index != obj_player)
-                audio_play_sound(sn_hit, 5, false)
-            else
-                oCamera.alarm[0] = 5
+            damage_event(attacker, target, proctype.none, damage * 0.5, 0, 0, 0, 0)
         }
     }
 }
@@ -115,10 +112,5 @@ function _fast() : _buff("buff_fast") constructor
     calc = function()
     {
         return stacks ? 0.3 : 0
-    }
-    stop = function(target)
-    {
-        if abs(target.hsp) > target.spd
-            target.hsp = clamp(target.hsp, -target.spd, target.spd)
     }
 }

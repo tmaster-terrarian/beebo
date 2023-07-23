@@ -43,7 +43,7 @@ stats =
     jumpspd : -3.7,
     firerate : 5,
     spread : 4,
-    damage : 12,
+    damage : 10,
     ground_accel : 0.12,
     ground_fric : 0.08,
     air_accel : 0.07,

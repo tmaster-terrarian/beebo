@@ -72,7 +72,7 @@ enum healtype
 }
 
 // classes
-function damage_event(attacker, target, proc_type, damage, proc, attacker_has_items = 1, force_crit = 0)
+function damage_event(attacker, target, proc_type, damage, proc, attacker_has_items = 1, force_crit = 0, reduceable = 1)
 {
 	var _damage_type = damage_notif_type.generic
 	var crit = 0
@@ -132,9 +132,12 @@ function damage_event(attacker, target, proc_type, damage, proc, attacker_has_it
 		damage *= 1 + crit
 
 		var dmg = damage
-		for(var i = 0; i < array_length(target.items); i++)
+		if(reduceable)
 		{
-			dmg = global.itemdefs[$ target.items[i].item_id].on_owner_damaged(target, dmg, target.items[i].stacks)
+			for(var i = 0; i < array_length(target.items); i++)
+			{
+				dmg = global.itemdefs[$ target.items[i].item_id].on_owner_damaged(target, dmg, target.items[i].stacks)
+			}
 		}
 		target.hp -= dmg
 
@@ -537,8 +540,8 @@ global.itemdefs =
 		rarity : item_rarity.common,
 		proc : function(_a, _t, _d, _p = 1, _s = 1)
 		{
-			if(random(1) < (0.1 * _s * _p))
-				_inflict(_t, new statmanager._bleed(_p, _a.base_damage))
+			if(random(1) <= (0.1 * _s * _p))
+				_inflict(_t, new statmanager._bleed(_a, _p, _a.base_damage))
 		}
 	}),
 	amorphous_plush : itemdef(new _itemdef("amorphous_plush"), {
@@ -569,6 +572,11 @@ global.itemdefs =
 	bloody_dagger : itemdef(new _itemdef("bloody_dagger"), {
 		displayname : string_loc("item.bloody_dagger.name"),
 		shortdesc : string_loc("item.bloody_dagger.shortdesc"),
+		rarity : item_rarity.common
+	}),
+	crit_up : itemdef(new _itemdef("crit_up"), {
+		displayname : string_loc("item.crit_up.name"),
+		shortdesc : string_loc("item.crit_up.shortdesc"),
 		rarity : item_rarity.common
 	})
 }

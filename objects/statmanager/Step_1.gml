@@ -64,6 +64,8 @@ with(obj_player)
 
     damage = base_damage * statsmult.damage
 
+    statsmult.crit_chance += 0.1 * item_get_stacks("crit_up", id)
+
     crit_chance = clamp(statsmult.crit_chance, 0, 1)
     if(crit_chance == 0) crit_chance += 0.01
 
@@ -137,6 +139,8 @@ with(par_enemy)
     damage = base_damage * statsmult.damage
 
     firerate = stats.firerate * statsmult.firerate
+
+    statsmult.crit_chance += 0.1 * item_get_stacks("crit_up", id)
 
     crit_chance = clamp(statsmult.crit_chance, 0, 1)
 }
