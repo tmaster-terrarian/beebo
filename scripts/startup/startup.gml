@@ -1,4 +1,4 @@
-var _elapsedBootTime = get_timer()
+var _boot_starttime = get_timer()
 file_delete("latest.log")
 
 // pixelate gui
@@ -69,6 +69,12 @@ enum healtype
 {
 	generic,
 	regen
+}
+
+enum deftype
+{
+	item,
+	modifier
 }
 
 // classes
@@ -230,23 +236,9 @@ itemdata()
 global.timescale = 1
 global.dt = 1
 
-global.retro = 1
+global.retro = 0 // experimental color limit shader
 
 // functions
-function item_id_get_random(_by_rarity, _table = itemdata.item_tables.any_obtainable)
-{
-	if(_by_rarity)
-	{
-		var _array = struct_get_names(global.itemdefs_by_rarity[random_weighted(_table)])
-		return _array[irandom(array_length(_array) - 1)]
-	}
-	else
-	{
-		var _array = struct_get_names(global.itemdefs)
-		return _array[irandom(array_length(_array) - 1)]
-	}
-}
-
 // the following eight functions are credited to D'Andrëw Box on Github and are licensed under the MIT license.
 function array_fill(_array, _val)
 {
@@ -347,6 +339,43 @@ function json2file(_filename, _json = {}, _iteration = 0) {
 	return _str;
 }
 // end of 3rd party functions
+
+function item_id_get_random(_by_rarity, _table = itemdata.item_tables.any_obtainable)
+{
+	if(_by_rarity)
+	{
+		var _array = struct_get_names(global.itemdefs_by_rarity[random_weighted(_table)])
+		return _array[irandom(array_length(_array) - 1)]
+	}
+	else
+	{
+		var _array = struct_get_names(global.itemdefs)
+		return _array[irandom(array_length(_array) - 1)]
+	}
+}
+
+function struct_get_random(_struct)
+{
+	var _array = struct_get_names(_struct)
+	return _array[irandom(array_length(_array) - 1)]
+}
+
+function getdef(_defid, _deftype = 0)
+{
+	switch(_deftype)
+	{
+		case deftype.item: default:
+		{
+			return global.itemdefs[$ _defid]
+			break
+		}
+		case deftype.modifier:
+		{
+			return global.modiferdefs[$ _defid]
+			break
+		}
+	}
+}
 
 function random_weighted(_list) // example values: [{v:3,w:1}, {v:4,w:3}, {v:2,w:5}]; v:value, w:weight. automatically sorted by lowest weight.
 {
@@ -574,9 +603,9 @@ global.itemdefs =
 		shortdesc : string_loc("item.bloody_dagger.shortdesc"),
 		rarity : item_rarity.common
 	}),
-	crit_up : itemdef(new _itemdef("crit_up"), {
-		displayname : string_loc("item.crit_up.name"),
-		shortdesc : string_loc("item.crit_up.shortdesc"),
+	lucky_clover : itemdef(new _itemdef("lucky_clover"), {
+		displayname : string_loc("item.lucky_clover.name"),
+		shortdesc : string_loc("item.lucky_clover.shortdesc"),
 		rarity : item_rarity.common
 	})
 }
@@ -611,10 +640,7 @@ function item_add_stacks(item_id, target, stacks = 1, notify = 1)
 {
 	if(notify && stacks >= 1 && target.object_index == obj_player)
 	{
-		var _i = instance_create_depth(0, 0, 0, fx_pickuptext)
-		_i.name = global.itemdefs[$ item_id].displayname
-		_i.shortdesc = global.itemdefs[$ item_id].shortdesc
-		_i.item_id = item_id
+		array_push(oCamera.item_pickup_queue, item_id)
 	}
 
     for(var i = 0; i < array_length(target.items); i++)
@@ -637,10 +663,7 @@ function item_set_stacks(item_id, target, stacks, notify = 1)
 {
 	if(notify && stacks >= 1 && target.object_index == obj_player)
 	{
-		var _i = instance_create_depth(0, 0, 0, fx_pickuptext)
-		_i.name = global.itemdefs[$ item_id].displayname
-		_i.shortdesc = global.itemdefs[$ item_id].shortdesc
-		_i.item_id = item_id
+		array_push(oCamera.item_pickup_queue, item_id)
 	}
 
     for(var i = 0; i < array_length(target.items); i++)
@@ -762,4 +785,4 @@ function modifier_set_stacks(modifier_id, stacks)
 	}
 }
 
-debug_log("startup", $"initialization completed, elapsed time: [{timer_to_timestamp(get_timer() - _elapsedBootTime)}]")
+debug_log("startup", $"initialization completed, elapsed time: [{timer_to_timestamp(get_timer() - _boot_starttime)}]")

@@ -1,7 +1,11 @@
 var txt = scribble("[fnt_basic][d#" + string(itemdata.rarity_colors[global.itemdefs[$ item_id].rarity]) + "]" + name + "[/color]\n[fnt_itemdesc][c_ltgray]" + shortdesc + "[/color]")
 .starting_format("fnt_itemdesc", c_ltgray)
 .blend(c_white, image_alpha)
-.wrap(128)
+.wrap(148)
+
+draw_set_alpha(0.5)
+draw_rectangle_color(x - 84, y + 21, x + 84, y + 20 + txt.get_height(), c_black, c_black, c_black, c_black, false)
+draw_set_alpha(1)
 
 txt.flash(c_black, 1).draw(x - 61, y + 21)
 txt.flash(c_black, 0).draw(x - 62, y + 20)

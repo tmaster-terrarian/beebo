@@ -623,7 +623,7 @@
     {"id":{"name":"bgm_80s_commercial","path":"sounds/bgm_80s_commercial/bgm_80s_commercial.yy",},},
     {"id":{"name":"spr_stone","path":"sprites/spr_stone/spr_stone.yy",},},
     {"id":{"name":"rTemplate","path":"rooms/rTemplate/rTemplate.yy",},},
-    {"id":{"name":"spr_item_crit_up","path":"sprites/spr_item_crit_up/spr_item_crit_up.yy",},},
+    {"id":{"name":"spr_item_lucky_clover","path":"sprites/spr_item_lucky_clover/spr_item_lucky_clover.yy",},},
     {"id":{"name":"int_lang","path":"scripts/int_lang/int_lang.yy",},},
     {"id":{"name":"string_height_scribble","path":"scripts/string_height_scribble/string_height_scribble.yy",},},
     {"id":{"name":"scribble_refresh_everything","path":"scripts/scribble_refresh_everything/scribble_refresh_everything.yy",},},

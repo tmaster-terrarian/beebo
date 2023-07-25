@@ -1,4 +1,5 @@
 global_level = ((global.t / 100) / 60) * difficulty_rate + 1
+// enemies level up every minute
 
 // player
 with(obj_player)
@@ -23,14 +24,15 @@ with(obj_player)
 
     for(var i = 0; i < array_length(items); i++)
     {
-        global.itemdefs[$ items[i].item_id].step(id, items[i].stacks)
+        if(struct_exists(global.itemdefs, items[i].item_id))
+            getdef(items[i].item_id).step(id, items[i].stacks)
     }
 
     var spdadd = 1
-    spdadd += (variable_struct_exists(buffs, "buff_fast")) ? buffs.buff_fast.calc() : 0
+    spdadd += (struct_exists(buffs, "buff_fast")) ? buffs.buff_fast.calc() : 0
 
     var spdsub = 1
-    spdsub += (variable_struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
+    spdsub += (struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
 
     statsmult.spd = spdadd / spdsub
 
@@ -64,7 +66,7 @@ with(obj_player)
 
     damage = base_damage * statsmult.damage
 
-    statsmult.crit_chance += 0.1 * item_get_stacks("crit_up", id)
+    statsmult.crit_chance += 0.1 * item_get_stacks("lucky_clover", id)
 
     crit_chance = clamp(statsmult.crit_chance, 0, 1)
     if(crit_chance == 0) crit_chance += 0.01
@@ -118,14 +120,15 @@ with(par_enemy)
 
     for(var i = 0; i < array_length(items); i++)
     {
-        global.itemdefs[$ items[i].item_id].step(id, items[i].stacks)
+        if(struct_exists(global.itemdefs, items[i].item_id))
+            getdef(items[i].item_id).step(id, items[i].stacks)
     }
 
     var spdadd = 1
-    spdadd += (variable_struct_exists(buffs, "buff_fast")) ? buffs.buff_fast.calc() : 0
+    spdadd += (struct_exists(buffs, "buff_fast")) ? buffs.buff_fast.calc() : 0
 
     var spdsub = 1
-    spdsub += (variable_struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
+    spdsub += (struct_exists(buffs, "debuff_slow")) ? buffs.debuff_slow.calc() : 0
 
     statsmult.spd = spdadd / spdsub
 
@@ -140,7 +143,7 @@ with(par_enemy)
 
     firerate = stats.firerate * statsmult.firerate
 
-    statsmult.crit_chance += 0.1 * item_get_stacks("crit_up", id)
+    statsmult.crit_chance += 0.1 * item_get_stacks("lucky_clover", id)
 
     crit_chance = clamp(statsmult.crit_chance, 0, 1)
 }

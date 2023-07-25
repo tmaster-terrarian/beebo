@@ -51,3 +51,5 @@ if(layer_exists("bg4"))
 {
     layer_y("bg4", camera_get_view_y(cam));
 }
+
+item_pickup_queue = []

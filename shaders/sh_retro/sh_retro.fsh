@@ -4,19 +4,25 @@
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+const mat4 ditherTable = mat4(
+	-4.0, 0.0, -3.0, 1.0,
+	2.0, -2.0, 3.0, -1.0,
+	-3.0, 1.0, -4.0, 0.0,
+	3.0, -1.0, 2.0, -2.0
+);
+
+const float COLOR_FACTOR = 16.0;   // Higher num - higher colors quality
+
 void main()
 {
-	//mat4 ditherTable = mat4(
-	//	-4.0, 0.0, -3.0, 1.0,
-	//	2.0, -2.0, 3.0, -1.0,
-	//	-3.0, 1.0, -4.0, 0.0,
-	//	3.0, -1.0, 2.0, -2.0
-	//);
-	float COLOR_FACTOR = 8.0;   // Higher num - higher colors quality
+	vec3 end_color = vec3((v_vColour * texture2D( gm_BaseTexture, v_vTexcoord )).rgb);
 
-	vec4 col = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord );
+	float xx = mod(v_vTexcoord.x, 4.0);
+	float yy = mod(v_vTexcoord.y, 4.0);
 
-	//col.rgb += 0.001 * ditherTable[int( v_vTexcoord.x ) % 4][int( v_vTexcoord.y ) % 4];
-	col.rgb = floor(col.rgb / COLOR_FACTOR) * COLOR_FACTOR;
-	gl_FragColor = col;
+	end_color += ditherTable[int(xx)][int(yy)] * 0.01;
+
+	end_color = floor((end_color * COLOR_FACTOR) + 0.5) / COLOR_FACTOR;
+
+	gl_FragColor = vec4(end_color, 1);
 }

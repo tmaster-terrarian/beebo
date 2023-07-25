@@ -31,6 +31,8 @@
         "item_emergency_field_kit_consumed_shortdesc": "A used item with no power.",
         "item_bloody_dagger_name": "Bloody Dagger",
         "item_bloody_dagger_shortdesc": "Attacks from behind deal [kw_damage]bonus damage[/c] [kw_proctype]on hit[/c].",
+        "item_lucky_clover_name": "Lucky Clover",
+        "item_lucky_clover_shortdesc": "[kw_number]+10%[/c] chance for [kw_proctype]attacks[/c] to [kw_damage]critically hit[/c].",
 
         "modifier_unknown_name": "Unknown",
         "modifier_unknown_shortdesc": "unknown",
