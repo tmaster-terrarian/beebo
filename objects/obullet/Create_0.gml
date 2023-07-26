@@ -1,6 +1,6 @@
 event_inherited()
 _team = team.player
-proc = 1
+proc = 0.7
 timer = 120
 u = 2
 v = 2

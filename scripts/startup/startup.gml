@@ -553,7 +553,7 @@ global.itemdefs =
 				}
 
 				var p = instance_create_depth(_a.x + offx, _a.y + offy, _a.depth + 2, obj_paperwork)
-				p.damage = _d * (_s + 1)
+				p.damage = _a.base_damage * (4 + _s) * _p
 				p._team = _a._team
 				p.dir = point_direction(_a.x + offx, _a.y + offy, _t.x, _t.y)
 				p.pmax = point_distance(_a.x + offx, _a.y + offy, _t.x, _t.y)
