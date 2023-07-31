@@ -446,6 +446,7 @@
     {"name":"__scribble_class_null_element","order":4,"path":"scripts/__scribble_class_null_element/__scribble_class_null_element.yy",},
     {"name":"spr_loading","order":6,"path":"sprites/spr_loading/spr_loading.yy",},
     {"name":"fx_base","order":10,"path":"objects/fx_base/fx_base.yy",},
+    {"name":"obj_levelselect","order":15,"path":"objects/obj_levelselect/obj_levelselect.yy",},
     {"name":"spr_level3fg","order":103,"path":"sprites/spr_level3fg/spr_level3fg.yy",},
     {"name":"spr_hpbar2_front","order":10,"path":"sprites/spr_hpbar2_front/spr_hpbar2_front.yy",},
     {"name":"objNekoPresenceDemo","order":6,"path":"objects/objNekoPresenceDemo/objNekoPresenceDemo.yy",},

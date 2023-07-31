@@ -504,6 +504,7 @@
     {"id":{"name":"__scribble_class_null_element","path":"scripts/__scribble_class_null_element/__scribble_class_null_element.yy",},},
     {"id":{"name":"spr_loading","path":"sprites/spr_loading/spr_loading.yy",},},
     {"id":{"name":"fx_base","path":"objects/fx_base/fx_base.yy",},},
+    {"id":{"name":"obj_levelselect","path":"objects/obj_levelselect/obj_levelselect.yy",},},
     {"id":{"name":"spr_level3fg","path":"sprites/spr_level3fg/spr_level3fg.yy",},},
     {"id":{"name":"shWhite","path":"shaders/shWhite/shWhite.yy",},},
     {"id":{"name":"spr_hpbar2_front","path":"sprites/spr_hpbar2_front/spr_hpbar2_front.yy",},},
