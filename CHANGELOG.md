@@ -1,4 +1,4 @@
-> The current version is `v2.1b`
+> The current release version is `v2.1b`.
 
 # v2.1a
 
@@ -31,20 +31,23 @@ level data has been moved from `leveldata` to `data/levels`
 
 # v2.1c (in development)
 
-- reformatted `CHANGELOG.md` *again*, hopefully ***this*** one stays! (for real this time!!)
+- added run modifiers: mid-run gameplay additions or changes that each have both upsides and downsides.<br>
+*(these are currently unobtainable without commands, and will be implemented in the future)*
 
-- added run modifiers - mid-run gameplay additions / changes that each have upsides and downsides.<br>
-*(these are currently unobtainable without commands, will fix later)*
-
-- the commands console now uses **Scribble** to display text.
+- added new item: Lucky Clover
+    > Effect: 10% (+10% per stack) chance for attacks to critically hit.<br>
+    > Rarity: Common (White)
+    > 
+    > *(Critical hits deal double damage)*
 
 - added `timer` command, which allows the player to manipulate the run timer.
 
 - added `modifier` command, which allows the player to manage run modifiers.
 
-- the settings menu is now properly localizable, see the relevant language keys in `data/lang.json`.
+- added the inventory hud element, you can expand it during a run with the tab key (or the select button on gamepad).<br>
+*in theory, you should be able to hold up to **70** different items before it stops displaying correctly.*
 
-    ### Technical "Under the Hood" Changes
+    ### Technical
 - implemented a new shortcut function `getdef`, to more easily reference item and modifier definitions in code.<br>
 *(this change does not affect the original method)*
 
@@ -63,7 +66,7 @@ level data has been moved from `leveldata` to `data/levels`
     var item_name = getdef("beeswax", deftype.item).displayname;
     // alternative argument
     var item_name = getdef("beeswax", 0).displayname;
-    // getdef also defaults to item if you leave out the second argument
+    // (getdef also defaults to itemdef if you leave out the second argument)
 
     // modifierdef reference
     var modifier_name = getdef("reckless", deftype.modifier).displayname;
@@ -71,9 +74,17 @@ level data has been moved from `leveldata` to `data/levels`
     var modifier_name = getdef("reckless", 1).displayname;
     ```
 
-- implemented a "item pickup queue," to prevent pickup notifications from overlapping. this does not affect gameplay.<br>
+- implemented an "item pickup queue" to prevent pickup notifications from overlapping. this does not affect gameplay.<br>
 this array is stored in the `oCamera` object.
+
+- the console now uses **Scribble** to display text.
 
 - modified the `console_log` function to be able to be safely called by objects/structs/scripts that are not the Game Manager object.
 
 - console output and other debug messages are now recorded to a file called `latest.log`, which can be found in the save directory.
+
+- the player's bomb projectile should (hopefully) now be interchangeable, to make way for Gun Upgrades once they are added.<br>
+worst case scenario is if I have to rewrite the gun's code (and perhaps move it to the player's code), which would take a while.<br>
+*(its actually so so bad how messily the gun is coded this is a cry for help please I need)*
+
+- the settings menu is now localized.

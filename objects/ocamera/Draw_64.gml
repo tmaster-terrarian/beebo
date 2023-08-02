@@ -89,32 +89,26 @@ if(draw_ui)
         for(var i = 0; i < array_length(items); i++)
         {
             var _spr = asset_get_index("spr_item_" + items[i].item_id)
-            draw_sprite_outlined_ext((_spr != -1) ? _spr : spr_item_placeholder, 0, 11 + 18 * (i % 14), 144 - 9 + 18 * floor(i/14) + round(other.invpos), 1, 1, 0, c_white, itemdata.rarity_colors[global.itemdefs[$ items[i].item_id].rarity], 1, 1, 0)
+            draw_sprite_outlined_ext((_spr != -1) ? _spr : spr_item_placeholder, 0, 11 + 18 * (i % 14), 144 - 9 + 18 * floor(i / 14) + round(other.invpos), 1, 1, 0, c_white, getraritycol(items[i]), 1, 1, 0)
         }
-        for(var i = 0; i < array_length(items); i++)
+        for(var i = 0; i < array_length(items); i++) //separate loop so that stack numbers are always on top of the items
         {
             if(items[i].stacks > 1)
             {
                 draw_set_halign(fa_right); draw_set_valign(fa_bottom); draw_set_font(other.hudfontstacks)
-                draw_text(20 + 18 * i, 144 - 1 + round(other.invpos), string(items[i].stacks))
+                draw_text(20 + 18 * (i % 14), 144 - 1 + 18 * floor(i / 14) + round(other.invpos), string(items[i].stacks))
             }
         }
 
-        if(keyboard_check(vk_tab))
+        if(keyboard_check(vk_tab) || controller_show_inventory)
         {
             var mx = mouse_x - other._x
             var my = mouse_y - other._y
             var _ix = floor((mx - 2)/18)
             var _iy = floor((my - (23 + (round(other.invpos) + 104)))/18)
-            var index = _ix * _iy // 14 columns, 5 rows
+            var index = _ix + 14 * _iy // 14 columns
 
-            if(_iy > 0 && _ix == 0)
-                index = _iy * 14
-
-            if(_ix > 0 && _iy == 0)
-                index = _ix * 1
-
-            if(index < array_length(items) && index >= 0) && (mx >= 2 && my >= 23 + (round(other.invpos) + 104))
+            if(index < array_length(items) && index >= 0)
             {
                 var item = items[index].item_id
                 var nametext = scribble($"[fnt_basic]{global.itemdefs[$ item].displayname}").starting_format("fnt_basic", c_white).padding(1, -2, 1, 0)

@@ -377,6 +377,11 @@ function getdef(_defid, _deftype = 0)
 	}
 }
 
+function getraritycol(_invitem)
+{
+	return itemdata.rarity_colors[global.itemdefs[$ _invitem.item_id].rarity]
+}
+
 function random_weighted(_list) // example values: [{v:3,w:1}, {v:4,w:3}, {v:2,w:5}]; v:value, w:weight. automatically sorted by lowest weight.
 {
 	var _tw = 0

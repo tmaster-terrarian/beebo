@@ -37,7 +37,14 @@ layer_y(bg_sky1,  _y);
 
 invpos += (invpostarget - invpos) / 4
 
-if(keyboard_check(vk_tab))
+if(global.controller)
+{
+    if(gamepad_button_check_pressed(0, gp_select))
+        controller_show_inventory = !controller_show_inventory
+}
+else controller_show_inventory = 0
+
+if(keyboard_check(vk_tab) || controller_show_inventory)
     invpostarget = -104
 else
     invpostarget = 0

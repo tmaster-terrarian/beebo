@@ -8,6 +8,7 @@ _startgame = function()
     gm_room_transition_direct(lvl_random, TRANS_TYPE.SLOW_HORIZONTAL);
     global.player = instance_create_depth(128, 0, 300, obj_player)
     statmanager.run_initialize()
+    // audio_play_sound(sn_TAPE_START_01, 0, 0, 2, 0, 0.9)
     caninput = 0
 }
 _apply_difficulty = function(value)
@@ -15,7 +16,7 @@ _apply_difficulty = function(value)
     statmanager.difficulty_mult = value
 }
 
-function button(_n, _x, _y, _w, _h, _s = noone, _func = function() {}, _c = c_white) constructor
+button = function(_n, _x, _y, _w, _h, _s = noone, _func = function() {}, _c = c_white) constructor
 {
     name = _n
     x = _x
@@ -26,7 +27,7 @@ function button(_n, _x, _y, _w, _h, _s = noone, _func = function() {}, _c = c_wh
     on_press = _func
     text_color = _c
 }
-function slider(_x, _y, _w, _h, __min = 0, _range = 10, _func = function() {}) constructor
+slider = function(_x, _y, _w, _h, __min = 0, _range = 10, _func = function() {}) constructor
 {
     on_press = function() {}
     x = _x
@@ -38,7 +39,7 @@ function slider(_x, _y, _w, _h, __min = 0, _range = 10, _func = function() {}) c
     value = 1
     on_input = _func
 }
-function num_range(_x, _y, _w, _h, __min = 0, _range = 10, _func = function() {}) constructor
+num_range = function(_x, _y, _w, _h, __min = 0, _range = 10, _func = function() {}) constructor
 {
     on_press = function() {}
     x = _x

@@ -83,7 +83,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.6.0.89",
+    "IDEVersion": "2023.6.0.92",
   },
   "resources": [
     {"id":{"name":"__scribble_gen_7_build_pages","path":"scripts/__scribble_gen_7_build_pages/__scribble_gen_7_build_pages.yy",},},
@@ -298,6 +298,7 @@
     {"id":{"name":"_dropranditem","path":"scripts/_dropranditem/_dropranditem.yy",},},
     {"id":{"name":"foreach","path":"scripts/foreach/foreach.yy",},},
     {"id":{"name":"sn_throw","path":"sounds/sn_throw/sn_throw.yy",},},
+    {"id":{"name":"sn_TAPE_START_01","path":"sounds/sn_TAPE_START_01/sn_TAPE_START_01.yy",},},
     {"id":{"name":"bgm_project3","path":"sounds/bgm_project3/bgm_project3.yy",},},
     {"id":{"name":"scr_particle_explode","path":"scripts/scr_particle_explode/scr_particle_explode.yy",},},
     {"id":{"name":"scr_disintigrate","path":"scripts/scr_disintigrate/scr_disintigrate.yy",},},
@@ -479,6 +480,7 @@
     {"id":{"name":"cast_check","path":"scripts/cast_check/cast_check.yy",},},
     {"id":{"name":"scribble_msdf_thickness_offset","path":"scripts/scribble_msdf_thickness_offset/scribble_msdf_thickness_offset.yy",},},
     {"id":{"name":"snGroundHit","path":"sounds/snGroundHit/snGroundHit.yy",},},
+    {"id":{"name":"sn_BUTTON_PLAY_FFWD_RWD_01","path":"sounds/sn_BUTTON_PLAY_FFWD_RWD_01/sn_BUTTON_PLAY_FFWD_RWD_01.yy",},},
     {"id":{"name":"obj_turret","path":"objects/obj_turret/obj_turret.yy",},},
     {"id":{"name":"sn_explosion","path":"sounds/sn_explosion/sn_explosion.yy",},},
     {"id":{"name":"sn_slowmo","path":"sounds/sn_slowmo/sn_slowmo.yy",},},
@@ -536,6 +538,7 @@
     {"id":{"name":"spr_hpbar2_fill3","path":"sprites/spr_hpbar2_fill3/spr_hpbar2_fill3.yy",},},
     {"id":{"name":"obj_pixel4x4","path":"objects/obj_pixel4x4/obj_pixel4x4.yy",},},
     {"id":{"name":"NekoPresence","path":"extensions/NekoPresence/NekoPresence.yy",},},
+    {"id":{"name":"sn_EMF_TAPE_RECORDING_01","path":"sounds/sn_EMF_TAPE_RECORDING_01/sn_EMF_TAPE_RECORDING_01.yy",},},
     {"id":{"name":"fx_casing","path":"objects/fx_casing/fx_casing.yy",},},
     {"id":{"name":"spr_anime_backflip_b","path":"sprites/spr_anime_backflip_b/spr_anime_backflip_b.yy",},},
     {"id":{"name":"spr_anime_wallslide","path":"sprites/spr_anime_wallslide/spr_anime_wallslide.yy",},},

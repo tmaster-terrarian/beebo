@@ -53,3 +53,5 @@ if(layer_exists("bg4"))
 }
 
 item_pickup_queue = []
+
+controller_show_inventory = 0
