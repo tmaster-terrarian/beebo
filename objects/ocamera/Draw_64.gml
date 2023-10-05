@@ -100,7 +100,7 @@ if(draw_ui)
             }
         }
 
-        if(keyboard_check(vk_tab) || controller_show_inventory)
+        if(keyboard_check(vk_tab) || other.controller_show_inventory)
         {
             var mx = mouse_x - other._x
             var my = mouse_y - other._y

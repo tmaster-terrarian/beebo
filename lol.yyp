@@ -83,7 +83,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.6.0.92",
+    "IDEVersion": "2023.8.0.98",
   },
   "resources": [
     {"id":{"name":"__scribble_gen_7_build_pages","path":"scripts/__scribble_gen_7_build_pages/__scribble_gen_7_build_pages.yy",},},
@@ -676,6 +676,7 @@
     {"roomId":{"name":"lvl_random","path":"rooms/lvl_random/lvl_random.yy",},},
     {"roomId":{"name":"rm_lobby","path":"rooms/rm_lobby/rm_lobby.yy",},},
   ],
+  "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":false,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],
