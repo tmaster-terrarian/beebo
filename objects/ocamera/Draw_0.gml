@@ -1,4 +1,9 @@
-surface_resize(application_surface, 256 / zoom, 144 / zoom);
+if(_zoom != zoom)
+{
+	surface_resize(application_surface, 256 / zoom, 144 / zoom);
+	display_set_gui_size(256 / zoom, 144 / zoom)
+	_zoom = zoom
+}
 
 if(draw_ui)
 {

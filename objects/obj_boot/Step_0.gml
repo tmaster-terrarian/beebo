@@ -1,12 +1,17 @@
-if(audio_group_is_loaded(audiogroup_bgm)) && (started == 0)
+if(audio_group_is_loaded(audiogroup_default) && audio_group_is_loaded(audiogroup_bgm) && audio_system_is_initialised() && started == 0)
 {
-    boot_sound = audio_play_sound(sn_dos_disc_boot_combined, 10, false);
+    boot_sound = -1
     started = 1;
 }
 
 if(started == 1)
 {
     anim_timer = min(1883, anim_timer + 1);
+	
+	if(boot_sound == -1)
+	{
+		boot_sound = audio_play_sound(sn_dos_disc_boot_combined, 10, false);
+	}
 
     if(keyboard_check_pressed(vk_enter)) || (keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0, gp_face1)) || (gamepad_button_check_pressed(0, gp_start))
     {

@@ -7,7 +7,7 @@ function seq_intro_event_create()
 
 function seq_intro_event_destroy()
 {
-
+	
 }
 
 function seq_intro_event_clean_up()

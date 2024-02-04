@@ -9,7 +9,8 @@ camera_set_view_size(cam, cam_w, cam_h);
 view_w_half = cam_w * 0.5;
 view_h_half = cam_h * 0.5;
 
-zoom = 1;
+zoom = 1
+_zoom = 0
 
 draw_ui = true;
 

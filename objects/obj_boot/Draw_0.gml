@@ -3,9 +3,10 @@ draw_set_halign(fa_right);
 draw_set_color(c_white);
 draw_set_font(fnt_dos);
 
-if(audio_group_load_progress(audiogroup_bgm) < 100)
+if(audio_group_load_progress(audiogroup_bgm) < 100 || (!audio_system_is_initialised() && audio_system_is_available()))
 {
-    draw_text_transformed(256 - t_pad_x, t_pad_y + t_line_size * 19, "loading music: " + string(audio_group_load_progress(audiogroup_bgm)) + "%", t_scale, t_scale, 0);
+	var progress = audio_group_load_progress(audiogroup_bgm)
+    draw_text_transformed(256 - t_pad_x, t_pad_y + t_line_size * 19, "loading audio: " + string(progress) + "%", t_scale, t_scale, 0);
 }
 
 draw_set_halign(fa_left);

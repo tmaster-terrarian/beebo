@@ -35,3 +35,5 @@ if(ini_read_real("savedata", "stage", 0) == 0)
 ini_close();
 
 window_center()
+
+display_set_gui_size(256 * global.screenSize, 144 * global.screenSize)

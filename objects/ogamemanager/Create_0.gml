@@ -1,4 +1,5 @@
 // screen transition stuff
+display_set_gui_size(256, 144)
 w = display_get_gui_width();
 h = display_get_gui_height();
 h_half = h * 0.5;
@@ -110,4 +111,4 @@ log_pos = 0;
 cursor_timer = 0;
 
 // start up discord rich presence
-instance_create_depth(x, y, depth, objNekoPresenceDemo);
+// instance_create_depth(x, y, depth, objNekoPresenceDemo);
