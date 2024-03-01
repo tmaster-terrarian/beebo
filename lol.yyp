@@ -83,7 +83,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.0.98",
+    "IDEVersion": "2023.11.1.129",
   },
   "resources": [
     {"id":{"name":"__scribble_gen_7_build_pages","path":"scripts/__scribble_gen_7_build_pages/__scribble_gen_7_build_pages.yy",},},
